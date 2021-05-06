@@ -133,6 +133,12 @@ modules:
   - python3 waf install
   post-install:
   - install -D -m644 io.mpv.Mpv.appdata.xml /app/share/appdata/io.mpv.Mpv.appdata.xml
+  
+  # y and g Step forward/backward in the subtitle list
+  - mkdir -p /app/etc/mpv/ 
+  - echo 'y sub-step +1'  > /app/etc/mpv/input.conf
+  - echo 'g sub-step -1' >> /app/etc/mpv/input.conf
+
   sources:
   - type: archive
     url: https://github.com/mpv-player/mpv/archive/v0.33.1.tar.gz
