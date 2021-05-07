@@ -24,7 +24,7 @@ output methods are supported.
   </ul>
   <p>Flatpak Features:</p>
   <ul>
-   <li>mpv-mpris support</li>
+   <li>mpv-mpris support - multimedia keys play/pause support</li>
    <li>enabled g, y step subtitles forward/backward shortcuts </li>
   </ul>
  </description>
