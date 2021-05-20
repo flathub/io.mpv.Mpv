@@ -13,8 +13,9 @@ finish-args:
 - --device=all
 - --share=network
 - --socket=pulseaudio
+- --filesystem=/tmp:rw
+- --filesystem=~/Pictures/mpv-screenshots:create
 - --filesystem=host:ro
-- --filesystem=/tmp
 - --env=LC_NUMERIC=C
 - --filesystem=xdg-run/pipewire-0:ro
 #  mpris support via dbus
@@ -112,18 +113,36 @@ modules:
       type: git
       tag-pattern: "^n([\\d.]+)$"      
 
+
 - name: ffmpeg
   cleanup:
   - /include
   - /lib/pkgconfig
   - /share/ffmpeg/examples
   config-opts:
-  - --enable-shared
+  - --disable-programs
+  - --disable-encoders
+  - --disable-muxers
   - --disable-static
-  - --enable-gnutls
+  - --disable-debug        
   - --disable-doc
+  - --enable-gnutls  
+  - --enable-shared    
   - --enable-encoder=png
   - --enable-libv4l2
+  - --enable-gpl
+  - --enable-version3    
+  - --enable-nonfree     
+  - --enable-libass      
+  - --enable-libfdk-aac  
+  - --enable-libfreetype 
+  - --enable-libmp3lame  
+  - --enable-libopus     
+  - --enable-libtheora   
+  - --enable-libvorbis   
+  - --enable-libvpx      
+  - --enable-libaom 
+  - --enable-libdav1d   
   sources:
   - type: archive
     url: https://ffmpeg.org/releases/ffmpeg-4.4.tar.xz
@@ -142,8 +161,7 @@ modules:
                           --enable-libmpv-shared 
                           --enable-sdl2 
                           --enable-libarchive 
-                          --enable-cplugins
-  - python3 waf build -j8
+  - python3 waf build
   - python3 waf install
   post-install:
   - install -D -m644 io.mpv.Mpv.appdata.xml /app/share/appdata/io.mpv.Mpv.appdata.xml
@@ -152,7 +170,8 @@ modules:
   - mkdir -p /app/etc/mpv/ 
   - echo 'y sub-step +1'  > /app/etc/mpv/input.conf
   - echo 'g sub-step -1' >> /app/etc/mpv/input.conf
-
+  # save screenshots at ~/Pictures/mpv-screenshots
+  - echo "screenshot-directory=~/Pictures/mpv-screenshots" > /app/etc/mpv/mpv.conf
   sources:
   - type: archive
     url: https://github.com/mpv-player/mpv/archive/v0.33.1.tar.gz
