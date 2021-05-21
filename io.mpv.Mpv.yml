@@ -120,9 +120,6 @@ modules:
   - /lib/pkgconfig
   - /share/ffmpeg/examples
   config-opts:
-  - --disable-programs
-  - --disable-encoders
-  - --disable-muxers
   - --disable-static
   - --disable-debug        
   - --disable-doc
