@@ -206,6 +206,8 @@ modules:
   - mkdir -vp /app/etc/mpv/scripts
     #Don't show osc=no message 
   - sed 's|"You must disable the built-in OSC with osc=no in your configuration!"|""|g' -i mpv_thumbnail_script_client_osc.lua
+    #Thumbnail videos up to 3.5 hours 
+  - sed 's|autogenerate_max_duration = 3600|autogenerate_max_duration = 12840|g'        -i mpv_thumbnail_script_server.lua
   - install -D -m644 mpv_thumbnail_script_server.lua     /app/etc/mpv/scripts
   - install -D -m644 mpv_thumbnail_script_client_osc.lua /app/etc/mpv/scripts
 
