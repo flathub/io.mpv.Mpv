@@ -27,7 +27,7 @@ output methods are supported.
    <li>Flatpak: Mpv-thumbnailer script added</li>
    <li>Flatpak: mpv config directory is  ~/.var/app/io.mpv.Mpv/config/mpv</li>
    <li>Flatpak: mpv scripts directory is ~/.var/app/io.mpv.Mpv/config/mpv/scripts</li>
-   <li>Flatpak: Set filesystem=home or filesystem=host for write access by scripts, using flatseal app<li>
+   <li>Flatpak: Set filesystem=home or filesystem=host for write access by scripts, using flatseal app</li>
   </ul>
  </description>
  <releases>
