@@ -7,366 +7,362 @@ rename-desktop-file: mpv.desktop
 rename-icon: mpv
 
 finish-args:
-- --share=ipc
-- --socket=x11
-- --socket=wayland
-- --device=all
-- --share=network
-- --socket=pulseaudio
-- --filesystem=/tmp:rw
-- --filesystem=~/Pictures/mpv-screenshots:create
-- --filesystem=host:ro
-- --env=LC_NUMERIC=C
-- --filesystem=xdg-run/pipewire-0:ro
+  - --share=ipc
+  - --socket=x11
+  - --socket=wayland
+  - --device=all
+  - --share=network
+  - --socket=pulseaudio
+  - --filesystem=/tmp:rw
+  - --filesystem=~/Pictures/mpv-screenshots:create
+  - --filesystem=host:ro
+  - --env=LC_NUMERIC=C
+  - --filesystem=xdg-run/pipewire-0:ro
 #  mpris support via dbus
-- --own-name=org.mpris.MediaPlayer2.mpv
+  - --own-name=org.mpris.MediaPlayer2.mpv
 
 modules:
-- pipewire/pipewire-jack-runtime.json
+  - pipewire/pipewire-jack-runtime.json
 
-- name: luajit
-  no-autogen: true
-  cleanup:
-  - /bin
-  - /lib/*.a
-  - /include
-  - /lib/pkgconfig
-  - /share/man
-  sources:
-  - type: git
-    url: https://luajit.org/git/luajit-2.0.git
-    branch: v2.1
-    disable-shallow-clone: true
-  - type: shell
-    commands:
-    - sed -i 's|/usr/local|/app|' ./Makefile
-    
-- name: youtube-dl
-  no-autogen: true
-  no-make-install: true
-  make-args:
-  - youtube-dl
-  - PYTHON=/usr/bin/python3
-  post-install:
-  - install youtube-dl /app/bin
-  sources:
-  - type: archive
-    url: https://github.com/ytdl-org/youtube-dl/archive/2021.04.26.tar.gz
-    sha256: d80023ab221b3cb89229b632e247035a22c5afaee9a7b3c653bbd702f71c1083
-    
-- name: uchardet
-  buildsystem: cmake-ninja
-  config-opts:
-  - -DCMAKE_BUILD_TYPE=Release
-  - -DBUILD_STATIC=0
-  cleanup:
-  - /bin
-  - /include
-  - /lib/pkgconfig
-  - /share/man
-  sources:
-  - type: archive
-    url: https://www.freedesktop.org/software/uchardet/releases/uchardet-0.0.6.tar.xz
-    sha256: 8351328cdfbcb2432e63938721dd781eb8c11ebc56e3a89d0f84576b96002c61
-  
-- name: libass
-  cleanup:
-  - /include
-  - /lib/*.la
-  - /lib/pkgconfig
-  config-opts:
-  - --disable-static
-  sources:
-  - type: archive
-    url: https://github.com/libass/libass/releases/download/0.15.0/libass-0.15.0.tar.gz
-    sha256: 9cbddee5e8c87e43a5fe627a19cd2aa4c36552156eb4edcf6c5a30bd4934fe58
+  - name: luajit
+    no-autogen: true
+    cleanup:
+      - /bin
+      - /lib/*.a
+      - /include
+      - /lib/pkgconfig
+      - /share/man
+    sources:
+      - type: git
+        url: https://luajit.org/git/luajit-2.0.git
+        branch: v2.1
+        disable-shallow-clone: true
+      - type: shell
+        commands:
+          - sed -i 's|/usr/local|/app|' ./Makefile
 
-- name: libv4l2
-  cleanup:
-  - /include
-  - /lib/*.la
-  - /lib/*/*.la
-  - /lib*/*/*/*.la
-  - /lib/pkgconfig
-  - /share/man
-  config-opts:
-  - --disable-static
-  - --disable-bpf
-  - --with-udevdir=/app/lib/udev
-  sources:
-  - type: archive
-    url: https://linuxtv.org/downloads/v4l-utils/v4l-utils-1.20.0.tar.bz2
-    sha256: 956118713f7ccb405c55c7088a6a2490c32d54300dd9a30d8d5008c28d3726f7
+  - name: youtube-dl
+    no-autogen: true
+    no-make-install: true
+    make-args:
+      - youtube-dl
+      - PYTHON=/usr/bin/python3
+    post-install:
+      - install youtube-dl /app/bin
+    sources:
+      - type: archive
+        url: https://github.com/ytdl-org/youtube-dl/archive/2021.04.26.tar.gz
+        sha256: d80023ab221b3cb89229b632e247035a22c5afaee9a7b3c653bbd702f71c1083
 
-- name: libcdio
-  config-opts:
-    - --disable-static
-    - --disable-example-progs
-  cleanup:
-    - /include
-    - /lib/*.a
-    - /lib/pkgconfig
-  sources:
-    - type: archive
-      url: https://ftp.gnu.org/gnu/libcdio/libcdio-2.1.0.tar.bz2
-      sha256: 8550e9589dbd594bfac93b81ecf129b1dc9d0d51e90f9696f1b2f9b2af32712b
-      x-checker-data:
-        type: html
-        url: https://ftp.gnu.org/gnu/libcdio/
-        version-pattern: libcdio-(\d\.\d+\.?\d*).tar.bz2
-        url-template: https://ftp.gnu.org/gnu/libcdio/libcdio-$version.tar.bz2
+  - name: uchardet
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DBUILD_STATIC=0
+    cleanup:
+      - /bin
+      - /include
+      - /lib/pkgconfig
+      - /share/man
+    sources:
+      - type: archive
+        url: https://www.freedesktop.org/software/uchardet/releases/uchardet-0.0.6.tar.xz
+        sha256: 8351328cdfbcb2432e63938721dd781eb8c11ebc56e3a89d0f84576b96002c61
 
-- name: libcdio-paranoia
-  config-opts:
-    - --disable-static
-    - --disable-example-progs
-  cleanup:
-    - /include
-    - /lib/*.a
-    - /lib/pkgconfig
-  sources:
-    - type: archive
-      url: https://ftp.gnu.org/gnu/libcdio/libcdio-paranoia-10.2+2.0.1.tar.bz2
-      sha256: 33b1cf305ccfbfd03b43936975615000ce538b119989c4bec469577570b60e8a
-      x-checker-data:
-        type: html
-        url: https://ftp.gnu.org/gnu/libcdio/
-        version-pattern: libcdio-paranoia-([\d\.\+-]+).tar.bz2
-        url-template: https://ftp.gnu.org/gnu/libcdio/libcdio-paranoia-$version.tar.bz2
+  - name: libass
+    cleanup:
+      - /include
+      - /lib/*.la
+      - /lib/pkgconfig
+    config-opts:
+      - --disable-static
+    sources:
+      - type: archive
+        url: https://github.com/libass/libass/releases/download/0.15.0/libass-0.15.0.tar.gz
+        sha256: 9cbddee5e8c87e43a5fe627a19cd2aa4c36552156eb4edcf6c5a30bd4934fe58
 
-- name: libdvdread
-  config-opts:
-    - --disable-static
-  cleanup:
-    - /include
-    - /lib/*.a
-    - /lib/pkgconfig
-  sources:
-    - type: archive
-      url: https://download.videolan.org/pub/videolan/libdvdread/6.1.1/libdvdread-6.1.1.tar.bz2
-      sha256: 3e357309a17c5be3731385b9eabda6b7e3fa010f46022a06f104553bf8e21796
-      x-checker-data:
-        type: html
-        url: https://www.videolan.org/developers/libdvdnav.html
-        version-pattern: "The latest version of <code>libdvdread</code> is <b>(\\d\\.\\d+\\.?\\d*)</b>\\."
-        url-template: https://download.videolan.org/pub/videolan/libdvdread/$version/libdvdread-$version.tar.bz2
+  - name: libv4l2
+    cleanup:
+      - /include
+      - /lib/*.la
+      - /lib/*/*.la
+      - /lib*/*/*/*.la
+      - /lib/pkgconfig
+      - /share/man
+    config-opts:
+      - --disable-static
+      - --disable-bpf
+      - --with-udevdir=/app/lib/udev
+    sources:
+      - type: archive
+        url: https://linuxtv.org/downloads/v4l-utils/v4l-utils-1.20.0.tar.bz2
+        sha256: 956118713f7ccb405c55c7088a6a2490c32d54300dd9a30d8d5008c28d3726f7
 
-- name: libdvdnav
-  config-opts:
-    - --disable-static
-  cleanup:
-    - /include
-    - /lib/*.a
-    - /lib/pkgconfig
-  sources:
-    - type: archive
-      url: https://download.videolan.org/pub/videolan/libdvdnav/6.1.1/libdvdnav-6.1.1.tar.bz2
-      sha256: c191a7475947d323ff7680cf92c0fb1be8237701885f37656c64d04e98d18d48
-      x-checker-data:
-        type: html
-        url: https://www.videolan.org/developers/libdvdnav.html
-        version-pattern: "The latest version of <code>libdvdnav</code> is <b>(\\d\\.\\d+\\.?\\d*)</b>\\."
-        url-template: https://download.videolan.org/pub/videolan/libdvdnav/$version/libdvdnav-$version.tar.bz2
+  - name: libcdio
+    config-opts:
+      - --disable-static
+      - --disable-example-progs
+    cleanup:
+      - /include
+      - /lib/*.a
+      - /lib/pkgconfig
+    sources:
+      - type: archive
+        url: https://ftp.gnu.org/gnu/libcdio/libcdio-2.1.0.tar.bz2
+        sha256: 8550e9589dbd594bfac93b81ecf129b1dc9d0d51e90f9696f1b2f9b2af32712b
+        x-checker-data:
+          type: html
+          url: https://ftp.gnu.org/gnu/libcdio/
+          version-pattern: libcdio-(\d\.\d+\.?\d*).tar.bz2
+          url-template: https://ftp.gnu.org/gnu/libcdio/libcdio-$version.tar.bz2
 
-- name: libbluray
-  config-opts:
-    - --disable-static
-    - --disable-bdjava-jar
-  cleanup:
-    - /include
-    - /lib/*.a
-    - /lib/pkgconfig
-  sources:
-    - sha256: e2dbaf99e84e0a9725f4985bcb85d41e52c2261cc651d8884b1b790b5ef016f9
-      type: archive
-      url: https://download.videolan.org/pub/videolan/libbluray/1.3.0/libbluray-1.3.0.tar.bz2
-      x-checker-data:
-        type: html
-        url: https://www.videolan.org/developers/libbluray.html
-        version-pattern: "Latest release is <b>libbluray (\\d\\.\\d+\\.?\\d*)</b>\\."
-        url-template: https://download.videolan.org/pub/videolan/libbluray/$version/libbluray-$version.tar.bz2
+  - name: libcdio-paranoia
+    config-opts:
+      - --disable-static
+      - --disable-example-progs
+    cleanup:
+      - /include
+      - /lib/*.a
+      - /lib/pkgconfig
+    sources:
+      - type: archive
+        url: https://ftp.gnu.org/gnu/libcdio/libcdio-paranoia-10.2+2.0.1.tar.bz2
+        sha256: 33b1cf305ccfbfd03b43936975615000ce538b119989c4bec469577570b60e8a
+        x-checker-data:
+          type: html
+          url: https://ftp.gnu.org/gnu/libcdio/
+          version-pattern: libcdio-paranoia-([\d\.\+-]+).tar.bz2
+          url-template: https://ftp.gnu.org/gnu/libcdio/libcdio-paranoia-$version.tar.bz2
 
-- name: zimg
-  config-opts:
-    - --disable-static
-  cleanup:
-    - /include
-    - /lib/*.a
-    - /lib/pkgconfig
-    - /share/doc
-  sources:
-    - type: archive
-      archive-type: tar
-      url: https://api.github.com/repos/sekrit-twc/zimg/tarball/release-3.0.1
-      sha256: 26f067e28df30dc8f5ddd08dfaf6795e27aae5e1e644b620889d4da92e6ceefd
-      x-checker-data:
-        type: json
-        url: https://api.github.com/repos/sekrit-twc/zimg/releases/latest
-        url-query: .tarball_url
-        version-query: .tag_name | sub("^release-"; "")
-        timestamp-query: .published_at
+  - name: libdvdread
+    config-opts:
+      - --disable-static
+    cleanup:
+      - /include
+      - /lib/*.a
+      - /lib/pkgconfig
+    sources:
+      - type: archive
+        url: https://download.videolan.org/pub/videolan/libdvdread/6.1.1/libdvdread-6.1.1.tar.bz2
+        sha256: 3e357309a17c5be3731385b9eabda6b7e3fa010f46022a06f104553bf8e21796
+        x-checker-data:
+          type: html
+          url: https://www.videolan.org/developers/libdvdnav.html
+          version-pattern: The latest version of <code>libdvdread</code> is <b>(\d\.\d+\.?\d*)</b>\.
+          url-template: https://download.videolan.org/pub/videolan/libdvdread/$version/libdvdread-$version.tar.bz2
 
-- name: rubberband
-  buildsystem: meson
-  cleanup:
-    - /include
-    - /lib/*.a
-    - /lib/pkgconfig
-  sources:
-    - type: archive
-      url: https://breakfastquay.com/files/releases/rubberband-1.9.2.tar.bz2
-      sha256: b3cff5968517141fcf9e1ef6b5a1fdb06a5511f148000609216cf182ff4ab612
-      x-checker-data:
-        type: html
-        url: https://www.breakfastquay.com/rubberband/
-        version-pattern: "Rubber Band Library v(\\d\\.\\d+\\.?\\d*) source"
-        url-template: https://breakfastquay.com/files/releases/rubberband-$version.tar.bz2
+  - name: libdvdnav
+    config-opts:
+      - --disable-static
+    cleanup:
+      - /include
+      - /lib/*.a
+      - /lib/pkgconfig
+    sources:
+      - type: archive
+        url: https://download.videolan.org/pub/videolan/libdvdnav/6.1.1/libdvdnav-6.1.1.tar.bz2
+        sha256: c191a7475947d323ff7680cf92c0fb1be8237701885f37656c64d04e98d18d48
+        x-checker-data:
+          type: html
+          url: https://www.videolan.org/developers/libdvdnav.html
+          version-pattern: The latest version of <code>libdvdnav</code> is <b>(\d\.\d+\.?\d*)</b>\.
+          url-template: https://download.videolan.org/pub/videolan/libdvdnav/$version/libdvdnav-$version.tar.bz2
 
-- name: mujs
-  no-autogen: true
-  make-args:
-    - release
-    - shared
-  make-install-args:
-    - prefix=/app
-    - install-shared
-  cleanup:
-    - /bin
-    - /include
-    - /lib/*.a
-    - /lib/pkgconfig
-  sources:
-    - type: archive
-      archive-type: tar
-      url: https://api.github.com/repos/ccxvii/mujs/tarball/refs/tags/1.1.3
-      sha256: d5f614a6190f8e00a8fcc4d773e52a836fc2755d535332557f5f805f9ffec598
-      x-checker-data:
-        type: json
-        url: https://api.github.com/repos/ccxvii/mujs/tags
-        url-query: .[0].tarball_url
-        version-query: .[0].name
+  - name: libbluray
+    config-opts:
+      - --disable-static
+      - --disable-bdjava-jar
+    cleanup:
+      - /include
+      - /lib/*.a
+      - /lib/pkgconfig
+    sources:
+      - sha256: e2dbaf99e84e0a9725f4985bcb85d41e52c2261cc651d8884b1b790b5ef016f9
+        type: archive
+        url: https://download.videolan.org/pub/videolan/libbluray/1.3.0/libbluray-1.3.0.tar.bz2
+        x-checker-data:
+          type: html
+          url: https://www.videolan.org/developers/libbluray.html
+          version-pattern: Latest release is <b>libbluray (\d\.\d+\.?\d*)</b>\.
+          url-template: https://download.videolan.org/pub/videolan/libbluray/$version/libbluray-$version.tar.bz2
 
-      
-- name: nv-codec-headers
-  cleanup:
-  - "*"
-  no-autogen: true
-  make-install-args:
-  - PREFIX=/app
-  sources:
-  - type: git
-    url: https://git.videolan.org/git/ffmpeg/nv-codec-headers.git
-    tag: n11.0.10.1
-    commit: 315ad740ac77282c7cea67ba31f2e4b373132919
-    x-checker-data:
-      type: git
-      tag-pattern: "^n([\\d.]+)$"      
+  - name: zimg
+    config-opts:
+      - --disable-static
+    cleanup:
+      - /include
+      - /lib/*.a
+      - /lib/pkgconfig
+      - /share/doc
+    sources:
+      - type: archive
+        archive-type: tar
+        url: https://api.github.com/repos/sekrit-twc/zimg/tarball/release-3.0.2
+        sha256: 59f7f7e76be5ac4ce773eedfc04c6ff51da2e63942ede6ff8f72acd221877181
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/sekrit-twc/zimg/releases/latest
+          url-query: .tarball_url
+          version-query: .tag_name | sub("^release-"; "")
+          timestamp-query: .published_at
+
+  - name: rubberband
+    buildsystem: meson
+    cleanup:
+      - /include
+      - /lib/*.a
+      - /lib/pkgconfig
+    sources:
+      - type: archive
+        url: https://breakfastquay.com/files/releases/rubberband-1.9.2.tar.bz2
+        sha256: b3cff5968517141fcf9e1ef6b5a1fdb06a5511f148000609216cf182ff4ab612
+        x-checker-data:
+          type: html
+          url: https://www.breakfastquay.com/rubberband/
+          version-pattern: Rubber Band Library v(\d\.\d+\.?\d*) source
+          url-template: https://breakfastquay.com/files/releases/rubberband-$version.tar.bz2
+
+  - name: mujs
+    no-autogen: true
+    make-args:
+      - release
+      - shared
+    make-install-args:
+      - prefix=/app
+      - install-shared
+    cleanup:
+      - /bin
+      - /include
+      - /lib/*.a
+      - /lib/pkgconfig
+    sources:
+      - type: archive
+        archive-type: tar
+        url: https://api.github.com/repos/ccxvii/mujs/tarball/refs/tags/1.1.3
+        sha256: d5f614a6190f8e00a8fcc4d773e52a836fc2755d535332557f5f805f9ffec598
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/ccxvii/mujs/tags
+          url-query: .[0].tarball_url
+          version-query: .[0].name
 
 
-- name: ffmpeg
-  cleanup:
-  - /include
-  - /lib/pkgconfig
-  - /share/ffmpeg/examples
-  config-opts:
-  - --disable-static
-  - --disable-debug        
-  - --disable-doc
-  - --disable-programs
-  - --enable-gnutls  
-  - --enable-shared    
-  - --enable-encoder=png
-  - --enable-libv4l2
-  - --enable-gpl
-  - --enable-version3    
-  - --enable-libass      
-  - --enable-libfreetype 
-  - --enable-libmp3lame  
-  - --enable-libopus     
-  - --enable-libtheora   
-  - --enable-libvorbis   
-  - --enable-libvpx      
-  - --enable-libaom 
-  - --enable-libdav1d   
-  sources:
-  - type: archive
-    url: https://ffmpeg.org/releases/ffmpeg-4.4.tar.xz
-    sha256: 06b10a183ce5371f915c6bb15b7b1fffbe046e8275099c96affc29e17645d909
+  - name: nv-codec-headers
+    cleanup:
+      - '*'
+    no-autogen: true
+    make-install-args:
+      - PREFIX=/app
+    sources:
+      - type: git
+        url: https://git.videolan.org/git/ffmpeg/nv-codec-headers.git
+        tag: n11.0.10.1
+        commit: 315ad740ac77282c7cea67ba31f2e4b373132919
+        x-checker-data:
+          type: git
+          tag-pattern: ^n([\d.]+)$
 
-- name: mpv
-  buildsystem: simple
-  cleanup:
-  - /include
-  - /lib/pkgconfig
-  build-commands:
-  - python3 waf configure --prefix=/app 
-                          --enable-libmpv-shared 
-                          --disable-build-date 
-                          --disable-manpage-build
-                          --disable-alsa
-                          --enable-sdl2 
-                          --enable-libarchive 
-                          --enable-dvbin
-                          --enable-cdda
-                          --enable-dvdnav
-  - python3 waf build
-  - python3 waf install
-  post-install:
-  - install -D -m644 io.mpv.Mpv.appdata.xml /app/share/appdata/io.mpv.Mpv.appdata.xml
-  
+
+  - name: ffmpeg
+    cleanup:
+      - /include
+      - /lib/pkgconfig
+      - /share/ffmpeg/examples
+    config-opts:
+      - --disable-static
+      - --disable-debug
+      - --disable-doc
+      - --disable-programs
+      - --enable-gnutls
+      - --enable-shared
+      - --enable-encoder=png
+      - --enable-libv4l2
+      - --enable-gpl
+      - --enable-version3
+      - --enable-libass
+      - --enable-libfreetype
+      - --enable-libmp3lame
+      - --enable-libopus
+      - --enable-libtheora
+      - --enable-libvorbis
+      - --enable-libvpx
+      - --enable-libaom
+      - --enable-libdav1d
+    sources:
+      - type: archive
+        url: https://ffmpeg.org/releases/ffmpeg-4.4.tar.xz
+        sha256: 06b10a183ce5371f915c6bb15b7b1fffbe046e8275099c96affc29e17645d909
+
+  - name: mpv
+    buildsystem: simple
+    cleanup:
+      - /include
+      - /lib/pkgconfig
+    build-commands:
+      - python3 waf configure --prefix=/app --enable-libmpv-shared --disable-build-date
+        --disable-manpage-build --disable-alsa --enable-sdl2 --enable-libarchive --enable-dvbin
+        --enable-cdda --enable-dvdnav
+      - python3 waf build
+      - python3 waf install
+    post-install:
+      - install -D -m644 io.mpv.Mpv.appdata.xml /app/share/appdata/io.mpv.Mpv.appdata.xml
+
   # y and g Step forward/backward in the subtitle list
-  - mkdir -p /app/etc/mpv/ 
-  - echo 'y sub-step +1'  > /app/etc/mpv/input.conf
-  - echo 'g sub-step -1' >> /app/etc/mpv/input.conf
+      - mkdir -p /app/etc/mpv/
+      - echo 'y sub-step +1'  > /app/etc/mpv/input.conf
+      - echo 'g sub-step -1' >> /app/etc/mpv/input.conf
   # save screenshots at ~/Pictures/mpv-screenshots
-  - echo "screenshot-directory=~/Pictures/mpv-screenshots" > /app/etc/mpv/mpv.conf
-  sources:
-  - type: archive
-    url: https://github.com/mpv-player/mpv/archive/v0.33.1.tar.gz
-    sha256: 100a116b9f23bdcda3a596e9f26be3a69f166a4f1d00910d1789b6571c46f3a9
-  - type: file
-    url: https://waf.io/waf-2.0.17
-    sha256: e05a7f0e81dc3af7e744ddf7c7a334e3504967108fe51fab45808015ba1c0de0
-    dest-filename: waf
-  - type: file
-    path: io.mpv.Mpv.appdata.xml
- 
+      - echo "screenshot-directory=~/Pictures/mpv-screenshots" > /app/etc/mpv/mpv.conf
+    sources:
+      - type: archive
+        url: https://github.com/mpv-player/mpv/archive/v0.33.1.tar.gz
+        sha256: 100a116b9f23bdcda3a596e9f26be3a69f166a4f1d00910d1789b6571c46f3a9
+      - type: file
+        url: https://waf.io/waf-2.0.17
+        sha256: e05a7f0e81dc3af7e744ddf7c7a334e3504967108fe51fab45808015ba1c0de0
+        dest-filename: waf
+      - type: file
+        path: io.mpv.Mpv.appdata.xml
+
 
 # Scripts for mpv
-- name: mpv-mpris
-  buildsystem: simple
-  cleanup:
-  - /include
-  - /lib/pkgconfig
-  build-commands:
-  - make
-  - mkdir -vp /app/etc/mpv/scripts
-  - install -D -m644 mpris.so /app/etc/mpv/scripts
-  sources: 
-  - type: archive
-    url: https://github.com/hoyon/mpv-mpris/archive/refs/tags/0.5.tar.gz
-    sha256: 673aff031e7cc741edea68d7b4b0103d7b031d4a55755abb9e1be5dd4ec4e969
-    dest-filename: mpv-mpris-0.5.tar.gz
+  - name: mpv-mpris
+    buildsystem: simple
+    cleanup:
+      - /include
+      - /lib/pkgconfig
+    build-commands:
+      - make
+      - mkdir -vp /app/etc/mpv/scripts
+      - install -D -m644 mpris.so /app/etc/mpv/scripts
+    sources:
+      - type: archive
+        url: https://github.com/hoyon/mpv-mpris/archive/refs/tags/0.5.tar.gz
+        sha256: 673aff031e7cc741edea68d7b4b0103d7b031d4a55755abb9e1be5dd4ec4e969
+        dest-filename: mpv-mpris-0.5.tar.gz
 
-- name: mpv-thumbnailer
-  buildsystem: simple
-  cleanup:
-  - /include
-  - /lib/pkgconfig
-  build-commands:
-  - mkdir -vp /app/etc/mpv/scripts
+  - name: mpv-thumbnailer
+    buildsystem: simple
+    cleanup:
+      - /include
+      - /lib/pkgconfig
+    build-commands:
+      - mkdir -vp /app/etc/mpv/scripts
     #Don't show osc=no message 
-  - sed 's|"You must disable the built-in OSC with osc=no in your configuration!"|""|g' -i mpv_thumbnail_script_client_osc.lua
+      - sed 's|"You must disable the built-in OSC with osc=no in your configuration!"|""|g'
+        -i mpv_thumbnail_script_client_osc.lua
     #Thumbnail videos up to 3.5 hours 
-  - sed 's|autogenerate_max_duration = 3600|autogenerate_max_duration = 12840|g'        -i mpv_thumbnail_script_server.lua
-  - sed 's|autogenerate_max_duration = 3600|autogenerate_max_duration = 12840|g'        -i mpv_thumbnail_script_client_osc.lua
-  - install -D -m644 mpv_thumbnail_script_server.lua     /app/etc/mpv/scripts
-  - install -D -m644 mpv_thumbnail_script_client_osc.lua /app/etc/mpv/scripts
+      - sed 's|autogenerate_max_duration = 3600|autogenerate_max_duration = 12840|g'        -i
+        mpv_thumbnail_script_server.lua
+      - sed 's|autogenerate_max_duration = 3600|autogenerate_max_duration = 12840|g'        -i
+        mpv_thumbnail_script_client_osc.lua
+      - install -D -m644 mpv_thumbnail_script_server.lua     /app/etc/mpv/scripts
+      - install -D -m644 mpv_thumbnail_script_client_osc.lua /app/etc/mpv/scripts
 
-  sources: 
-  - type: file
-    url: https://gist.githubusercontent.com/jamesxmcintosh/f419785d1c95d8f49873b800bb407dc5/raw/d12a57e22b5c02a972d774409ca39d84768a82bd/mpv_thumbnail_script_server.lua
-    sha256: 1dcb2f41275f6737af11bd3676a847ea79900720a46e14e8e63554fb1f538f64
-  - type: file
-    url: https://gist.githubusercontent.com/jamesxmcintosh/4224551956f4626df69920750fccf887/raw/765a2c40b42cbf221aa05ce7b2cea1dc81391f6a/mpv_thumbnail_script_client_osc.lua
-    sha256: 49dd2857d6687dd9ec0bf5e5da8c99a1d5b611c46f841ea5041e7591ca610293
+    sources:
+      - type: file
+        url: https://gist.githubusercontent.com/jamesxmcintosh/f419785d1c95d8f49873b800bb407dc5/raw/d12a57e22b5c02a972d774409ca39d84768a82bd/mpv_thumbnail_script_server.lua
+        sha256: 1dcb2f41275f6737af11bd3676a847ea79900720a46e14e8e63554fb1f538f64
+      - type: file
+        url: https://gist.githubusercontent.com/jamesxmcintosh/4224551956f4626df69920750fccf887/raw/765a2c40b42cbf221aa05ce7b2cea1dc81391f6a/mpv_thumbnail_script_client_osc.lua
+        sha256: 49dd2857d6687dd9ec0bf5e5da8c99a1d5b611c46f841ea5041e7591ca610293
