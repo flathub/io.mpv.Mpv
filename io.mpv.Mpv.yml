@@ -27,9 +27,9 @@ modules:
   - name: libXmu
     buildsystem: autotools
     sources:
-    - type: archive
-      url: https://github.com/freedesktop/libXmu/archive/libXmu-1.1.2.tar.gz
-      sha256: fb1485a0ffcc360c0cc8fe18f54a2f49af6fc384da743c0b136ab99cc6c6e54c
+      - type: archive
+        url: https://github.com/freedesktop/libXmu/archive/libXmu-1.1.2.tar.gz
+        sha256: fb1485a0ffcc360c0cc8fe18f54a2f49af6fc384da743c0b136ab99cc6c6e54c
 
   - name: xclip
     buildsystem: autotools
