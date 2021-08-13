@@ -320,7 +320,13 @@ modules:
       - python3 waf install
     post-install:
       - install -D -m644 io.mpv.Mpv.appdata.xml /app/share/appdata/io.mpv.Mpv.appdata.xml
-
+        
+      # Low resolution icon issue on Elementary OS dock
+      # https://github.com/elementary/dock/issues/119
+      - echo "StartupWMClass=mpv" >> /app/share/applications/mpv.desktop      
+      # Remove this and above 3 lines after new release of mpv > v0.33.1
+      
+      
   # y and g Step forward/backward in the subtitle list
       - mkdir -p /app/etc/mpv/
       - echo 'y sub-step +1'  > /app/etc/mpv/input.conf
