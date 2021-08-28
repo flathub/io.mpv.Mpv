@@ -327,10 +327,6 @@ modules:
       # Remove this and above 3 lines after new release of mpv > v0.33.1
       
       
-  # y and g Step forward/backward in the subtitle list
-      - mkdir -p /app/etc/mpv/
-      - echo 'y sub-step +1'  > /app/etc/mpv/input.conf
-      - echo 'g sub-step -1' >> /app/etc/mpv/input.conf
   # save screenshots at ~/Pictures/mpv-screenshots
       - echo "screenshot-directory=~/Pictures/mpv-screenshots" > /app/etc/mpv/mpv.conf
     sources:
