@@ -19,7 +19,7 @@ finish-args:
   - --env=LC_NUMERIC=C
   - --filesystem=xdg-run/pipewire-0:ro
 #  mpris support via dbus
-  - --own-name=org.mpris.MediaPlayer2.mpv
+  - --own-name=org.mpris.MediaPlayer2.mpv.*
 
 modules:
   - pipewire/pipewire-jack-runtime.json
