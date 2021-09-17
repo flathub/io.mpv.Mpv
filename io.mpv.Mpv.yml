@@ -211,8 +211,8 @@ modules:
     sources:
       - type: archive
         archive-type: tar
-        url: https://api.github.com/repos/sekrit-twc/zimg/tarball/release-3.0.2
-        sha256: 59f7f7e76be5ac4ce773eedfc04c6ff51da2e63942ede6ff8f72acd221877181
+        url: https://api.github.com/repos/sekrit-twc/zimg/tarball/release-3.0.3
+        sha256: 6926aa9e27c8f6e4e26186292e253c918334e399b04b6a9490b8584328c7814f
         x-checker-data:
           type: json
           url: https://api.github.com/repos/sekrit-twc/zimg/releases/latest
@@ -320,13 +320,11 @@ modules:
       - python3 waf install
     post-install:
       - install -D -m644 io.mpv.Mpv.appdata.xml /app/share/appdata/io.mpv.Mpv.appdata.xml
-        
+
       # Low resolution icon issue on Elementary OS dock
       # https://github.com/elementary/dock/issues/119
-      - echo "StartupWMClass=mpv" >> /app/share/applications/mpv.desktop      
+      - echo "StartupWMClass=mpv" >> /app/share/applications/mpv.desktop
       # Remove this and above 3 lines after new release of mpv > v0.33.1
-      
-      
   # save screenshots at ~/Pictures/mpv-screenshots
       - echo "screenshot-directory=~/Pictures/mpv-screenshots" > /app/etc/mpv/mpv.conf
     sources:
