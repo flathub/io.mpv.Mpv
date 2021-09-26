@@ -14,7 +14,7 @@ finish-args:
   - --share=network
   - --socket=pulseaudio
   - --filesystem=/tmp:rw
-  - --filesystem=~/Pictures/mpv-screenshots:create
+  - --filesystem=xdg-pictures/mpv-screenshots:create
   - --filesystem=host:ro
   - --env=LC_NUMERIC=C
   - --filesystem=xdg-run/pipewire-0:ro
