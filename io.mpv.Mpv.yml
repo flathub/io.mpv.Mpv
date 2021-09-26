@@ -307,6 +307,23 @@ modules:
         url: https://ffmpeg.org/releases/ffmpeg-4.4.tar.xz
         sha256: 06b10a183ce5371f915c6bb15b7b1fffbe046e8275099c96affc29e17645d909
 
+  - name: libsixel
+    buildsystem: meson
+    cleanup:
+      - /include
+      - /lib/*.a
+      - /lib/pkgconfig
+    sources:
+      - type: archive
+        archive-type: tar
+        url: https://api.github.com/repos/libsixel/libsixel/tarball/refs/tags/v1.10.2
+        sha256: 2b0cb9667ae41ce9ab7e91a17e3b6ded50a4caa64f8896f11efffa7be5155e82
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/libsixel/libsixel/tags
+          url-query: .[0].tarball_url
+          version-query: .[0].name
+
   - name: mpv
     buildsystem: simple
     cleanup:
