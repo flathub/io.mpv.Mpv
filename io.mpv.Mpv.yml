@@ -1,6 +1,6 @@
 app-id: io.mpv.Mpv
 runtime: org.freedesktop.Platform
-runtime-version: 21.08
+runtime-version: '21.08'
 sdk: org.freedesktop.Sdk
 command: mpv
 rename-desktop-file: mpv.desktop
