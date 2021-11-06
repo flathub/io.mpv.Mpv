@@ -23,7 +23,6 @@ output methods are supported.
    <li>Loading external configuration files</li>
    <li>Flatpak: mpv-mpris support - multimedia keys play/pause support</li>
    <li>Flatpak: mpv.conf: Screenshots are saved in ~/Pictures/mpv-screenshots directory</li>
-   <li>Flatpak: Mpv-thumbnailer script removed</li>
    <li>Flatpak: mpv config directory is  ~/.var/app/io.mpv.Mpv/config/mpv</li>
    <li>Flatpak: mpv scripts directory is ~/.var/app/io.mpv.Mpv/config/mpv/scripts</li>
    <li>Flatpak: Set filesystem=home or filesystem=host for write access by scripts, using flatseal app</li>
@@ -33,10 +32,7 @@ output methods are supported.
   <release date="2021-11-01" version="0.34.0">
    <description>
     <p>
-     Updated to mpv-0.34.0 
-    </p>
-    <p>
-     See releases for complete changelog.
+     See releases at mpv github
     </p>
    </description>
   </release>
@@ -47,7 +43,6 @@ output methods are supported.
    <caption>The main window showing the application in action</caption>
   </screenshot>
  </screenshots>
- <url type="releases">https://github.com/mpv-player/mpv/releases/tag/v0.34.0</url>
  <url type="homepage">https://mpv.io/</url>
  <url type="bugtracker">https://github.com/mpv-player/mpv/issues</url>
  <url type="faq">https://github.com/mpv-player/mpv/wiki/FAQ</url>
