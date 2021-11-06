@@ -338,16 +338,17 @@ modules:
     post-install:
       - install -D -m644 io.mpv.Mpv.appdata.xml /app/share/appdata/io.mpv.Mpv.appdata.xml
 
-      # Low resolution icon issue on Elementary OS dock
-      # https://github.com/elementary/dock/issues/119
-      - echo "StartupWMClass=mpv" >> /app/share/applications/mpv.desktop
-      # Remove this and above 3 lines after new release of mpv > v0.33.1
+      ## Low resolution icon issue on Elementary OS dock
+      ## https://github.com/elementary/dock/issues/119
+      #- echo "StartupWMClass=mpv" >> /app/share/applications/mpv.desktop
+      ## Remove this and above 3 lines after new release of mpv > v0.33.1
+  
   # save screenshots at ~/Pictures/mpv-screenshots
       - echo "screenshot-directory=~/Pictures/mpv-screenshots" > /app/etc/mpv/mpv.conf
     sources:
       - type: archive
-        url: https://github.com/mpv-player/mpv/archive/v0.33.1.tar.gz
-        sha256: 100a116b9f23bdcda3a596e9f26be3a69f166a4f1d00910d1789b6571c46f3a9
+        url: https://github.com/mpv-player/mpv/archive/v0.34.0.tar.gz
+        sha256: f654fb6275e5178f57e055d20918d7d34e19949bc98ebbf4a7371902e88ce309
       - type: file
         url: https://waf.io/waf-2.0.22
         sha256: e05a7f0e81dc3af7e744ddf7c7a334e3504967108fe51fab45808015ba1c0de0
