@@ -351,7 +351,7 @@ modules:
         sha256: f654fb6275e5178f57e055d20918d7d34e19949bc98ebbf4a7371902e88ce309
       - type: file
         url: https://waf.io/waf-2.0.22
-        sha256: e05a7f0e81dc3af7e744ddf7c7a334e3504967108fe51fab45808015ba1c0de0
+        sha256: 0a09ad26a2cfc69fa26ab871cb558165b60374b5a653ff556a0c6aca63a00df1
         dest-filename: waf
       - type: file
         path: io.mpv.Mpv.appdata.xml
