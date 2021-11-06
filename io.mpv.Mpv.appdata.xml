@@ -30,16 +30,13 @@ output methods are supported.
   </ul>
  </description>
  <releases>
-  <release date="2021-04-06" version="0.33.1">
+  <release date="2021-11-01" version="0.34.0">
    <description>
     <p>
-     This release contains the following changes:
+     Updated to mpv-0.34.0 
     </p>
-    <ul>
-      <li>Demux_mf: improve format string processing (assigned CVE-2021-30145)</li>
-    </ul>
     <p>
-     This listing is incomplete. See git log for complete changelog.
+     See releases for complete changelog.
     </p>
    </description>
   </release>
@@ -50,6 +47,7 @@ output methods are supported.
    <caption>The main window showing the application in action</caption>
   </screenshot>
  </screenshots>
+ <url type="releases">https://github.com/mpv-player/mpv/releases/tag/v0.34.0</url>
  <url type="homepage">https://mpv.io/</url>
  <url type="bugtracker">https://github.com/mpv-player/mpv/issues</url>
  <url type="faq">https://github.com/mpv-player/mpv/wiki/FAQ</url>
