@@ -15,6 +15,8 @@ finish-args:
   - --socket=pulseaudio
   - --filesystem=/tmp:rw
   - --filesystem=xdg-pictures/mpv-screenshots:create
+  - --filesystem=xdg-videos/mpv-cut:create
+  - --filesystem=home/.var/app/io.mpv.Mpv/config/mpv/scripts:create
   - --filesystem=host:ro
   - --env=LC_NUMERIC=C
   - --filesystem=xdg-run/pipewire-0:ro
@@ -373,6 +375,40 @@ modules:
         sha256: 8b4493cc29d09f175d6f55e6905e77429228b51241f2ae4c3681e35fefef9ae8
         dest-filename: mpv-mpris-0.6.tar.gz
 
+  # bc is required for mpv-video-cutter script
+  - name: bc
+    build-options:
+  #    strip: true
+      no-debuginfo: true  
+    buildsystem: autotools
+    sources:
+      - type: archive
+        url: https://ftp.gnu.org/gnu/bc/bc-1.07.1.tar.gz
+        sha256: 62adfca89b0a1c0164c2cdca59ca210c1d44c3ffc46daf9931cf4942664cb02a
+        
+
+# Installable script
+  - name: lua-scripts
+    buildsystem: simple
+    build-commands:
+    - mkdir -p /app/scripts/mpv-video-cutter
+    - install -Dm755 mpv-thumbnail-script      /app/bin
+    - install -Dm755 mpv-video-cutter-script   /app/bin
+    - install -Dm644 cutter.lua  /app/scripts/mpv-video-cutter
+    - install -Dm755 c_concat.sh /app/scripts/mpv-video-cutter
+    sources:
+    - type: file
+      path: lua-scripts/mpv-thumbnail-script
+    - type: file
+      path: lua-scripts/mpv-video-cutter-script
+    - type: file
+      path: lua-scripts/c_concat.sh
+    - type: file
+      path: lua-scripts/cutter.lua
+      
+
+
+#
 #  - name: mpv-thumbnailer
 #    buildsystem: simple
 #    cleanup:
