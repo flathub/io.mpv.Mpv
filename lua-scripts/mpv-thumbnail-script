@@ -19,6 +19,13 @@ wget -c https://gist.githubusercontent.com/jamesxmcintosh/4224551956f4626df69920
 sed 's|autogenerate_max_duration = 3600|autogenerate_max_duration = 12840|g' -i mpv_thumbnail_script_client_osc.lua
 sed 's|autogenerate_max_duration = 3600|autogenerate_max_duration = 12840|g' -i mpv_thumbnail_script_server.lua
 echo "osc=no" >> ~/.var/app/io.mpv.Mpv/config/mpv/mpv.conf
+
+# Create separate directory for each user
+sed "s/mpv_thumbs_cache/mpv_thumbs_cache_$UID/g" -i mpv_thumbnail_script_client_osc.lua
+
+# Clear all thumbnails for the user on every launch
+sed "s/-- Determine platform --/os.execute\('rm -rf \/tmp\/mpv_thumbs_cache_$UID\/\*'\)/g" -i mpv_thumbnail_script_client_osc.lua
+
 echo "Thumbnailer Script Installed!"
 fi
 
