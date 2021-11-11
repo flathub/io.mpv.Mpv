@@ -1,0 +1,22 @@
+if [ $# -eq 0 ]
+  then
+    echo "Usage:"
+    echo "flatpak run --command=mpv-video-cutter-script io.mpv.Mpv install
+;   # to install"
+    echo "flatpak run --command=mpv-video-cutter-script io.mpv.Mpv uninstall; # to uninstall"
+    exit
+fi
+if [ $1 == "install" ]; then
+ 
+mkdir -p ~/.var/app/io.mpv.Mpv/config/mpv/scripts
+cp /app/scripts/mpv-video-cutter/c_concat.sh ~/.var/app/io.mpv.Mpv/config/mpv/scripts/
+cp /app/scripts/mpv-video-cutter/cutter.lua ~/.var/app/io.mpv.Mpv/config/mpv/scripts/
+echo "mpv-video-cutter script Installed!"
+fi
+
+
+if [ $1 == "uninstall" ]; then
+rm ~/.var/app/io.mpv.Mpv/config/mpv/scripts/c_concat.sh
+rm ~/.var/app/io.mpv.Mpv/config/mpv/scripts/cutter.lua
+echo "mpv-video-cutter script Uninstalled!"
+fi
