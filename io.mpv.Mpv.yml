@@ -387,50 +387,15 @@ modules:
         sha256: 62adfca89b0a1c0164c2cdca59ca210c1d44c3ffc46daf9931cf4942664cb02a
         
 
-# Installable script
+# Installable scripts from git
   - name: lua-scripts
     buildsystem: simple
     build-commands:
-    - mkdir -p /app/scripts/mpv-video-cutter
     - install -Dm755 mpv-thumbnail-script      /app/bin
     - install -Dm755 mpv-video-cutter-script   /app/bin
-    - install -Dm644 cutter.lua  /app/scripts/mpv-video-cutter
-    - install -Dm755 c_concat.sh /app/scripts/mpv-video-cutter
     sources:
     - type: file
       path: lua-scripts/mpv-thumbnail-script
     - type: file
       path: lua-scripts/mpv-video-cutter-script
-    - type: file
-      path: lua-scripts/c_concat.sh
-    - type: file
-      path: lua-scripts/cutter.lua
-      
 
-
-#
-#  - name: mpv-thumbnailer
-#    buildsystem: simple
-#    cleanup:
-#      - /include
-#      - /lib/pkgconfig
-#    build-commands:
-#      - mkdir -vp /app/etc/mpv/scripts
-#    #Don't show osc=no message 
-#      - sed 's|"You must disable the built-in OSC with osc=no in your configuration!"|""|g'
-#        -i mpv_thumbnail_script_client_osc.lua
-#    #Thumbnail videos up to 3.5 hours 
-#      - sed 's|autogenerate_max_duration = 3600|autogenerate_max_duration = 12840|g'        -i
-#        mpv_thumbnail_script_server.lua
-#      - sed 's|autogenerate_max_duration = 3600|autogenerate_max_duration = 12840|g'        -i
-#        mpv_thumbnail_script_client_osc.lua
-#      - install -D -m644 mpv_thumbnail_script_server.lua     /app/etc/mpv/scripts
-#      - install -D -m644 mpv_thumbnail_script_client_osc.lua /app/etc/mpv/scripts
-#
-#    sources:
-#      - type: file
-#        url: https://gist.githubusercontent.com/jamesxmcintosh/f419785d1c95d8f49873b800bb407dc5/raw/d12a57e22b5c02a972d774409ca39d84768a82bd/mpv_thumbnail_script_server.lua
-#        sha256: 1dcb2f41275f6737af11bd3676a847ea79900720a46e14e8e63554fb1f538f64
-#      - type: file
-#        url: https://gist.githubusercontent.com/jamesxmcintosh/4224551956f4626df69920750fccf887/raw/765a2c40b42cbf221aa05ce7b2cea1dc81391f6a/mpv_thumbnail_script_client_osc.lua
-#        sha256: 49dd2857d6687dd9ec0bf5e5da8c99a1d5b611c46f841ea5041e7591ca610293
