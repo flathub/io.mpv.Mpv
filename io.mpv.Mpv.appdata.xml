@@ -25,9 +25,9 @@ output methods are supported.
    <li>Flatpak: mpv.conf: Screenshots are saved in ~/Pictures/mpv-screenshots directory</li>
    <li>Flatpak: mpv config directory is  ~/.var/app/io.mpv.Mpv/config/mpv</li>
    <li>Flatpak: mpv scripts directory is ~/.var/app/io.mpv.Mpv/config/mpv/scripts</li>
-   <li>Flatpak: Thumbnail Script can be installed with "flatpak run --command=mpv-video-cutter-script io.mpv.Mpv install"</li>
+   <li>Flatpak: Thumbnail Script can be installed with "flatpak run --command=mpv-thumbnail-script io.mpv.Mpv install"</li>
    <li>Flatpak: Mpv Video Cutter Script can be installed with "flatpak run --command=mpv-video-cutter-script io.mpv.Mpv install"</li>
-   <li>Flatpak: mpv-video-cutter script (c to begin, and end, o to generate) saves cut videos at ~/Videos/mpv-cut</li>
+   <li>Flatpak: mpv-video-cutter script (c to begin cut, again c to end segment, o to generate video) at ~/Videos/mpv-cut</li>
    <li>Flatpak: Set "flatpak override filesystem=home io.mpv.Mpv" (or filesystem=host) for write access by scripts, using flatseal app</li>
   </ul>
  </description>
