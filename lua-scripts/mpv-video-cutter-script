@@ -12,7 +12,9 @@ mkdir -p ~/.var/app/io.mpv.Mpv/config/mpv/scripts
 cd ~/.var/app/io.mpv.Mpv/config/mpv/scripts
 wget -c https://raw.githubusercontent.com/fastrizwaan/mpv-video-cutter-linux/master/flatpak/c_concat.sh
 wget -c https://raw.githubusercontent.com/fastrizwaan/mpv-video-cutter-linux/master/flatpak/cutter.lua
+wget -c https://raw.githubusercontent.com/fastrizwaan/mpv-video-cutter-linux/master/flatpak/c_concat2.sh
 chmod 0755 c_concat.sh
+chmod 0755 c_concat2.sh
 echo "mpv-video-cutter script Installed!"
 fi
 
