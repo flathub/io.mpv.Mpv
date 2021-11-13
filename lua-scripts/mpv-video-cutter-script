@@ -21,6 +21,7 @@ fi
 
 if [ $1 == "uninstall" ]; then
 rm ~/.var/app/io.mpv.Mpv/config/mpv/scripts/c_concat.sh
+rm ~/.var/app/io.mpv.Mpv/config/mpv/scripts/c_concat2.sh
 rm ~/.var/app/io.mpv.Mpv/config/mpv/scripts/cutter.lua
 echo "mpv-video-cutter script Uninstalled!"
 fi
