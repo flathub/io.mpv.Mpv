@@ -278,6 +278,45 @@ modules:
           type: git
           tag-pattern: ^n([\d.]+)$
 
+  - name: x264
+    cleanup:
+      - /include
+      - /lib/*.la
+      - /lib/*/*.la
+      - /lib*/*/*/*.la
+      - /lib/pkgconfig
+      - /share/man
+    config-opts:
+      - --disable-cli
+      - --enable-shared
+    sources:
+      - type: archive
+        url: https://anduin.linuxfromscratch.org/BLFS/x264/x264-20210814.tar.xz
+        md5: e6dcb0f124af8d6841f307bdbba18aa3
+        
+  - name: x265
+    buildsystem: simple
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DBUILD_STATIC=0
+    cleanup:
+      - /include
+      - /lib/*.la
+      - /lib/*/*.la
+      - /lib*/*/*/*.la
+      - /lib/pkgconfig
+      - /share/man
+    build-commands:
+      - mkdir bld && 
+        cd bld && 
+        cmake -DCMAKE_INSTALL_PREFIX=/app ../source &&
+        make && make install && 
+        rm -vf /usr/lib/libx265.a 
+    sources:
+      - type: archive
+        url: https://anduin.linuxfromscratch.org/BLFS/x265/x265_3.4.tar.gz
+        md5: e37b91c1c114f8815a3f46f039fe79b5
+
 
   - name: ffmpeg
     cleanup:
@@ -304,6 +343,8 @@ modules:
       - --enable-libvpx
       - --enable-libaom
       - --enable-libdav1d
+      - --enable-libx264     
+      - --enable-libx265      
     sources:
       - type: archive
         url: https://ffmpeg.org/releases/ffmpeg-4.4.tar.xz
