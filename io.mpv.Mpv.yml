@@ -14,8 +14,8 @@ finish-args:
   - --share=network
   - --socket=pulseaudio
   - --filesystem=/tmp:rw
-  - --filesystem=xdg-pictures/mpv-screenshots:create
-  - --filesystem=xdg-videos/mpv-cut:create
+  - --filesystem=xdg-pictures:rw
+  - --filesystem=xdg-videos:rw
   - --filesystem=home/.var/app/io.mpv.Mpv/config/mpv/scripts:create
   - --filesystem=host:ro
   - --env=LC_NUMERIC=C
@@ -387,7 +387,7 @@ modules:
       ## Remove this and above 3 lines after new release of mpv > v0.33.1
   
   # save screenshots at ~/Pictures/mpv-screenshots
-      - echo "screenshot-directory=~/Pictures/mpv-screenshots" > /app/etc/mpv/mpv.conf
+      - echo "screenshot-directory=~/Pictures/mpv" > /app/etc/mpv/mpv.conf
     sources:
       - type: archive
         url: https://github.com/mpv-player/mpv/archive/v0.34.0.tar.gz
@@ -439,4 +439,3 @@ modules:
       path: lua-scripts/mpv-thumbnail-script
     - type: file
       path: lua-scripts/mpv-video-cutter-script
-
