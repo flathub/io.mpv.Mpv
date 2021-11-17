@@ -428,14 +428,14 @@ modules:
         sha256: 62adfca89b0a1c0164c2cdca59ca210c1d44c3ffc46daf9931cf4942664cb02a
         
 
-# Installable scripts from git
-  - name: lua-scripts
-    buildsystem: simple
-    build-commands:
-    - install -Dm755 mpv-thumbnail-script      /app/bin
-    - install -Dm755 mpv-video-cutter-script   /app/bin
-    sources:
-    - type: file
-      path: lua-scripts/mpv-thumbnail-script
-    - type: file
-      path: lua-scripts/mpv-video-cutter-script
+## Installable scripts from git
+#  - name: lua-scripts
+#    buildsystem: simple
+#    build-commands:
+#    - install -Dm755 mpv-thumbnail-script      /app/bin
+#    - install -Dm755 mpv-video-cutter-script   /app/bin
+#    sources:
+#    - type: file
+#      path: lua-scripts/mpv-thumbnail-script
+#    - type: file
+#      path: lua-scripts/mpv-video-cutter-script
