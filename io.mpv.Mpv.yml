@@ -382,12 +382,7 @@ modules:
     post-install:
       - install -D -m644 io.mpv.Mpv.appdata.xml /app/share/appdata/io.mpv.Mpv.appdata.xml
 
-      ## Low resolution icon issue on Elementary OS dock
-      ## https://github.com/elementary/dock/issues/119
-      #- echo "StartupWMClass=mpv" >> /app/share/applications/mpv.desktop
-      ## Remove this and above 3 lines after new release of mpv > v0.33.1
-  
-  # save screenshots at ~/Pictures/mpv-screenshots
+  # save screenshots at ~/Pictures/mpv
       - echo "screenshot-directory=~/Pictures/mpv" > /app/etc/mpv/mpv.conf
     sources:
       - type: archive
@@ -417,10 +412,9 @@ modules:
         sha256: 8b4493cc29d09f175d6f55e6905e77429228b51241f2ae4c3681e35fefef9ae8
         dest-filename: mpv-mpris-0.6.tar.gz
 
-  # bc is required for mpv-video-cutter script
+
   - name: bc
     build-options:
-  #    strip: true
       no-debuginfo: true  
     buildsystem: autotools
     sources:
@@ -428,15 +422,3 @@ modules:
         url: https://ftp.gnu.org/gnu/bc/bc-1.07.1.tar.gz
         sha256: 62adfca89b0a1c0164c2cdca59ca210c1d44c3ffc46daf9931cf4942664cb02a
         
-
-## Installable scripts from git
-#  - name: lua-scripts
-#    buildsystem: simple
-#    build-commands:
-#    - install -Dm755 mpv-thumbnail-script      /app/bin
-#    - install -Dm755 mpv-video-cutter-script   /app/bin
-#    sources:
-#    - type: file
-#      path: lua-scripts/mpv-thumbnail-script
-#    - type: file
-#      path: lua-scripts/mpv-video-cutter-script
