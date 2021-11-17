@@ -315,8 +315,8 @@ modules:
         rm -vf /usr/lib/libx265.a 
     sources:
       - type: archive
-        url: https://anduin.linuxfromscratch.org/BLFS/x265/x265_3.4.tar.gz
-        md5: e37b91c1c114f8815a3f46f039fe79b5
+        url: https://bitbucket.org/multicoreware/x265_git/downloads/x265_3.5.tar.gz
+        md5: deb5df5cb2ec17bdbae6ac6bbc3b1eef
 
 
   - name: ffmpeg
