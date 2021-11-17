@@ -289,10 +289,11 @@ modules:
     config-opts:
       - --disable-cli
       - --enable-shared
+  
     sources:
-      - type: archive
-        url: https://anduin.linuxfromscratch.org/BLFS/x264/x264-20210814.tar.xz
-        md5: e6dcb0f124af8d6841f307bdbba18aa3
+    - type: git
+      url: https://code.videolan.org/videolan/x264.git
+      commit: 66a5bc1bd1563d8227d5d18440b525a09bcf17ca
         
   - name: x265
     buildsystem: simple
