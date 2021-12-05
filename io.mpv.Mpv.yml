@@ -57,18 +57,19 @@ modules:
         commands:
           - sed -i 's|/usr/local|/app|' ./Makefile
 
-  - name: youtube-dl
+  - name: yt-dlp
     no-autogen: true
     no-make-install: true
     make-args:
-      - youtube-dl
+      - yt-dlp
       - PYTHON=/usr/bin/python3
     post-install:
-      - install youtube-dl /app/bin
+      - install yt-dlp /app/bin
     sources:
       - type: archive
-        url: https://github.com/ytdl-org/youtube-dl/archive/2021.04.26.tar.gz
-        sha256: d80023ab221b3cb89229b632e247035a22c5afaee9a7b3c653bbd702f71c1083
+        url: https://github.com/yt-dlp/yt-dlp/releases/download/2021.12.01/yt-dlp.tar.gz
+        sha256: bf0cc22d17ffbe59c0d0378026ff135a996b86c546ec9713d838f952dea61e0f
+
 
   - name: uchardet
     buildsystem: cmake-ninja
