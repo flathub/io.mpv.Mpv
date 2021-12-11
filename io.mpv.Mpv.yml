@@ -248,16 +248,14 @@ modules:
       - /include
       - /lib/pkgconfig
     sources:
-      - type: archive
-        archive-type: tar
-        url: https://api.github.com/repos/ccxvii/mujs/tarball/refs/tags/1.2.0
-        sha256: 26f8e0af5d55881a7b595b90bfb9e2f93d7ef853224481ca77e22082251ff57d
+      - type: git
+        url: https://github.com/ccxvii/mujs.git
+        tag: 1.2.0
+        commit: dd0a0972b4428771e6a3887da2210c7c9dd40f9c
         x-checker-data:
-          type: json
+          type: git
           url: https://api.github.com/repos/ccxvii/mujs/tags
-          url-query: .[0].tarball_url
-          version-query: .[0].name
-
+          tag-pattern: ^([\d.]+)$
 
   - name: nv-codec-headers
     cleanup:
@@ -358,6 +356,7 @@ modules:
       - -Dshaderc=enabled
     cleanup:
       - /include
+      - /lib/pkgconfig
     sources:
       - type: git
         url: https://code.videolan.org/videolan/libplacebo.git
@@ -380,6 +379,7 @@ modules:
           - /bin
           - /include
           - /lib/cmake
+          - /lib/pkgconfig
         sources:
           - type: archive
             archive-type: tar
