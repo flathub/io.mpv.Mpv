@@ -24,8 +24,8 @@ finish-args:
   - --own-name=org.mpris.MediaPlayer2.mpv.*
 
 cleanup:
-  - "*.la"
-  - "*.a"
+  - '*.la'
+  - '*.a'
 
 modules:
   - pipewire/pipewire-jack-runtime.json
@@ -373,10 +373,11 @@ modules:
     sources:
       - type: git
         url: https://code.videolan.org/videolan/libplacebo.git
-        tag: v3.120.3
+        tag: v4.157.0
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
+        commit: b98c997220ca956acc8a9f36273722984a40256e
     modules:
       - name: shaderc
         buildsystem: cmake-ninja
@@ -416,8 +417,8 @@ modules:
           - type: archive
             archive-type: tar
             dest: third_party/spirv-headers
-            url: https://api.github.com/repos/KhronosGroup/SPIRV-Headers/tarball/refs/tags/sdk-1.2.198.0
-            sha256: c91019b96e4dc6cdb5f9d07c4f739e781bfb8592d242c466b03fa4da5966a023 
+            url: https://api.github.com/repos/KhronosGroup/SPIRV-Headers/tarball/refs/tags/vulkan-1.1-rc2
+            sha256: 37a2c223e9326a604f4d2e2f131e1d5d1406d86774f9a008bf7421c97d39e728
             x-checker-data:
               type: json
               url: https://api.github.com/repos/KhronosGroup/SPIRV-Headers/tags
@@ -464,7 +465,7 @@ modules:
   - name: mpv-mpris
     no-autogen: true
     make-install-args:
-        - 'SCRIPTS_DIR=/app/etc/mpv/scripts'
+      - SCRIPTS_DIR=/app/etc/mpv/scripts
     cleanup:
       - /include
       - /lib/pkgconfig
