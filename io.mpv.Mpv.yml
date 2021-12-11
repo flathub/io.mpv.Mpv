@@ -349,6 +349,19 @@ modules:
           url-query: .[0].tarball_url
           version-query: .[0].name
 
+  - name: vapoursynth
+    config-opts:
+      - --disable-static
+      - --with-python_prefix=/app
+    sources:
+      - type: git
+        url: https://github.com/vapoursynth/vapoursynth.git
+        tag: R57
+        commit: 325756ed04588b31840fdb74479537cddcba4bf7
+        x-checker-data:
+          type: git
+          tag-pattern: ^R([\d.]+)$
+
   - name: libplacebo
     buildsystem: meson
     config-opts:
@@ -447,23 +460,24 @@ modules:
       - type: file
         path: io.mpv.Mpv.appdata.xml
 
-
 # Scripts for mpv
   - name: mpv-mpris
-    buildsystem: simple
+    no-autogen: true
+    make-install-args:
+        - 'SCRIPTS_DIR=/app/etc/mpv/scripts'
     cleanup:
       - /include
       - /lib/pkgconfig
-    build-commands:
-      - make
-      - mkdir -vp /app/etc/mpv/scripts
-      - install -D -m644 mpris.so /app/etc/mpv/scripts
     sources:
       - type: archive
-        url: https://github.com/hoyon/mpv-mpris/archive/refs/tags/0.6.tar.gz
-        sha256: 8b4493cc29d09f175d6f55e6905e77429228b51241f2ae4c3681e35fefef9ae8
-        dest-filename: mpv-mpris-0.6.tar.gz
-
+        archive-type: tar
+        url: https://api.github.com/repos/hoyon/mpv-mpris/tarball/0.6
+        sha256: e868babe6e8b2e395e5302a5398620da1f5d7026c8db6b24c16b0169b1533d0b
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/hoyon/mpv-mpris/releases/latest
+          version-query: .name
+          url-query: .tarball_url
 
   - name: bc
     build-options:
