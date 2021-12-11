@@ -24,8 +24,8 @@ finish-args:
   - --own-name=org.mpris.MediaPlayer2.mpv.*
 
 cleanup:
-  - "*.la"
-  - "*.a"
+  - '*.la'
+  - '*.a'
 
 modules:
   - pipewire/pipewire-jack-runtime.json
@@ -373,10 +373,11 @@ modules:
     sources:
       - type: git
         url: https://code.videolan.org/videolan/libplacebo.git
-        tag: v3.120.3
+        tag: v4.157.0
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
+        commit: b98c997220ca956acc8a9f36273722984a40256e
     modules:
       - name: shaderc
         buildsystem: cmake-ninja
@@ -451,7 +452,7 @@ modules:
   - name: mpv-mpris
     no-autogen: true
     make-install-args:
-        - 'SCRIPTS_DIR=/app/etc/mpv/scripts'
+      - SCRIPTS_DIR=/app/etc/mpv/scripts
     sources:
       - type: archive
         archive-type: tar
