@@ -385,14 +385,14 @@ modules:
           - -DSHADERC_SKIP_COPYRIGHT_CHECK=ON
           - -DSHADERC_SKIP_EXAMPLES=ON
           - -DSHADERC_SKIP_TESTS=ON
-          - -DSPIRV_SKIP_TESTS=ON
-          - -DSPIRV_SKIP_EXECUTABLES=ON
-          - -DENABLE_GLSLANG_BINARIES=OFF
         cleanup:
           - /bin
           - /include
           - /lib/cmake
           - /lib/pkgconfig
+        post-install:
+          # copy libSPIRV, as it's only available in Sdk
+          - install -D /lib/$(gcc --print-multiarch)/libSPIRV*.so /app/lib
         sources:
           - type: archive
             archive-type: tar
@@ -403,36 +403,23 @@ modules:
               url: https://api.github.com/repos/google/shaderc/tags
               url-query: .[0].tarball_url
               version-query: .[0].name
-          - type: archive
-            archive-type: tar
-            dest: third_party/spirv-tools
-            url: https://api.github.com/repos/KhronosGroup/SPIRV-Tools/tarball/v2021.4
-            sha256: 56b11a14601b2b555d2a6f4d7e3108ba08f7bc553c37df76507acca168e90790
-            x-checker-data:
-              type: json
-              url: https://api.github.com/repos/KhronosGroup/SPIRV-Tools/releases
-              url-query: .[0].tarball_url
-              version-query: .[0].tag_name
-          - type: archive
-            archive-type: tar
-            dest: third_party/spirv-headers
-            url: https://api.github.com/repos/KhronosGroup/SPIRV-Headers/tarball/refs/tags/sdk-1.2.198.0
-            sha256: c91019b96e4dc6cdb5f9d07c4f739e781bfb8592d242c466b03fa4da5966a023 
-            x-checker-data:
-              type: json
-              url: https://api.github.com/repos/KhronosGroup/SPIRV-Headers/tags
-              url-query: .[0].tarball_url
-              version-query: .[0].name
-          - type: archive
-            archive-type: tar
-            dest: third_party/glslang
-            url: https://api.github.com/repos/KhronosGroup/glslang/tarball/11.7.0
-            sha256: bfb88db71abb0c630ac90e3107fe06068f8dd48db643dfb7e330289be5c0b680
-            x-checker-data:
-              type: json
-              url: https://api.github.com/repos/KhronosGroup/glslang/releases
-              url-query: .[0].tarball_url
-              version-query: .[0].tag_name
+          - type: shell
+            commands:
+              - sed -i 's|SPIRV/GlslangToSpv.h|glslang/SPIRV/GlslangToSpv.h|' libshaderc_util/src/compiler.cc
+              - sed -i 's|add_subdirectory(third_party)||' CMakeLists.txt
+              - sed -i 's|add_custom_target(build-version|set(NOT_USE|' CMakeLists.txt
+              - |
+                LIB=/lib/$(gcc --print-multiarch)
+                VER_MATCH="[0-9]+\.[^\. ]+"
+                SHADERC=$(grep -m1 -oP "^v$VER_MATCH" CHANGES)
+                SPIRV=v$(grep -oP "(?<=Version:.)$VER_MATCH" $LIB/pkgconfig/SPIRV-Tools-shared.pc)
+                GLSLANG=v$(realpath $LIB/libglslang.so | grep -oP "(?<=so.)$VER_MATCH")
+                cat <<- EOF > glslc/src/build-version.inc
+                  "shaderc $SHADERC"
+                  "spirv-tools $SPIRV"
+                  "glslang $GLSLANG"
+                EOF
+              - cat glslc/src/build-version.inc
 
   - name: mpv
     buildsystem: simple
@@ -465,9 +452,6 @@ modules:
     no-autogen: true
     make-install-args:
         - 'SCRIPTS_DIR=/app/etc/mpv/scripts'
-    cleanup:
-      - /include
-      - /lib/pkgconfig
     sources:
       - type: archive
         archive-type: tar
