@@ -23,6 +23,10 @@ finish-args:
 #  mpris support via dbus
   - --own-name=org.mpris.MediaPlayer2.mpv.*
 
+cleanup:
+  - "*.la"
+  - "*.a"
+
 modules:
   - pipewire/pipewire-jack-runtime.json
 
@@ -44,7 +48,6 @@ modules:
     no-autogen: true
     cleanup:
       - /bin
-      - /lib/*.a
       - /include
       - /lib/pkgconfig
       - /share/man
@@ -69,7 +72,11 @@ modules:
       - type: archive
         url: https://github.com/yt-dlp/yt-dlp/releases/download/2021.12.01/yt-dlp.tar.gz
         sha256: bf0cc22d17ffbe59c0d0378026ff135a996b86c546ec9713d838f952dea61e0f
-
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest
+          version-query: .tag_name
+          url-query: .assets[] | select(.name=="yt-dlp.tar.gz") | .browser_download_url
 
   - name: uchardet
     buildsystem: cmake-ninja
@@ -89,7 +96,6 @@ modules:
   - name: libass
     cleanup:
       - /include
-      - /lib/*.la
       - /lib/pkgconfig
     config-opts:
       - --disable-static
@@ -101,9 +107,6 @@ modules:
   - name: libv4l2
     cleanup:
       - /include
-      - /lib/*.la
-      - /lib/*/*.la
-      - /lib*/*/*/*.la
       - /lib/pkgconfig
       - /share/man
     config-opts:
@@ -121,7 +124,6 @@ modules:
       - --disable-example-progs
     cleanup:
       - /include
-      - /lib/*.a
       - /lib/pkgconfig
     sources:
       - type: archive
@@ -139,7 +141,6 @@ modules:
       - --disable-example-progs
     cleanup:
       - /include
-      - /lib/*.a
       - /lib/pkgconfig
     sources:
       - type: archive
@@ -156,7 +157,6 @@ modules:
       - --disable-static
     cleanup:
       - /include
-      - /lib/*.a
       - /lib/pkgconfig
     sources:
       - type: archive
@@ -165,7 +165,7 @@ modules:
         x-checker-data:
           type: html
           url: https://www.videolan.org/developers/libdvdnav.html
-          version-pattern: The latest version of <code>libdvdread</code> is <b>(\d\.\d+\.?\d*)</b>\.
+          version-pattern: The latest version of <code>libdvdread</code> is <b>([\d\-\.]+)<
           url-template: https://download.videolan.org/pub/videolan/libdvdread/$version/libdvdread-$version.tar.bz2
 
   - name: libdvdnav
@@ -173,7 +173,6 @@ modules:
       - --disable-static
     cleanup:
       - /include
-      - /lib/*.a
       - /lib/pkgconfig
     sources:
       - type: archive
@@ -182,7 +181,7 @@ modules:
         x-checker-data:
           type: html
           url: https://www.videolan.org/developers/libdvdnav.html
-          version-pattern: The latest version of <code>libdvdnav</code> is <b>(\d\.\d+\.?\d*)</b>\.
+          version-pattern: The latest version of <code>libdvdnav</code> is <b>([\d\-\.]+)</b>\.
           url-template: https://download.videolan.org/pub/videolan/libdvdnav/$version/libdvdnav-$version.tar.bz2
 
   - name: libbluray
@@ -191,7 +190,6 @@ modules:
       - --disable-bdjava-jar
     cleanup:
       - /include
-      - /lib/*.a
       - /lib/pkgconfig
     sources:
       - sha256: e2dbaf99e84e0a9725f4985bcb85d41e52c2261cc651d8884b1b790b5ef016f9
@@ -208,7 +206,6 @@ modules:
       - --disable-static
     cleanup:
       - /include
-      - /lib/*.a
       - /lib/pkgconfig
       - /share/doc
     sources:
@@ -227,7 +224,6 @@ modules:
     buildsystem: meson
     cleanup:
       - /include
-      - /lib/*.a
       - /lib/pkgconfig
     sources:
       - type: archive
@@ -250,13 +246,12 @@ modules:
     cleanup:
       - /bin
       - /include
-      - /lib/*.a
       - /lib/pkgconfig
     sources:
       - type: archive
         archive-type: tar
-        url: https://api.github.com/repos/ccxvii/mujs/tarball/refs/tags/1.1.3
-        sha256: d5f614a6190f8e00a8fcc4d773e52a836fc2755d535332557f5f805f9ffec598
+        url: https://api.github.com/repos/ccxvii/mujs/tarball/refs/tags/1.2.0
+        sha256: 26f8e0af5d55881a7b595b90bfb9e2f93d7ef853224481ca77e22082251ff57d
         x-checker-data:
           type: json
           url: https://api.github.com/repos/ccxvii/mujs/tags
@@ -282,43 +277,31 @@ modules:
   - name: x264
     cleanup:
       - /include
-      - /lib/*.la
-      - /lib/*/*.la
-      - /lib*/*/*/*.la
       - /lib/pkgconfig
       - /share/man
     config-opts:
       - --disable-cli
       - --enable-shared
-  
+
     sources:
-    - type: git
-      url: https://code.videolan.org/videolan/x264.git
-      commit: 66a5bc1bd1563d8227d5d18440b525a09bcf17ca
-        
+      - type: git
+        url: https://code.videolan.org/videolan/x264.git
+        commit: 66a5bc1bd1563d8227d5d18440b525a09bcf17ca
+
   - name: x265
-    buildsystem: simple
+    buildsystem: cmake
+    subdir: source
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
       - -DBUILD_STATIC=0
     cleanup:
       - /include
-      - /lib/*.la
-      - /lib/*/*.la
-      - /lib*/*/*/*.la
       - /lib/pkgconfig
       - /share/man
-    build-commands:
-      - mkdir bld && 
-        cd bld && 
-        cmake -DCMAKE_INSTALL_PREFIX=/app ../source &&
-        make && make install && 
-        rm -vf /usr/lib/libx265.a 
     sources:
       - type: archive
         url: https://bitbucket.org/multicoreware/x265_git/downloads/x265_3.5.tar.gz
         md5: deb5df5cb2ec17bdbae6ac6bbc3b1eef
-
 
   - name: ffmpeg
     cleanup:
@@ -345,8 +328,8 @@ modules:
       - --enable-libvpx
       - --enable-libaom
       - --enable-libdav1d
-      - --enable-libx264     
-      - --enable-libx265      
+      - --enable-libx264
+      - --enable-libx265
     sources:
       - type: archive
         url: https://ffmpeg.org/releases/ffmpeg-4.4.tar.xz
@@ -356,7 +339,6 @@ modules:
     buildsystem: meson
     cleanup:
       - /include
-      - /lib/*.a
       - /lib/pkgconfig
     sources:
       - type: archive
@@ -369,6 +351,76 @@ modules:
           url-query: .[0].tarball_url
           version-query: .[0].name
 
+  - name: libplacebo
+    buildsystem: meson
+    config-opts:
+      - -Dvulkan=enabled
+      - -Dshaderc=enabled
+    cleanup:
+      - /include
+    sources:
+      - type: git
+        url: https://code.videolan.org/videolan/libplacebo.git
+        tag: v3.120.3
+        x-checker-data:
+          type: git
+          tag-pattern: ^v([\d.]+)$
+    modules:
+      - name: shaderc
+        buildsystem: cmake-ninja
+        builddir: true
+        config-opts:
+          - -DSHADERC_SKIP_COPYRIGHT_CHECK=ON
+          - -DSHADERC_SKIP_EXAMPLES=ON
+          - -DSHADERC_SKIP_TESTS=ON
+          - -DSPIRV_SKIP_TESTS=ON
+          - -DSPIRV_SKIP_EXECUTABLES=ON
+          - -DENABLE_GLSLANG_BINARIES=OFF
+        cleanup:
+          - /bin
+          - /include
+          - /lib/cmake
+        sources:
+          - type: archive
+            archive-type: tar
+            url: https://api.github.com/repos/google/shaderc/tarball/refs/tags/v2021.3
+            sha256: b7e54b23a83343d5e2da836d8833ae0db11926141955edf845e35d4dc1eb88d1
+            x-checker-data:
+              type: json
+              url: https://api.github.com/repos/google/shaderc/tags
+              url-query: .[0].tarball_url
+              version-query: .[0].name
+          - type: archive
+            archive-type: tar
+            dest: third_party/spirv-tools
+            url: https://api.github.com/repos/KhronosGroup/SPIRV-Tools/tarball/v2021.4
+            sha256: 56b11a14601b2b555d2a6f4d7e3108ba08f7bc553c37df76507acca168e90790
+            x-checker-data:
+              type: json
+              url: https://api.github.com/repos/KhronosGroup/SPIRV-Tools/releases
+              url-query: .[0].tarball_url
+              version-query: .[0].tag_name
+          - type: archive
+            archive-type: tar
+            dest: third_party/spirv-headers
+            url: https://api.github.com/repos/KhronosGroup/SPIRV-Headers/tarball/refs/tags/sdk-1.2.198.0
+            sha256: c91019b96e4dc6cdb5f9d07c4f739e781bfb8592d242c466b03fa4da5966a023 
+            x-checker-data:
+              type: json
+              url: https://api.github.com/repos/KhronosGroup/SPIRV-Headers/tags
+              url-query: .[0].tarball_url
+              version-query: .[0].name
+          - type: archive
+            archive-type: tar
+            dest: third_party/glslang
+            url: https://api.github.com/repos/KhronosGroup/glslang/tarball/11.7.0
+            sha256: bfb88db71abb0c630ac90e3107fe06068f8dd48db643dfb7e330289be5c0b680
+            x-checker-data:
+              type: json
+              url: https://api.github.com/repos/KhronosGroup/glslang/releases
+              url-query: .[0].tarball_url
+              version-query: .[0].tag_name
+
   - name: mpv
     buildsystem: simple
     cleanup:
@@ -377,13 +429,12 @@ modules:
     build-commands:
       - python3 waf configure --prefix=/app --enable-libmpv-shared --disable-build-date
         --disable-manpage-build --disable-alsa --enable-sdl2 --enable-libarchive --enable-dvbin
-        --enable-cdda --enable-dvdnav
+        --enable-cdda --enable-dvdnav --enable-shaderc --enable-vulkan
       - python3 waf build
       - python3 waf install
     post-install:
       - install -D -m644 io.mpv.Mpv.appdata.xml /app/share/appdata/io.mpv.Mpv.appdata.xml
-
-  # save screenshots at ~/Pictures/mpv
+      # save screenshots at ~/Pictures/mpv
       - echo "screenshot-directory=~/Pictures/mpv" > /app/etc/mpv/mpv.conf
     sources:
       - type: archive
@@ -416,10 +467,10 @@ modules:
 
   - name: bc
     build-options:
-      no-debuginfo: true  
+      no-debuginfo: true
     buildsystem: autotools
     sources:
       - type: archive
         url: https://ftp.gnu.org/gnu/bc/bc-1.07.1.tar.gz
         sha256: 62adfca89b0a1c0164c2cdca59ca210c1d44c3ffc46daf9931cf4942664cb02a
-        
+
