@@ -70,8 +70,8 @@ modules:
       - install yt-dlp /app/bin
     sources:
       - type: archive
-        url: https://github.com/yt-dlp/yt-dlp/releases/download/2021.12.27/yt-dlp.tar.gz
-        sha256: 3492c344b1b71ac13c73a53dbb3bc504f7ebaa325c10807ad905428e74a6d630
+        url: https://github.com/yt-dlp/yt-dlp/releases/download/2022.01.21/yt-dlp.tar.gz
+        sha256: 78455c03fb3f5a84bfc05afca5a2564af9852e8fe7f088877e20b8508217dd29
         x-checker-data:
           type: json
           url: https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest
@@ -227,8 +227,8 @@ modules:
       - /lib/pkgconfig
     sources:
       - type: archive
-        url: https://breakfastquay.com/files/releases/rubberband-2.0.0.tar.bz2
-        sha256: eccbf0545496ce3386a2433ceec31e6576a76ed6884310e4b465003bfe260286
+        url: https://breakfastquay.com/files/releases/rubberband-2.0.1.tar.bz2
+        sha256: dc1b8b775f1717b21e35a11842b00d63beaaf9255b304dee7bb0413568ad80e8
         x-checker-data:
           type: html
           url: https://www.breakfastquay.com/rubberband/
