@@ -397,8 +397,8 @@ modules:
         sources:
           - type: archive
             archive-type: tar
-            url: https://api.github.com/repos/google/shaderc/tarball/refs/tags/v2021.3
-            sha256: b7e54b23a83343d5e2da836d8833ae0db11926141955edf845e35d4dc1eb88d1
+            url: https://api.github.com/repos/google/shaderc/tarball/refs/tags/v2021.4
+            sha256: 2fc325a0cebb738bf60015ccb2945464e2db65dba000237e9d3db903b7bca927
             x-checker-data:
               type: json
               url: https://api.github.com/repos/google/shaderc/tags
