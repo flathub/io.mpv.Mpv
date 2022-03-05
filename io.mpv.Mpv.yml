@@ -70,8 +70,8 @@ modules:
       - install yt-dlp /app/bin
     sources:
       - type: archive
-        url: https://github.com/yt-dlp/yt-dlp/releases/download/2022.01.21/yt-dlp.tar.gz
-        sha256: 78455c03fb3f5a84bfc05afca5a2564af9852e8fe7f088877e20b8508217dd29
+        url: https://github.com/yt-dlp/yt-dlp/releases/download/2022.02.04/yt-dlp.tar.gz
+        sha256: c8dd119c28a5d256322ddb3a2fff72bc02ace43fc5880c0065d97f7a48d7a8e3
         x-checker-data:
           type: json
           url: https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest
@@ -373,11 +373,11 @@ modules:
     sources:
       - type: git
         url: https://code.videolan.org/videolan/libplacebo.git
-        tag: v4.192.0
+        tag: v4.192.1
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
-        commit: f95f7aa2a23c818a1aea32754b7ff06cd5503fb7
+        commit: c3c4974474173a847eb3e253fcef3e7685fd364f
     modules:
       - name: shaderc
         buildsystem: cmake-ninja
@@ -397,8 +397,8 @@ modules:
         sources:
           - type: archive
             archive-type: tar
-            url: https://api.github.com/repos/google/shaderc/tarball/refs/tags/v2021.3
-            sha256: b7e54b23a83343d5e2da836d8833ae0db11926141955edf845e35d4dc1eb88d1
+            url: https://api.github.com/repos/google/shaderc/tarball/refs/tags/v2022.1
+            sha256: 19ca3317bc3a207d3ce1c4c9f5b102a8461c124db1b542757f757dca91ff0c32
             x-checker-data:
               type: json
               url: https://api.github.com/repos/google/shaderc/tags
@@ -456,8 +456,8 @@ modules:
     sources:
       - type: archive
         archive-type: tar
-        url: https://api.github.com/repos/hoyon/mpv-mpris/tarball/0.6
-        sha256: e868babe6e8b2e395e5302a5398620da1f5d7026c8db6b24c16b0169b1533d0b
+        url: https://api.github.com/repos/hoyon/mpv-mpris/tarball/0.7
+        sha256: c79c6efc974367ce5f759be1339098c1174ec59e02652adbe48c18b8bcb3d731
         x-checker-data:
           type: json
           url: https://api.github.com/repos/hoyon/mpv-mpris/releases/latest
