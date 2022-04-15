@@ -399,11 +399,7 @@ modules:
             archive-type: tar
             url: https://api.github.com/repos/google/shaderc/tarball/refs/tags/v2021.3
             sha256: b7e54b23a83343d5e2da836d8833ae0db11926141955edf845e35d4dc1eb88d1
-            x-checker-data:
-              type: json
-              url: https://api.github.com/repos/google/shaderc/tags
-              url-query: .[0].tarball_url
-              version-query: .[0].name
+
           - type: shell
             commands:
               - sed -i 's|SPIRV/GlslangToSpv.h|glslang/SPIRV/GlslangToSpv.h|' libshaderc_util/src/compiler.cc
