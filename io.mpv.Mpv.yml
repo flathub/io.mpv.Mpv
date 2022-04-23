@@ -424,7 +424,7 @@ modules:
       - /include
       - /lib/pkgconfig
     build-commands:
-      - python3 waf configure --prefix=/app --enable-libmpv-shared --disable-build-date
+      - python3 waf configure --prefix=/app --enable-gl-x11 --enable-libmpv-shared --disable-build-date
         --disable-manpage-build --disable-alsa --enable-sdl2 --enable-libarchive --enable-dvbin
         --enable-cdda --enable-dvdnav --enable-shaderc --enable-vulkan
       - python3 waf build
