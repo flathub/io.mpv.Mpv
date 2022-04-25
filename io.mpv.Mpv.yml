@@ -211,8 +211,8 @@ modules:
     sources:
       - type: archive
         archive-type: tar
-        url: https://api.github.com/repos/sekrit-twc/zimg/tarball/release-3.0.3
-        sha256: 6926aa9e27c8f6e4e26186292e253c918334e399b04b6a9490b8584328c7814f
+        url: https://api.github.com/repos/sekrit-twc/zimg/tarball/release-3.0.4
+        sha256: c86b5a169b22c562172a11d83ce76a82dbdafc82149edcb8a06d0beeb94b193e
         x-checker-data:
           type: json
           url: https://api.github.com/repos/sekrit-twc/zimg/releases/latest
