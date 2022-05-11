@@ -20,10 +20,10 @@ finish-args:
   - --filesystem=host:ro
   - --env=LC_NUMERIC=C
   - --filesystem=xdg-run/pipewire-0:ro
-  
+
   # For flatpak-spawn --host subliminal
   - --talk-name=org.freedesktop.Flatpak
-  
+
 #  mpris support via dbus
   - --own-name=org.mpris.MediaPlayer2.mpv.*
 
@@ -74,8 +74,8 @@ modules:
       - install yt-dlp /app/bin
     sources:
       - type: archive
-        url: https://github.com/yt-dlp/yt-dlp/releases/download/2022.03.08/yt-dlp.tar.gz
-        sha256: 82550e1179000770fe399275d2a538e0955ef21cb82cf4fcfd841e8b40c87e92
+        url: https://github.com/yt-dlp/yt-dlp/releases/download/2022.04.08/yt-dlp.tar.gz
+        sha256: a9ea3753977dd82f051f0674fbdc3eb5ff49a67246f4bd3cac5745702828d1db
         x-checker-data:
           type: json
           url: https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest
@@ -475,5 +475,5 @@ modules:
   - name: subliminal-wrapper
     buildsystem: simple
     build-commands:
-    - echo 'flatpak-spawn --host subliminal $@' > /app/bin/subliminal
-    - chmod +x /app/bin/subliminal
+      - echo 'flatpak-spawn --host subliminal $@' > /app/bin/subliminal
+      - chmod +x /app/bin/subliminal
