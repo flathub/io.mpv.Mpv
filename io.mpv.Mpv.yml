@@ -20,6 +20,10 @@ finish-args:
   - --filesystem=host:ro
   - --env=LC_NUMERIC=C
   - --filesystem=xdg-run/pipewire-0:ro
+  
+  # For flatpak-spawn --host subliminal
+  - --talk-name=org.freedesktop.Flatpak
+  
 #  mpris support via dbus
   - --own-name=org.mpris.MediaPlayer2.mpv.*
 
@@ -467,3 +471,9 @@ modules:
       - type: archive
         url: https://ftp.gnu.org/gnu/bc/bc-1.07.1.tar.gz
         sha256: 62adfca89b0a1c0164c2cdca59ca210c1d44c3ffc46daf9931cf4942664cb02a
+
+  - name: subliminal-wrapper
+    buildsystem: simple
+    build-commands:
+    - echo 'flatpak-spawn --host subliminal $@' > /app/bin/subliminal
+    - chmod +x /app/bin/subliminal
