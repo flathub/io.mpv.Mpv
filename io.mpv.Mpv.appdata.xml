@@ -25,6 +25,7 @@ output methods are supported.
    <li>Flatpak: mpv.conf: Screenshots (shortcut key 's') are saved in ~/Pictures/mpv directory</li>
    <li>Flatpak: mpv config directory is  ~/.var/app/io.mpv.Mpv/config/mpv</li>
    <li>Flatpak: mpv scripts directory is ~/.var/app/io.mpv.Mpv/config/mpv/scripts</li>
+   <li>Flatpak: subliminal is added for autosub.lua like scripts</li>
    <li>Flatpak: mpv scripts needs write access. Use flatseal app to set home or host write permission</li>
   </ul>
  </description>
