@@ -33,7 +33,10 @@ output methods are supported.
   <release date="2022-01-03" version="0.34.1">
    <description>
     <p>
-     Please See Changelog at github.com/mpv-player/mpv/releases
+     Please See Official Changelog at github.com/mpv-player/mpv/releases
+    </p>
+    <p>
+     Please See flatpak MPV Changelog at github.com/flathub/io.mpv.Mpv/commits/master
     </p>
    </description>
   </release>
