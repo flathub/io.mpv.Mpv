@@ -452,8 +452,8 @@ modules:
     sources:
       - type: archive
         archive-type: tar
-        url: https://api.github.com/repos/hoyon/mpv-mpris/tarball/0.7.1
-        sha256: 159fa1b13d3de4711b1fe7356a05879994d94532a2063b975c4a517867fdcb0f
+        url: https://api.github.com/repos/hoyon/mpv-mpris/tarball/0.7
+        sha256: c79c6efc974367ce5f759be1339098c1174ec59e02652adbe48c18b8bcb3d731
         x-checker-data:
           type: json
           url: https://api.github.com/repos/hoyon/mpv-mpris/releases/latest
