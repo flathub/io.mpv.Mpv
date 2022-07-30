@@ -71,8 +71,8 @@ modules:
       - install yt-dlp /app/bin
     sources:
       - type: archive
-        url: https://github.com/yt-dlp/yt-dlp/releases/download/2022.06.29/yt-dlp.tar.gz
-        sha256: 3b0aa20659b7ba35a9d74b4d35e7fa1fbe13f4d3a30c3970fd2bf4ac087c407c
+        url: https://github.com/yt-dlp/yt-dlp/releases/download/2022.07.18/yt-dlp.tar.gz
+        sha256: d2531dc0d17b78209ac21cbf4e228c5a41b5aca97b46a256c33574ed2176bff2
         x-checker-data:
           type: json
           url: https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest
@@ -193,9 +193,9 @@ modules:
       - /include
       - /lib/pkgconfig
     sources:
-      - sha256: c24b0f41c5b737bbb65c544fe63495637a771c10a519dfc802e769f112b43b75
+      - sha256: 456814db9f07c1eecdef7e840fcbb20976ef814df875428bfb81ecf45851f170
         type: archive
-        url: https://download.videolan.org/pub/videolan/libbluray/1.3.1/libbluray-1.3.1.tar.bz2
+        url: https://download.videolan.org/pub/videolan/libbluray/1.3.2/libbluray-1.3.2.tar.bz2
         x-checker-data:
           type: html
           url: https://www.videolan.org/developers/libbluray.html
