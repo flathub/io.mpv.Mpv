@@ -71,8 +71,8 @@ modules:
       - install yt-dlp /app/bin
     sources:
       - type: archive
-        url: https://github.com/yt-dlp/yt-dlp/releases/download/2022.08.19/yt-dlp.tar.gz
-        sha256: 4740a5ac43e6ff75808a6623145c32e1fc0884ea43bc06768fb40fbd1f97601c
+        url: https://github.com/yt-dlp/yt-dlp/releases/download/2022.09.01/yt-dlp.tar.gz
+        sha256: 675ff266e9400c47bb4df947ab3e7d5e9d4c362abcadd2c61ba341e86590f1df
         x-checker-data:
           type: json
           url: https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest
