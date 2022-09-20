@@ -193,9 +193,9 @@ modules:
       - /include
       - /lib/pkgconfig
     sources:
-      - sha256: 456814db9f07c1eecdef7e840fcbb20976ef814df875428bfb81ecf45851f170
+      - sha256: 58ff52cdcee64c55dcc3c777a1c39fb41abd951b927978e4d2b6811b9193a488
         type: archive
-        url: https://download.videolan.org/pub/videolan/libbluray/1.3.2/libbluray-1.3.2.tar.bz2
+        url: https://download.videolan.org/pub/videolan/libbluray/1.3.3/libbluray-1.3.3.tar.bz2
         x-checker-data:
           type: html
           url: https://www.videolan.org/developers/libbluray.html
