@@ -1,6 +1,6 @@
 app-id: io.mpv.Mpv
 runtime: org.freedesktop.Platform
-runtime-version: '21.08'
+runtime-version: '22.08'
 sdk: org.freedesktop.Sdk
 command: mpv
 rename-desktop-file: mpv.desktop
@@ -331,8 +331,8 @@ modules:
       - --enable-libx265
     sources:
       - type: archive
-        url: https://ffmpeg.org/releases/ffmpeg-4.4.tar.xz
-        sha256: 06b10a183ce5371f915c6bb15b7b1fffbe046e8275099c96affc29e17645d909
+        url: https://ffmpeg.org/releases/ffmpeg-5.1.1.tar.xz
+        sha256: 95bf3ff8c496511e71e958fb249e663c8c9c3de583c5bebc0f5a9745abbc0435
 
   - name: libsixel
     buildsystem: meson
