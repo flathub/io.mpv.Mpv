@@ -23,6 +23,7 @@ finish-args:
 
 #  mpris support via dbus
   - --own-name=org.mpris.MediaPlayer2.mpv.*
+  - --talk-name=org.gnome.SessionManager
 
 cleanup:
   - '*.la'
@@ -677,3 +678,13 @@ modules:
         url: https://files.pythonhosted.org/packages/d6/f6/d523ddbb9304fa3597101903c0004bdba50c495a1e0d355cdd763df6f2d8/subliminal-2.1.0-py3-none-any.whl
         sha256: c7751e7af83e8e80c924c2c596318d9e2535f249784a41840eaee5f4a4f49d79
 
+  # This mpv plugin prevents screen blanking in GNOME (wayland) while playing media.
+  - name: mpv_inhibit_gnome
+    buildsystem: simple
+    build-commands:
+      - make
+      - install -D lib/mpv_inhibit_gnome.so /app/etc/mpv/scripts
+    sources:
+      - type: archive
+        url: https://github.com/Guldoman/mpv_inhibit_gnome/archive/refs/tags/v0.1.0.tar.gz
+        sha256: 94f4e65eeecfaf0c75318948ee0862bb4d42b22f61eb55b3bd7396fe14746adb
