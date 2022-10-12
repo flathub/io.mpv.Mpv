@@ -686,5 +686,5 @@ modules:
       - install -D lib/mpv_inhibit_gnome.so /app/etc/mpv/scripts
     sources:
       - type: archive
-        url: https://github.com/Guldoman/mpv_inhibit_gnome/archive/refs/tags/v0.1.2.tar.gz
-        sha256: 080304d77d2e8d63b1af71ac60dc90718b1a812b7281f8c24554b9a276ef7f41
+        url: https://github.com/Guldoman/mpv_inhibit_gnome/archive/refs/tags/v0.1.3.tar.gz
+        sha256: 185668823892c6c124ce60068209a1d15da1eefcbef775dcbc90d91c53403f94
