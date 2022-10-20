@@ -251,8 +251,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/ccxvii/mujs.git
-        tag: 1.3.0
-        commit: ebf235bfea04da1d12c77c84f9398c1c0d5aa0a8
+        tag: 1.3.1
+        commit: c907989bac544843a90aa44669bc60c4e01b043e
         x-checker-data:
           type: git
           url: https://api.github.com/repos/ccxvii/mujs/tags
