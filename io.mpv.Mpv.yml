@@ -374,11 +374,11 @@ modules:
     sources:
       - type: git
         url: https://code.videolan.org/videolan/libplacebo.git
-        tag: v4.208.0
+        tag: v5.229.0
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
-        commit: 12d55df496aa473296b180318b3132fdceb068fe
+        commit: 1544b073d446af8c6c57c7569852ba3f2a732278
     modules:
       - name: shaderc
         buildsystem: cmake-ninja
