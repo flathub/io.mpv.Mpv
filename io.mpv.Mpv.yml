@@ -267,8 +267,8 @@ modules:
     sources:
       - type: git
         url: https://git.videolan.org/git/ffmpeg/nv-codec-headers.git
-        tag: n11.1.5.1
-        commit: 84483da70d903239d4536763fde8c7e6c4e80784
+        tag: n11.1.5.2
+        commit: f8ae7a49bfef2f99d2c931a791dc3863fda67bf3
         x-checker-data:
           type: git
           tag-pattern: ^n([\d.]+)$
@@ -374,11 +374,11 @@ modules:
     sources:
       - type: git
         url: https://code.videolan.org/videolan/libplacebo.git
-        tag: v4.208.0
+        tag: v5.229.1
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
-        commit: 12d55df496aa473296b180318b3132fdceb068fe
+        commit: 34314e37306e3d12fe5a0416c9b79eaf268b0cb2
     modules:
       - name: shaderc
         buildsystem: cmake-ninja
