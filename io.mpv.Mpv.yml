@@ -78,8 +78,8 @@ modules:
       - install yt-dlp /app/bin
     sources:
       - type: archive
-        url: https://github.com/yt-dlp/yt-dlp/releases/download/2022.10.04/yt-dlp.tar.gz
-        sha256: bd3cf6413cd92a400ff015633372a1454906414226f924b57c1f5826b9abc1a8
+        url: https://github.com/yt-dlp/yt-dlp/releases/download/2022.11.11/yt-dlp.tar.gz
+        sha256: 51fa055912c7fc742a882ff58236bd25b39055b98168a3563ed17cc575c3c3ae
         x-checker-data:
           type: json
           url: https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest
@@ -258,8 +258,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/ccxvii/mujs.git
-        tag: 1.3.1
-        commit: 69e2767d0a8e58054542cc30a67de7ece0659965
+        tag: 1.3.2
+        commit: 0e611cdc0c81a90dabfcb2ab96992acca95b886d
         x-checker-data:
           type: git
           url: https://api.github.com/repos/ccxvii/mujs/tags
@@ -274,8 +274,8 @@ modules:
     sources:
       - type: git
         url: https://git.videolan.org/git/ffmpeg/nv-codec-headers.git
-        tag: n11.1.5.1
-        commit: 84483da70d903239d4536763fde8c7e6c4e80784
+        tag: n11.1.5.2
+        commit: f8ae7a49bfef2f99d2c931a791dc3863fda67bf3
         x-checker-data:
           type: git
           tag-pattern: ^n([\d.]+)$
@@ -381,11 +381,11 @@ modules:
     sources:
       - type: git
         url: https://code.videolan.org/videolan/libplacebo.git
-        tag: v4.208.0
+        tag: v5.229.1
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
-        commit: 12d55df496aa473296b180318b3132fdceb068fe
+        commit: 34314e37306e3d12fe5a0416c9b79eaf268b0cb2
     modules:
       - name: shaderc
         buildsystem: cmake-ninja
