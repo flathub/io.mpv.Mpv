@@ -1,697 +1,460 @@
-app-id: io.mpv.Mpv
+app-id: org.deluge_torrent.deluge
 runtime: org.freedesktop.Platform
 runtime-version: '22.08'
 sdk: org.freedesktop.Sdk
-command: mpv
-rename-desktop-file: mpv.desktop
-rename-icon: mpv
+command: deluge-gtk
+rename-icon: deluge
+
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.rust-stable
+
+build-options:
+  append-path: /usr/lib/sdk/rust-stable/bin
+  build-args:
+    - --share=network
+  env:
+    - CARGO_HOME: "/run/build/rust-flatpak/cargo"
+    - CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER: "clang"
+    - CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_RUSTFLAGS: "-C link-arg=-fuse-ld=/usr/lib/sdk/rust-stable/bin/mold"
+    - CARGO_TARGET_AARCH64_UNKNOWN_LINUX_GNU_LINKER: "clang"
+    - CARGO_TARGET_AARCH64_UNKNOWN_LINUX_GNU_RUSTFLAGS: "-C link-arg=-fuse-ld=/usr/lib/sdk/rust-stable/bin/mold"
+
+
 
 finish-args:
-  - --share=ipc
   - --socket=x11
-  - --socket=wayland
-  - --device=all
+  - --share=ipc
   - --share=network
-  - --socket=pulseaudio
-  - --filesystem=/tmp:rw
-  - --filesystem=xdg-pictures:rw
-  - --filesystem=xdg-videos:rw
-  - --filesystem=home/.var/app/io.mpv.Mpv/config/mpv/scripts:create
-  - --filesystem=host:ro
-  - --env=LC_NUMERIC=C
-  - --filesystem=xdg-run/pipewire-0:ro
-
-#  mpris support via dbus
-  - --own-name=org.mpris.MediaPlayer2.mpv.*
-  - --talk-name=org.gnome.SessionManager
+  - --talk-name=org.freedesktop.Notifications
+  - --talk-name=org.kde.StatusNotifierWatcher
+  - --filesystem=xdg-download
 
 cleanup:
-  - '*.la'
-  - '*.a'
+  - /cache
+  - /man
+  - /share/aclocal
+  - /share/devhelp
+  - /include
+  - /lib/pkgconfig
+  - /share/gtk-doc
+  - /share/man
+  - /lib/*.a
+  - /lib/*.la
 
 modules:
 
-  - name: libXmu
-    buildsystem: autotools
-    sources:
-      - type: archive
-        url: https://github.com/freedesktop/libXmu/archive/libXmu-1.1.2.tar.gz
-        sha256: fb1485a0ffcc360c0cc8fe18f54a2f49af6fc384da743c0b136ab99cc6c6e54c
+#- shared-modules/libappindicator/libappindicator-gtk3-introspection-12.10.json
 
-  - name: xclip
-    buildsystem: autotools
-    sources:
-      - type: archive
-        url: https://github.com/astrand/xclip/archive/0.13.tar.gz
-        sha256: ca5b8804e3c910a66423a882d79bf3c9450b875ac8528791fb60ec9de667f758
+- name: boost
+  buildsystem: simple
+  sources:
+  - type: archive
+    url: https://boostorg.jfrog.io/artifactory/main/release/1.80.0/source/boost_1_80_0.tar.bz2
+    sha256: 1e19565d82e43bc59209a168f5ac899d3ba471d55c7610c677d4ccf2c9c500c0 
+  build-commands:
+  - ./bootstrap.sh --prefix="${FLATPAK_DEST}" --with-python=python3 
+  - ./b2 stage  -j $FLATPAK_BUILDER_N_JOBS variant=release threading=multi link=shared debug-symbols=off
+  - ./b2 install --prefix="${FLATPAK_DEST}" variant=release threading=multi link=shared debug-symbols=off
 
-  - name: libXpresent
-    buildsystem: autotools
-    sources:
-      - type: archive
-        url: https://xorg.freedesktop.org/archive/individual/lib/libXpresent-1.0.1.tar.xz
-        sha256: b964df9e5a066daa5e08d2dc82692c57ca27d00b8cc257e8e960c9f1cf26231b
+- name: libtorrent
+  buildsystem: cmake-ninja
+  builddir: true
+  config-opts:
+    - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+    - -Dpython-bindings=ON 
+    - -Dboost-python-module-name=python
+  sources:
+    - type: archive
+      url: https://github.com/arvidn/libtorrent/releases/download/v1.2.12/libtorrent-rasterbar-1.2.12.tar.gz
+      sha256: c3744ac9fa41f6e6ebf79538a2ea678df76a2cbbaf3ac6ae2c05455314e5cce8
 
-  - name: luajit
-    no-autogen: true
-    cleanup:
-      - /bin
-      - /include
-      - /lib/pkgconfig
-      - /share/man
-    sources:
-      - type: git
-        url: https://github.com/LuaJIT/LuaJIT.git
-        commit: 6c4826f12c4d33b8b978004bc681eb1eef2be977
-        disable-shallow-clone: true
-      - type: shell
-        commands:
-          - sed -i 's|/usr/local|/app|' ./Makefile
+## Python3 modules
+- name: wheel
+  buildsystem: simple
+  build-commands:
+  - python3 setup.py install --prefix=/app --root=/
+  sources:
+  - type: archive
+    url: https://files.pythonhosted.org/packages/59/b0/11710a598e1e148fb7cbf9220fd2a0b82c98e94efbdecb299cb25e7f0b39/wheel-0.33.6.tar.gz
+    sha256: 10c9da68765315ed98850f8e048347c3eb06dd81822dc2ab1d4fde9dc9702646
 
-  - name: yt-dlp
-    no-autogen: true
-    no-make-install: true
-    make-args:
-      - yt-dlp
-      - PYTHON=/usr/bin/python3
-    post-install:
-      - install yt-dlp /app/bin
-    sources:
-      - type: archive
-        url: https://github.com/yt-dlp/yt-dlp/releases/download/2022.11.11/yt-dlp.tar.gz
-        sha256: 51fa055912c7fc742a882ff58236bd25b39055b98168a3563ed17cc575c3c3ae
-        x-checker-data:
-          type: json
-          url: https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest
-          version-query: .tag_name
-          url-query: .assets[] | select(.name=="yt-dlp.tar.gz") | .browser_download_url
+- name: six
+  buildsystem: simple
+  build-commands:
+  - python3 setup.py install --prefix=/app --root=/
+  sources:
+  - type: archive
+    url: https://files.pythonhosted.org/packages/6b/34/415834bfdafca3c5f451532e8a8d9ba89a21c9743a0c59fbd0205c7f9426/six-1.15.0.tar.gz
+    sha256: 30639c035cdb23534cd4aa2dd52c3bf48f06e5f4a941509c8bafd8ce11080259
 
-  - name: uchardet
-    buildsystem: cmake-ninja
-    config-opts:
-      - -DCMAKE_BUILD_TYPE=Release
-      - -DBUILD_STATIC=0
-    cleanup:
-      - /bin
-      - /include
-      - /lib/pkgconfig
-      - /share/man
-    sources:
-      - type: archive
-        url: https://www.freedesktop.org/software/uchardet/releases/uchardet-0.0.6.tar.xz
-        sha256: 8351328cdfbcb2432e63938721dd781eb8c11ebc56e3a89d0f84576b96002c61
+- name: Cython
+  buildsystem: simple
+  build-commands: 
+  - python3 setup.py install --prefix=/app
+  sources:
+  - type: archive
+    url: https://files.pythonhosted.org/packages/6c/9f/f501ba9d178aeb1f5bf7da1ad5619b207c90ac235d9859961c11829d0160/Cython-0.29.21.tar.gz
+    sha256: e57acb89bd55943c8d8bf813763d20b9099cc7165c0f16b707631a7654be9cad
 
-  - name: libass
-    cleanup:
-      - /include
-      - /lib/pkgconfig
-    config-opts:
-      - --disable-static
-    sources:
-      - type: archive
-        url: https://github.com/libass/libass/releases/download/0.15.0/libass-0.15.0.tar.gz
-        sha256: 9cbddee5e8c87e43a5fe627a19cd2aa4c36552156eb4edcf6c5a30bd4934fe58
+- name: rencode
+  buildsystem: simple
+  build-commands: 
+  - python3 setup.py install --prefix=/app
+  sources:
+  - type: archive
+    url: https://files.pythonhosted.org/packages/75/41/14f6466c880334ff1fe2e0781e3c69a7fd5e524f8ae9bd3700091e0fefd8/rencode-1.0.5.tar.gz
+    sha256: fb66c92d35355d6098956204e663ddadf7f2cc8f64962846f67e1e1d036efc57
 
-  - name: libv4l2
-    cleanup:
-      - /include
-      - /lib/pkgconfig
-      - /share/man
-    config-opts:
-      - --disable-static
-      - --disable-bpf
-      - --with-udevdir=/app/lib/udev
-    sources:
-      - type: archive
-        url: https://linuxtv.org/downloads/v4l-utils/v4l-utils-1.22.1.tar.bz2
-        sha256: 65c6fbe830a44ca105c443b027182c1b2c9053a91d1e72ad849dfab388b94e31
+- name: pycparser
+  buildsystem: simple
+  build-commands:
+  - python3 setup.py install --prefix=/app --root=/
+  sources:
+  - type: archive
+    url: https://files.pythonhosted.org/packages/0f/86/e19659527668d70be91d0369aeaa055b4eb396b0f387a4f92293a20035bd/pycparser-2.20.tar.gz
+    sha256: 2d475327684562c3a96cc71adf7dc8c4f0565175cf86b6d7a404ff4c771f15f0
 
-  - name: libcdio
-    config-opts:
-      - --disable-static
-      - --disable-example-progs
-    cleanup:
-      - /include
-      - /lib/pkgconfig
-    sources:
-      - type: archive
-        url: https://ftp.gnu.org/gnu/libcdio/libcdio-2.1.0.tar.bz2
-        sha256: 8550e9589dbd594bfac93b81ecf129b1dc9d0d51e90f9696f1b2f9b2af32712b
-        x-checker-data:
-          type: html
-          url: https://ftp.gnu.org/gnu/libcdio/
-          version-pattern: libcdio-(\d\.\d+\.?\d*).tar.bz2
-          url-template: https://ftp.gnu.org/gnu/libcdio/libcdio-$version.tar.bz2
+- name: cffi
+  buildsystem: simple
+  build-commands:
+  - python3 setup.py install --prefix=/app --root=/
+  sources:
+  - type: archive
+    url: https://files.pythonhosted.org/packages/66/6a/98e023b3d11537a5521902ac6b50db470c826c682be6a8c661549cb7717a/cffi-1.14.4.tar.gz
+    sha256: 1a465cbe98a7fd391d47dce4b8f7e5b921e6cd805ef421d04f5f66ba8f06086c
 
-  - name: libcdio-paranoia
-    config-opts:
-      - --disable-static
-      - --disable-example-progs
-    cleanup:
-      - /include
-      - /lib/pkgconfig
-    sources:
-      - type: archive
-        url: https://ftp.gnu.org/gnu/libcdio/libcdio-paranoia-10.2+2.0.1.tar.bz2
-        sha256: 33b1cf305ccfbfd03b43936975615000ce538b119989c4bec469577570b60e8a
-        x-checker-data:
-          type: html
-          url: https://ftp.gnu.org/gnu/libcdio/
-          version-pattern: libcdio-paranoia-([\d\.\+-]+).tar.bz2
-          url-template: https://ftp.gnu.org/gnu/libcdio/libcdio-paranoia-$version.tar.bz2
+#- shared-modules/python3-cryptography.json
+- name: setuptools
+  buildsystem: simple
+  build-commands:
+  - python3 setup.py install --prefix=/app --root=/
+  sources:
+  - type: archive
+    url: https://files.pythonhosted.org/packages/f8/b8/fe1dfb94342906c65acfda3d8f35984c87e0511bf574942c22aed756d0f6/setuptools-65.6.2.tar.gz 
+    sha256: 41fa68ecac9e099122990d7437bc10683b966c32a591caa2824dffcffd5dea7a
 
-  - name: libdvdread
-    config-opts:
-      - --disable-static
-    cleanup:
-      - /include
-      - /lib/pkgconfig
-    sources:
-      - type: archive
-        url: https://download.videolan.org/pub/videolan/libdvdread/6.1.3/libdvdread-6.1.3.tar.bz2
-        sha256: ce35454997a208cbe50e91232f0e73fb1ac3471965813a13b8730a8f18a15369
-        x-checker-data:
-          type: html
-          url: https://www.videolan.org/developers/libdvdnav.html
-          version-pattern: The latest version of <code>libdvdread</code> is <b>([\d\-\.]+)<
-          url-template: https://download.videolan.org/pub/videolan/libdvdread/$version/libdvdread-$version.tar.bz2
+- name: setuptools-scm
+  buildsystem: simple
+  build-commands:
+  - python3 setup.py install --prefix=/app --root=/
+  sources:
+  - type: archive
+    url: https://files.pythonhosted.org/packages/af/df/f8aa8a78d4d29e0cffa4512e9bc223ed02f24893fe1837c6cee2749ebd67/setuptools_scm-5.0.1.tar.gz
+    sha256: c85b6b46d0edd40d2301038cdea96bb6adc14d62ef943e75afb08b3e7bcf142a
 
-  - name: libdvdnav
-    config-opts:
-      - --disable-static
-    cleanup:
-      - /include
-      - /lib/pkgconfig
-    sources:
-      - type: archive
-        url: https://download.videolan.org/pub/videolan/libdvdnav/6.1.1/libdvdnav-6.1.1.tar.bz2
-        sha256: c191a7475947d323ff7680cf92c0fb1be8237701885f37656c64d04e98d18d48
-        x-checker-data:
-          type: html
-          url: https://www.videolan.org/developers/libdvdnav.html
-          version-pattern: The latest version of <code>libdvdnav</code> is <b>([\d\-\.]+)</b>\.
-          url-template: https://download.videolan.org/pub/videolan/libdvdnav/$version/libdvdnav-$version.tar.bz2
+- name: typing_extensions
+  buildsystem: simple
+  build-commands:
+  - pip3 install --prefix=/app typing*.whl
+  sources:
+  - type: file
+    url: https://files.pythonhosted.org/packages/0b/8e/f1a0a5a76cfef77e1eb6004cb49e5f8d72634da638420b9ea492ce8305e8/typing_extensions-4.4.0-py3-none-any.whl
+    sha256: 16fa4864408f655d35ec496218b85f79b3437c829e93320c7c9215ccfd92489e
 
-  - name: libbluray
-    config-opts:
-      - --disable-static
-      - --disable-bdjava-jar
-    cleanup:
-      - /include
-      - /lib/pkgconfig
-    sources:
-      - sha256: 58ff52cdcee64c55dcc3c777a1c39fb41abd951b927978e4d2b6811b9193a488
-        type: archive
-        url: https://download.videolan.org/pub/videolan/libbluray/1.3.3/libbluray-1.3.3.tar.bz2
-        x-checker-data:
-          type: html
-          url: https://www.videolan.org/developers/libbluray.html
-          version-pattern: Latest release is <b>libbluray (\d\.\d+\.?\d*)</b>\.
-          url-template: https://download.videolan.org/pub/videolan/libbluray/$version/libbluray-$version.tar.bz2
+- name: semantic_version
+  buildsystem: simple
+  build-commands:
+  - pip3 install --prefix=/app semantic*.whl
+  sources:
+  - type: file
+    url: https://files.pythonhosted.org/packages/6a/23/8146aad7d88f4fcb3a6218f41a60f6c2d4e3a72de72da1825dc7c8f7877c/semantic_version-2.10.0-py2.py3-none-any.whl
+    sha256: de78a3b8e0feda74cabc54aab2da702113e33ac9d9eb9d2389bcf1f58b7d9177
 
-  - name: zimg
-    config-opts:
-      - --disable-static
-    cleanup:
-      - /include
-      - /lib/pkgconfig
-      - /share/doc
-    sources:
-      - type: archive
-        archive-type: tar
-        url: https://api.github.com/repos/sekrit-twc/zimg/tarball/release-3.0.4
-        sha256: c86b5a169b22c562172a11d83ce76a82dbdafc82149edcb8a06d0beeb94b193e
-        x-checker-data:
-          type: json
-          url: https://api.github.com/repos/sekrit-twc/zimg/releases/latest
-          url-query: .tarball_url
-          version-query: .tag_name | sub("^release-"; "")
-          timestamp-query: .published_at
+- name: setuptools_rust
+  buildsystem: simple
+  build-commands:
+  - pip3 install --prefix=/app setuptools*.whl
+  sources:
+  - type: file
+    url: https://files.pythonhosted.org/packages/ef/da/dca8f90986325abe3027a5e3af5e12ce1d78eeb664a11971b2e7e703b9e3/setuptools_rust-1.5.2-py3-none-any.whl
+    sha256: 8eb45851e34288f2296cd5ab9e924535ac1757318b730a13fe6836867843f206
 
-  - name: rubberband
-    buildsystem: meson
-    cleanup:
-      - /include
-      - /lib/pkgconfig
-    sources:
-      - type: archive
-        url: https://breakfastquay.com/files/releases/rubberband-3.1.1.tar.bz2
-        sha256: a442551fe7d26fb4a54dd1c34178733dc9c76ac9ce051a02325f5cb35d154381
-        x-checker-data:
-          type: html
-          url: https://www.breakfastquay.com/rubberband/
-          version-pattern: Rubber Band Library v(\d\.\d+\.?\d*) source
-          url-template: https://breakfastquay.com/files/releases/rubberband-$version.tar.bz2
+- name: cryptography
+  buildsystem: simple
+  build-commands:
+  - python3 setup.py install --prefix=/app --root=/
+  sources:
+  - type: archive
+    url: https://files.pythonhosted.org/packages/13/dd/a9608b7aebe5d2dc0c98a4b2090a6b815628efa46cc1c046b89d8cd25f4c/cryptography-38.0.3.tar.gz
+    sha256: bfbe6ee19615b07a98b1d2287d6a6073f734735b49ee45b11324d85efc4d5cbd
 
-  - name: mujs
-    no-autogen: true
-    make-args:
-      - release
-      - shared
-    make-install-args:
-      - prefix=/app
-      - install-shared
-    cleanup:
-      - /bin
-      - /include
-      - /lib/pkgconfig
-    sources:
-      - type: git
-        url: https://github.com/ccxvii/mujs.git
-        tag: 1.3.2
-        commit: 0e611cdc0c81a90dabfcb2ab96992acca95b886d
-        x-checker-data:
-          type: git
-          url: https://api.github.com/repos/ccxvii/mujs/tags
-          tag-pattern: ^([\d.]+)$
+- name: pyopenssl
+  buildsystem: simple
+  build-commands:
+  - python3 setup.py install --prefix=/app --root=/
+  sources:
+  - type: archive
+    url: https://files.pythonhosted.org/packages/e7/2f/c6d89edac75482f11e231b644e365d31d5479b7b727734e6a8f3d00decd5/pyOpenSSL-22.1.0.tar.gz
+    sha256: 7a83b7b272dd595222d672f5ce29aa030f1fb837630ef229f62e72e395ce8968
 
-  - name: nv-codec-headers
-    cleanup:
-      - '*'
-    no-autogen: true
-    make-install-args:
-      - PREFIX=/app
-    sources:
-      - type: git
-        url: https://git.videolan.org/git/ffmpeg/nv-codec-headers.git
-        tag: n11.1.5.2
-        commit: f8ae7a49bfef2f99d2c931a791dc3863fda67bf3
-        x-checker-data:
-          type: git
-          tag-pattern: ^n([\d.]+)$
+- name: pyasn1
+  buildsystem: simple
+  build-commands:
+  - python3 setup.py install --prefix=/app --root=/
+  sources:
+  - type: archive
+    url: https://files.pythonhosted.org/packages/a4/db/fffec68299e6d7bad3d504147f9094830b704527a7fc098b721d38cc7fa7/pyasn1-0.4.8.tar.gz
+    sha256: aef77c9fb94a3ac588e87841208bdec464471d9871bd5050a287cc9a475cd0ba
 
-  - name: x264
-    cleanup:
-      - /include
-      - /lib/pkgconfig
-      - /share/man
-    config-opts:
-      - --disable-cli
-      - --enable-shared
+- name: pyasn1-modules
+  buildsystem: simple
+  build-commands:
+  - python3 setup.py install --prefix=/app --root=/
+  sources:
+  - type: archive
+    url: https://files.pythonhosted.org/packages/88/87/72eb9ccf8a58021c542de2588a867dbefc7556e14b2866d1e40e9e2b587e/pyasn1-modules-0.2.8.tar.gz
+    sha256: 905f84c712230b2c592c19470d3ca8d552de726050d1d1716282a1f6146be65e
 
-    sources:
-      - type: git
-        url: https://code.videolan.org/videolan/x264.git
-        commit: 66a5bc1bd1563d8227d5d18440b525a09bcf17ca
+- name: attrs
+  buildsystem: simple
+  build-commands:
+  - python3 setup.py install --prefix=/app --root=/
+  sources:
+  - type: archive
+    url: https://files.pythonhosted.org/packages/1a/cb/c4ffeb41e7137b23755a45e1bfec9cbb76ecf51874c6f1d113984ecaa32c/attrs-22.1.0.tar.gz
+    sha256: 29adc2665447e5191d0e7c568fde78b21f9672d344281d0c6e1ab085429b22b6
 
-  - name: x265
-    buildsystem: cmake
-    subdir: source
-    config-opts:
-      - -DCMAKE_BUILD_TYPE=Release
-      - -DBUILD_STATIC=0
-    cleanup:
-      - /include
-      - /lib/pkgconfig
-      - /share/man
-    sources:
-      - type: archive
-        url: https://bitbucket.org/multicoreware/x265_git/downloads/x265_3.5.tar.gz
-        md5: deb5df5cb2ec17bdbae6ac6bbc3b1eef
+- name: service-identity
+  buildsystem: simple
+  build-commands:
+  - python3 setup.py install --prefix=/app --root=/
+  sources:
+  - type: archive
+    url: https://files.pythonhosted.org/packages/09/2e/26ade69944773df4748c19d3053e025b282f48de02aad84906d34a29d28b/service-identity-21.1.0.tar.gz
+    sha256: 6e6c6086ca271dc11b033d17c3a8bea9f24ebff920c587da090afc9519419d34
 
-  - name: ffmpeg
-    cleanup:
-      - /include
-      - /lib/pkgconfig
-      - /share/ffmpeg/examples
-    config-opts:
-      - --disable-static
-      - --disable-debug
-      - --disable-doc
-      - --disable-programs
-      - --enable-gnutls
-      - --enable-shared
-      - --enable-encoder=png
-      - --enable-libv4l2
-      - --enable-gpl
-      - --enable-version3
-      - --enable-libass
-      - --enable-libfreetype
-      - --enable-libmp3lame
-      - --enable-libopus
-      - --enable-libtheora
-      - --enable-libvorbis
-      - --enable-libvpx
-      - --enable-libaom
-      - --enable-libdav1d
-      - --enable-libx264
-      - --enable-libx265
-    sources:
-      - type: archive
-        url: https://ffmpeg.org/releases/ffmpeg-5.1.2.tar.xz
-        sha256: 619e706d662c8420859832ddc259cd4d4096a48a2ce1eefd052db9e440eef3dc
+- name: incremental
+  buildsystem: simple
+  build-commands:
+  - python3 setup.py install --prefix=/app --root=/
+  sources:
+  - type: archive
+    url: https://files.pythonhosted.org/packages/86/42/9e87f04fa2cd40e3016f27a4b4572290e95899c6dce317e2cdb580f3ff09/incremental-22.10.0.tar.gz
+    sha256: 912feeb5e0f7e0188e6f42241d2f450002e11bbc0937c65865045854c24c0bd0
 
-  - name: libsixel
-    buildsystem: meson
-    cleanup:
-      - /include
-      - /lib/pkgconfig
-    sources:
-      - type: archive
-        archive-type: tar
-        url: https://api.github.com/repos/libsixel/libsixel/tarball/refs/tags/v1.10.3
-        sha256: 7be774befba882d53701e131b6657836118f6cdb15a7515f92345c7bb6e2bb5c
-        x-checker-data:
-          type: json
-          url: https://api.github.com/repos/libsixel/libsixel/tags
-          url-query: .[0].tarball_url
-          version-query: .[0].name
+- name: PyHamcrest
+  buildsystem: simple
+  build-commands:
+  - python3 setup.py install --prefix=/app --root=/
+  sources:
+  - type: archive
+    url: https://files.pythonhosted.org/packages/58/05/7b993fabb44ff0b52a90916d96bfd91a65ecf90b8248e72bba325ba8e438/PyHamcrest-2.0.2.tar.gz
+    sha256: 412e00137858f04bde0729913874a48485665f2d36fe9ee449f26be864af9316
 
-  - name: vapoursynth
-    config-opts:
-      - --disable-static
-      - --with-python_prefix=/app
-    sources:
-      - type: git
-        url: https://github.com/vapoursynth/vapoursynth.git
-        tag: R61
-        commit: 35fe1e3b8b45553c6086c014645a9266388b43c6
-        x-checker-data:
-          type: git
-          tag-pattern: ^R([\d.]+)$
+- name: idna
+  buildsystem: simple
+  build-commands:
+  - python3 setup.py install --prefix=/app --root=/
+  sources:
+  - type: archive
+    url: https://files.pythonhosted.org/packages/ea/b7/e0e3c1c467636186c39925827be42f16fee389dc404ac29e930e9136be70/idna-2.10.tar.gz
+    sha256: b307872f855b18632ce0c21c5e45be78c0ea7ae4c15c828c20788b26921eb3f6
 
-  - name: libplacebo
-    buildsystem: meson
-    config-opts:
-      - -Dvulkan=enabled
-      - -Dshaderc=enabled
-    cleanup:
-      - /include
-      - /lib/pkgconfig
-    sources:
-      - type: git
-        url: https://code.videolan.org/videolan/libplacebo.git
-        tag: v5.229.1
-        x-checker-data:
-          type: git
-          tag-pattern: ^v([\d.]+)$
-        commit: 34314e37306e3d12fe5a0416c9b79eaf268b0cb2
-    modules:
-      - name: shaderc
-        buildsystem: cmake-ninja
-        builddir: true
-        config-opts:
-          - -DSHADERC_SKIP_COPYRIGHT_CHECK=ON
-          - -DSHADERC_SKIP_EXAMPLES=ON
-          - -DSHADERC_SKIP_TESTS=ON
-        cleanup:
-          - /bin
-          - /include
-          - /lib/cmake
-          - /lib/pkgconfig
-        post-install:
-          # copy libSPIRV, as it's only available in Sdk
-          - install -D /lib/$(gcc --print-multiarch)/libSPIRV*.so /app/lib
-        sources:
-          - type: archive
-            archive-type: tar
-            url: https://api.github.com/repos/google/shaderc/tarball/refs/tags/v2021.3
-            sha256: b7e54b23a83343d5e2da836d8833ae0db11926141955edf845e35d4dc1eb88d1
-          - type: shell
-            commands:
-              - sed -i 's|SPIRV/GlslangToSpv.h|glslang/SPIRV/GlslangToSpv.h|' libshaderc_util/src/compiler.cc
-              - sed -i 's|add_subdirectory(third_party)||' CMakeLists.txt
-              - sed -i 's|add_custom_target(build-version|set(NOT_USE|' CMakeLists.txt
-              - |
-                LIB=/lib/$(gcc --print-multiarch)
-                VER_MATCH="[0-9]+\.[^\. ]+"
-                SHADERC=$(grep -m1 -oP "^v$VER_MATCH" CHANGES)
-                SPIRV=v$(grep -oP "(?<=Version:.)$VER_MATCH" $LIB/pkgconfig/SPIRV-Tools-shared.pc)
-                GLSLANG=v$(realpath $LIB/libglslang.so | grep -oP "(?<=so.)$VER_MATCH")
-                cat <<- EOF > glslc/src/build-version.inc
-                  "shaderc $SHADERC"
-                  "spirv-tools $SPIRV"
-                  "glslang $GLSLANG"
-                EOF
-              - cat glslc/src/build-version.inc
+- name: hyperlink
+  buildsystem: simple
+  build-commands:
+  - python3 setup.py install --prefix=/app --root=/
+  sources:
+  - type: archive
+    url: https://files.pythonhosted.org/packages/b7/bf/ecacc60e63d65f7449457bbd8163141c51c4af7aeff7958ec061b8faf915/hyperlink-20.0.1.tar.gz
+    sha256: 47fcc7cd339c6cb2444463ec3277bdcfe142c8b1daf2160bdd52248deec815af
 
-  - name: mpv
-    buildsystem: simple
-    cleanup:
-      - /include
-      - /lib/pkgconfig
-    build-commands:
-      - python3 waf configure --prefix=/app --enable-libmpv-shared --disable-build-date
-        --disable-manpage-build --disable-alsa --enable-sdl2 --enable-libarchive --enable-dvbin
-        --enable-cdda --enable-dvdnav --enable-shaderc --enable-vulkan
-      - python3 waf build
-      - python3 waf install
-    post-install:
-      - install -D -m644 io.mpv.Mpv.appdata.xml /app/share/appdata/io.mpv.Mpv.appdata.xml
-      # save screenshots at ~/Pictures/mpv
-      - echo "screenshot-directory=~/Pictures/mpv" > /app/etc/mpv/mpv.conf
-    sources:
-      - type: archive
-        url: https://github.com/mpv-player/mpv/archive/v0.35.0.tar.gz
-        sha256: dc411c899a64548250c142bf1fa1aa7528f1b4398a24c86b816093999049ec00
-      - type: file
-        url: https://waf.io/waf-2.0.22
-        sha256: 0a09ad26a2cfc69fa26ab871cb558165b60374b5a653ff556a0c6aca63a00df1
-        dest-filename: waf
-      - type: file
-        path: io.mpv.Mpv.appdata.xml
+- name: docutils
+  buildsystem: simple
+  build-commands:
+  - python3 setup.py install --prefix=/app --root=/
+  sources:
+  - type: archive
+    url: https://files.pythonhosted.org/packages/2f/e0/3d435b34abd2d62e8206171892f174b180cd37b09d57b924ca5c2ef2219d/docutils-0.16.tar.gz
+    sha256: c2de3a60e9e7d07be26b7f2b00ca0309c207e06c100f9cc2a94931fc75a478fc
 
-# Scripts for mpv
-  - name: mpv-mpris
-    no-autogen: true
-    make-install-args:
-      - SCRIPTS_DIR=/app/etc/mpv/scripts
-    sources:
-      - type: archive
-        archive-type: tar
-        url: https://api.github.com/repos/hoyon/mpv-mpris/tarball/0.9
-        sha256: 7729c2de9c58adb7f4b52624ced841b7d52107c50f6b2540f71a22eb94a6d857
-        x-checker-data:
-          type: json
-          url: https://api.github.com/repos/hoyon/mpv-mpris/releases/latest
-          version-query: .name
-          url-query: .tarball_url
+- name: mistune
+  buildsystem: simple
+  build-commands:
+  - python3 setup.py install --prefix=/app --root=/
+  sources:
+  - type: archive
+    url: https://files.pythonhosted.org/packages/2d/a4/509f6e7783ddd35482feda27bc7f72e65b5e7dc910eca4ab2164daf9c577/mistune-0.8.4.tar.gz
+    sha256: 59a3429db53c50b5c6bcc8a07f8848cb00d7dc8bdb431a4ab41920d201d4756e
 
-  - name: bc
-    build-options:
-      no-debuginfo: true
-    buildsystem: autotools
-    sources:
-      - type: archive
-        url: https://ftp.gnu.org/gnu/bc/bc-1.07.1.tar.gz
-        sha256: 62adfca89b0a1c0164c2cdca59ca210c1d44c3ffc46daf9931cf4942664cb02a
+- name: m2r
+  buildsystem: simple
+  build-commands:
+  - python3 setup.py install --prefix=/app --root=/
+  sources:
+  - type: archive
+    url: https://files.pythonhosted.org/packages/39/e7/9fae11a45f5e1a3a21d8a98d02948e597c4afd7848a0dbe1a1ebd235f13e/m2r-0.2.1.tar.gz
+    sha256: bf90bad66cda1164b17e5ba4a037806d2443f2a4d5ddc9f6a5554a0322aaed99
 
-# Python dependencies for subliminal
 
-  - name: python_dateutil
-    buildsystem: simple
-    build-commands:
-      - pip3 install --prefix=/app python_dateutil*.whl
-    sources:
-      - type: file
-        url: https://files.pythonhosted.org/packages/36/7a/87837f39d0296e723bb9b62bbb257d0355c7f6128853c78955f57342a56d/python_dateutil-2.8.2-py2.py3-none-any.whl
-        sha256: 961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9
 
-  - name: urllib3
-    buildsystem: simple
-    build-commands:
-      - pip3 install --prefix=/app urllib3*.whl
-    sources:
-      - type: file
-        url: https://files.pythonhosted.org/packages/ec/03/062e6444ce4baf1eac17a6a0ebfe36bb1ad05e1df0e20b110de59c278498/urllib3-1.26.9-py2.py3-none-any.whl
-        sha256: 44ece4d53fb1706f667c9bd1c648f5469a2ec925fcf3a776667042d645472c14
+- name: automat
+  buildsystem: simple
+  build-commands:
+  - python3 setup.py install --prefix=/app --root=/
+  sources:
+  - type: archive
+    url: https://files.pythonhosted.org/packages/80/c5/82c63bad570f4ef745cc5c2f0713c8eddcd07153b4bee7f72a8dc9f9384b/Automat-20.2.0.tar.gz
+    sha256: 7979803c74610e11ef0c0d68a2942b152df52da55336e0c9d58daf1831cbdf33
 
-  - name: soupsieve
-    buildsystem: simple
-    build-commands:
-      - pip3 install --prefix=/app soupsieve*.whl
-    sources:
-      - type: file
-        url: https://files.pythonhosted.org/packages/16/e3/4ad79882b92617e3a4a0df1960d6bce08edfb637737ac5c3f3ba29022e25/soupsieve-2.3.2.post1-py3-none-any.whl
-        sha256: 3b2503d3c7084a42b1ebd08116e5f81aadfaea95863628c80a3b774a11b7c759
+- name: constantly
+  buildsystem: simple
+  build-commands:
+  - python3 setup.py install --prefix=/app --root=/
+  sources:
+  - type: archive
+    url: https://files.pythonhosted.org/packages/95/f1/207a0a478c4bb34b1b49d5915e2db574cadc415c9ac3a7ef17e29b2e8951/constantly-15.1.0.tar.gz
+    sha256: 586372eb92059873e29eba4f9dec8381541b4d3834660707faf8ba59146dfc35
 
-  - name: rebulk
-    buildsystem: simple
-    build-commands:
-      - pip3 install --prefix=/app rebulk-*.whl
-    sources:
-      - type: file
-        url: https://files.pythonhosted.org/packages/24/c5/a697c97d6e12e6981da7b050ab84b88ab394dab2c8c08c036eab63d826b4/rebulk-3.1.0-py3-none-any.whl
-        sha256: e56550ae25a822111bff8c8f5eeea14cb44f406e9a9ce67ad4e350253b2fff6c
+- name: zope.event
+  buildsystem: simple
+  build-commands:
+  - python3 setup.py install --prefix=/app --root=/
+  sources:
+  - type: archive
+    url: https://files.pythonhosted.org/packages/30/00/94ed30bfec18edbabfcbd503fcf7482c5031b0fbbc9bc361f046cb79781c/zope.event-4.5.0.tar.gz
+    sha256: 5e76517f5b9b119acf37ca8819781db6c16ea433f7e2062c4afc2b6fbedb1330
 
-  - name: pbr
-    buildsystem: simple
-    build-commands:
-      - pip3 install --prefix=/app pbr-*.whl
-    sources:
-      - type: file
-        url: https://files.pythonhosted.org/packages/1b/ef/0621aa0e422dda72dc89b61972e5a28d5a947c22fdff83a5d69fdbc1949a/pbr-5.9.0-py2.py3-none-any.whl
-        sha256: e547125940bcc052856ded43be8e101f63828c2d94239ffbe2b327ba3d5ccf0a
+- name: zope.interface
+  buildsystem: simple
+  build-commands:
+  - python3 setup.py install --prefix=/app --root=/
+  sources:
+  - type: archive
+    url: https://files.pythonhosted.org/packages/84/21/80cdc749908ebf2719a9063eddcc02b668fbc62d200c1f1a4d92aaaba76b/zope.interface-5.2.0.tar.gz
+    sha256: 8251f06a77985a2729a8bdbefbae79ee78567dddc3acbd499b87e705ca59fe24
 
-  - name: idna
-    buildsystem: simple
-    build-commands:
-      - pip3 install --prefix=/app idna-*.whl
-    sources:
-      - type: file
-        url: https://files.pythonhosted.org/packages/04/a2/d918dcd22354d8958fe113e1a3630137e0fc8b44859ade3063982eacd2a4/idna-3.3-py3-none-any.whl
-        sha256: 84d9dd047ffa80596e0f246e2eab0b391788b0503584e8945f2368256d2735ff
+- name: numpy
+  buildsystem: simple
+  build-commands:
+  - python3 setup.py install --prefix=/app --root=/
+  sources:
+  - type: archive
+    url: https://files.pythonhosted.org/packages/42/38/775b43da55fa7473015eddc9a819571517d9a271a9f8134f68fb9be2f212/numpy-1.23.5.tar.gz
+    sha256: 1b1766d6f397c18153d40015ddfc79ddb715cabadc04d2d228d4e5a8bc4ded1a
 
-  - name: decorator
-    buildsystem: simple
-    build-commands:
-      - pip3 install --prefix=/app decorator-*.whl
-    sources:
-      - type: file
-        url: https://files.pythonhosted.org/packages/d5/50/83c593b07763e1161326b3b8c6686f0f4b0f24d5526546bee538c89837d6/decorator-5.1.1-py3-none-any.whl
-        sha256: b8c3f85900b9dc423225913c5aace94729fe1fa9763b38939a95226f02d37186
+- name: twisted
+  buildsystem: simple
+  build-commands:
+  - python3 setup.py install --prefix=/app --root=/
+  sources:
+  - type: archive
+    url: https://files.pythonhosted.org/packages/b2/ce/cbb56597127b1d51905b0cddcc3f314cc769769efc5e9a8a67f4617f7bca/Twisted-22.10.0.tar.gz
+    sha256: 32acbd40a94f5f46e7b42c109bfae2b302250945561783a8b7a059048f2d4d31
 
-  - name: charset_normalizer
-    buildsystem: simple
-    build-commands:
-      - pip3 install --prefix=/app charset_normalizer-*.whl
-    sources:
-      - type: file
-        url: https://files.pythonhosted.org/packages/06/b3/24afc8868eba069a7f03650ac750a778862dc34941a4bebeb58706715726/charset_normalizer-2.0.12-py3-none-any.whl
-        sha256: 6881edbebdb17b39b4eaaa821b438bf6eddffb4468cf344f09f89def34a8b1df
+- name: pillow
+  buildsystem: simple
+  build-commands:
+  - python3 setup.py install --prefix=/app --root=/
+  sources:
+  - type: archive
+    url: https://files.pythonhosted.org/packages/2b/06/93bf1626ef36815010e971a5ce90f49919d84ab5d2fa310329f843a74bc1/Pillow-8.0.1.tar.gz
+    sha256: 11c5c6e9b02c9dac08af04f093eb5a2f84857df70a7d4a6a6ad461aca803fb9e
 
-  - name: certifi
-    buildsystem: simple
-    build-commands:
-      - pip3 install --prefix=/app certifi-*.whl
-    sources:
-      - type: file
-        url: https://files.pythonhosted.org/packages/37/45/946c02767aabb873146011e665728b680884cd8fe70dde973c640e45b775/certifi-2021.10.8-py2.py3-none-any.whl
-        sha256: d62a0163eb4c2344ac042ab2bdf75399a71a2d8c7d47eac2e2ee91b9d6339569
+- name: chardet
+  buildsystem: simple
+  build-commands:
+  - python3 setup.py install --prefix=/app --root=/
+  sources:
+  - type: archive
+    url: https://files.pythonhosted.org/packages/ee/2d/9cdc2b527e127b4c9db64b86647d567985940ac3698eeabc7ffaccb4ea61/chardet-4.0.0.tar.gz
+    sha256: 0d6f53a15db4120f2b08c94f11e7d93d2c911ee118b6b30a04ec3ee8310179fa
 
-  - name: stevedore
-    buildsystem: simple
-    build-commands:
-      - pip3 install --prefix=/app stevedore-*.whl
-    sources:
-      - type: file
-        url: https://files.pythonhosted.org/packages/7a/bc/fcce9e50da73ea23af6d236e05e15db8a02da1099a5e0a479451bcea3833/stevedore-3.5.0-py3-none-any.whl
-        sha256: a547de73308fd7e90075bb4d301405bebf705292fa90a90fc3bcf9133f58616c
+- name: setproctitle
+  buildsystem: simple
+  build-commands:
+  - python3 setup.py install --prefix=/app --root=/
+  sources:
+  - type: archive
+    url: https://files.pythonhosted.org/packages/a7/e1/e76b903af017cc4a99f823b5e4235c1136dcca6902e6b7ee4d545958ba8c/setproctitle-1.2.1.tar.gz
+    sha256: 5f0eecb27815e31799a69eb6a06b4d375d38887d079d410565b0be82da65c950
 
-  - name: requests
-    buildsystem: simple
-    build-commands:
-      - pip3 install --prefix=/app requests-*.whl
-    sources:
-      - type: file
-        url: https://files.pythonhosted.org/packages/2d/61/08076519c80041bc0ffa1a8af0cbd3bf3e2b62af10435d269a9d0f40564d/requests-2.27.1-py2.py3-none-any.whl
-        sha256: f22fa1e554c9ddfd16e6e41ac79759e17be9e492b3587efa038054674760e72d
+- name: pyxdg
+  buildsystem: simple
+  build-commands:
+  - python3 setup.py install --prefix=/app --root=/
+  sources:
+  - type: archive
+    url: https://files.pythonhosted.org/packages/6f/2e/2251b5ae2f003d865beef79c8fcd517e907ed6a69f58c32403cec3eba9b2/pyxdg-0.27.tar.gz
+    sha256: 80bd93aae5ed82435f20462ea0208fb198d8eec262e831ee06ce9ddb6b91c5a5
 
-  - name: rarfile
-    buildsystem: simple
-    build-commands:
-      - pip3 install --prefix=/app rarfile-*.whl
-    sources:
-      - type: file
-        url: https://files.pythonhosted.org/packages/95/f4/c92fab227c7457e3b76a4096ccb655ded9deac869849cb03afbe55dfdc1e/rarfile-4.0-py3-none-any.whl
-        sha256: 1094869119012f95c31a6f22cc3a9edbdca61861b805241116adbe2d737b68f8
+- name: MarkupSafe
+  buildsystem: simple
+  build-commands:
+  - python3 setup.py install --prefix=/app --root=/
+  sources:
+  - type: archive
+    url: https://files.pythonhosted.org/packages/b9/2e/64db92e53b86efccfaea71321f597fa2e1b2bd3853d8ce658568f7a13094/MarkupSafe-1.1.1.tar.gz
+    sha256: 29872e92839765e546828bb7754a68c418d927cd064fd4708fab9fe9c8bb116b
 
-  - name: pytz
-    buildsystem: simple
-    build-commands:
-      - pip3 install --prefix=/app pytz-*.whl
-    sources:
-      - type: file
-        url: https://files.pythonhosted.org/packages/60/2e/dec1cc18c51b8df33c7c4d0a321b084cf38e1733b98f9d15018880fb4970/pytz-2022.1-py2.py3-none-any.whl
-        sha256: e68985985296d9a66a881eb3193b0906246245294a881e7c8afe623866ac6a5c
+- name: mako
+  buildsystem: simple
+  build-commands:
+  - python3 setup.py install --prefix=/app --root=/
+  sources:
+  - type: archive
+    url: https://files.pythonhosted.org/packages/72/89/402d2b4589e120ca76a6aed8fee906a0f5ae204b50e455edd36eda6e778d/Mako-1.1.3.tar.gz
+    sha256: 8195c8c1400ceb53496064314c6736719c6f25e7479cd24c77be3d9361cddc27
 
-  - name: pysrt
-    buildsystem: simple
-    build-commands:
-      - python3 setup.py install --prefix=/app --root=/
-    sources:
-      - type: archive
-        url: https://files.pythonhosted.org/packages/31/1a/0d858da1c6622dcf16011235a2639b0a01a49cecf812f8ab03308ab4de37/pysrt-1.1.2.tar.gz
-        sha256: b4f844ba33e4e7743e9db746492f3a193dc0bc112b153914698e7c1cdeb9b0b9
+- name: python-dbus
+  buildsystem: simple
 
-  - name: babelfish
-    buildsystem: simple
-    build-commands:
-      - pip3 install --prefix=/app babelfish-*.whl
-    sources:
-      - type: file
-        url: https://files.pythonhosted.org/packages/ce/2c/f7951f771261da6740af14fd9698064616aa040780cd8a03243fc43165c7/babelfish-0.6.0-py3-none-any.whl
-        sha256: 268f1c6279f2a04a66837972e8a9f3dcc68e16f1201eec57d2a4b828a8b41b11
+  build-commands: 
+  - python3 setup.py install --prefix=/app --root=/
+  sources:
+  - type: archive
+    url: https://files.pythonhosted.org/packages/62/7e/d4fb56a1695fa65da0c8d3071855fa5408447b913c58c01933c2f81a269a/dbus-python-1.2.16.tar.gz
+    sha256: 11238f1d86c995d8aed2e22f04a1e3779f0d70e587caffeab4857f3c662ed5a4
 
-  - name: guessit
-    buildsystem: simple
-    build-commands:
-      - pip3 install --prefix=/app guessit-*.whl
-    sources:
-      - type: file
-        url: https://files.pythonhosted.org/packages/09/01/523ec092ed900893100bec16c24674aff0d0b0af5a7f85654069f5cedb7e/guessit-3.4.3-py3-none-any.whl
-        sha256: f7f790c9e55a7bcc8ff887d3146e089c65a23eff72edfb6684ac5fedb47488a5
+- name: pycairo
+  buildsystem: simple
 
-  - name: enzyme
-    buildsystem: simple
-    build-commands:
-      - python3 setup.py install --prefix=/app --root=/
-    sources:
-      - type: archive
-        url: https://files.pythonhosted.org/packages/dd/99/e4eee822d9390ebf1f63a7a67e8351c09fb7cd75262e5bb1a5256898def9/enzyme-0.4.1.tar.gz
-        sha256: f2167fa97c24d1103a94d4bf4eb20f00ca76c38a37499821049253b2059c62bb
+  build-commands: 
+  - python3 setup.py install --prefix=/app --root=/
+  sources:
+  - type: archive
+    url: https://files.pythonhosted.org/packages/9d/6e/499d6a6db416eb3cdf0e57762a269908e4ab6638a75a90972afc34885b91/pycairo-1.20.0.tar.gz
+    sha256: 5695a10cb7f9ae0d01f665b56602a845b0a8cb17e2123bfece10c2e58552468c
+   
+ 
+- name: pygobject
+  buildsystem: simple
 
-  - name: dogpile
-    buildsystem: simple
-    build-commands:
-      - pip3 install --prefix=/app dogpile*.whl
-    sources:
-      - type: file
-        url: https://files.pythonhosted.org/packages/4e/52/20f751a3b46add7691d442654aa84fc088f14270269dcb6dfc50c7c83e55/dogpile.cache-1.1.5-py3-none-any.whl
-        sha256: 5f9dcf99087240c7733fad5539b0806b52555917dccad1ef43499eaca8b459d9
+  build-commands: 
+  - python3 setup.py install --prefix=/app --root=/
+  sources:
+  - type: archive
+    url: https://files.pythonhosted.org/packages/51/2f/4d5d5afb7000b9151e33952b59163c9389bd867ac6fe85d62f85831fa061/PyGObject-3.40.1.tar.gz
+    sha256: 6fb599aa59ceb9dd05fafb0d72b3862943e7d5e85c8ef6c74856bc6d4321cbab
+ 
+- name: deluge
+  buildsystem: simple
+  build-commands:
+  - python3 setup.py install --prefix=/app --root=/
 
-  - name: click
-    buildsystem: simple
-    build-commands:
-      - pip3 install --prefix=/app click-*.whl
-    sources:
-      - type: file
-        url: https://files.pythonhosted.org/packages/c2/f1/df59e28c642d583f7dacffb1e0965d0e00b218e0186d7858ac5233dce840/click-8.1.3-py3-none-any.whl
-        sha256: bb4d8133cb15a609f44e8213d9b391b0809795062913b383c62be0ee95b1db48
+  post-install:
 
-  - name: chardet
-    buildsystem: simple
-    build-commands:
-      - pip3 install --prefix=/app chardet-*.whl
-    sources:
-      - type: file
-        url: https://files.pythonhosted.org/packages/19/c7/fa589626997dd07bd87d9269342ccb74b1720384a4d739a1872bd84fbe68/chardet-4.0.0-py2.py3-none-any.whl
-        sha256: f864054d66fd9118f2e67044ac8981a54775ec5b67aed0441892edb553d21da5
-
-  - name: beautifulsoup4
-    buildsystem: simple
-    build-commands:
-      - pip3 install --prefix=/app beautifulsoup4-*.whl
-    sources:
-      - type: file
-        url: https://files.pythonhosted.org/packages/9c/d8/909c4089dbe4ade9f9705f143c9f13f065049a9d5e7d34c828aefdd0a97c/beautifulsoup4-4.11.1-py3-none-any.whl
-        sha256: 58d5c3d29f5a36ffeb94f02f0d786cd53014cf9b3b3951d42e0080d8a9498d30
-
-  - name: appdirs
-    buildsystem: simple
-    build-commands:
-      - pip3 install --prefix=/app appdirs-*.whl
-    sources:
-      - type: file
-        url: https://files.pythonhosted.org/packages/3b/00/2344469e2084fb287c2e0b57b72910309874c3245463acd6cf5e3db69324/appdirs-1.4.4-py2.py3-none-any.whl
-        sha256: a841dacd6b99318a741b166adb07e19ee71a274450e68237b4650ca1055ab128
-
-  - name: subliminal
-    buildsystem: simple
-    build-commands:
-      - pip3 install --prefix=/app subliminal-*.whl
-    sources:
-      - type: file
-        url: https://files.pythonhosted.org/packages/d6/f6/d523ddbb9304fa3597101903c0004bdba50c495a1e0d355cdd763df6f2d8/subliminal-2.1.0-py3-none-any.whl
-        sha256: c7751e7af83e8e80c924c2c596318d9e2535f249784a41840eaee5f4a4f49d79
-
-  # This mpv plugin prevents screen blanking in GNOME (wayland) while playing media.
-  - name: mpv_inhibit_gnome
-    buildsystem: simple
-    build-commands:
-      - make
-      - install -D lib/mpv_inhibit_gnome.so /app/etc/mpv/scripts
-    sources:
-      - type: archive
-        url: https://github.com/Guldoman/mpv_inhibit_gnome/archive/refs/tags/v0.1.3.tar.gz
-        sha256: 185668823892c6c124ce60068209a1d15da1eefcbef775dcbc90d91c53403f94
+  - install -Dm644 deluge/ui/data/share/applications/deluge.desktop.in /app/share/applications/org.deluge_torrent.deluge.desktop
+  - sed 's/^_//g' -i /app/share/applications/org.deluge_torrent.deluge.desktop
+  
+  - desktop-file-edit --set-icon=org.deluge_torrent.deluge /app/share/applications/org.deluge_torrent.deluge.desktop
+  - desktop-file-edit --set-key=Keywords --set-value="torrent;magnet;sharing" /app/share/applications/org.deluge_torrent.deluge.desktop
+  
+  - mkdir -p /app/share/metainfo
+  - install -Dm644 org.deluge_torrent.deluge.metainfo.xml /app/share/metainfo/
+  
+  # Fix open download folder bug
+  # https://dev.deluge-torrent.org/changeset/833b5a1f306dad600d0f64a5c897407ba1584830/
+#  - patch -p1 < open_download_folder.patch /app/lib/python3.8/site-packages/deluge/common.py
+  
+  sources:
+  - type: archive
+    url: https://ftp.osuosl.org/pub/deluge/source/2.1/deluge-2.1.1.tar.xz
+    sha256: 768dd319802e42437ab3794ebe75b497142e08ed5b0fb2503bad62cef442dff7
+  
+  - type: file
+    path: org.deluge_torrent.deluge.metainfo.xml
+#  - type: file
+#    path: patches/open_download_folder.patch
+    
+    
