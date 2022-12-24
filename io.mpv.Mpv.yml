@@ -308,7 +308,17 @@ modules:
       - type: archive
         url: https://bitbucket.org/multicoreware/x265_git/downloads/x265_3.5.tar.gz
         md5: deb5df5cb2ec17bdbae6ac6bbc3b1eef
-
+        
+  - name: libmysofa
+    buildsystem: cmake
+    config-opts:
+      - -DBUILD_TESTS=OFF
+    sources:
+      - type: archive
+        archive-type: tar
+        url: https://github.com/hoene/libmysofa/archive/refs/tags/v1.3.1.tar.gz
+        sha256: a8a8cbf7b0b2508a6932278799b9bf5c63d833d9e7d651aea4622f3bc6b992aa
+        
   - name: ffmpeg
     cleanup:
       - /include
@@ -336,6 +346,8 @@ modules:
       - --enable-libdav1d
       - --enable-libx264
       - --enable-libx265
+      - --enable-libmysofa
+      
     sources:
       - type: archive
         url: https://ffmpeg.org/releases/ffmpeg-5.1.2.tar.xz
@@ -424,6 +436,7 @@ modules:
                   "glslang $GLSLANG"
                 EOF
               - cat glslc/src/build-version.inc
+              
 
   - name: mpv
     buildsystem: simple
