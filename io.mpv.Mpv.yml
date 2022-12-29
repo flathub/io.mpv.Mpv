@@ -200,7 +200,7 @@ modules:
       - /include
       - /lib/pkgconfig
     sources:
-      - sha256: 478ffd68a0f5dde8ef6ca989b7f035b5a0a22c599142e5cd3ff7b03bbebe5f2b
+      - sha256: a88aa0ebe4c98a77f7aeffd92ab3ef64ac548c6b822e8248a8b926725bea0a39
         type: archive
         url: https://download.videolan.org/pub/videolan/libaacs/0.11.1/libaacs-0.11.1.tar.bz2
         x-checker-data:
