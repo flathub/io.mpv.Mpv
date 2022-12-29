@@ -192,6 +192,23 @@ modules:
           version-pattern: The latest version of <code>libdvdnav</code> is <b>([\d\-\.]+)</b>\.
           url-template: https://download.videolan.org/pub/videolan/libdvdnav/$version/libdvdnav-$version.tar.bz2
 
+  - name: libaacs
+    config-opts:
+      - --disable-static
+      - --disable-bdjava-jar
+    cleanup:
+      - /include
+      - /lib/pkgconfig
+    sources:
+      - sha256: a88aa0ebe4c98a77f7aeffd92ab3ef64ac548c6b822e8248a8b926725bea0a39
+        type: archive
+        url: https://download.videolan.org/pub/videolan/libaacs/0.11.1/libaacs-0.11.1.tar.bz2
+        x-checker-data:
+          type: html
+          url: https://www.videolan.org/developers/libaacs.html
+          version-pattern: Latest release is <b>libaacs (\d\.\d+\.?\d*)</b>\.
+          url-template: https://download.videolan.org/pub/videolan/libaacs/$version/libaacs-$version.tar.bz2
+          
   - name: libbluray
     config-opts:
       - --disable-static
