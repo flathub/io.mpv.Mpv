@@ -206,7 +206,7 @@ modules:
         x-checker-data:
           type: html
           url: https://www.videolan.org/developers/libaacs.html
-          version-pattern: Latest release is <b>libaacs (\d\.\d+\.?\d*)</b>\.
+          version-pattern: Latest release is <b>libaacs (\d\.\d+\.?\d*)</b>
           url-template: https://download.videolan.org/pub/videolan/libaacs/$version/libaacs-$version.tar.bz2
           
   - name: libbluray
