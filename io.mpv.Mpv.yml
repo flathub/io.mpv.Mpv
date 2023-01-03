@@ -78,8 +78,8 @@ modules:
       - install yt-dlp /app/bin
     sources:
       - type: archive
-        url: https://github.com/yt-dlp/yt-dlp/releases/download/2022.11.11/yt-dlp.tar.gz
-        sha256: 51fa055912c7fc742a882ff58236bd25b39055b98168a3563ed17cc575c3c3ae
+        url: https://github.com/yt-dlp/yt-dlp/releases/download/2023.01.02/yt-dlp.tar.gz
+        sha256: e1d8053ea9b6c31072037edda9cfe8741b8204ab5edc8eac61f4ba8077e65247
         x-checker-data:
           type: json
           url: https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest
@@ -208,7 +208,7 @@ modules:
           url: https://www.videolan.org/developers/libaacs.html
           version-pattern: Latest release is <b>libaacs (\d\.\d+\.?\d*)</b>
           url-template: https://download.videolan.org/pub/videolan/libaacs/$version/libaacs-$version.tar.bz2
-          
+
   - name: libbluray
     config-opts:
       - --disable-static
@@ -325,7 +325,7 @@ modules:
       - type: archive
         url: https://bitbucket.org/multicoreware/x265_git/downloads/x265_3.5.tar.gz
         md5: deb5df5cb2ec17bdbae6ac6bbc3b1eef
-        
+
   - name: libmysofa
     buildsystem: cmake
     config-opts:
@@ -335,7 +335,7 @@ modules:
         archive-type: tar
         url: https://github.com/hoene/libmysofa/archive/refs/tags/v1.3.1.tar.gz
         sha256: a8a8cbf7b0b2508a6932278799b9bf5c63d833d9e7d651aea4622f3bc6b992aa
-        
+
   - name: ffmpeg
     cleanup:
       - /include
@@ -364,7 +364,7 @@ modules:
       - --enable-libx264
       - --enable-libx265
       - --enable-libmysofa
-      
+
     sources:
       - type: archive
         url: https://ffmpeg.org/releases/ffmpeg-5.1.2.tar.xz
@@ -453,7 +453,7 @@ modules:
                   "glslang $GLSLANG"
                 EOF
               - cat glslc/src/build-version.inc
-              
+
 
   - name: mpv
     buildsystem: simple
