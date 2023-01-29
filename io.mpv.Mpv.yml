@@ -480,6 +480,11 @@ modules:
         dest-filename: waf
       - type: file
         path: io.mpv.Mpv.appdata.xml
+    x-checker-data:
+          type: json
+          url: https://api.github.com/repos/mpv-player/mpv/releases
+          version-query: .name
+          url-query: .tarball_url
 
 # Scripts for mpv
   - name: mpv-mpris
