@@ -337,6 +337,7 @@ modules:
         sha256: a8a8cbf7b0b2508a6932278799b9bf5c63d833d9e7d651aea4622f3bc6b992aa
 
   - name: libbs2b
+    buildsystem: autotools
     config-opts:
       - --disable-static
     cleanup:
@@ -347,6 +348,11 @@ modules:
         archive-type: tar
         url: https://downloads.sourceforge.net/sourceforge/bs2b/libbs2b-3.1.0.tar.gz
         sha256: 6aaafd81aae3898ee40148dd1349aab348db9bfae9767d0e66e0b07ddd4b2528
+      # https://src.fedoraproject.org/rpms/libbs2b/blob/rawhide/f/libbs2b.spec#_40
+      - type: shell
+        commands:
+         - sed -i -e 's/lzma/xz/g' configure.ac
+         - autoreconf -vif
 
   - name: ffmpeg
     cleanup:
