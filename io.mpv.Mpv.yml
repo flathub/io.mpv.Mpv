@@ -78,8 +78,8 @@ modules:
       - install yt-dlp /app/bin
     sources:
       - type: archive
-        url: https://github.com/yt-dlp/yt-dlp/releases/download/2023.02.17/yt-dlp.tar.gz
-        sha256: 81f607b8754b1bc67e6592a4e316c015d720e7118757a5afd4ef2aaf37d2ef29
+        url: https://github.com/yt-dlp/yt-dlp/releases/download/2023.03.03/yt-dlp.tar.gz
+        sha256: 99db0ab54b986aa5c5bb145dc1cf0e516612e61cdb964ee274dddceeceae98a9
         x-checker-data:
           type: json
           url: https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest
@@ -351,8 +351,8 @@ modules:
       # https://src.fedoraproject.org/rpms/libbs2b/blob/rawhide/f/libbs2b.spec#_40
       - type: shell
         commands:
-         - sed -i -e 's/lzma/xz/g' configure.ac
-         - autoreconf -vif
+          - sed -i -e 's/lzma/xz/g' configure.ac
+          - autoreconf -vif
 
   - name: ffmpeg
     cleanup:
