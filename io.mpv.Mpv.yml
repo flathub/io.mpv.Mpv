@@ -429,12 +429,26 @@ modules:
     sources:
       - type: git
         url: https://code.videolan.org/videolan/libplacebo.git
-        tag: v5.229.2
+        tag: v5.264.0
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
-        commit: 2394aea167a5995860387a2511f8972143cd5b82
+        commit: 8ae0648b459d8215bde7772501d5cba17e28bf53
     modules:
+      - name: glslang
+        buildsystem: cmake-ninja
+        config-opts:
+          - -DBUILD_SHARED_LIBS=ON
+        sources:
+          - type: git
+            url: https://github.com/KhronosGroup/glslang.git
+            tag: 12.0.0
+            x-checker-data:
+              type: git
+              tag-pattern: ^(\d{1,2}\.){2}\d{1,2}$
+            commit: ca8d07d0bc1c6390b83915700439fa7719de6a2a
+        cleanup:
+          - "*"
       - name: shaderc
         buildsystem: cmake-ninja
         builddir: true
@@ -451,10 +465,13 @@ modules:
           # copy libSPIRV, as it's only available in Sdk
           - install -D /lib/$(gcc --print-multiarch)/libSPIRV*.so /app/lib
         sources:
-          - type: archive
-            archive-type: tar
-            url: https://api.github.com/repos/google/shaderc/tarball/refs/tags/v2021.3
-            sha256: b7e54b23a83343d5e2da836d8833ae0db11926141955edf845e35d4dc1eb88d1
+          - type: git
+            url: https://github.com/google/shaderc.git
+            tag: v2023.2
+            x-checker-data:
+              type: git
+              tag-pattern: ^v\d{4}\.\d{1,2}$
+            commit: 69aead488f9761c3bf478deda5999549ffec2c28
           - type: shell
             commands:
               - sed -i 's|SPIRV/GlslangToSpv.h|glslang/SPIRV/GlslangToSpv.h|' libshaderc_util/src/compiler.cc
@@ -465,14 +482,14 @@ modules:
                 VER_MATCH="[0-9]+\.[^\. ]+"
                 SHADERC=$(grep -m1 -oP "^v$VER_MATCH" CHANGES)
                 SPIRV=v$(grep -oP "(?<=Version:.)$VER_MATCH" $LIB/pkgconfig/SPIRV-Tools-shared.pc)
-                GLSLANG=v$(realpath $LIB/libglslang.so | grep -oP "(?<=so.)$VER_MATCH")
+                GLSLANG=v$(realpath /app/lib/libglslang.so | grep -oP "(?<=so.)$VER_MATCH")
                 cat <<- EOF > glslc/src/build-version.inc
                   "shaderc $SHADERC"
                   "spirv-tools $SPIRV"
                   "glslang $GLSLANG"
                 EOF
               - cat glslc/src/build-version.inc
-
+              - sed -i 's|add_dependencies(glslc_exe build-version)||' glslc/CMakeLists.txt
 
   - name: mpv
     buildsystem: simple
