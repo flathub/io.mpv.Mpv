@@ -445,7 +445,7 @@ modules:
             tag: 12.0.0
             x-checker-data:
               type: git
-              tag-pattern: ^(\d{1,2}\.){2}\d{1,2}$
+              tag-pattern: ^\d+\.\d+\.\d+$
             commit: ca8d07d0bc1c6390b83915700439fa7719de6a2a
         cleanup:
           - "*"
@@ -470,7 +470,7 @@ modules:
             tag: v2023.2
             x-checker-data:
               type: git
-              tag-pattern: ^v\d{4}\.\d{1,2}$
+              tag-pattern: ^v\d\d\d\d\.\d+$
             commit: 69aead488f9761c3bf478deda5999549ffec2c28
           - type: shell
             commands:
