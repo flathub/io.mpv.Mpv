@@ -429,11 +429,11 @@ modules:
     sources:
       - type: git
         url: https://code.videolan.org/videolan/libplacebo.git
-        tag: v5.229.2
+        tag: v5.264.0
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
-        commit: 2394aea167a5995860387a2511f8972143cd5b82
+        commit: 8ae0648b459d8215bde7772501d5cba17e28bf53
     modules:
       - name: shaderc
         buildsystem: cmake-ninja
@@ -453,8 +453,8 @@ modules:
         sources:
           - type: archive
             archive-type: tar
-            url: https://api.github.com/repos/google/shaderc/tarball/refs/tags/v2021.3
-            sha256: b7e54b23a83343d5e2da836d8833ae0db11926141955edf845e35d4dc1eb88d1
+            url: https://github.com/google/shaderc/archive/refs/tags/v2023.2.tar.gz
+            sha256: 06c4e2fdd63d62b73450d7011b72e7720b416182fb883fb0aac0afe6db2df3f6
           - type: shell
             commands:
               - sed -i 's|SPIRV/GlslangToSpv.h|glslang/SPIRV/GlslangToSpv.h|' libshaderc_util/src/compiler.cc
