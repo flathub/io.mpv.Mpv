@@ -19,6 +19,7 @@ finish-args:
   - --filesystem=home/.var/app/io.mpv.Mpv/config/mpv/scripts:create
   - --filesystem=host:ro
   - --env=LC_NUMERIC=C
+  - --env=XCURSOR_PATH=/run/host/user-share/icons:/run/host/share/icons
   - --filesystem=xdg-run/pipewire-0:ro
 
 #  mpris support via dbus
