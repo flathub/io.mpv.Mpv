@@ -447,8 +447,6 @@ modules:
 #              type: git
 #              tag-pattern: ^(\d{1,2}\.){2}\d{1,2}$
             commit: ca8d07d0bc1c6390b83915700439fa7719de6a2a
-        cleanup:
-          - "*"
       - name: shaderc
         buildsystem: cmake-ninja
         builddir: true
