@@ -113,6 +113,9 @@ modules:
         url: https://github.com/libass/libass.git
         tag: 0.17.1
         commit: e8ad72accd3a84268275a9385beb701c9284e5b3
+        x-checker-data:
+          type: git
+          tag-pattern: ^(\d\.\d{1,3}\.\d{1,2})$
 
   - name: libv4l2
     cleanup:
@@ -323,9 +326,13 @@ modules:
       - /lib/pkgconfig
       - /share/man
     sources:
-      - type: archive
-        url: https://bitbucket.org/multicoreware/x265_git/downloads/x265_3.5.tar.gz
-        sha256: e70a3335cacacbba0b3a20ec6fecd6783932288ebc8163ad74bcc9606477cae8
+      - type: git
+        url: https://bitbucket.org/multicoreware/x265_git.git
+        tag: 3.5
+        commit: f0c1022b6be121a753ff02853fbe33da71988656
+#        x-checker-data:
+#          type: git
+#          tag-pattern: ^([\d.]+)$
 
   - name: libmysofa
     buildsystem: cmake
@@ -336,6 +343,9 @@ modules:
         commit: 3002ea258686ae1129f042644a3c2a87860b7d31
         tag: v1.3.1
         url: https://github.com/hoene/libmysofa.git
+        x-checker-data:
+          type: git
+          tag-pattern: ^v([\d.]+)$
 
   - name: libbs2b
     buildsystem: autotools
@@ -389,10 +399,9 @@ modules:
         url: https://github.com/FFmpeg/FFmpeg.git
         commit: ea3d24bbe3c58b171e55fe2151fc7ffaca3ab3d2
         tag: n6.0
-#        x-checker-data:
-#          type: git
-#          url: https://api.github.com/repos/FFmpeg/FFmpeg/tags
-#          tag-pattern: ^n[\d.]+$
+        x-checker-data:
+          type: git
+          tag-pattern: ^n([\d.]{3,7})$
 
   - name: libsixel
     buildsystem: meson
@@ -435,10 +444,10 @@ modules:
       - type: git
         url: https://code.videolan.org/videolan/libplacebo.git
         tag: v5.264.0
+        commit: 8ae0648b459d8215bde7772501d5cba17e28bf53
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
-        commit: 8ae0648b459d8215bde7772501d5cba17e28bf53
     modules:
       - name: glslang
         buildsystem: cmake-ninja
@@ -448,11 +457,10 @@ modules:
           - type: git
             url: https://github.com/KhronosGroup/glslang.git
             tag: 12.0.0
-#            x-checker-data:
-#              type: git
-#              tag-pattern: ^(\d{1,2}\.){2}\d{1,2}$
-#              url: https://api.github.com/repos/KhronosGroup/glslang/releases
             commit: ca8d07d0bc1c6390b83915700439fa7719de6a2a
+            x-checker-data:
+              type: git
+              tag-pattern: ^(\d{1,2}\.\d{1,2}\.\d{1,4})$
       - name: shaderc
         buildsystem: cmake-ninja
         builddir: true
@@ -471,12 +479,11 @@ modules:
         sources:
           - type: git
             url: https://github.com/google/shaderc.git
-            tag: v2023.2
-#            x-checker-data:
-#              type: git
-#              tag-pattern: ^v\d{4}\.\d{1,2}$
-#              url: https://api.github.com/repos/google/shaderc/tags
-            commit: 69aead488f9761c3bf478deda5999549ffec2c28
+            tag: v2023.3
+            commit: abe358c71dd63580ecb96b8225d286af45b6edd1
+            x-checker-data:
+              type: git
+              tag-pattern: ^v(\d{4}\.\d{1,2})$
           - type: shell
             commands:
               - sed -i 's|SPIRV/GlslangToSpv.h|glslang/SPIRV/GlslangToSpv.h|' libshaderc_util/src/compiler.cc
@@ -562,6 +569,10 @@ modules:
       - type: file
         url: https://files.pythonhosted.org/packages/36/7a/87837f39d0296e723bb9b62bbb257d0355c7f6128853c78955f57342a56d/python_dateutil-2.8.2-py2.py3-none-any.whl
         sha256: 961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9
+        x-checker-data:
+          type: pypi
+          name: python_dateutil
+          packagetype: bdist_wheel
 
   - name: urllib3
     buildsystem: simple
@@ -571,6 +582,10 @@ modules:
       - type: file
         url: https://files.pythonhosted.org/packages/7b/f5/890a0baca17a61c1f92f72b81d3c31523c99bec609e60c292ea55b387ae8/urllib3-1.26.15-py2.py3-none-any.whl
         sha256: aa751d169e23c7479ce47a0cb0da579e3ede798f994f5816a74e4f4500dcea42
+        x-checker-data:
+          type: pypi
+          name: urllib3
+          packagetype: bdist_wheel
 
   - name: soupsieve
     buildsystem: simple
@@ -580,6 +595,10 @@ modules:
       - type: file
         url: https://files.pythonhosted.org/packages/d2/70/2c92d7bc961ba43b7b21032b7622144de5f97dec14b62226533f6940798e/soupsieve-2.4-py3-none-any.whl
         sha256: 49e5368c2cda80ee7e84da9dbe3e110b70a4575f196efb74e51b94549d921955
+        x-checker-data:
+          type: pypi
+          name: soupsieve
+          packagetype: bdist_wheel
 
   - name: rebulk
     buildsystem: simple
@@ -589,6 +608,10 @@ modules:
       - type: file
         url: https://files.pythonhosted.org/packages/84/4d/df073d593f7e7e4a5a7e19148b2e9b4ae63b4ddcbb863f1e7bb2b6f19c62/rebulk-3.2.0-py3-none-any.whl
         sha256: 6bc31ae4b37200623c5827d2f539f9ec3e52b50431322dad8154642a39b0a53e
+        x-checker-data:
+          type: pypi
+          name: rebulk
+          packagetype: bdist_wheel
 
   - name: pbr
     buildsystem: simple
@@ -598,6 +621,10 @@ modules:
       - type: file
         url: https://files.pythonhosted.org/packages/01/06/4ab11bf70db5a60689fc521b636849c8593eb67a2c6bdf73a16c72d16a12/pbr-5.11.1-py2.py3-none-any.whl
         sha256: 567f09558bae2b3ab53cb3c1e2e33e726ff3338e7bae3db5dc954b3a44eef12b
+        x-checker-data:
+          type: pypi
+          name: pbr
+          packagetype: bdist_wheel
 
   - name: idna
     buildsystem: simple
@@ -607,6 +634,10 @@ modules:
       - type: file
         url: https://files.pythonhosted.org/packages/fc/34/3030de6f1370931b9dbb4dad48f6ab1015ab1d32447850b9fc94e60097be/idna-3.4-py3-none-any.whl
         sha256: 90b77e79eaa3eba6de819a0c442c0b4ceefc341a7a2ab77d7562bf49f425c5c2
+        x-checker-data:
+          type: pypi
+          name: idna
+          packagetype: bdist_wheel
 
   - name: decorator
     buildsystem: simple
@@ -616,6 +647,10 @@ modules:
       - type: file
         url: https://files.pythonhosted.org/packages/d5/50/83c593b07763e1161326b3b8c6686f0f4b0f24d5526546bee538c89837d6/decorator-5.1.1-py3-none-any.whl
         sha256: b8c3f85900b9dc423225913c5aace94729fe1fa9763b38939a95226f02d37186
+        x-checker-data:
+          type: pypi
+          name: decorator
+          packagetype: bdist_wheel
 
   - name: charset_normalizer
     buildsystem: simple
@@ -625,6 +660,10 @@ modules:
       - type: file
         url: https://files.pythonhosted.org/packages/ef/81/14b3b8f01ddaddad6cdec97f2f599aa2fa466bd5ee9af99b08b7713ccd29/charset_normalizer-3.1.0-py3-none-any.whl
         sha256: 3d9098b479e78c85080c98e1e35ff40b4a31d8953102bb0fd7d1b6f8a2111a3d
+        x-checker-data:
+          type: pypi
+          name: charset_normalizer
+          packagetype: bdist_wheel
 
   - name: certifi
     buildsystem: simple
@@ -634,6 +673,10 @@ modules:
       - type: file
         url: https://files.pythonhosted.org/packages/71/4c/3db2b8021bd6f2f0ceb0e088d6b2d49147671f25832fb17970e9b583d742/certifi-2022.12.7-py3-none-any.whl
         sha256: 4ad3232f5e926d6718ec31cfc1fcadfde020920e278684144551c91769c7bc18
+        x-checker-data:
+          type: pypi
+          name: certifi
+          packagetype: bdist_wheel
 
   - name: stevedore
     buildsystem: simple
@@ -643,6 +686,10 @@ modules:
       - type: file
         url: https://files.pythonhosted.org/packages/41/1b/bad9124b400334d48aed1e04799032909fd8f1ca4a8e0eb30841284dd489/stevedore-5.0.0-py3-none-any.whl
         sha256: bd5a71ff5e5e5f5ea983880e4a1dd1bb47f8feebbb3d95b592398e2f02194771
+        x-checker-data:
+          type: pypi
+          name: stevedore
+          packagetype: bdist_wheel
 
   - name: requests
     buildsystem: simple
@@ -652,6 +699,10 @@ modules:
       - type: file
         url: https://files.pythonhosted.org/packages/d2/f4/274d1dbe96b41cf4e0efb70cbced278ffd61b5c7bb70338b62af94ccb25b/requests-2.28.2-py3-none-any.whl
         sha256: 64299f4909223da747622c030b781c0d7811e359c37124b4bd368fb8c6518baa
+        x-checker-data:
+          type: pypi
+          name: requests
+          packagetype: bdist_wheel
 
   - name: rarfile
     buildsystem: simple
@@ -661,6 +712,10 @@ modules:
       - type: file
         url: https://files.pythonhosted.org/packages/95/f4/c92fab227c7457e3b76a4096ccb655ded9deac869849cb03afbe55dfdc1e/rarfile-4.0-py3-none-any.whl
         sha256: 1094869119012f95c31a6f22cc3a9edbdca61861b805241116adbe2d737b68f8
+        x-checker-data:
+          type: pypi
+          name: rarfile
+          packagetype: bdist_wheel
 
   - name: pytz
     buildsystem: simple
@@ -670,6 +725,10 @@ modules:
       - type: file
         url: https://files.pythonhosted.org/packages/2e/09/fbd3c46dce130958ee8e0090f910f1fe39e502cc5ba0aadca1e8a2b932e5/pytz-2022.7.1-py2.py3-none-any.whl
         sha256: 78f4f37d8198e0627c5f1143240bb0206b8691d8d7ac6d78fee88b78733f8c4a
+        x-checker-data:
+          type: pypi
+          name: pytz
+          packagetype: bdist_wheel
 
   - name: pysrt
     buildsystem: simple
@@ -679,6 +738,9 @@ modules:
       - type: archive
         url: https://files.pythonhosted.org/packages/31/1a/0d858da1c6622dcf16011235a2639b0a01a49cecf812f8ab03308ab4de37/pysrt-1.1.2.tar.gz
         sha256: b4f844ba33e4e7743e9db746492f3a193dc0bc112b153914698e7c1cdeb9b0b9
+        x-checker-data:
+          type: pypi
+          name: pysrt
 
   - name: babelfish
     buildsystem: simple
@@ -688,6 +750,10 @@ modules:
       - type: file
         url: https://files.pythonhosted.org/packages/ce/2c/f7951f771261da6740af14fd9698064616aa040780cd8a03243fc43165c7/babelfish-0.6.0-py3-none-any.whl
         sha256: 268f1c6279f2a04a66837972e8a9f3dcc68e16f1201eec57d2a4b828a8b41b11
+        x-checker-data:
+          type: pypi
+          name: babelfish
+          packagetype: bdist_wheel
 
   - name: guessit
     buildsystem: simple
@@ -697,6 +763,10 @@ modules:
       - type: file
         url: https://files.pythonhosted.org/packages/db/5e/eec6416047845a745b1d2aee181244b380e59158e29d814021d2e511b267/guessit-3.7.1-py3-none-any.whl
         sha256: c3be280ee8ec581a45ca6a654a92e317bf89567fdc55e7167452226f4f5b8b38
+        x-checker-data:
+          type: pypi
+          name: guessit
+          packagetype: bdist_wheel
 
   - name: enzyme
     buildsystem: simple
@@ -706,6 +776,9 @@ modules:
       - type: archive
         url: https://files.pythonhosted.org/packages/dd/99/e4eee822d9390ebf1f63a7a67e8351c09fb7cd75262e5bb1a5256898def9/enzyme-0.4.1.tar.gz
         sha256: f2167fa97c24d1103a94d4bf4eb20f00ca76c38a37499821049253b2059c62bb
+        x-checker-data:
+          type: pypi
+          name: enzyme
 
   - name: dogpile
     buildsystem: simple
@@ -715,6 +788,10 @@ modules:
       - type: file
         url: https://files.pythonhosted.org/packages/66/62/c07222121b9032a1bc19865bee77cb8e4a9c36db75ec11a3fee780681c4c/dogpile.cache-1.1.8-py3-none-any.whl
         sha256: 3f0ca10b46b165e0b0e65e0e74b1a4b36187787b69db7c0f7073077adff2f05d
+        x-checker-data:
+          type: pypi
+          name: dogpile.cache
+          packagetype: bdist_wheel
 
   - name: click
     buildsystem: simple
@@ -724,6 +801,10 @@ modules:
       - type: file
         url: https://files.pythonhosted.org/packages/c2/f1/df59e28c642d583f7dacffb1e0965d0e00b218e0186d7858ac5233dce840/click-8.1.3-py3-none-any.whl
         sha256: bb4d8133cb15a609f44e8213d9b391b0809795062913b383c62be0ee95b1db48
+        x-checker-data:
+          type: pypi
+          name: click
+          packagetype: bdist_wheel
 
   - name: chardet
     buildsystem: simple
@@ -733,6 +814,10 @@ modules:
       - type: file
         url: https://files.pythonhosted.org/packages/74/8f/8fc49109009e8d2169d94d72e6b1f4cd45c13d147ba7d6170fb41f22b08f/chardet-5.1.0-py3-none-any.whl
         sha256: 362777fb014af596ad31334fde1e8c327dfdb076e1960d1694662d46a6917ab9
+        x-checker-data:
+          type: pypi
+          name: chardet
+          packagetype: bdist_wheel
 
   - name: beautifulsoup4
     buildsystem: simple
@@ -742,6 +827,10 @@ modules:
       - type: file
         url: https://files.pythonhosted.org/packages/c6/ee/16d6f808f5668317d7c23f942091fbc694bcded6aa39678e5167f61b2ba0/beautifulsoup4-4.11.2-py3-none-any.whl
         sha256: 0e79446b10b3ecb499c1556f7e228a53e64a2bfcebd455f370d8927cb5b59e39
+        x-checker-data:
+          type: pypi
+          name: beautifulsoup4
+          packagetype: bdist_wheel
 
   - name: appdirs
     buildsystem: simple
@@ -751,6 +840,10 @@ modules:
       - type: file
         url: https://files.pythonhosted.org/packages/3b/00/2344469e2084fb287c2e0b57b72910309874c3245463acd6cf5e3db69324/appdirs-1.4.4-py2.py3-none-any.whl
         sha256: a841dacd6b99318a741b166adb07e19ee71a274450e68237b4650ca1055ab128
+        x-checker-data:
+          type: pypi
+          name: appdirs
+          packagetype: bdist_wheel
 
   - name: subliminal
     buildsystem: simple
@@ -760,6 +853,10 @@ modules:
       - type: file
         url: https://files.pythonhosted.org/packages/d6/f6/d523ddbb9304fa3597101903c0004bdba50c495a1e0d355cdd763df6f2d8/subliminal-2.1.0-py3-none-any.whl
         sha256: c7751e7af83e8e80c924c2c596318d9e2535f249784a41840eaee5f4a4f49d79
+        x-checker-data:
+          type: pypi
+          name: subliminal
+          packagetype: bdist_wheel
 
   # This mpv plugin prevents screen blanking in GNOME (wayland) while playing media.
   - name: mpv_inhibit_gnome
