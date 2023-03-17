@@ -328,11 +328,11 @@ modules:
     sources:
       - type: git
         url: https://bitbucket.org/multicoreware/x265_git.git
-        tag: 3.5
+        tag: '3.5'
         commit: f0c1022b6be121a753ff02853fbe33da71988656
-#        x-checker-data:
-#          type: git
-#          tag-pattern: ^([\d.]+)$
+        x-checker-data:
+          type: git
+          tag-pattern: ^([\d.]+)$
 
   - name: libmysofa
     buildsystem: cmake
@@ -449,18 +449,6 @@ modules:
           type: git
           tag-pattern: ^v([\d.]+)$
     modules:
-      - name: glslang
-        buildsystem: cmake-ninja
-        config-opts:
-          - -DBUILD_SHARED_LIBS=ON
-        sources:
-          - type: git
-            url: https://github.com/KhronosGroup/glslang.git
-            tag: 12.0.0
-            commit: ca8d07d0bc1c6390b83915700439fa7719de6a2a
-            x-checker-data:
-              type: git
-              tag-pattern: ^(\d{1,2}\.\d{1,2}\.\d{1,4})$
       - name: shaderc
         buildsystem: cmake-ninja
         builddir: true
@@ -468,14 +456,13 @@ modules:
           - -DSHADERC_SKIP_COPYRIGHT_CHECK=ON
           - -DSHADERC_SKIP_EXAMPLES=ON
           - -DSHADERC_SKIP_TESTS=ON
+          - -DSPIRV_SKIP_EXECUTABLES=ON
+          - -DENABLE_GLSLANG_BINARIES=OFF
         cleanup:
           - /bin
           - /include
           - /lib/cmake
           - /lib/pkgconfig
-        post-install:
-          # copy libSPIRV, as it's only available in Sdk
-          - install -D /lib/$(gcc --print-multiarch)/libSPIRV*.so /app/lib
         sources:
           - type: git
             url: https://github.com/google/shaderc.git
@@ -484,24 +471,30 @@ modules:
             x-checker-data:
               type: git
               tag-pattern: ^v(\d{4}\.\d{1,2})$
-          - type: shell
-            commands:
-              - sed -i 's|SPIRV/GlslangToSpv.h|glslang/SPIRV/GlslangToSpv.h|' libshaderc_util/src/compiler.cc
-              - sed -i 's|add_subdirectory(third_party)||' CMakeLists.txt
-              - sed -i 's|add_custom_target(build-version|set(NOT_USE|' CMakeLists.txt
-              - |
-                LIB=/lib/$(gcc --print-multiarch)
-                VER_MATCH="[0-9]+\.[^\. ]+"
-                SHADERC=$(grep -m1 -oP "^v$VER_MATCH" CHANGES)
-                SPIRV=v$(grep -oP "(?<=Version:.)$VER_MATCH" $LIB/pkgconfig/SPIRV-Tools-shared.pc)
-                GLSLANG=v$(realpath /app/lib/libglslang.so | grep -oP "(?<=so.)$VER_MATCH")
-                cat <<- EOF > glslc/src/build-version.inc
-                  "shaderc $SHADERC"
-                  "spirv-tools $SPIRV"
-                  "glslang $GLSLANG"
-                EOF
-              - cat glslc/src/build-version.inc
-              - sed -i 's|add_dependencies(glslc_exe build-version)||' glslc/CMakeLists.txt
+          - type: git
+            url: https://github.com/KhronosGroup/SPIRV-Tools.git
+            tag: v2023.1
+            commit: 63de608daeb7e91fbea6d7477a50debe7cac57ce
+            dest: third_party/spirv-tools
+            x-checker-data:
+              type: git
+              tag-pattern: ^v(\d{4}\.\d{1})$
+          - type: git
+            url: https://github.com/KhronosGroup/SPIRV-Headers.git
+            tag: sdk-1.3.239.0
+            commit: d13b52222c39a7e9a401b44646f0ca3a640fbd47
+            dest: third_party/spirv-headers
+            x-checker-data:
+              type: git
+              tag-pattern: ^sdk-([\d.]+)$
+          - type: git
+            url: https://github.com/KhronosGroup/glslang.git
+            tag: 12.0.0
+            commit: ca8d07d0bc1c6390b83915700439fa7719de6a2a
+            dest: third_party/glslang
+            x-checker-data:
+              type: git
+              tag-pattern: ^(\d{1,2}\.\d{1,2}\.\d{1,4})$
 
   - name: mpv
     buildsystem: simple
