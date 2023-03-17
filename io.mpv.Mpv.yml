@@ -63,7 +63,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/LuaJIT/LuaJIT.git
-        commit: 6c4826f12c4d33b8b978004bc681eb1eef2be977
+        commit: 505e2c03de35e2718eef0d2d3660712e06dadf1f
         disable-shallow-clone: true
       - type: shell
         commands:
@@ -99,8 +99,8 @@ modules:
       - /share/man
     sources:
       - type: archive
-        url: https://www.freedesktop.org/software/uchardet/releases/uchardet-0.0.6.tar.xz
-        sha256: 8351328cdfbcb2432e63938721dd781eb8c11ebc56e3a89d0f84576b96002c61
+        url: https://www.freedesktop.org/software/uchardet/releases/uchardet-0.0.8.tar.xz
+        sha256: e97a60cfc00a1c147a674b097bb1422abd9fa78a2d9ce3f3fdcc2e78a34ac5f0
 
   - name: libass
     cleanup:
@@ -109,9 +109,10 @@ modules:
     config-opts:
       - --disable-static
     sources:
-      - type: archive
-        url: https://github.com/libass/libass/releases/download/0.15.0/libass-0.15.0.tar.gz
-        sha256: 9cbddee5e8c87e43a5fe627a19cd2aa4c36552156eb4edcf6c5a30bd4934fe58
+      - type: git
+        url: https://github.com/libass/libass.git
+        tag: 0.17.1
+        commit: e8ad72accd3a84268275a9385beb701c9284e5b3
 
   - name: libv4l2
     cleanup:
@@ -124,8 +125,8 @@ modules:
       - --with-udevdir=/app/lib/udev
     sources:
       - type: archive
-        url: https://linuxtv.org/downloads/v4l-utils/v4l-utils-1.22.1.tar.bz2
-        sha256: 65c6fbe830a44ca105c443b027182c1b2c9053a91d1e72ad849dfab388b94e31
+        url: https://linuxtv.org/downloads/v4l-utils/v4l-utils-1.24.1.tar.bz2
+        sha256: cbb7fe8a6307f5ce533a05cded70bb93c3ba06395ab9b6d007eb53b75d805f5b
 
   - name: libcdio
     config-opts:
@@ -306,11 +307,10 @@ modules:
     config-opts:
       - --disable-cli
       - --enable-shared
-
     sources:
       - type: git
         url: https://code.videolan.org/videolan/x264.git
-        commit: 66a5bc1bd1563d8227d5d18440b525a09bcf17ca
+        commit: eaa68fad9e5d201d42fde51665f2d137ae96baf0
 
   - name: x265
     buildsystem: cmake
@@ -325,17 +325,17 @@ modules:
     sources:
       - type: archive
         url: https://bitbucket.org/multicoreware/x265_git/downloads/x265_3.5.tar.gz
-        md5: deb5df5cb2ec17bdbae6ac6bbc3b1eef
+        sha256: e70a3335cacacbba0b3a20ec6fecd6783932288ebc8163ad74bcc9606477cae8
 
   - name: libmysofa
     buildsystem: cmake
     config-opts:
       - -DBUILD_TESTS=OFF
     sources:
-      - type: archive
-        archive-type: tar
-        url: https://github.com/hoene/libmysofa/archive/refs/tags/v1.3.1.tar.gz
-        sha256: a8a8cbf7b0b2508a6932278799b9bf5c63d833d9e7d651aea4622f3bc6b992aa
+      - type: git
+        commit: 3002ea258686ae1129f042644a3c2a87860b7d31
+        tag: v1.3.1
+        url: https://github.com/hoene/libmysofa.git
 
   - name: libbs2b
     buildsystem: autotools
@@ -384,11 +384,15 @@ modules:
       - --enable-libx265
       - --enable-libmysofa
       - --enable-libbs2b
-
     sources:
-      - type: archive
-        url: https://ffmpeg.org/releases/ffmpeg-5.1.2.tar.xz
-        sha256: 619e706d662c8420859832ddc259cd4d4096a48a2ce1eefd052db9e440eef3dc
+      - type: git
+        url: https://github.com/FFmpeg/FFmpeg.git
+        commit: ea3d24bbe3c58b171e55fe2151fc7ffaca3ab3d2
+        tag: n6.0
+#        x-checker-data:
+#          type: git
+#          url: https://api.github.com/repos/FFmpeg/FFmpeg/tags
+#          tag-pattern: ^n[\d.]+$
 
   - name: libsixel
     buildsystem: meson
@@ -447,6 +451,7 @@ modules:
 #            x-checker-data:
 #              type: git
 #              tag-pattern: ^(\d{1,2}\.){2}\d{1,2}$
+#              url: https://api.github.com/repos/KhronosGroup/glslang/releases
             commit: ca8d07d0bc1c6390b83915700439fa7719de6a2a
       - name: shaderc
         buildsystem: cmake-ninja
@@ -470,6 +475,7 @@ modules:
 #            x-checker-data:
 #              type: git
 #              tag-pattern: ^v\d{4}\.\d{1,2}$
+#              url: https://api.github.com/repos/google/shaderc/tags
             commit: 69aead488f9761c3bf478deda5999549ffec2c28
           - type: shell
             commands:
@@ -510,8 +516,8 @@ modules:
         url: https://github.com/mpv-player/mpv/archive/v0.35.1.tar.gz
         sha256: 41df981b7b84e33a2ef4478aaf81d6f4f5c8b9cd2c0d337ac142fc20b387d1a9
       - type: file
-        url: https://waf.io/waf-2.0.22
-        sha256: 0a09ad26a2cfc69fa26ab871cb558165b60374b5a653ff556a0c6aca63a00df1
+        url: https://waf.io/waf-2.0.25
+        sha256: 21199cd220ccf60434133e1fd2ab8c8e5217c3799199c82722543970dc8e38d5
         dest-filename: waf
       - type: file
         path: io.mpv.Mpv.appdata.xml
@@ -563,8 +569,8 @@ modules:
       - pip3 install --prefix=/app urllib3*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/ec/03/062e6444ce4baf1eac17a6a0ebfe36bb1ad05e1df0e20b110de59c278498/urllib3-1.26.9-py2.py3-none-any.whl
-        sha256: 44ece4d53fb1706f667c9bd1c648f5469a2ec925fcf3a776667042d645472c14
+        url: https://files.pythonhosted.org/packages/7b/f5/890a0baca17a61c1f92f72b81d3c31523c99bec609e60c292ea55b387ae8/urllib3-1.26.15-py2.py3-none-any.whl
+        sha256: aa751d169e23c7479ce47a0cb0da579e3ede798f994f5816a74e4f4500dcea42
 
   - name: soupsieve
     buildsystem: simple
@@ -572,8 +578,8 @@ modules:
       - pip3 install --prefix=/app soupsieve*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/16/e3/4ad79882b92617e3a4a0df1960d6bce08edfb637737ac5c3f3ba29022e25/soupsieve-2.3.2.post1-py3-none-any.whl
-        sha256: 3b2503d3c7084a42b1ebd08116e5f81aadfaea95863628c80a3b774a11b7c759
+        url: https://files.pythonhosted.org/packages/d2/70/2c92d7bc961ba43b7b21032b7622144de5f97dec14b62226533f6940798e/soupsieve-2.4-py3-none-any.whl
+        sha256: 49e5368c2cda80ee7e84da9dbe3e110b70a4575f196efb74e51b94549d921955
 
   - name: rebulk
     buildsystem: simple
@@ -581,8 +587,8 @@ modules:
       - pip3 install --prefix=/app rebulk-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/24/c5/a697c97d6e12e6981da7b050ab84b88ab394dab2c8c08c036eab63d826b4/rebulk-3.1.0-py3-none-any.whl
-        sha256: e56550ae25a822111bff8c8f5eeea14cb44f406e9a9ce67ad4e350253b2fff6c
+        url: https://files.pythonhosted.org/packages/84/4d/df073d593f7e7e4a5a7e19148b2e9b4ae63b4ddcbb863f1e7bb2b6f19c62/rebulk-3.2.0-py3-none-any.whl
+        sha256: 6bc31ae4b37200623c5827d2f539f9ec3e52b50431322dad8154642a39b0a53e
 
   - name: pbr
     buildsystem: simple
@@ -590,8 +596,8 @@ modules:
       - pip3 install --prefix=/app pbr-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/1b/ef/0621aa0e422dda72dc89b61972e5a28d5a947c22fdff83a5d69fdbc1949a/pbr-5.9.0-py2.py3-none-any.whl
-        sha256: e547125940bcc052856ded43be8e101f63828c2d94239ffbe2b327ba3d5ccf0a
+        url: https://files.pythonhosted.org/packages/01/06/4ab11bf70db5a60689fc521b636849c8593eb67a2c6bdf73a16c72d16a12/pbr-5.11.1-py2.py3-none-any.whl
+        sha256: 567f09558bae2b3ab53cb3c1e2e33e726ff3338e7bae3db5dc954b3a44eef12b
 
   - name: idna
     buildsystem: simple
@@ -599,8 +605,8 @@ modules:
       - pip3 install --prefix=/app idna-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/04/a2/d918dcd22354d8958fe113e1a3630137e0fc8b44859ade3063982eacd2a4/idna-3.3-py3-none-any.whl
-        sha256: 84d9dd047ffa80596e0f246e2eab0b391788b0503584e8945f2368256d2735ff
+        url: https://files.pythonhosted.org/packages/fc/34/3030de6f1370931b9dbb4dad48f6ab1015ab1d32447850b9fc94e60097be/idna-3.4-py3-none-any.whl
+        sha256: 90b77e79eaa3eba6de819a0c442c0b4ceefc341a7a2ab77d7562bf49f425c5c2
 
   - name: decorator
     buildsystem: simple
@@ -617,8 +623,8 @@ modules:
       - pip3 install --prefix=/app charset_normalizer-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/06/b3/24afc8868eba069a7f03650ac750a778862dc34941a4bebeb58706715726/charset_normalizer-2.0.12-py3-none-any.whl
-        sha256: 6881edbebdb17b39b4eaaa821b438bf6eddffb4468cf344f09f89def34a8b1df
+        url: https://files.pythonhosted.org/packages/ef/81/14b3b8f01ddaddad6cdec97f2f599aa2fa466bd5ee9af99b08b7713ccd29/charset_normalizer-3.1.0-py3-none-any.whl
+        sha256: 3d9098b479e78c85080c98e1e35ff40b4a31d8953102bb0fd7d1b6f8a2111a3d
 
   - name: certifi
     buildsystem: simple
@@ -626,8 +632,8 @@ modules:
       - pip3 install --prefix=/app certifi-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/37/45/946c02767aabb873146011e665728b680884cd8fe70dde973c640e45b775/certifi-2021.10.8-py2.py3-none-any.whl
-        sha256: d62a0163eb4c2344ac042ab2bdf75399a71a2d8c7d47eac2e2ee91b9d6339569
+        url: https://files.pythonhosted.org/packages/71/4c/3db2b8021bd6f2f0ceb0e088d6b2d49147671f25832fb17970e9b583d742/certifi-2022.12.7-py3-none-any.whl
+        sha256: 4ad3232f5e926d6718ec31cfc1fcadfde020920e278684144551c91769c7bc18
 
   - name: stevedore
     buildsystem: simple
@@ -635,8 +641,8 @@ modules:
       - pip3 install --prefix=/app stevedore-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/7a/bc/fcce9e50da73ea23af6d236e05e15db8a02da1099a5e0a479451bcea3833/stevedore-3.5.0-py3-none-any.whl
-        sha256: a547de73308fd7e90075bb4d301405bebf705292fa90a90fc3bcf9133f58616c
+        url: https://files.pythonhosted.org/packages/41/1b/bad9124b400334d48aed1e04799032909fd8f1ca4a8e0eb30841284dd489/stevedore-5.0.0-py3-none-any.whl
+        sha256: bd5a71ff5e5e5f5ea983880e4a1dd1bb47f8feebbb3d95b592398e2f02194771
 
   - name: requests
     buildsystem: simple
@@ -644,8 +650,8 @@ modules:
       - pip3 install --prefix=/app requests-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/2d/61/08076519c80041bc0ffa1a8af0cbd3bf3e2b62af10435d269a9d0f40564d/requests-2.27.1-py2.py3-none-any.whl
-        sha256: f22fa1e554c9ddfd16e6e41ac79759e17be9e492b3587efa038054674760e72d
+        url: https://files.pythonhosted.org/packages/d2/f4/274d1dbe96b41cf4e0efb70cbced278ffd61b5c7bb70338b62af94ccb25b/requests-2.28.2-py3-none-any.whl
+        sha256: 64299f4909223da747622c030b781c0d7811e359c37124b4bd368fb8c6518baa
 
   - name: rarfile
     buildsystem: simple
@@ -662,8 +668,8 @@ modules:
       - pip3 install --prefix=/app pytz-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/60/2e/dec1cc18c51b8df33c7c4d0a321b084cf38e1733b98f9d15018880fb4970/pytz-2022.1-py2.py3-none-any.whl
-        sha256: e68985985296d9a66a881eb3193b0906246245294a881e7c8afe623866ac6a5c
+        url: https://files.pythonhosted.org/packages/2e/09/fbd3c46dce130958ee8e0090f910f1fe39e502cc5ba0aadca1e8a2b932e5/pytz-2022.7.1-py2.py3-none-any.whl
+        sha256: 78f4f37d8198e0627c5f1143240bb0206b8691d8d7ac6d78fee88b78733f8c4a
 
   - name: pysrt
     buildsystem: simple
@@ -689,8 +695,8 @@ modules:
       - pip3 install --prefix=/app guessit-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/09/01/523ec092ed900893100bec16c24674aff0d0b0af5a7f85654069f5cedb7e/guessit-3.4.3-py3-none-any.whl
-        sha256: f7f790c9e55a7bcc8ff887d3146e089c65a23eff72edfb6684ac5fedb47488a5
+        url: https://files.pythonhosted.org/packages/db/5e/eec6416047845a745b1d2aee181244b380e59158e29d814021d2e511b267/guessit-3.7.1-py3-none-any.whl
+        sha256: c3be280ee8ec581a45ca6a654a92e317bf89567fdc55e7167452226f4f5b8b38
 
   - name: enzyme
     buildsystem: simple
@@ -707,8 +713,8 @@ modules:
       - pip3 install --prefix=/app dogpile*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/4e/52/20f751a3b46add7691d442654aa84fc088f14270269dcb6dfc50c7c83e55/dogpile.cache-1.1.5-py3-none-any.whl
-        sha256: 5f9dcf99087240c7733fad5539b0806b52555917dccad1ef43499eaca8b459d9
+        url: https://files.pythonhosted.org/packages/66/62/c07222121b9032a1bc19865bee77cb8e4a9c36db75ec11a3fee780681c4c/dogpile.cache-1.1.8-py3-none-any.whl
+        sha256: 3f0ca10b46b165e0b0e65e0e74b1a4b36187787b69db7c0f7073077adff2f05d
 
   - name: click
     buildsystem: simple
@@ -725,8 +731,8 @@ modules:
       - pip3 install --prefix=/app chardet-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/19/c7/fa589626997dd07bd87d9269342ccb74b1720384a4d739a1872bd84fbe68/chardet-4.0.0-py2.py3-none-any.whl
-        sha256: f864054d66fd9118f2e67044ac8981a54775ec5b67aed0441892edb553d21da5
+        url: https://files.pythonhosted.org/packages/74/8f/8fc49109009e8d2169d94d72e6b1f4cd45c13d147ba7d6170fb41f22b08f/chardet-5.1.0-py3-none-any.whl
+        sha256: 362777fb014af596ad31334fde1e8c327dfdb076e1960d1694662d46a6917ab9
 
   - name: beautifulsoup4
     buildsystem: simple
@@ -734,8 +740,8 @@ modules:
       - pip3 install --prefix=/app beautifulsoup4-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/9c/d8/909c4089dbe4ade9f9705f143c9f13f065049a9d5e7d34c828aefdd0a97c/beautifulsoup4-4.11.1-py3-none-any.whl
-        sha256: 58d5c3d29f5a36ffeb94f02f0d786cd53014cf9b3b3951d42e0080d8a9498d30
+        url: https://files.pythonhosted.org/packages/c6/ee/16d6f808f5668317d7c23f942091fbc694bcded6aa39678e5167f61b2ba0/beautifulsoup4-4.11.2-py3-none-any.whl
+        sha256: 0e79446b10b3ecb499c1556f7e228a53e64a2bfcebd455f370d8927cb5b59e39
 
   - name: appdirs
     buildsystem: simple
