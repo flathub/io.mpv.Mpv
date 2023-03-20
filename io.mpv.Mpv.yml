@@ -497,35 +497,35 @@ modules:
               tag-pattern: ^(\d{1,2}\.\d{1,2}\.\d{1,4})$
 
   - name: mpv
-    buildsystem: simple
+    buildsystem: meson
+    config-opts:
+      - -Dbuild-date=false
+      - -Dlibmpv=true
+      - -Dmanpage-build=disabled
+      - -Dalsa=disabled
+      - -Dcdda=enabled
+      - -Ddvbin=enabled
+      - -Ddvdnav=enabled
+      - -Dlibarchive=enabled
+      - -Dsdl2=enabled
+      - -Dshaderc=enabled
+      - -Dvulkan=enabled
     cleanup:
       - /include
       - /lib/pkgconfig
-    build-commands:
-      - python3 waf configure --prefix=/app --enable-libmpv-shared --disable-build-date
-        --disable-manpage-build --disable-alsa --enable-sdl2 --enable-libarchive --enable-dvbin
-        --enable-cdda --enable-dvdnav --enable-shaderc --enable-vulkan
-      - python3 waf build
-      - python3 waf install
     post-install:
-      - install -D -m644 io.mpv.Mpv.appdata.xml /app/share/appdata/io.mpv.Mpv.appdata.xml
+#      - install -D -m644 /app/share/metainfo/mpv.metainfo.xml /app/share/metainfo/$FLATPAK_ID.metainfo.xml
+#      - rm /app/share/metainfo/mpv.metainfo.xml
       # save screenshots at ~/Pictures/mpv
       - echo "screenshot-directory=~/Pictures/mpv" > /app/etc/mpv/mpv.conf
     sources:
-      - type: archive
-        url: https://github.com/mpv-player/mpv/archive/v0.35.1.tar.gz
-        sha256: 41df981b7b84e33a2ef4478aaf81d6f4f5c8b9cd2c0d337ac142fc20b387d1a9
-      - type: file
-        url: https://waf.io/waf-2.0.25
-        sha256: 21199cd220ccf60434133e1fd2ab8c8e5217c3799199c82722543970dc8e38d5
-        dest-filename: waf
-      - type: file
-        path: io.mpv.Mpv.appdata.xml
-    x-checker-data:
-      type: json
-      url: https://api.github.com/repos/mpv-player/mpv/releases
-      version-query: .name
-      url-query: .tarball_url
+      - type: git
+        url: https://github.com/mpv-player/mpv.git
+        tag: v0.35.1
+        commit: 140ec21c89d671d392877a7f3b91d67e7d7b9239
+        x-checker-data:
+          type: git
+          tag-pattern: ^v([\d.]+)$
 
 # Scripts for mpv
   - name: mpv-mpris
