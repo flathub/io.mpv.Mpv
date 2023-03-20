@@ -514,8 +514,6 @@ modules:
       - /include
       - /lib/pkgconfig
     post-install:
-#      - install -D -m644 /app/share/metainfo/mpv.metainfo.xml /app/share/metainfo/$FLATPAK_ID.metainfo.xml
-#      - rm /app/share/metainfo/mpv.metainfo.xml
       # save screenshots at ~/Pictures/mpv
       - echo "screenshot-directory=~/Pictures/mpv" > /app/etc/mpv/mpv.conf
     sources:
@@ -526,6 +524,15 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
+
+  - name: appdata
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/share/appdata
+      - cp $FLATPAK_ID.appdata.xml /app/share/appdata/$FLATPAK_ID.appdata.xml
+    sources:
+      - type: file
+        path: io.mpv.Mpv.appdata.xml
 
 # Scripts for mpv
   - name: mpv-mpris
