@@ -49,7 +49,7 @@ If you want to test changes to the io.mpv.Mpv.yml file you can build this reposi
 
 Install `flatpak-builder` using your package manager. If it's not available, install it through flatpak: `flatpak install flathub org.flatpak.Builder`
 
-Download the SDK used by io.mpv.Mpv.appdata.xml (see the file for the current version):
+Download the SDK used by io.mpv.Mpv.yml (see the file for the current version):
 
 `flatpak --user install flathub org.freedesktop.Platform//22.08 org.freedesktop.Sdk//22.08`
 
