@@ -1,4 +1,4 @@
-app-id: io.mpv.Mpv
+id: io.mpv.Mpv
 runtime: org.freedesktop.Platform
 runtime-version: '22.08'
 sdk: org.freedesktop.Sdk
@@ -31,7 +31,6 @@ cleanup:
   - '*.a'
 
 modules:
-
   - name: libXmu
     buildsystem: autotools
     sources:
@@ -266,10 +265,10 @@ modules:
           url-template: https://breakfastquay.com/files/releases/rubberband-$version.tar.bz2
 
   - name: mujs
+    buildsystem: autotools
     no-autogen: true
     make-args:
       - release
-      - shared
     make-install-args:
       - prefix=/app
       - install-shared
@@ -280,8 +279,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/ccxvii/mujs.git
-        tag: 1.3.2
-        commit: 0e611cdc0c81a90dabfcb2ab96992acca95b886d
+        tag: 1.3.3
+        commit: 57e3f01d5f29c5823be725d96284488edf5f8ae1
         x-checker-data:
           type: git
           url: https://api.github.com/repos/ccxvii/mujs/tags
