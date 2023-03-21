@@ -528,8 +528,11 @@ modules:
   - name: appdata
     buildsystem: simple
     build-commands:
+#     This doesn't find the file.
+#     - install -D -m644 $FLATPAK_ID.appdata.xml /app/share/appdata/$FLATPAK_ID.appdata.xml
       - mkdir -p /app/share/appdata
       - cp $FLATPAK_ID.appdata.xml /app/share/appdata/$FLATPAK_ID.appdata.xml
+      - chmod 644 /app/share/appdata/$FLATPAK_ID.appdata.xml
     sources:
       - type: file
         path: io.mpv.Mpv.appdata.xml
