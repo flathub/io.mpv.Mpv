@@ -497,8 +497,8 @@ modules:
     sources:
       - type: git
         url: https://code.videolan.org/videolan/libplacebo.git
-        tag: v5.264.0
-        commit: 8ae0648b459d8215bde7772501d5cba17e28bf53
+        tag: v5.264.1
+        commit: ed29e541a55acf28022738440b2a925386292551
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
