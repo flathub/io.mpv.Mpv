@@ -171,17 +171,17 @@ modules:
       - /lib/pkgconfig
     sources:
       - type: archive
-        url: https://ftpmirror.gnu.org/gnu/libcdio/libcdio-2.1.0.tar.bz2
+        url: https://ftp.gnu.org/gnu/libcdio/libcdio-2.1.0.tar.bz2
         mirror-urls:
           - https://mirrors.kernel.org/gnu/libcdio/libcdio-2.1.0.tar.bz2
           - https://mirrors.ocf.berkeley.edu/gnu/libcdio/libcdio-2.1.0.tar.bz2
-          - https://ftp.gnu.org/gnu/libcdio/libcdio-2.1.0.tar.bz2
+          - https://ftpmirror.gnu.org/gnu/libcdio/libcdio-2.1.0.tar.bz2
         sha256: 8550e9589dbd594bfac93b81ecf129b1dc9d0d51e90f9696f1b2f9b2af32712b
         x-checker-data:
           type: html
-          url: https://ftpmirror.gnu.org/gnu/libcdio/
+          url: https://ftp.gnu.org/gnu/libcdio/
           version-pattern: libcdio-(\d\.\d+\.?\d*).tar.bz2
-          url-template: https://ftpmirror.gnu.org/gnu/libcdio/libcdio-$version.tar.bz2
+          url-template: https://ftp.gnu.org/gnu/libcdio/libcdio-$version.tar.bz2
 
   - name: libcdio-paranoia
     config-opts:
@@ -192,17 +192,17 @@ modules:
       - /lib/pkgconfig
     sources:
       - type: archive
-        url: https://ftpmirror.gnu.org/gnu/libcdio/libcdio-paranoia-10.2+2.0.1.tar.bz2
+        url: https://ftp.gnu.org/gnu/libcdio/libcdio-paranoia-10.2+2.0.1.tar.bz2
         mirror-urls:
           - https://mirrors.kernel.org/gnu/libcdio/libcdio-paranoia-10.2+2.0.1.tar.bz2
           - https://mirrors.ocf.berkeley.edu/gnu/libcdio/libcdio-paranoia-10.2+2.0.1.tar.bz2
-          - https://ftp.gnu.org/gnu/libcdio/libcdio-paranoia-10.2+2.0.1.tar.bz2
+          - https://ftpmirror.gnu.org/gnu/libcdio/libcdio-paranoia-10.2+2.0.1.tar.bz2
         sha256: 33b1cf305ccfbfd03b43936975615000ce538b119989c4bec469577570b60e8a
         x-checker-data:
           type: html
-          url: https://ftpmirror.gnu.org/gnu/libcdio/
+          url: https://ftp.gnu.org/gnu/libcdio/
           version-pattern: libcdio-paranoia-([\d\.\+-]+).tar.bz2
-          url-template: https://ftpmirror.gnu.org/gnu/libcdio/libcdio-paranoia-$version.tar.bz2
+          url-template: https://ftp.gnu.org/gnu/libcdio/libcdio-paranoia-$version.tar.bz2
 
   - name: libdvdread
     config-opts:
@@ -638,17 +638,17 @@ modules:
     buildsystem: autotools
     sources:
       - type: archive
-        url: https://ftpmirror.gnu.org/gnu/bc/bc-1.07.1.tar.gz
+        url: https://ftp.gnu.org/gnu/bc/bc-1.07.1.tar.gz
         mirror-urls:
           - https://mirrors.kernel.org/gnu/bc/bc-1.07.1.tar.gz
           - https://mirrors.ocf.berkeley.edu/gnu/bc/bc-1.07.1.tar.gz
-          - https://ftp.gnu.org/gnu/bc/bc-1.07.1.tar.gz
+          - https://ftpmirror.gnu.org/gnu/bc/bc-1.07.1.tar.gz
         sha256: 62adfca89b0a1c0164c2cdca59ca210c1d44c3ffc46daf9931cf4942664cb02a
         x-checker-data:
           type: html
-          url: https://ftpmirror.gnu.org/gnu/bc/
+          url: https://ftp.gnu.org/gnu/bc/
           version-pattern: bc-(\d\.\d+\.?\d*).tar.gz
-          url-template: https://ftpmirror.gnu.org/gnu/bc/bc-$version.tar.gz
+          url-template: https://ftp.gnu.org/gnu/bc/bc-$version.tar.gz
 
 # Python dependencies for subliminal
 
