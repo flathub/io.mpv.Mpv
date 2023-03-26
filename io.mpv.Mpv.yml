@@ -35,9 +35,9 @@ modules:
     buildsystem: autotools
     sources:
       - type: git
-        url: https://github.com/freedesktop/libXmu.git
-        tag: libXmu-1.1.2
-        commit: 2539e539eafdac88177c8ee30b043c5d52f017e4
+        url: https://gitlab.freedesktop.org/xorg/lib/libxmu.git
+        tag: libXmu-1.1.4
+        commit: b29c739b577ee142877e69eb3fb07c7312d81557
         x-checker-data:
           type: git
           tag-pattern: ^libXmu-([\d.]+)$
@@ -74,6 +74,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/LuaJIT/LuaJIT.git
+        mirror-urls:
+          - https://luajit.org/git/luajit.git
         disable-shallow-clone: true
         commit: 505e2c03de35e2718eef0d2d3660712e06dadf1f
         x-checker-data:
@@ -117,6 +119,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/freedesktop/uchardet.git
+        mirror-urls:
+          - https://gitlab.freedesktop.org/uchardet/uchardet.git
         tag: v0.0.8
         commit: ae6302a016088ad07177f86d417b20010053632b
         x-checker-data:
@@ -150,6 +154,8 @@ modules:
     sources:
       - type: git
         url: https://git.linuxtv.org/v4l-utils.git
+        mirror-urls:
+          - https://github.com/gjasny/v4l-utils.git
         tag: v4l-utils-1.24.1
         commit: 8799081b143627c9c09dea0c60ad3d1cc17cc848
         x-checker-data:
@@ -166,6 +172,10 @@ modules:
     sources:
       - type: archive
         url: https://ftp.gnu.org/gnu/libcdio/libcdio-2.1.0.tar.bz2
+        mirror-urls:
+          - https://mirrors.kernel.org/gnu/libcdio/libcdio-2.1.0.tar.bz2
+          - https://mirrors.ocf.berkeley.edu/gnu/libcdio/libcdio-2.1.0.tar.bz2
+          - https://ftpmirror.gnu.org/gnu/libcdio/libcdio-2.1.0.tar.bz2
         sha256: 8550e9589dbd594bfac93b81ecf129b1dc9d0d51e90f9696f1b2f9b2af32712b
         x-checker-data:
           type: html
@@ -183,6 +193,10 @@ modules:
     sources:
       - type: archive
         url: https://ftp.gnu.org/gnu/libcdio/libcdio-paranoia-10.2+2.0.1.tar.bz2
+        mirror-urls:
+          - https://mirrors.kernel.org/gnu/libcdio/libcdio-paranoia-10.2+2.0.1.tar.bz2
+          - https://mirrors.ocf.berkeley.edu/gnu/libcdio/libcdio-paranoia-10.2+2.0.1.tar.bz2
+          - https://ftpmirror.gnu.org/gnu/libcdio/libcdio-paranoia-10.2+2.0.1.tar.bz2
         sha256: 33b1cf305ccfbfd03b43936975615000ce538b119989c4bec469577570b60e8a
         x-checker-data:
           type: html
@@ -281,14 +295,15 @@ modules:
       - /include
       - /lib/pkgconfig
     sources:
-      - type: archive
-        url: https://breakfastquay.com/files/releases/rubberband-3.1.2.tar.bz2
-        sha256: dda7e257b14c59a1f59c5ccc4d6f19412039f77834275955aa0ff511779b98d2
+      - type: git
+        url: https://github.com/breakfastquay/rubberband.git
+        mirror-urls:
+          - https://hg.sr.ht/~breakfastquay/rubberband
+        tag: v3.1.2
+        commit: fa8a918d8a613540381e571a6aba4a323174dce6
         x-checker-data:
-          type: html
-          url: https://www.breakfastquay.com/rubberband/
-          version-pattern: Rubber Band Library v(\d\.\d+\.?\d*) source
-          url-template: https://breakfastquay.com/files/releases/rubberband-$version.tar.bz2
+          type: git
+          tag-pattern: ^v([\d.]+)$
 
   - name: mujs
     buildsystem: autotools
@@ -305,6 +320,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/ccxvii/mujs.git
+        mirror-urls:
+          - http://git.ghostscript.com/mujs.git
         tag: 1.3.3
         commit: 57e3f01d5f29c5823be725d96284488edf5f8ae1
         x-checker-data:
@@ -321,6 +338,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/FFmpeg/nv-codec-headers.git
+        mirror-urls:
+          - https://git.videolan.org/git/ffmpeg/nv-codec-headers.git
         tag: n12.0.16.0
         commit: c5e4af74850a616c42d39ed45b9b8568b71bf8bf
         x-checker-data:
@@ -451,6 +470,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/FFmpeg/FFmpeg.git
+        mirror-urls:
+          - https://git.ffmpeg.org/ffmpeg.git
         commit: ea3d24bbe3c58b171e55fe2151fc7ffaca3ab3d2
         tag: n6.0
         x-checker-data:
@@ -497,8 +518,10 @@ modules:
     sources:
       - type: git
         url: https://code.videolan.org/videolan/libplacebo.git
-        tag: v5.264.0
-        commit: 8ae0648b459d8215bde7772501d5cba17e28bf53
+        mirror-urls:
+          - https://github.com/haasn/libplacebo.git
+        tag: v5.264.1
+        commit: ed29e541a55acf28022738440b2a925386292551
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -616,6 +639,10 @@ modules:
     sources:
       - type: archive
         url: https://ftp.gnu.org/gnu/bc/bc-1.07.1.tar.gz
+        mirror-urls:
+          - https://mirrors.kernel.org/gnu/bc/bc-1.07.1.tar.gz
+          - https://mirrors.ocf.berkeley.edu/gnu/bc/bc-1.07.1.tar.gz
+          - https://ftpmirror.gnu.org/gnu/bc/bc-1.07.1.tar.gz
         sha256: 62adfca89b0a1c0164c2cdca59ca210c1d44c3ffc46daf9931cf4942664cb02a
         x-checker-data:
           type: html
@@ -787,8 +814,8 @@ modules:
       - pip3 install --prefix=/app pytz-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/2e/09/fbd3c46dce130958ee8e0090f910f1fe39e502cc5ba0aadca1e8a2b932e5/pytz-2022.7.1-py2.py3-none-any.whl
-        sha256: 78f4f37d8198e0627c5f1143240bb0206b8691d8d7ac6d78fee88b78733f8c4a
+        url: https://files.pythonhosted.org/packages/a3/21/0ffac8dacd94d20f4d1ceaaa91cf28ad94ec22e8f3ec9056976f1066ff24/pytz-2023.2-py2.py3-none-any.whl
+        sha256: 8a8baaf1e237175b02f5c751eea67168043a749c843989e2b3015aa1ad9db68b
         x-checker-data:
           type: pypi
           name: pytz

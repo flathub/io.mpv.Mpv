@@ -8,7 +8,7 @@ https://mpv.io/
 
 Follow [this](https://flatpak.org/setup/) guide to install flatpak and setup the flathub repository.
 
-You can then install flathub various ways:
+You can then install mpv various ways:
 
 By visiting https://flathub.org/apps/details/io.mpv.Mpv and clicking install, this will open Discover, Gnome Software or another GUI package installation program.
 
