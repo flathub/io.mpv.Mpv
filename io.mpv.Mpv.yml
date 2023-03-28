@@ -299,8 +299,8 @@ modules:
         url: https://github.com/breakfastquay/rubberband.git
         mirror-urls:
           - https://hg.sr.ht/~breakfastquay/rubberband
-        tag: v3.1.2
-        commit: fa8a918d8a613540381e571a6aba4a323174dce6
+        tag: v3.2.0
+        commit: 0804473c636ae7ae9fbcd2e0291dae122fb40e01
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
