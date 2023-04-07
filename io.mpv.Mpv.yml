@@ -299,8 +299,8 @@ modules:
         url: https://github.com/breakfastquay/rubberband.git
         mirror-urls:
           - https://hg.sr.ht/~breakfastquay/rubberband
-        tag: v3.2.0
-        commit: 0804473c636ae7ae9fbcd2e0291dae122fb40e01
+        tag: v3.2.1
+        commit: 9e8ef1eeaf347d7304c1d9a98764601f1725efdb
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -916,8 +916,8 @@ modules:
       - pip3 install --prefix=/app beautifulsoup4-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/ee/a7/06b189a2e280e351adcef25df532af3c59442123187e228b960ab3238687/beautifulsoup4-4.12.0-py3-none-any.whl
-        sha256: 2130a5ad7f513200fae61a17abb5e338ca980fa28c439c0571014bc0217e9591
+        url: https://files.pythonhosted.org/packages/57/f4/a69c20ee4f660081a7dedb1ac57f29be9378e04edfcb90c526b923d4bebc/beautifulsoup4-4.12.2-py3-none-any.whl
+        sha256: bd2520ca0d9d7d12694a53d44ac482d181b4ec1888909b035a3dbf40d0f57d4a
         x-checker-data:
           type: pypi
           name: beautifulsoup4
