@@ -77,7 +77,7 @@ modules:
         mirror-urls:
           - https://luajit.org/git/luajit.git
         disable-shallow-clone: true
-        commit: 505e2c03de35e2718eef0d2d3660712e06dadf1f
+        commit: 1c279127050e86e99970100e9c42e0f09cd54ab7
         x-checker-data:
           type: json
           url: https://api.github.com/repos/LuaJIT/LuaJIT/commits
@@ -356,7 +356,7 @@ modules:
     sources:
       - type: git
         url: https://code.videolan.org/videolan/x264.git
-        commit: eaa68fad9e5d201d42fde51665f2d137ae96baf0
+        commit: a8b68ebfaa68621b5ac8907610d3335971839d52
         # Every commit to the master branch is considered a release
         # https://code.videolan.org/videolan/x264/-/issues/35
         x-checker-data:
@@ -683,8 +683,8 @@ modules:
       - pip3 install --prefix=/app soupsieve*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/d2/70/2c92d7bc961ba43b7b21032b7622144de5f97dec14b62226533f6940798e/soupsieve-2.4-py3-none-any.whl
-        sha256: 49e5368c2cda80ee7e84da9dbe3e110b70a4575f196efb74e51b94549d921955
+        url: https://files.pythonhosted.org/packages/49/37/673d6490efc51ec46d198c75903d99de59baffdd47aea3d071b80a9e4e89/soupsieve-2.4.1-py3-none-any.whl
+        sha256: 1c1bfee6819544a3447586c889157365a27e10d88cde3ad3da0cf0ddf646feb8
         x-checker-data:
           type: pypi
           name: soupsieve
