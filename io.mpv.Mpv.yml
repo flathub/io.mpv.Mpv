@@ -670,8 +670,8 @@ modules:
       - pip3 install --prefix=/app urllib3*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/7b/f5/890a0baca17a61c1f92f72b81d3c31523c99bec609e60c292ea55b387ae8/urllib3-1.26.15-py2.py3-none-any.whl
-        sha256: aa751d169e23c7479ce47a0cb0da579e3ede798f994f5816a74e4f4500dcea42
+        url: https://files.pythonhosted.org/packages/ca/25/fe81738a115a2f1005b19bd69b6253b7b5cd6c9119164f13f02ec627fc41/urllib3-2.0.0-py3-none-any.whl
+        sha256: 8f7f917bc6ff1c021c4b7b677229c455a7612878748581f6de39fd45e4fa21ae
         x-checker-data:
           type: pypi
           name: urllib3
@@ -787,8 +787,8 @@ modules:
       - pip3 install --prefix=/app requests-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/d2/f4/274d1dbe96b41cf4e0efb70cbced278ffd61b5c7bb70338b62af94ccb25b/requests-2.28.2-py3-none-any.whl
-        sha256: 64299f4909223da747622c030b781c0d7811e359c37124b4bd368fb8c6518baa
+        url: https://files.pythonhosted.org/packages/cf/e1/2aa539876d9ed0ddc95882451deb57cfd7aa8dbf0b8dbce68e045549ba56/requests-2.29.0-py3-none-any.whl
+        sha256: e8f3c9be120d3333921d213eef078af392fba3933ab7ed2d1cba3b56f2568c3b
         x-checker-data:
           type: pypi
           name: requests
@@ -876,8 +876,8 @@ modules:
       - pip3 install --prefix=/app dogpile*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/66/62/c07222121b9032a1bc19865bee77cb8e4a9c36db75ec11a3fee780681c4c/dogpile.cache-1.1.8-py3-none-any.whl
-        sha256: 3f0ca10b46b165e0b0e65e0e74b1a4b36187787b69db7c0f7073077adff2f05d
+        url: https://files.pythonhosted.org/packages/08/4f/11c49c820186a436471d5c15075456621a0bcd710dac7bac5e7b62e3bbcb/dogpile.cache-1.2.0-py3-none-any.whl
+        sha256: d371f310bcdbe5d9c8e7e473348b75c5c97517ac8be16759b24dbaadef1c70a6
         x-checker-data:
           type: pypi
           name: dogpile.cache
