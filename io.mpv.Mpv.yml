@@ -77,7 +77,7 @@ modules:
         mirror-urls:
           - https://luajit.org/git/luajit.git
         disable-shallow-clone: true
-        commit: 1c279127050e86e99970100e9c42e0f09cd54ab7
+        commit: 224129a8e64bfa219d35cd03055bf03952f167f6
         x-checker-data:
           type: json
           url: https://api.github.com/repos/LuaJIT/LuaJIT/commits
@@ -675,7 +675,7 @@ modules:
         x-checker-data:
           # Requests doesn't work with > 1.26.x for now
           # https://github.com/flathub/io.mpv.Mpv/pull/190#issuecomment-1523855709
-          versions: {">=": "1.21.1", "<": "1.27"}
+          versions: {'>=': 1.21.1, <: '1.27'}
           type: pypi
           name: urllib3
           packagetype: bdist_wheel
