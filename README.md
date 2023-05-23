@@ -34,8 +34,13 @@ Then you can use the command `mpv` in a terminal.
 
 Another method is creating an executable shell script called mpv inside of your path with the following:
 
+```
+echo '
     #!/bin/sh
     flatpak run io.mpv.Mpv "$@"
+' > mpv
+```
+Make it executable with `chmod +x mpv`
 
 ## Information for Developers / Testers
 
