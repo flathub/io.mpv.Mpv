@@ -32,10 +32,15 @@ You can also create an alias by running the following command:
 
 Then you can use the command `mpv` in a terminal.
 
-Another method is creating an executable shell script called mpv inside of your path with the following:
+Another method is creating an executable shell script called `mpv` inside of your path with the following:
+```
+echo "
+#!/bin/sh
+flatpak run io.mpv.Mpv "$@"
+" > mpv
+```
 
-    #!/bin/sh
-    flatpak run io.mpv.Mpv "$@"
+make sure to make the script executable with `chmod a+rx mpv`
 
 ## Information for Developers / Testers
 
