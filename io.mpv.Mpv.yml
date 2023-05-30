@@ -559,8 +559,8 @@ modules:
               tag-pattern: ^v(\d{4}\.\d{1})$
           - type: git
             url: https://github.com/KhronosGroup/SPIRV-Headers.git
-            tag: sdk-1.3.246.1
-            commit: 1feaf4414eb2b353764d01d88f8aa4bcc67b60db
+            tag: sdk-1.3.250.0
+            commit: 268a061764ee69f09a477a695bf6a11ffe311b8d
             dest: third_party/spirv-headers
             x-checker-data:
               type: git
