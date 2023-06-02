@@ -28,7 +28,7 @@ From a command line:
 
 You can also create an alias by running the following command:
 
-`echo "alias mpv='flatpak run io.mpv.Mpv" >> ~/.bashrc && source ~/.bashrc`
+`echo "alias mpv='flatpak run io.mpv.Mpv'" >> ~/.bashrc && source ~/.bashrc`
 
 Then you can use the command `mpv` in a terminal.
 
