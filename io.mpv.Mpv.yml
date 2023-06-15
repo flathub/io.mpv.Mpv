@@ -502,8 +502,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/vapoursynth/vapoursynth.git
-        tag: R62
-        commit: d10c0d3ebb7b32110e6c5c0e998c4028ead45bdb
+        tag: R63
+        commit: f7f4e42193b25edaf35042795b39c80173e1b55e
         x-checker-data:
           type: git
           tag-pattern: ^R([\d.]+)$
