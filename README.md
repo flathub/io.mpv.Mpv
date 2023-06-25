@@ -18,7 +18,7 @@ By using a command line interface:
 
 Install only for your user: `flatpak --user install io.mpv.Mpv`
 
-Install systemwide: `sudo flatpak install io.mpv.Mpv`
+Install systemwide: `flatpak install io.mpv.Mpv`
 
 ### Running
 
