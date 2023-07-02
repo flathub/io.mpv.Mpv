@@ -580,7 +580,6 @@ modules:
       - -Dbuild-date=false
       - -Dlibmpv=true
       - -Dmanpage-build=disabled
-      - -Dalsa=disabled
       - -Dcdda=enabled
       - -Ddvbin=enabled
       - -Ddvdnav=enabled
