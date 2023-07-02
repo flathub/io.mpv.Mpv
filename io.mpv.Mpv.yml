@@ -279,8 +279,8 @@ modules:
     sources:
       - type: archive
         archive-type: tar
-        url: https://api.github.com/repos/sekrit-twc/zimg/tarball/release-3.0.4
-        sha256: c86b5a169b22c562172a11d83ce76a82dbdafc82149edcb8a06d0beeb94b193e
+        url: https://api.github.com/repos/sekrit-twc/zimg/tarball/release-3.0.5
+        sha256: 1b8998f03f4a49e4d730033143722b32bc28a5306ef809ccfb3b4bbb29e4b784
         x-checker-data:
           type: json
           url: https://api.github.com/repos/sekrit-twc/zimg/releases/latest
@@ -559,8 +559,8 @@ modules:
               tag-pattern: ^v(\d{4}\.\d{1})$
           - type: git
             url: https://github.com/KhronosGroup/SPIRV-Headers.git
-            tag: sdk-1.3.250.0
-            commit: 268a061764ee69f09a477a695bf6a11ffe311b8d
+            tag: sdk-1.3.250.1
+            commit: 3469b164e25cee24435029a569933cb42578db5d
             dest: third_party/spirv-headers
             x-checker-data:
               type: git
