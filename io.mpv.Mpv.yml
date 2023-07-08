@@ -77,7 +77,7 @@ modules:
         mirror-urls:
           - https://luajit.org/git/luajit.git
         disable-shallow-clone: true
-        commit: ff6c496ba1b51ed360065cbc5259f62becd70daa
+        commit: 0cc5fdfbc0810073485150eb184dc358dab507d9
         x-checker-data:
           type: json
           url: https://api.github.com/repos/LuaJIT/LuaJIT/commits
@@ -521,8 +521,8 @@ modules:
         url: https://code.videolan.org/videolan/libplacebo.git
         mirror-urls:
           - https://github.com/haasn/libplacebo.git
-        tag: v5.264.1
-        commit: ed29e541a55acf28022738440b2a925386292551
+        tag: v6.292.0
+        commit: ef202bcff8cce0e208e244e453d62dcad4c350ca
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -752,8 +752,8 @@ modules:
       - pip3 install --prefix=/app charset_normalizer-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/ef/81/14b3b8f01ddaddad6cdec97f2f599aa2fa466bd5ee9af99b08b7713ccd29/charset_normalizer-3.1.0-py3-none-any.whl
-        sha256: 3d9098b479e78c85080c98e1e35ff40b4a31d8953102bb0fd7d1b6f8a2111a3d
+        url: https://files.pythonhosted.org/packages/bf/a0/188f223c7d8b924fb9b554b9d27e0e7506fd5bf9cfb6dbacb2dfd5832b53/charset_normalizer-3.2.0-py3-none-any.whl
+        sha256: 8e098148dd37b4ce3baca71fb394c81dc5d9c7728c95df695d2dca218edf40e6
         x-checker-data:
           type: pypi
           name: charset_normalizer
