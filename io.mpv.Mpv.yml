@@ -596,8 +596,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/mpv-player/mpv.git
-        tag: v0.35.1
-        commit: 140ec21c89d671d392877a7f3b91d67e7d7b9239
+        tag: v0.36.0
+        commit: f4210f84906c3b00a65fba198c8127b6757b9350
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
