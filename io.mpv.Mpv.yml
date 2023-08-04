@@ -444,7 +444,6 @@ modules:
     config-opts:
       - --disable-debug
       - --disable-doc
-      - --disable-programs
       - --disable-static
       - --enable-encoder=png
       - --enable-gnutls
