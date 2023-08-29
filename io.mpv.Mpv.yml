@@ -17,7 +17,12 @@ finish-args:
   - --filesystem=xdg-pictures:rw
   - --filesystem=xdg-videos:rw
   - --filesystem=home/.var/app/io.mpv.Mpv/config/mpv/scripts:create
-  - --filesystem=host:ro
+  - --filesystem=home:ro
+  - --filesystem=/media:ro
+  - --filesystem=/mnt:ro
+  - --filesystem=/run/media:ro
+  - --filesystem=/var/run/media:ro
+  - --filesystem=/var/mnt:ro
   - --env=LC_NUMERIC=C
   - --env=XCURSOR_PATH=/run/host/user-share/icons:/run/host/share/icons
   - --filesystem=xdg-run/pipewire-0:ro
