@@ -520,7 +520,7 @@ modules:
         url: https://code.videolan.org/videolan/libplacebo.git
         mirror-urls:
           - https://github.com/haasn/libplacebo.git
-        tag: v5.264.1
+        tag: v6.292.1
         commit: ed29e541a55acf28022738440b2a925386292551
 #       x-checker-data:
 #         type: git
