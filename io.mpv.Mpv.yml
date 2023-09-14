@@ -590,8 +590,9 @@ modules:
       - /include
       - /lib/pkgconfig
     post-install:
-      # save screenshots at ~/Pictures/mpv
-      - echo "screenshot-directory=~/Pictures/mpv" > /app/etc/mpv/mpv.conf
+      - mv /app/bin/mpv /app/bin/mpv-bin
+      # save screenshots at xdg-pictures/mpv
+      - echo "screenshot-directory=~/.var/app/io.mpv.Mpv/Pictures/mpv" > /app/etc/mpv/mpv.conf
     sources:
       - type: git
         url: https://github.com/mpv-player/mpv.git
@@ -616,6 +617,14 @@ modules:
           - chmod 644 /app/share/appdata/$FLATPAK_ID.appdata.xml
 
 # Scripts for mpv
+  - name: mpv-wrapper
+    buildsystem: simple
+    build-commands:
+      - install -D mpv /app/bin/mpv
+    sources:
+      - type: file
+        path: mpv
+
   - name: mpv-mpris
     no-autogen: true
     make-install-args:
