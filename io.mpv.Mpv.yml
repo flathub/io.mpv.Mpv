@@ -98,8 +98,8 @@ modules:
       - install yt-dlp /app/bin
     sources:
       - type: archive
-        url: https://github.com/yt-dlp/yt-dlp/releases/download/2023.07.06/yt-dlp.tar.gz
-        sha256: 6d2115b84b6c11867f92cf4c23705b536bfa0ba9d538b1885f52da6756f8c980
+        url: https://github.com/yt-dlp/yt-dlp/releases/download/2023.09.24/yt-dlp.tar.gz
+        sha256: 689aaab448763a9efb339e608346d42aa3d4f776288fc1f4f223142ac23a5abf
         x-checker-data:
           type: json
           url: https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest
@@ -356,7 +356,7 @@ modules:
     sources:
       - type: git
         url: https://code.videolan.org/videolan/x264.git
-        commit: a8b68ebfaa68621b5ac8907610d3335971839d52
+        commit: 5a9dfddea49aae58fd18750d130301c947f7d217
         # Every commit to the master branch is considered a release
         # https://code.videolan.org/videolan/x264/-/issues/35
         x-checker-data:
@@ -501,8 +501,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/vapoursynth/vapoursynth.git
-        tag: R63
-        commit: f7f4e42193b25edaf35042795b39c80173e1b55e
+        tag: R64
+        commit: 3c3271769030d3f9ce8f84df7bccb7c2db3e33c0
         x-checker-data:
           type: git
           tag-pattern: ^R([\d.]+)$
@@ -558,8 +558,8 @@ modules:
               tag-pattern: ^v(\d{4}\.\d{1})$
           - type: git
             url: https://github.com/KhronosGroup/SPIRV-Headers.git
-            tag: sdk-1.3.250.1
-            commit: 268a061764ee69f09a477a695bf6a11ffe311b8d
+            tag: sdk-1.3.261.1
+            commit: 124a9665e464ef98b8b718d572d5f329311061eb
             dest: third_party/spirv-headers
             x-checker-data:
               type: git
@@ -632,8 +632,8 @@ modules:
     sources:
       - type: archive
         archive-type: tar
-        url: https://api.github.com/repos/hoyon/mpv-mpris/tarball/1.0
-        sha256: d8983f4f02091f28921719f9f8457b7eaf88c1f1c5e3d15d830dd928b00f3ded
+        url: https://api.github.com/repos/hoyon/mpv-mpris/tarball/1.1
+        sha256: 08d6b53a41224710ebed1c4d6daee815686e0f2f10e3f81778f4411562ed5958
         x-checker-data:
           type: json
           url: https://api.github.com/repos/hoyon/mpv-mpris/releases/latest
@@ -695,8 +695,8 @@ modules:
       - pip3 install --prefix=/app soupsieve*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/49/37/673d6490efc51ec46d198c75903d99de59baffdd47aea3d071b80a9e4e89/soupsieve-2.4.1-py3-none-any.whl
-        sha256: 1c1bfee6819544a3447586c889157365a27e10d88cde3ad3da0cf0ddf646feb8
+        url: https://files.pythonhosted.org/packages/4c/f3/038b302fdfbe3be7da016777069f26ceefe11a681055ea1f7817546508e3/soupsieve-2.5-py3-none-any.whl
+        sha256: eaa337ff55a1579b6549dc679565eac1e3d000563bcb1c8ab0d0fefbc0c2cdc7
         x-checker-data:
           type: pypi
           name: soupsieve
@@ -812,8 +812,8 @@ modules:
       - pip3 install --prefix=/app rarfile-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/95/f4/c92fab227c7457e3b76a4096ccb655ded9deac869849cb03afbe55dfdc1e/rarfile-4.0-py3-none-any.whl
-        sha256: 1094869119012f95c31a6f22cc3a9edbdca61861b805241116adbe2d737b68f8
+        url: https://files.pythonhosted.org/packages/75/34/f06b7de74bcea328d8d7a950aad099c1100578cc3960ffc5a00d30ab511c/rarfile-4.1-py3-none-any.whl
+        sha256: 17d7554c93c776ceae677e9d927051267d4c5eba38bf64b9cc89a415d9a5f901
         x-checker-data:
           type: pypi
           name: rarfile
@@ -825,8 +825,8 @@ modules:
       - pip3 install --prefix=/app pytz-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/7f/99/ad6bd37e748257dd70d6f85d916cafe79c0b0f5e2e95b11f7fbc82bf3110/pytz-2023.3-py2.py3-none-any.whl
-        sha256: a151b3abb88eda1d4e34a9814df37de2a80e301e68ba0fd856fb9b46bfbbbffb
+        url: https://files.pythonhosted.org/packages/32/4d/aaf7eff5deb402fd9a24a1449a8119f00d74ae9c2efa79f8ef9994261fc2/pytz-2023.3.post1-py2.py3-none-any.whl
+        sha256: ce42d816b81b68506614c11e8937d3aa9e41007ceb50bfdcb0749b921bf646c7
         x-checker-data:
           type: pypi
           name: pytz
