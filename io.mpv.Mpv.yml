@@ -98,8 +98,8 @@ modules:
       - install yt-dlp /app/bin
     sources:
       - type: archive
-        url: https://github.com/yt-dlp/yt-dlp/releases/download/2023.09.24/yt-dlp.tar.gz
-        sha256: 689aaab448763a9efb339e608346d42aa3d4f776288fc1f4f223142ac23a5abf
+        url: https://github.com/yt-dlp/yt-dlp/releases/download/2023.10.13/yt-dlp.tar.gz
+        sha256: 64944f4452a7657b5fb31ae55d823d9411a1a29f9c1071d33fa3e6286e20522a
         x-checker-data:
           type: json
           url: https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest
@@ -339,8 +339,8 @@ modules:
         url: https://github.com/FFmpeg/nv-codec-headers.git
         mirror-urls:
           - https://git.videolan.org/git/ffmpeg/nv-codec-headers.git
-        tag: n12.0.16.0
-        commit: c5e4af74850a616c42d39ed45b9b8568b71bf8bf
+        tag: n12.1.14.0
+        commit: 1889e62e2d35ff7aa9baca2bceb14f053785e6f1
         x-checker-data:
           type: git
           tag-pattern: ^n([\d.]+)$
@@ -356,7 +356,7 @@ modules:
     sources:
       - type: git
         url: https://code.videolan.org/videolan/x264.git
-        commit: a8b68ebfaa68621b5ac8907610d3335971839d52
+        commit: 5f84d403fcaf15b717a5d08d07e4411f0dcb0013
         # Every commit to the master branch is considered a release
         # https://code.videolan.org/videolan/x264/-/issues/35
         x-checker-data:
@@ -501,8 +501,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/vapoursynth/vapoursynth.git
-        tag: R63
-        commit: f7f4e42193b25edaf35042795b39c80173e1b55e
+        tag: R64
+        commit: 3c3271769030d3f9ce8f84df7bccb7c2db3e33c0
         x-checker-data:
           type: git
           tag-pattern: ^R([\d.]+)$
@@ -558,8 +558,8 @@ modules:
               tag-pattern: ^v(\d{4}\.\d{1})$
           - type: git
             url: https://github.com/KhronosGroup/SPIRV-Headers.git
-            tag: sdk-1.3.250.1
-            commit: 268a061764ee69f09a477a695bf6a11ffe311b8d
+            tag: sdk-1.3.261.1
+            commit: 124a9665e464ef98b8b718d572d5f329311061eb
             dest: third_party/spirv-headers
             x-checker-data:
               type: git
@@ -632,8 +632,8 @@ modules:
     sources:
       - type: archive
         archive-type: tar
-        url: https://api.github.com/repos/hoyon/mpv-mpris/tarball/1.0
-        sha256: d8983f4f02091f28921719f9f8457b7eaf88c1f1c5e3d15d830dd928b00f3ded
+        url: https://api.github.com/repos/hoyon/mpv-mpris/tarball/1.1
+        sha256: 08d6b53a41224710ebed1c4d6daee815686e0f2f10e3f81778f4411562ed5958
         x-checker-data:
           type: json
           url: https://api.github.com/repos/hoyon/mpv-mpris/releases/latest
