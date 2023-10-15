@@ -578,7 +578,6 @@ modules:
     config-opts:
       - -Dbuild-date=false
       - -Dlibmpv=true
-      - -Dmanpage-build=disabled
       - -Dcdda=enabled
       - -Ddvbin=enabled
       - -Ddvdnav=enabled
