@@ -46,7 +46,7 @@ modules:
     build-commands:
       - perl Makefile.PL
       - make
-      - make install
+      - PREFIX=/app make install
     sources:
       - type: archive
         url: https://cpan.metacpan.org/authors/id/W/WB/WBRASWELL/Parse-Yapp-1.21.tar.gz
