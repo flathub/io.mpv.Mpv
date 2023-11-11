@@ -31,6 +31,19 @@ cleanup:
   - '*.a'
 
 modules:
+  - name: smbclient
+    buildsystem: autotools
+    sources:
+      - type: archive
+        archive-type: tar
+        url: https://download.samba.org/pub/samba/stable/samba-4.19.2.tar.gz
+        sha256: 9e63f0505e1c631f1db0b7a9349a51e925c026ca03af3fd5d812228bb597d393
+        x-checker-data:
+          type: html
+          url: https://download.samba.org/pub/samba/stable/?C=M;O=D
+          version-pattern: samba-(\d+\.\d+\.\d+).tar.gz
+          url-template: https://download.samba.org/pub/samba/stable/samba-$version.tar.gz
+
   - name: libXmu
     buildsystem: autotools
     sources:
