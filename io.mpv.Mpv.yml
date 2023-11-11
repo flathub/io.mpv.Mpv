@@ -59,6 +59,15 @@ modules:
       - --without-ldap
       - --without-ads
       - --without-pam
+      - --disable-python
+      - --disable-cups
+      - --disable-iprint
+      - --without-systemd
+      - --bindir=.
+      - --sbindir=.
+      - --sysconfdir=.
+    cleanup:
+      - /lib/perl5
     build-options:
       env:
         PERL5LIB: /app/lib/perl5
