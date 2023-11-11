@@ -466,6 +466,7 @@ modules:
       - --enable-libx264
       - --enable-libx265
       - --enable-libwebp
+      - --enable-libsmbclient
 
     sources:
       - type: git
