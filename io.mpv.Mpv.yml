@@ -622,6 +622,10 @@ modules:
             tag: 12.2.0
             commit: d1517d64cfca91f573af1bf7341dc3a5113349c0
             dest: third_party/glslang
+          - type: git
+            url: https://github.com/KhronosGroup/Vulkan-Headers.git
+            tag: v1.3.270
+            commit: 8ccd414a46544d5c512739198a7829fbf17e432e
 #           x-checker-data:
 #             type: git
 #             tag-pattern: ^(\d{1,2}\.\d{1,2}\.\d{1,4})$
