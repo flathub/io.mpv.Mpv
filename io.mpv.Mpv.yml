@@ -573,8 +573,8 @@ modules:
         url: https://code.videolan.org/videolan/libplacebo.git
         mirror-urls:
           - https://github.com/haasn/libplacebo.git
-        tag: v6.292.1
-        commit: 06b51c6c1bc8be6153823929496eed255dd76e69
+        tag: v6.338.1
+        commit: 2805a0d01c029084ab36bf5d0e3c8742012a0b27
 #       x-checker-data:
 #         type: git
 #         tag-pattern: ^v([\d.]+)$
@@ -622,6 +622,12 @@ modules:
             tag: 12.2.0
             commit: d1517d64cfca91f573af1bf7341dc3a5113349c0
             dest: third_party/glslang
+          - type: git
+            url: https://github.com/KhronosGroup/Vulkan-Headers.git
+            tag: v1.3.270
+            commit: 8ccd414a46544d5c512739198a7829fbf17e432e
+            #dest: third_party/glslang
+          
 #           x-checker-data:
 #             type: git
 #             tag-pattern: ^(\d{1,2}\.\d{1,2}\.\d{1,4})$
