@@ -639,6 +639,7 @@ modules:
       - -Dsdl2=enabled
       - -Dshaderc=enabled
       - -Dvulkan=enabled
+      - -Dvulkan-interop=true
     cleanup:
       - /include
       - /lib/pkgconfig
