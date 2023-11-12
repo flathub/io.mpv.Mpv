@@ -575,9 +575,9 @@ modules:
           - https://github.com/haasn/libplacebo.git
         tag: v6.292.1
         commit: 06b51c6c1bc8be6153823929496eed255dd76e69
-#       x-checker-data:
-#         type: git
-#         tag-pattern: ^v([\d.]+)$
+       x-checker-data:
+         type: git
+         tag-pattern: ^v([\d.]+)$
     modules:
       - name: shaderc
         buildsystem: cmake-ninja
