@@ -611,16 +611,16 @@ modules:
               tag-pattern: ^v(\d{4}\.\d{1})$
           - type: git
             url: https://github.com/KhronosGroup/SPIRV-Headers.git
-            tag: sdk-1.3.250.1
-            commit: 268a061764ee69f09a477a695bf6a11ffe311b8d
+            tag: vulkan-sdk-1.3.268.0
+            commit: e867c06631767a2d96424cbec530f9ee5e78180f
             dest: third_party/spirv-headers
             x-checker-data:
               type: git
               tag-pattern: ^sdk-([\d.]+)$
           - type: git
             url: https://github.com/KhronosGroup/glslang.git
-            tag: 12.2.0
-            commit: d1517d64cfca91f573af1bf7341dc3a5113349c0
+            tag: 13.1.1
+            commit: 36d08c0d940cf307a23928299ef52c7970d8cee6
             dest: third_party/glslang
 #           x-checker-data:
 #             type: git
