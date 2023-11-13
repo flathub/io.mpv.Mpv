@@ -611,8 +611,8 @@ modules:
               tag-pattern: ^v(\d{4}\.\d{1})$
           - type: git
             url: https://github.com/KhronosGroup/SPIRV-Headers.git
-            tag: sdk-1.3.250.1
-            commit: 268a061764ee69f09a477a695bf6a11ffe311b8d
+            tag: sdk-1.3.261.1
+            commit: 124a9665e464ef98b8b718d572d5f329311061eb
             dest: third_party/spirv-headers
             x-checker-data:
               type: git
@@ -622,9 +622,9 @@ modules:
             tag: 12.2.0
             commit: d1517d64cfca91f573af1bf7341dc3a5113349c0
             dest: third_party/glslang
-#           x-checker-data:
-#             type: git
-#             tag-pattern: ^(\d{1,2}\.\d{1,2}\.\d{1,4})$
+            x-checker-data:
+              type: git
+              tag-pattern: ^(\d{1,2}\.\d{1,2}\.\d{1,4})$
 
   - name: mpv
     buildsystem: meson
