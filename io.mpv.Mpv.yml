@@ -1,6 +1,6 @@
 id: io.mpv.Mpv
 runtime: org.freedesktop.Platform
-runtime-version: '22.08'
+runtime-version: '23.08'
 sdk: org.freedesktop.Sdk
 command: mpv
 rename-desktop-file: mpv.desktop
@@ -693,6 +693,40 @@ modules:
           version-query: .name
           url-query: .tarball_url
 
+  - name: ed
+    build-options:
+      no-debuginfo: true
+    buildsystem: autotools
+    sources:
+      - type: archive
+        url: https://ftp.gnu.org/gnu/ed/ed-1.19.tar.lz
+        mirror-urls:
+          - https://mirrors.kernel.org/gnu/ed/ed-1.07.1.tar.lz
+          - https://mirrors.ocf.berkeley.edu/gnu/ed/ed-1.07.1.tar.lz
+            - name: ed
+    build-options:
+      no-debuginfo: true
+    buildsystem: autotools
+    sources:
+      - type: archive
+        url: https://ftp.gnu.org/gnu/ed/ed-1.19.tar.lz
+        mirror-urls:
+          - https://mirrors.kernel.org/gnu/ed/ed-1.07.1.tar.lz
+          - https://mirrors.ocf.berkeley.edu/gnu/ed/ed-1.07.1.tar.lz
+          - https://ftpmirror.gnu.org/gnu/ed/ed-1.07.1.tar.lz
+        sha256: ce2f2e5c424790aa96d09dacb93d9bbfdc0b7eb6249c9cb7538452e8ec77cd48
+        x-checker-data:
+          type: html
+          url: https://ftp.gnu.org/gnu/ed/
+          version-pattern: ed-(\d\.\d+\.?\d*).tar.lz
+          url-template: https://ftp.gnu.org/gnu/ed/ed-$version.tar.lz- https://ftpmirror.gnu.org/gnu/ed/ed-1.07.1.tar.lz
+        sha256: ce2f2e5c424790aa96d09dacb93d9bbfdc0b7eb6249c9cb7538452e8ec77cd48
+        x-checker-data:
+          type: html
+          url: https://ftp.gnu.org/gnu/ed/
+          version-pattern: ed-(\d\.\d+\.?\d*).tar.lz
+          url-template: https://ftp.gnu.org/gnu/ed/ed-$version.tar.lz
+          
   - name: bc
     build-options:
       no-debuginfo: true
