@@ -974,10 +974,10 @@ modules:
       - type: file
         url: https://files.pythonhosted.org/packages/f9/a6/dc327484918f1656cc9fcebebe77efcfc0ef0d447fa925a8760ee55abe0e/click-8.1.4-py3-none-any.whl
         sha256: 2739815aaa5d2c986a88f1e9230c55e17f0caad3d958a5e13ad0797c166db9e3
-       x-checker-data:
-         type: pypi
-         name: click
-         packagetype: bdist_wheel
+        x-checker-data:
+          type: pypi
+          name: click
+          packagetype: bdist_wheel
 
   - name: chardet
     buildsystem: simple
