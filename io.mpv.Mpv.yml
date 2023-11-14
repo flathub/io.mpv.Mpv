@@ -130,12 +130,12 @@ modules:
           - https://luajit.org/git/luajit.git
         disable-shallow-clone: true
         commit: ff6c496ba1b51ed360065cbc5259f62becd70daa
-#       x-checker-data:
-#         type: json
-#         url: https://api.github.com/repos/LuaJIT/LuaJIT/commits
-#         commit-query: first( .[].sha )
-#         version-query: first( .[].sha )
-#         timestamp-query: first( .[].commit.committer.date )
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/LuaJIT/LuaJIT/commits
+          commit-query: first( .[].sha )
+          version-query: first( .[].sha )
+          timestamp-query: first( .[].commit.committer.date )
       - type: shell
         commands:
           - sed -i 's|/usr/local|/app|' ./Makefile
@@ -575,9 +575,9 @@ modules:
           - https://github.com/haasn/libplacebo.git
         tag: v6.338.1
         commit: 2805a0d01c029084ab36bf5d0e3c8742012a0b27
-#       x-checker-data:
-#         type: git
-#         tag-pattern: ^v([\d.]+)$
+        x-checker-data:
+          type: git
+          tag-pattern: ^v([\d.]+)$
     modules:
       - name: shaderc
         buildsystem: cmake-ninja
@@ -622,9 +622,9 @@ modules:
             tag: 12.2.0
             commit: d1517d64cfca91f573af1bf7341dc3a5113349c0
             dest: third_party/glslang
-#           x-checker-data:
-#             type: git
-#             tag-pattern: ^(\d{1,2}\.\d{1,2}\.\d{1,4})$
+            x-checker-data:
+              type: git
+              tag-pattern: ^(\d{1,2}\.\d{1,2}\.\d{1,4})$
 
   - name: mpv
     buildsystem: meson
@@ -833,10 +833,10 @@ modules:
       - type: file
         url: https://files.pythonhosted.org/packages/ef/81/14b3b8f01ddaddad6cdec97f2f599aa2fa466bd5ee9af99b08b7713ccd29/charset_normalizer-3.1.0-py3-none-any.whl
         sha256: 3d9098b479e78c85080c98e1e35ff40b4a31d8953102bb0fd7d1b6f8a2111a3d
-#       x-checker-data:
-#         type: pypi
-#         name: charset_normalizer
-#         packagetype: bdist_wheel
+        x-checker-data:
+          type: pypi
+          name: charset_normalizer
+          packagetype: bdist_wheel
 
   - name: certifi
     buildsystem: simple
@@ -846,10 +846,10 @@ modules:
       - type: file
         url: https://files.pythonhosted.org/packages/9d/19/59961b522e6757f0c9097e4493fa906031b95b3ebe9360b2c3083561a6b4/certifi-2023.5.7-py3-none-any.whl
         sha256: c6c2e98f5c7869efca1f8916fed228dd91539f9f1b444c314c06eef02980c716
-#       x-checker-data:
-#         type: pypi
-#        name: certifi
-#         packagetype: bdist_wheel
+        x-checker-data:
+          type: pypi
+          name: certifi
+          packagetype: bdist_wheel
 
   - name: stevedore
     buildsystem: simple
@@ -961,10 +961,10 @@ modules:
       - type: file
         url: https://files.pythonhosted.org/packages/37/b3/d95ba629fa9d52cc2ea86298d930976f1e6a560d20fec64527342e61e29e/dogpile.cache-1.2.1-py3-none-any.whl
         sha256: fa9c9c07640bdb66c5f5574e308123119b96c9a95c6856151d3fd2c91b4fb06a
-#       x-checker-data:
-#         type: pypi
-#         name: dogpile.cache
-#         packagetype: bdist_wheel
+        x-checker-data:
+          type: pypi
+          name: dogpile.cache
+          packagetype: bdist_wheel
 
   - name: click
     buildsystem: simple
@@ -974,10 +974,10 @@ modules:
       - type: file
         url: https://files.pythonhosted.org/packages/f9/a6/dc327484918f1656cc9fcebebe77efcfc0ef0d447fa925a8760ee55abe0e/click-8.1.4-py3-none-any.whl
         sha256: 2739815aaa5d2c986a88f1e9230c55e17f0caad3d958a5e13ad0797c166db9e3
-#       x-checker-data:
-#         type: pypi
-#         name: click
-#         packagetype: bdist_wheel
+       x-checker-data:
+         type: pypi
+         name: click
+         packagetype: bdist_wheel
 
   - name: chardet
     buildsystem: simple
