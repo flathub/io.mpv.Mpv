@@ -129,7 +129,7 @@ modules:
         mirror-urls:
           - https://luajit.org/git/luajit.git
         disable-shallow-clone: true
-        commit: ff6c496ba1b51ed360065cbc5259f62becd70daa
+        commit: 43d0a19158ceabaa51b0462c1ebc97612b420a2e
         x-checker-data:
           type: json
           url: https://api.github.com/repos/LuaJIT/LuaJIT/commits
@@ -150,8 +150,8 @@ modules:
       - install yt-dlp /app/bin
     sources:
       - type: archive
-        url: https://github.com/yt-dlp/yt-dlp/releases/download/2023.10.13/yt-dlp.tar.gz
-        sha256: 64944f4452a7657b5fb31ae55d823d9411a1a29f9c1071d33fa3e6286e20522a
+        url: https://github.com/yt-dlp/yt-dlp/releases/download/2023.11.14/yt-dlp.tar.gz
+        sha256: 50dff869a296fe515234f3427b6f95f562c889c2e60d3ba7e3b4bd5d73f4fa94
         x-checker-data:
           type: json
           url: https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest
@@ -619,8 +619,8 @@ modules:
             #  tag-pattern: ^sdk-([\d.]+)$
           - type: git
             url: https://github.com/KhronosGroup/glslang.git
-            tag: 12.2.0
-            commit: d1517d64cfca91f573af1bf7341dc3a5113349c0
+            tag: 13.1.1
+            commit: 36d08c0d940cf307a23928299ef52c7970d8cee6
             dest: third_party/glslang
             x-checker-data:
               type: git
@@ -692,7 +692,7 @@ modules:
           url: https://api.github.com/repos/hoyon/mpv-mpris/releases/latest
           version-query: .name
           url-query: .tarball_url
-  
+
   - name: ed
     build-options:
       no-debuginfo: true
@@ -710,7 +710,7 @@ modules:
           url: https://ftp.gnu.org/gnu/ed/
           version-pattern: ed-(\d\.\d+\.?\d*).tar.lz
           url-template: https://ftp.gnu.org/gnu/ed/ed-$version.tar.lz
-          
+
   - name: bc
     build-options:
       no-debuginfo: true
@@ -831,8 +831,8 @@ modules:
       - pip3 install --prefix=/app charset_normalizer-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/ef/81/14b3b8f01ddaddad6cdec97f2f599aa2fa466bd5ee9af99b08b7713ccd29/charset_normalizer-3.1.0-py3-none-any.whl
-        sha256: 3d9098b479e78c85080c98e1e35ff40b4a31d8953102bb0fd7d1b6f8a2111a3d
+        url: https://files.pythonhosted.org/packages/28/76/e6222113b83e3622caa4bb41032d0b1bf785250607392e1b778aca0b8a7d/charset_normalizer-3.3.2-py3-none-any.whl
+        sha256: 3e4d1f6587322d2788836a99c69062fbb091331ec940e02d12d179c1d53e25fc
         x-checker-data:
           type: pypi
           name: charset_normalizer
@@ -844,8 +844,8 @@ modules:
       - pip3 install --prefix=/app certifi-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/9d/19/59961b522e6757f0c9097e4493fa906031b95b3ebe9360b2c3083561a6b4/certifi-2023.5.7-py3-none-any.whl
-        sha256: c6c2e98f5c7869efca1f8916fed228dd91539f9f1b444c314c06eef02980c716
+        url: https://files.pythonhosted.org/packages/4c/dd/2234eab22353ffc7d94e8d13177aaa050113286e93e7b40eae01fbf7c3d9/certifi-2023.7.22-py3-none-any.whl
+        sha256: 92d6037539857d8206b8f6ae472e8b77db8058fec5937a1ef3f54304089edbb9
         x-checker-data:
           type: pypi
           name: certifi
@@ -965,15 +965,15 @@ modules:
           type: pypi
           name: typing-extensions
           packagetype: bdist_wheel
-          
+
   - name: dogpile
     buildsystem: simple
     build-commands:
       - pip3 install --prefix=/app dogpile*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/37/b3/d95ba629fa9d52cc2ea86298d930976f1e6a560d20fec64527342e61e29e/dogpile.cache-1.2.1-py3-none-any.whl
-        sha256: fa9c9c07640bdb66c5f5574e308123119b96c9a95c6856151d3fd2c91b4fb06a
+        url: https://files.pythonhosted.org/packages/84/53/48110e2526166d8411c59ea858f38add623b088a23c356b8e5477e364a81/dogpile.cache-1.2.2-py3-none-any.whl
+        sha256: f6c2c6ff3a3dc7dc0d662b3f30983f684502fd7a91a45be680879d7d8cc177d7
         x-checker-data:
           type: pypi
           name: dogpile.cache
@@ -985,8 +985,8 @@ modules:
       - pip3 install --prefix=/app click-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/f9/a6/dc327484918f1656cc9fcebebe77efcfc0ef0d447fa925a8760ee55abe0e/click-8.1.4-py3-none-any.whl
-        sha256: 2739815aaa5d2c986a88f1e9230c55e17f0caad3d958a5e13ad0797c166db9e3
+        url: https://files.pythonhosted.org/packages/00/2e/d53fa4befbf2cfa713304affc7ca780ce4fc1fd8710527771b58311a3229/click-8.1.7-py3-none-any.whl
+        sha256: ae74fb96c20a0277a1d615f1e4d73c8414f5a98db8b799a7931d1582f3390c28
         x-checker-data:
           type: pypi
           name: click
