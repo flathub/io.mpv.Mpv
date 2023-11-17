@@ -1,6 +1,6 @@
 id: io.mpv.Mpv
 runtime: org.freedesktop.Platform
-runtime-version: '22.08'
+runtime-version: '23.08'
 sdk: org.freedesktop.Sdk
 command: mpv
 rename-desktop-file: mpv.desktop
@@ -639,6 +639,7 @@ modules:
       - -Dsdl2=enabled
       - -Dshaderc=enabled
       - -Dvulkan=enabled
+      - -Dvulkan-interop=enabled
     cleanup:
       - /include
       - /lib/pkgconfig
