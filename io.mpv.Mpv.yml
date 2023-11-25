@@ -207,8 +207,8 @@ modules:
         url: https://git.linuxtv.org/v4l-utils.git
         mirror-urls:
           - https://github.com/gjasny/v4l-utils.git
-        tag: v4l-utils-1.24.1
-        commit: 8799081b143627c9c09dea0c60ad3d1cc17cc848
+        tag: v4l-utils-1.26.0
+        commit: b5467f9bd5b799051fd42b4a5c8808a37e70c429
         x-checker-data:
           type: git
           tag-pattern: ^v4l-utils-([\d.]+)$
@@ -805,8 +805,8 @@ modules:
       - pip3 install --prefix=/app idna-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/ea/65/9c7a31be86861d43da3d4f8661f677b38120320540773a04979ad6fa9ecd/idna-3.5-py3-none-any.whl
-        sha256: 79b8f0ac92d2351be5f6122356c9a592c96d81c9a79e4b488bf2a6a15f88057a
+        url: https://files.pythonhosted.org/packages/c2/e7/a82b05cf63a603df6e68d59ae6a68bf5064484a0718ea5033660af4b54a9/idna-3.6-py3-none-any.whl
+        sha256: c05567e9c24a6b9faaa835c4821bad0590fbb9d5779e7caa6e1cc4978e7eb24f
         x-checker-data:
           type: pypi
           name: idna
