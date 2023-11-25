@@ -207,8 +207,8 @@ modules:
         url: https://git.linuxtv.org/v4l-utils.git
         mirror-urls:
           - https://github.com/gjasny/v4l-utils.git
-        tag: v4l-utils-1.24.1
-        commit: 8799081b143627c9c09dea0c60ad3d1cc17cc848
+        tag: v4l-utils-1.26.0
+        commit: b5467f9bd5b799051fd42b4a5c8808a37e70c429
         x-checker-data:
           type: git
           tag-pattern: ^v4l-utils-([\d.]+)$
