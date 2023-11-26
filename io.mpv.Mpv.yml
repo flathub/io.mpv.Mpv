@@ -194,11 +194,7 @@ modules:
           tag-pattern: ^(\d\.\d{1,3}\.\d{1,2})$
 
   - name: libv4l2
-    buildsystem: simple
-    build-commands:
-      - meson setup build/
-      - ninja -C build/
-      - ninja -C build/ install
+    buildsystem: cmake-ninja
 
     cleanup:
       - /include
