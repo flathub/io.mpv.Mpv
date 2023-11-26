@@ -194,7 +194,12 @@ modules:
           tag-pattern: ^(\d\.\d{1,3}\.\d{1,2})$
 
   - name: libv4l2
-    buildsystem: meson
+    buildsystem: simple
+    build-commands:
+      - meson setup build/
+      - ninja -C build/
+      - ninja -C build/ install
+
     cleanup:
       - /include
       - /lib/pkgconfig
