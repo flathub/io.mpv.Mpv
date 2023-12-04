@@ -680,21 +680,6 @@ modules:
       - type: file
         path: mpv
 
-  - name: mpv-mpris
-    no-autogen: true
-    make-install-args:
-      - SCRIPTS_DIR=/app/etc/mpv/scripts
-    sources:
-      - type: archive
-        archive-type: tar
-        url: https://api.github.com/repos/hoyon/mpv-mpris/tarball/1.1
-        sha256: 08d6b53a41224710ebed1c4d6daee815686e0f2f10e3f81778f4411562ed5958
-        x-checker-data:
-          type: json
-          url: https://api.github.com/repos/hoyon/mpv-mpris/releases/latest
-          version-query: .name
-          url-query: .tarball_url
-
   - name: ed
     build-options:
       no-debuginfo: true
