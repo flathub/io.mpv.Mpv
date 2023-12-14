@@ -936,8 +936,8 @@ modules:
       - pip3 install --prefix=/app guessit-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/db/5e/eec6416047845a745b1d2aee181244b380e59158e29d814021d2e511b267/guessit-3.7.1-py3-none-any.whl
-        sha256: c3be280ee8ec581a45ca6a654a92e317bf89567fdc55e7167452226f4f5b8b38
+        url: https://files.pythonhosted.org/packages/b8/9b/924a8f9709c3143d4c9a301a88042cbce37e09789378217284b19d4f8132/guessit-3.8.0-py3-none-any.whl
+        sha256: eb5747b1d0fbca926562c1e5894dbc3f6507c35e8c0bd9e38148401cd9579d83
         x-checker-data:
           type: pypi
           name: guessit
