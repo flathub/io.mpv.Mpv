@@ -640,6 +640,7 @@ modules:
       - -Dsdl2=enabled
       - -Dshaderc=enabled
       - -Dvulkan=enabled
+      - -Dvulkan-interop=enabled
     cleanup:
       - /include
       - /lib/pkgconfig
