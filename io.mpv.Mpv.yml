@@ -150,8 +150,8 @@ modules:
       - install yt-dlp /app/bin
     sources:
       - type: archive
-        url: https://github.com/yt-dlp/yt-dlp/releases/download/2023.11.16/yt-dlp.tar.gz
-        sha256: aa7fb7e49b57b1b5ac439a72568575e4df904ffc30417e19e644990e7239ac53
+        url: https://github.com/yt-dlp/yt-dlp/releases/download/2023.12.30/yt-dlp.tar.gz
+        sha256: 5408fe5d12cd1c430ee10346770e3d60baad5c63a38b41c8967005e4956780a7
         x-checker-data:
           type: json
           url: https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest
@@ -527,8 +527,8 @@ modules:
         url: https://github.com/FFmpeg/FFmpeg.git
         mirror-urls:
           - https://git.ffmpeg.org/ffmpeg.git
-        commit: d4ff0020b40b524a490cf62eccbd3a318f4c0e58
-        tag: n6.1
+        commit: e38092ef9395d7049f871ef4d5411eb410e283e0
+        tag: n6.1.1
         x-checker-data:
           type: git
           tag-pattern: ^n([\d.]{3,7})$
