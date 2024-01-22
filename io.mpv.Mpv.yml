@@ -129,7 +129,7 @@ modules:
         mirror-urls:
           - https://luajit.org/git/luajit.git
         disable-shallow-clone: true
-        commit: c525bcb9024510cad9e170e12b6209aedb330f83
+        commit: 3ca0a80711ef53e2e788bca7b282f8ad7c927b59
         x-checker-data:
           type: json
           url: https://api.github.com/repos/LuaJIT/LuaJIT/commits
@@ -575,8 +575,8 @@ modules:
         url: https://code.videolan.org/videolan/libplacebo.git
         mirror-urls:
           - https://github.com/haasn/libplacebo.git
-        tag: v6.338.1
-        commit: 2805a0d01c029084ab36bf5d0e3c8742012a0b27
+        tag: v6.338.2
+        commit: 64c1954570f1cd57f8570a57e51fb0249b57bb90
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
