@@ -47,6 +47,7 @@ output methods are supported.
    <caption>The main window showing the application in action</caption>
   </screenshot>
  </screenshots>
+ <developer_name>mpv-player contributors</developer_name>
  <url type="homepage">https://mpv.io/</url>
  <url type="bugtracker">https://github.com/mpv-player/mpv/issues</url>
  <url type="faq">https://github.com/mpv-player/mpv/wiki/FAQ</url>
