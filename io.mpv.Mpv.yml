@@ -860,8 +860,8 @@ modules:
       - pip3 install --prefix=/app stevedore-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/4b/68/e739fd061b0aba464bef8e8be48428b2aabbfb3f2f8f2f8ca257363ee6b2/stevedore-5.1.0-py3-none-any.whl
-        sha256: 8cc040628f3cea5d7128f2e76cf486b2251a4e543c7b938f58d9a377f6694a2d
+        url: https://files.pythonhosted.org/packages/eb/f1/c7c6205c367c764ee173537f7eaf070bba4dd0fa11bf081813c2f75285a3/stevedore-5.2.0-py3-none-any.whl
+        sha256: 1c15d95766ca0569cad14cb6272d4d31dae66b011a929d7c18219c176ea1b5c9
         x-checker-data:
           type: pypi
           name: stevedore
