@@ -410,7 +410,7 @@ modules:
     sources:
       - type: git
         url: https://code.videolan.org/videolan/x264.git
-        commit: be4f0200ed007c466fd96185c39cde2a2d60ef50
+        commit: de1bea534ff74195d1205cb5d50dab815bb7bc23
         # Every commit to the master branch is considered a release
         # https://code.videolan.org/videolan/x264/-/issues/35
         x-checker-data:
