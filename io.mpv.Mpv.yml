@@ -521,6 +521,7 @@ modules:
       - --enable-libx265
       - --enable-libwebp
       - --enable-libsmbclient
+      - --enable-libxml2
 
     sources:
       - type: git
