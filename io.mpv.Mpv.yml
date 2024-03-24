@@ -88,8 +88,8 @@ modules:
     sources:
       - type: git
         url: https://gitlab.freedesktop.org/xorg/lib/libxmu.git
-        tag: libXmu-1.1.4
-        commit: b29c739b577ee142877e69eb3fb07c7312d81557
+        tag: libXmu-1.2.0
+        commit: cc378e4f0cc2ab5b66d378050ba4956612a01197
         x-checker-data:
           type: git
           tag-pattern: ^libXmu-([\d.]+)$
