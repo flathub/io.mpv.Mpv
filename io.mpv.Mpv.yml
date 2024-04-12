@@ -606,16 +606,16 @@ modules:
             #  tag-pattern: ^v(\d{4}\.\d{1,2})$
           - type: git
             url: https://github.com/KhronosGroup/SPIRV-Tools.git
-            tag: v2023.2
-            commit: 44d72a9b36702f093dd20815561a56778b2d181e
+            tag: v2024.1
+            commit: 04896c462d9f3f504c99a4698605b6524af813c1
             dest: third_party/spirv-tools
             #x-checker-data:
             #  type: git
             #  tag-pattern: ^v(\d{4}\.\d{1})$
           - type: git
             url: https://github.com/KhronosGroup/SPIRV-Headers.git
-            tag: sdk-1.3.250.1
-            commit: 268a061764ee69f09a477a695bf6a11ffe311b8d
+            #tag: sdk-1.3.250.1
+            commit: 4f7b471f1a66b6d06462cd4ba57628cc0cd087d7
             dest: third_party/spirv-headers
             #x-checker-data:
             #  type: git
