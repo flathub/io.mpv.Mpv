@@ -88,8 +88,8 @@ modules:
     sources:
       - type: git
         url: https://gitlab.freedesktop.org/xorg/lib/libxmu.git
-        tag: libXmu-1.2.0
-        commit: cc378e4f0cc2ab5b66d378050ba4956612a01197
+        tag: libXmu-1.2.1
+        commit: 792f80402ee06ce69bca3a8f2a84295999c3a170
         x-checker-data:
           type: git
           tag-pattern: ^libXmu-([\d.]+)$
@@ -129,7 +129,7 @@ modules:
         mirror-urls:
           - https://luajit.org/git/luajit.git
         disable-shallow-clone: true
-        commit: d06beb0480c5d1eb53b3343e78063950275aa281
+        commit: 75e92777988017fe47c5eb290998021bbf972d1f
         x-checker-data:
           type: json
           url: https://api.github.com/repos/LuaJIT/LuaJIT/commits
@@ -150,8 +150,8 @@ modules:
       - install yt-dlp /app/bin
     sources:
       - type: archive
-        url: https://github.com/yt-dlp/yt-dlp/releases/download/2024.03.10/yt-dlp.tar.gz
-        sha256: 1db8eade9e860543b655f5f973e26727ac2cc20874dc6fed9a3e78a4a05ee989
+        url: https://github.com/yt-dlp/yt-dlp/releases/download/2024.04.09/yt-dlp.tar.gz
+        sha256: 59d3caed5cc899e486a7b8873f6143b6a1d22c5b5c05009b709ca0104f5d9eed
         x-checker-data:
           type: json
           url: https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest
@@ -393,8 +393,8 @@ modules:
         url: https://github.com/FFmpeg/nv-codec-headers.git
         mirror-urls:
           - https://git.videolan.org/git/ffmpeg/nv-codec-headers.git
-        tag: n12.1.14.0
-        commit: 1889e62e2d35ff7aa9baca2bceb14f053785e6f1
+        tag: n12.2.72.0
+        commit: c69278340ab1d5559c7d7bf0edf615dc33ddbba7
         x-checker-data:
           type: git
           tag-pattern: ^n([\d.]+)$
@@ -433,8 +433,8 @@ modules:
     sources:
       - type: git
         url: https://bitbucket.org/multicoreware/x265_git.git
-        tag: '3.5'
-        commit: f0c1022b6be121a753ff02853fbe33da71988656
+        tag: '3.6'
+        commit: aa7f602f7592eddb9d87749be7466da005b556ee
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -528,8 +528,8 @@ modules:
         url: https://github.com/FFmpeg/FFmpeg.git
         mirror-urls:
           - https://git.ffmpeg.org/ffmpeg.git
-        commit: e38092ef9395d7049f871ef4d5411eb410e283e0
-        tag: n6.1.1
+        commit: 083443d67cb159ce469e5d902346b8d0c2cd1c93
+        tag: n7.0
         x-checker-data:
           type: git
           tag-pattern: ^n([\d.]{3,7})$
@@ -653,8 +653,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/mpv-player/mpv.git
-        tag: v0.37.0
-        commit: 818ce7c51a6b9179307950e919983e0909942098
+        tag: v0.38.0
+        commit: 02254b92dd237f03aa0a151c2a68778c4ea848f9
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -809,8 +809,8 @@ modules:
       - pip3 install --prefix=/app idna-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/c2/e7/a82b05cf63a603df6e68d59ae6a68bf5064484a0718ea5033660af4b54a9/idna-3.6-py3-none-any.whl
-        sha256: c05567e9c24a6b9faaa835c4821bad0590fbb9d5779e7caa6e1cc4978e7eb24f
+        url: https://files.pythonhosted.org/packages/e5/3e/741d8c82801c347547f8a2a06aa57dbb1992be9e948df2ea0eda2c8b79e8/idna-3.7-py3-none-any.whl
+        sha256: 82fee1fc78add43492d3a1898bfa6d8a904cc97d8427f683ed8e798d07761aa0
         x-checker-data:
           type: pypi
           name: idna
@@ -887,8 +887,8 @@ modules:
       - pip3 install --prefix=/app rarfile-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/75/34/f06b7de74bcea328d8d7a950aad099c1100578cc3960ffc5a00d30ab511c/rarfile-4.1-py3-none-any.whl
-        sha256: 17d7554c93c776ceae677e9d927051267d4c5eba38bf64b9cc89a415d9a5f901
+        url: https://files.pythonhosted.org/packages/62/fc/ab37559419ca36dd8dd317c3a98395ed4dcee2beeb28bf6059b972906727/rarfile-4.2-py3-none-any.whl
+        sha256: 8757e1e3757e32962e229cab2432efc1f15f210823cc96ccba0f6a39d17370c9
         x-checker-data:
           type: pypi
           name: rarfile
@@ -963,8 +963,8 @@ modules:
       - pip3 install --prefix=/app typing*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/f9/de/dc04a3ea60b22624b51c703a84bbe0184abcd1d0b9bc8074b5d6b7ab90bb/typing_extensions-4.10.0-py3-none-any.whl
-        sha256: 69b1a937c3a517342112fb4c6df7e72fc39a38e7891a5730ed4985b5214b5475
+        url: https://files.pythonhosted.org/packages/01/f3/936e209267d6ef7510322191003885de524fc48d1b43269810cd589ceaf5/typing_extensions-4.11.0-py3-none-any.whl
+        sha256: c1f94d72897edaf4ce775bb7558d5b79d8126906a14ea5ed1635921406c0387a
         x-checker-data:
           type: pypi
           name: typing-extensions
