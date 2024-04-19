@@ -266,6 +266,9 @@ modules:
     sources:
       - type: archive
         url: https://download.videolan.org/pub/videolan/libdvdread/6.1.3/libdvdread-6.1.3.tar.bz2
+        mirror-urls:
+          - https://videolan.mirror.ba/libdvdread/6.1.3/libdvdread-6.1.3.tar.bz2
+          - https://videolan.c3sl.ufpr.br/libdvdread/6.1.3/libdvdread-6.1.3.tar.bz2
         sha256: ce35454997a208cbe50e91232f0e73fb1ac3471965813a13b8730a8f18a15369
         x-checker-data:
           type: html
@@ -282,6 +285,9 @@ modules:
     sources:
       - type: archive
         url: https://download.videolan.org/pub/videolan/libdvdnav/6.1.1/libdvdnav-6.1.1.tar.bz2
+        mirror-urls:
+          - https://videolan.mirror.ba/libdvdnav/6.1.1/libdvdnav-6.1.1.tar.bz2
+          - https://videolan.c3sl.ufpr.br/libdvdnav/6.1.1/libdvdnav-6.1.1.tar.bz2
         sha256: c191a7475947d323ff7680cf92c0fb1be8237701885f37656c64d04e98d18d48
         x-checker-data:
           type: html
@@ -300,6 +306,9 @@ modules:
       - sha256: a88aa0ebe4c98a77f7aeffd92ab3ef64ac548c6b822e8248a8b926725bea0a39
         type: archive
         url: https://download.videolan.org/pub/videolan/libaacs/0.11.1/libaacs-0.11.1.tar.bz2
+        mirror-urls:
+          - https://videolan.mirror.ba/libaacs/0.11.1/libaacs-0.11.1.tar.bz2
+          - https://videolan.c3sl.ufpr.br/libaacs/0.11.1/libaacs-0.11.1.tar.bz2
         x-checker-data:
           type: html
           url: https://www.videolan.org/developers/libaacs.html
@@ -317,6 +326,9 @@ modules:
       - sha256: 478ffd68a0f5dde8ef6ca989b7f035b5a0a22c599142e5cd3ff7b03bbebe5f2b
         type: archive
         url: https://download.videolan.org/pub/videolan/libbluray/1.3.4/libbluray-1.3.4.tar.bz2
+        mirror-urls:
+          - https://videolan.mirror.ba/libbluray/1.3.4/libbluray-1.3.4.tar.bz2
+          - https://videolan.c3sl.ufpr.br/libbluray/1.3.4/libbluray-1.3.4.tar.bz2
         x-checker-data:
           type: html
           url: https://www.videolan.org/developers/libbluray.html
@@ -409,7 +421,9 @@ modules:
       - --enable-shared
     sources:
       - type: git
-        url: https://code.videolan.org/videolan/x264.git
+        url: https://github.com/jpsdr/x264
+        mirror-urls:
+          - https://code.videolan.org/videolan/x264.git
         commit: 7ed753b10a61d0be95f683289dfb925b800b0676
         # Every commit to the master branch is considered a release
         # https://code.videolan.org/videolan/x264/-/issues/35
@@ -573,9 +587,9 @@ modules:
       - /lib/pkgconfig
     sources:
       - type: git
-        url: https://code.videolan.org/videolan/libplacebo.git
+        url: https://github.com/haasn/libplacebo.git
         mirror-urls:
-          - https://github.com/haasn/libplacebo.git
+          - https://code.videolan.org/videolan/libplacebo.git
         tag: v6.338.2
         commit: 64c1954570f1cd57f8570a57e51fb0249b57bb90
         x-checker-data:
@@ -640,7 +654,7 @@ modules:
       - -Ddvdnav=enabled
       - -Dlibarchive=enabled
       - -Dsdl2=enabled
-      - -Dshaderc=enabled
+      #- -Dshaderc=enabled
       - -Dvulkan=enabled
       - -Dvulkan-interop=enabled
     cleanup:
@@ -653,8 +667,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/mpv-player/mpv.git
-        tag: v0.37.0
-        commit: 818ce7c51a6b9179307950e919983e0909942098
+        tag: v0.38.0
+        commit: 02254b92dd237f03aa0a151c2a68778c4ea848f9
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -705,9 +719,9 @@ modules:
       - type: archive
         url: https://ftp.gnu.org/gnu/ed/ed-1.20.1.tar.lz
         mirror-urls:
-          - https://mirrors.kernel.org/gnu/ed/ed-1.07.1.tar.lz
-          - https://mirrors.ocf.berkeley.edu/gnu/ed/ed-1.07.1.tar.lz
-          - https://ftpmirror.gnu.org/gnu/ed/ed-1.07.1.tar.lz
+          - https://mirrors.kernel.org/gnu/ed/ed-1.20.1.tar.lz
+          - https://mirrors.ocf.berkeley.edu/gnu/ed/ed-1.20.1.tar.lz
+          - https://ftpmirror.gnu.org/gnu/ed/ed-1.20.1.tar.lz
         sha256: b1a463b297a141f9876c4b1fcd01477f645cded92168090e9a35db2af4babbca
         x-checker-data:
           type: html
