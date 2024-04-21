@@ -9,7 +9,6 @@
         {
             "type": "git",
             "url": "https://github.com/jackaudio/headers",
-            "branch": "master",
             "commit": "2bfa5069718ca4f4dc091e0be845958f2d8a5ba8"
         },
         {
