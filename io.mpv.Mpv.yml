@@ -571,8 +571,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/vapoursynth/vapoursynth.git
-        tag: R66
-        commit: fe6c67cdb17f41160c79434f0240077f74de9fd1
+        tag: R67
+        commit: de1e8b1f237a6ea411a46e802621b80bd8dac1c5
         x-checker-data:
           type: git
           tag-pattern: ^R([\d.]+)$
@@ -636,8 +636,8 @@ modules:
             #  tag-pattern: ^sdk-([\d.]+)$
           - type: git
             url: https://github.com/KhronosGroup/glslang.git
-            tag: 14.1.0
-            commit: ee2f5d09eaf8f4e8d0d598bd2172fce290d4ca60
+            tag: 14.2.0
+            commit: e8dd0b6903b34f1879520b444634c75ea2deedf5
             dest: third_party/glslang
             x-checker-data:
               type: git
