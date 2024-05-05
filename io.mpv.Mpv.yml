@@ -571,8 +571,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/vapoursynth/vapoursynth.git
-        tag: R66
-        commit: fe6c67cdb17f41160c79434f0240077f74de9fd1
+        tag: R67
+        commit: de1e8b1f237a6ea411a46e802621b80bd8dac1c5
         x-checker-data:
           type: git
           tag-pattern: ^R([\d.]+)$
@@ -636,8 +636,8 @@ modules:
             #  tag-pattern: ^sdk-([\d.]+)$
           - type: git
             url: https://github.com/KhronosGroup/glslang.git
-            tag: 14.1.0
-            commit: ee2f5d09eaf8f4e8d0d598bd2172fce290d4ca60
+            tag: 14.2.0
+            commit: e8dd0b6903b34f1879520b444634c75ea2deedf5
             dest: third_party/glslang
             x-checker-data:
               type: git
@@ -990,8 +990,8 @@ modules:
       - pip3 install --prefix=/app dogpile*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/62/bb/f487b5490301975d9c88e935043f2b6bc871ad4b90d570ce74c92879b0cb/dogpile.cache-1.3.2-py3-none-any.whl
-        sha256: c59250e23ddb4c03259c315c3b03d18b0658ec4f30ee665b39b91faf6401ef41
+        url: https://files.pythonhosted.org/packages/c9/b6/eb8bb5bced9f0bf475b22a53e86e4ed80fa60949de1133e2e673e23282d7/dogpile.cache-1.3.3-py3-none-any.whl
+        sha256: 5e211c4902ebdf88c678d268e22454b41e68071632daa9402d8ee24e825ed8ca
         x-checker-data:
           type: pypi
           name: dogpile.cache
