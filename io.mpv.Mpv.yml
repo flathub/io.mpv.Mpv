@@ -939,8 +939,8 @@ modules:
       - pip3 install --prefix=/app babelfish-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/ce/2c/f7951f771261da6740af14fd9698064616aa040780cd8a03243fc43165c7/babelfish-0.6.0-py3-none-any.whl
-        sha256: 268f1c6279f2a04a66837972e8a9f3dcc68e16f1201eec57d2a4b828a8b41b11
+        url: https://files.pythonhosted.org/packages/95/a1/bd4f759db13cd8beb9c9f68682aced5d966781b9d7380cf514a306f56762/babelfish-0.6.1-py3-none-any.whl
+        sha256: 512f1501d4c8f7d38f0921f48660be7542de1a7b24abb6a6a65324a670150293
         x-checker-data:
           type: pypi
           name: babelfish
