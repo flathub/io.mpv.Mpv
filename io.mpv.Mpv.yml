@@ -424,7 +424,7 @@ modules:
         url: https://github.com/jpsdr/x264
         mirror-urls:
           - https://code.videolan.org/videolan/x264.git
-        commit: 7ed753b10a61d0be95f683289dfb925b800b0676
+        commit: 4613ac3c15fd75cebc4b9f65b7fb95e70a3acce1
         # Every commit to the master branch is considered a release
         # https://code.videolan.org/videolan/x264/-/issues/35
         x-checker-data:
