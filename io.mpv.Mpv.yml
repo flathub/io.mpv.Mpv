@@ -187,8 +187,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/libass/libass.git
-        tag: 0.17.1
-        commit: e8ad72accd3a84268275a9385beb701c9284e5b3
+        tag: 0.17.2
+        commit: cbb48cc4f2f076300004b8b06a86bec55281d0c2
         x-checker-data:
           type: git
           tag-pattern: ^(\d\.\d{1,3}\.\d{1,2})$
@@ -424,7 +424,7 @@ modules:
         url: https://github.com/jpsdr/x264
         mirror-urls:
           - https://code.videolan.org/videolan/x264.git
-        commit: 7ed753b10a61d0be95f683289dfb925b800b0676
+        commit: 4613ac3c15fd75cebc4b9f65b7fb95e70a3acce1
         # Every commit to the master branch is considered a release
         # https://code.videolan.org/videolan/x264/-/issues/35
         x-checker-data:
