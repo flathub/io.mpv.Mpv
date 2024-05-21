@@ -888,8 +888,8 @@ modules:
       - pip3 install --prefix=/app requests-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/24/e8/09e8d662a9675a4e4f5dd7a8e6127b463a091d2703ed931a64aa66d00065/requests-2.32.0-py3-none-any.whl
-        sha256: f2c3881dddb70d056c5bd7600a4fae312b2a300e39be6a118d30b90bd27262b5
+        url: https://files.pythonhosted.org/packages/c3/20/748e38b466e0819491f0ce6e90ebe4184966ee304fe483e2c414b0f4ef07/requests-2.32.2-py3-none-any.whl
+        sha256: fc06670dd0ed212426dfeb94fc1b983d917c4f9847c863f313c9dfaaffb7c23c
         x-checker-data:
           type: pypi
           name: requests
