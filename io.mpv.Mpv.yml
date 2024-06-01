@@ -977,8 +977,8 @@ modules:
       - pip3 install --prefix=/app typing*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/e1/4d/d612de852a0bc64a64418e1cef25fe1914c5b1611e34cc271ed7e36174c8/typing_extensions-4.12.0-py3-none-any.whl
-        sha256: b349c66bea9016ac22978d800cfff206d5f9816951f12a7d0ec5578b0a819594
+        url: https://files.pythonhosted.org/packages/b6/53/84a859aaddfe7378a6e5820e864a2d75763e82b6fcbda1a00e92ec620bb7/typing_extensions-4.12.1-py3-none-any.whl
+        sha256: 6024b58b69089e5a89c347397254e35f1bf02a907728ec7fee9bf0fe837d203a
         x-checker-data:
           type: pypi
           name: typing-extensions
