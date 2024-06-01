@@ -504,6 +504,44 @@ modules:
           type: git
           tag-pattern: ^v([\d.]+)$
 
+  - name: vulkan-headers
+    buildsystem: cmake-ninja
+    sources:
+      - type: archive
+        url: https://github.com/KhronosGroup/Vulkan-Headers/archive/v1.3.286.tar.gz
+        sha256: a82a6982efe5e603e23505ca19b469e8f3d876fc677c46b7bfb6177f517bf8fe
+
+  - name: volk
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DVOLK_INSTALL=ON
+    sources:
+      - type: archive
+        url: https://github.com/zeux/volk/archive/1.3.270.tar.gz
+        sha256: 95530bc7850b0358e4bad899eb653f882ee8a08088257d90c5042cec02208f52
+
+  - name: vulkan-loader
+    buildsystem: cmake-ninja
+    sources:
+      - type: archive
+        url: https://github.com/KhronosGroup/Vulkan-Loader/archive/v1.3.285.tar.gz
+        sha256: 3622796919d1b06b27499670502f9888d62a4a2ce3fbf3552365cc8b4301db28
+    cleanup:
+      - /bin
+
+  - name: vulkan-tools
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DGLSLANG_INSTALL_DIR=/app
+      - -DVULKAN_HEADERS_INSTALL_DIR=/app
+      - -DCMAKE_BUILD_TYPE=Release
+    sources:
+      - type: archive
+        url: https://github.com/KhronosGroup/Vulkan-Tools/archive/v1.3.285.tar.gz
+        sha256: 5153253f20296558000e730b0340b5a40fac212c91fb4ffe5bf490a8406d89c3
+    cleanup:
+      - /bin
+
   - name: ffmpeg
     cleanup:
       - /include
@@ -536,6 +574,7 @@ modules:
       - --enable-libwebp
       - --enable-libsmbclient
       - --enable-libxml2
+      - --enable-vulkan
 
     sources:
       - type: git
