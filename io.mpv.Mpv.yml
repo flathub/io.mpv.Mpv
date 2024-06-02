@@ -504,6 +504,13 @@ modules:
           type: git
           tag-pattern: ^v([\d.]+)$
 
+  - name: vulkan-headers
+    buildsystem: cmake-ninja
+    sources:
+      - type: archive
+        url: https://github.com/KhronosGroup/Vulkan-Headers/archive/v1.3.286.tar.gz
+        sha256: a82a6982efe5e603e23505ca19b469e8f3d876fc677c46b7bfb6177f517bf8fe
+
   - name: ffmpeg
     cleanup:
       - /include
@@ -536,6 +543,7 @@ modules:
       - --enable-libwebp
       - --enable-libsmbclient
       - --enable-libxml2
+      - --enable-vulkan
 
     sources:
       - type: git
