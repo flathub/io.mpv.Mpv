@@ -27,6 +27,18 @@ finish-args:
   - --talk-name=org.gnome.SessionManager
 
 cleanup:
+  - /include
+  - /lib/pkgconfig
+  - /lib/python*
+  - /lib/cmake
+  - /libexec
+  - /man
+  - /share/doc
+  - /share/vulkan
+  - /share/man
+  - /share/pkgconfig
+  - /sbin
+  - /etc
   - '*.la'
   - '*.a'
 
