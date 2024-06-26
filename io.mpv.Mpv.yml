@@ -644,8 +644,8 @@ modules:
             #  tag-pattern: ^sdk-([\d.]+)$
           - type: git
             url: https://github.com/KhronosGroup/glslang.git
-            tag: 14.2.0
-            commit: e8dd0b6903b34f1879520b444634c75ea2deedf5
+            tag: 14.3.0
+            commit: fa9c3deb49e035a8abcabe366f26aac010f6cbfb
             dest: third_party/glslang
             x-checker-data:
               type: git
@@ -967,7 +967,7 @@ modules:
           name: guessit
           packagetype: bdist_wheel
 
-  - name: enzyme 
+  - name: enzyme
     buildsystem: simple
     build-commands:
       - pip3 install --prefix=/app enzyme-*.whl
