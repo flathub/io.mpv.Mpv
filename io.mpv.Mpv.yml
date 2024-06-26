@@ -967,17 +967,18 @@ modules:
           name: guessit
           packagetype: bdist_wheel
 
-  - name: enzyme
+  - name: enzyme 
     buildsystem: simple
     build-commands:
-      - python3 setup.py install --prefix=/app --root=/
+      - pip3 install --prefix=/app enzyme-*.whl
     sources:
-      - type: archive
-        url: https://files.pythonhosted.org/packages/dd/99/e4eee822d9390ebf1f63a7a67e8351c09fb7cd75262e5bb1a5256898def9/enzyme-0.4.1.tar.gz
-        sha256: f2167fa97c24d1103a94d4bf4eb20f00ca76c38a37499821049253b2059c62bb
+      - type: file
+        url: https://files.pythonhosted.org/packages/67/bc/be0fbce0eb198f4361f462520122151b0ec347ecaeb5d349cf36ae0ac751/enzyme-0.5.2-py3-none-any.whl
+        sha256: 5a85306c136368d78f299bb74bf0c5f5d37e2689adc5caec5aba5ee2f029296b
         x-checker-data:
           type: pypi
           name: enzyme
+          packagetype: bdist_wheel
 
   - name: typing-extensions
     buildsystem: simple
