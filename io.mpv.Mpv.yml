@@ -497,8 +497,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/libjxl/libjxl.git
-        tag: v0.10.2
-        commit: e1489592a770b989303b0edc5cc1dc447bbe0515
+        tag: v0.10.3
+        commit: 4a3b22d2600f92d8706fb72d85d52bfee2acbd54
         disable-shallow-clone: true
         x-checker-data:
           type: git
