@@ -150,8 +150,8 @@ modules:
       - install yt-dlp /app/bin
     sources:
       - type: archive
-        url: https://github.com/yt-dlp/yt-dlp/releases/download/2024.05.27/yt-dlp.tar.gz
-        sha256: 83dbf15456490e7efe9ba839922f8221d07cf1168b29653fd476faa3cdf91235
+        url: https://github.com/yt-dlp/yt-dlp/releases/download/2024.07.01/yt-dlp.tar.gz
+        sha256: a0470c3554297bba4210390eca9a5369f478d66f7b9d04ac1841f69dc7e5d394
         x-checker-data:
           type: json
           url: https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest
@@ -497,8 +497,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/libjxl/libjxl.git
-        tag: v0.10.2
-        commit: e1489592a770b989303b0edc5cc1dc447bbe0515
+        tag: v0.10.3
+        commit: 4a3b22d2600f92d8706fb72d85d52bfee2acbd54
         disable-shallow-clone: true
         x-checker-data:
           type: git
