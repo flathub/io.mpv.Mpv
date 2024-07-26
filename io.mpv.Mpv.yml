@@ -150,8 +150,8 @@ modules:
       - install yt-dlp /app/bin
     sources:
       - type: archive
-        url: https://github.com/yt-dlp/yt-dlp/releases/download/2024.07.16/yt-dlp.tar.gz
-        sha256: ecf4e2a383952cf8d782505f07970dbbfc7d9faed77400a90ca2c0cc24b26ef3
+        url: https://github.com/yt-dlp/yt-dlp/releases/download/2024.07.25/yt-dlp.tar.gz
+        sha256: f34f396cd100f9a68ad6ffbb0d09932011e8f6896d01a177f3c6610b39b53488
         x-checker-data:
           type: json
           url: https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest
@@ -209,8 +209,8 @@ modules:
         url: https://git.linuxtv.org/v4l-utils.git
         mirror-urls:
           - https://github.com/gjasny/v4l-utils.git
-        tag: v4l-utils-1.28.0
-        commit: 42ffaff8f1611f1c3bc518059d0deecda2d23700
+        tag: v4l-utils-1.28.1
+        commit: fc15e229d9d337e46d730f00647821adbbd58548
         x-checker-data:
           type: git
           tag-pattern: ^v4l-utils-([\d.]+)$
