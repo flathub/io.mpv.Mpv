@@ -129,7 +129,7 @@ modules:
         mirror-urls:
           - https://luajit.org/git/luajit.git
         disable-shallow-clone: true
-        commit: fb5e1c9f0d449a2b987c2c4b29f6cc811242b0a1
+        commit: c68711cc872e6626dc9e653e94df7bf21691d38e
         x-checker-data:
           type: json
           url: https://api.github.com/repos/LuaJIT/LuaJIT/commits
@@ -883,8 +883,8 @@ modules:
       - pip3 install --prefix=/app stevedore-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/eb/f1/c7c6205c367c764ee173537f7eaf070bba4dd0fa11bf081813c2f75285a3/stevedore-5.2.0-py3-none-any.whl
-        sha256: 1c15d95766ca0569cad14cb6272d4d31dae66b011a929d7c18219c176ea1b5c9
+        url: https://files.pythonhosted.org/packages/ec/50/70762bdb23f6c2b746b90661f461d33c4913a22a46bb5265b10947e85ffb/stevedore-5.3.0-py3-none-any.whl
+        sha256: 1efd34ca08f474dad08d9b19e934a22c68bb6fe416926479ba29e5013bcc8f78
         x-checker-data:
           type: pypi
           name: stevedore
