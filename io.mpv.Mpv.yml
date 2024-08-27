@@ -818,8 +818,8 @@ modules:
       - pip3 install --prefix=/app pbr-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/64/dd/171c9fb653591cf265bcc89c436eec75c9bde3dec921cc236fa71e5698df/pbr-6.0.0-py2.py3-none-any.whl
-        sha256: 4a7317d5e3b17a3dccb6a8cfe67dab65b20551404c52c8ed41279fa4f0cb4cda
+        url: https://files.pythonhosted.org/packages/1d/44/6a65ecd630393d47ad3e7d5354768cb7f9a10b3a0eb2cd8c6f52b28211ee/pbr-6.1.0-py2.py3-none-any.whl
+        sha256: a776ae228892d8013649c0aeccbb3d5f99ee15e005a4cbb7e61d55a067b28a2a
         x-checker-data:
           type: pypi
           name: pbr
