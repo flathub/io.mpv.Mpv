@@ -447,8 +447,8 @@ modules:
     sources:
       - type: git
         url: https://bitbucket.org/multicoreware/x265_git.git
-        tag: '3.6'
-        commit: aa7f602f7592eddb9d87749be7466da005b556ee
+        tag: '4.0'
+        commit: 6318f223684118a2c71f67f3f4633a9e35046b00
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -497,8 +497,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/libjxl/libjxl.git
-        tag: v0.10.3
-        commit: 4a3b22d2600f92d8706fb72d85d52bfee2acbd54
+        tag: v0.11.0
+        commit: 4df1e9eccdf86b8df4c0c7c08f529263906f9c4f
         disable-shallow-clone: true
         x-checker-data:
           type: git
