@@ -447,8 +447,8 @@ modules:
     sources:
       - type: git
         url: https://bitbucket.org/multicoreware/x265_git.git
-        tag: '3.6'
-        commit: aa7f602f7592eddb9d87749be7466da005b556ee
+        tag: '4.0'
+        commit: 6318f223684118a2c71f67f3f4633a9e35046b00
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -497,8 +497,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/libjxl/libjxl.git
-        tag: v0.10.3
-        commit: 4a3b22d2600f92d8706fb72d85d52bfee2acbd54
+        tag: v0.11.0
+        commit: 4df1e9eccdf86b8df4c0c7c08f529263906f9c4f
         disable-shallow-clone: true
         x-checker-data:
           type: git
@@ -579,8 +579,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/vapoursynth/vapoursynth.git
-        tag: R69
-        commit: 2804ed7a4926863f4a12e879d95155c4b05ecdf3
+        tag: R70
+        commit: 03c8b6719f202b162284f53efc5b50632f70f72e
         x-checker-data:
           type: git
           tag-pattern: ^R([\d.]+)$
@@ -831,8 +831,8 @@ modules:
       - pip3 install --prefix=/app idna-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/22/7e/d71db821f177828df9dea8c42ac46473366f191be53080e552e628aad991/idna-3.8-py3-none-any.whl
-        sha256: 050b4e5baadcd44d760cedbd2b8e639f2ff89bbc7a5730fcc662954303377aac
+        url: https://files.pythonhosted.org/packages/76/c6/c88e154df9c4e1a2a66ccf0005a88dfb2650c1dffb6f5ce603dfbd452ce3/idna-3.10-py3-none-any.whl
+        sha256: 946d195a0d259cbba61165e88e65941f16e9b36ea6ddb97f00452bae8b1287d3
         x-checker-data:
           type: pypi
           name: idna
