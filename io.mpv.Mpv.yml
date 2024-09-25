@@ -628,12 +628,11 @@ modules:
           url: https://api.github.com/repos/libsixel/libsixel/tags
           url-query: .[0].tarball_url
           version-query: .[0].name
-  
-  # downgrading to R60 from 69 for vspipe command to work. 
+
   - name: vapoursynth
     config-opts:
       - --with-python-prefix=${FLATPAK_DEST}
-   
+  
     sources:
       - type: archive
         url: https://github.com/vapoursynth/vapoursynth/archive/R60.tar.gz
@@ -723,8 +722,7 @@ modules:
       - -Dsdl2=enabled
       #- -Dshaderc=enabled
       - -Dvulkan=enabled
-      #- -Dvulkan-interop=enabled
-      # disabled -Dvulkan-interop for v0.39.0
+     # - -Dvulkan-interop=enabled
     cleanup:
       - /include
       - /lib/pkgconfig
@@ -733,9 +731,10 @@ modules:
       # save screenshots at xdg-pictures/mpv
       - echo "screenshot-directory=~/.var/app/io.mpv.Mpv/Pictures/mpv" > /app/etc/mpv/mpv.conf
     sources:
-      - type: archive
-        url: https://github.com/mpv-player/mpv/archive/refs/tags/v0.39.0.tar.gz
-        sha256: 2ca92437affb62c2b559b4419ea4785c70d023590500e8a52e95ea3ab4554683
+      - type: git
+        url: https://github.com/mpv-player/mpv.git
+        tag: v0.39.0
+        commit: a0fba7be57f3822d967b04f0f6b6d6341e7516e7
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -745,14 +744,12 @@ modules:
       # Then install io.mpv.Mpv.appdata.xml
       - type: shell
         commands:
-          - sed -i "s/date=\"[0-9-]*\"/date=\"$(git log -n1 --pretty=format:%ad --date=short
-            VERSION)\"/" io.mpv.Mpv.appdata.xml
-          - sed -i "s/version=\"[0-9.]*\"/version=\"$(cat VERSION)\"/" io.mpv.Mpv.appdata.xml
-          # This doesn't find the file.
-          # - install -D -m644 $FLATPAK_ID.appdata.xml /app/share/appdata/$FLATPAK_ID.appdata.xml
+          - if [ -f "MPV_VERSION" ]; then version=$(cat MPV_VERSION); else version=$(git describe --tags --abbrev=0); fi
+          - sed -i "s/date=\"[0-9-]*\"/date=\"$(git log -n1 --pretty=format:%ad --date=short)\"/" io.mpv.Mpv.appdata.xml
+          - sed -i "s/version=\"[0-9.]*\"/version=\"$version\"/" io.mpv.Mpv.appdata.xml
           - mkdir -p /app/share/appdata
-          - mv $FLATPAK_ID.appdata.xml /app/share/appdata/$FLATPAK_ID.appdata.xml
-          - chmod 644 /app/share/appdata/$FLATPAK_ID.appdata.xml
+          - mv io.mpv.Mpv.appdata.xml /app/share/appdata/io.mpv.Mpv.appdata.xml
+          - chmod 644 /app/share/appdata/io.mpv.Mpv.appdata.xml
 
 # Scripts for mpv
   - name: mpv-wrapper
