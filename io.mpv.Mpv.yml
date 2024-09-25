@@ -367,8 +367,8 @@ modules:
           - --with-pic
         sources:
           - type: archive
-            url: http://www.leptonica.org/source/leptonica-1.82.0.tar.gz
-            sha256: 155302ee914668c27b6fe3ca9ff2da63b245f6d62f3061c8f27563774b8ae2d6
+            url: http://www.leptonica.org/source/leptonica-1.84.1.tar.gz
+            sha256: 2b3e1254b1cca381e77c819b59ca99774ff43530209b9aeb511e1d46588a64f6
             x-checker-data:
               type: anitya
               project-id: 1549
@@ -379,8 +379,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/tesseract-ocr/tesseract.git
-        tag: 5.2.0
-        commit: 5ad5325a0aa8effc47ca033625b6a51682f82767
+        tag: 5.4.1
+        commit: b5f279ec7582dc57f6464557ed938558791f200d
         x-checker-data:
           type: json
           url: https://api.github.com/repos/tesseract-ocr/tesseract/releases/latest
@@ -410,7 +410,7 @@ modules:
       - /etc
       - /lib/ImageMagick*
       - /share/ImageMagick*
-      
+
   - name: rubberband
     buildsystem: meson
     cleanup:
@@ -481,7 +481,7 @@ modules:
         url: https://github.com/jpsdr/x264
         mirror-urls:
           - https://code.videolan.org/videolan/x264.git
-        commit: 4613ac3c15fd75cebc4b9f65b7fb95e70a3acce1
+        commit: c24e06c2e184345ceb33eb20a15d1024d9fd3497
         # Every commit to the master branch is considered a release
         # https://code.videolan.org/videolan/x264/-/issues/35
         x-checker-data:
@@ -504,8 +504,8 @@ modules:
     sources:
       - type: git
         url: https://bitbucket.org/multicoreware/x265_git.git
-        tag: '3.6'
-        commit: aa7f602f7592eddb9d87749be7466da005b556ee
+        tag: '4.0'
+        commit: 6318f223684118a2c71f67f3f4633a9e35046b00
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -554,8 +554,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/libjxl/libjxl.git
-        tag: v0.10.3
-        commit: 4a3b22d2600f92d8706fb72d85d52bfee2acbd54
+        tag: v0.11.0
+        commit: 4df1e9eccdf86b8df4c0c7c08f529263906f9c4f
         disable-shallow-clone: true
         x-checker-data:
           type: git
@@ -632,7 +632,7 @@ modules:
   - name: vapoursynth
     config-opts:
       - --with-python-prefix=${FLATPAK_DEST}
-  
+
     sources:
       - type: archive
         url: https://github.com/vapoursynth/vapoursynth/archive/R60.tar.gz
@@ -744,8 +744,10 @@ modules:
       # Then install io.mpv.Mpv.appdata.xml
       - type: shell
         commands:
-          - if [ -f "MPV_VERSION" ]; then version=$(cat MPV_VERSION); else version=$(git describe --tags --abbrev=0); fi
-          - sed -i "s/date=\"[0-9-]*\"/date=\"$(git log -n1 --pretty=format:%ad --date=short)\"/" io.mpv.Mpv.appdata.xml
+          - if [ -f "MPV_VERSION" ]; then version=$(cat MPV_VERSION); else version=$(git
+            describe --tags --abbrev=0); fi
+          - sed -i "s/date=\"[0-9-]*\"/date=\"$(git log -n1 --pretty=format:%ad --date=short)\"/"
+            io.mpv.Mpv.appdata.xml
           - sed -i "s/version=\"[0-9.]*\"/version=\"$version\"/" io.mpv.Mpv.appdata.xml
           - mkdir -p /app/share/appdata
           - mv io.mpv.Mpv.appdata.xml /app/share/appdata/io.mpv.Mpv.appdata.xml
@@ -887,8 +889,8 @@ modules:
       - pip3 install --prefix=/app idna-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/22/7e/d71db821f177828df9dea8c42ac46473366f191be53080e552e628aad991/idna-3.8-py3-none-any.whl
-        sha256: 050b4e5baadcd44d760cedbd2b8e639f2ff89bbc7a5730fcc662954303377aac
+        url: https://files.pythonhosted.org/packages/76/c6/c88e154df9c4e1a2a66ccf0005a88dfb2650c1dffb6f5ce603dfbd452ce3/idna-3.10-py3-none-any.whl
+        sha256: 946d195a0d259cbba61165e88e65941f16e9b36ea6ddb97f00452bae8b1287d3
         x-checker-data:
           type: pypi
           name: idna
