@@ -184,6 +184,9 @@ modules:
       - /lib/pkgconfig
     config-opts:
       - --disable-static
+      - --enable-asm
+      - --enable-harfbuzz
+      - --enable-fontconfig
     sources:
       - type: git
         url: https://github.com/libass/libass.git
@@ -354,6 +357,60 @@ modules:
           version-query: .tag_name | sub("^release-"; "")
           timestamp-query: .published_at
 
+  - name: Tesseract
+    config-opts:
+      - --disable-static
+    modules:
+      - name: Leptonica
+        config-opts:
+          - --disable-static
+          - --with-pic
+        sources:
+          - type: archive
+            url: http://www.leptonica.org/source/leptonica-1.82.0.tar.gz
+            sha256: 155302ee914668c27b6fe3ca9ff2da63b245f6d62f3061c8f27563774b8ae2d6
+            x-checker-data:
+              type: anitya
+              project-id: 1549
+              stable-only: true
+              url-template: http://www.leptonica.org/source/leptonica-$version.tar.gz
+        cleanup:
+          - /bin
+    sources:
+      - type: git
+        url: https://github.com/tesseract-ocr/tesseract.git
+        tag: 5.2.0
+        commit: 5ad5325a0aa8effc47ca033625b6a51682f82767
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/tesseract-ocr/tesseract/releases/latest
+          timestamp-query: .published_at
+          tag-query: .tag_name
+          version-query: .tag_name
+    cleanup:
+      - /bin
+
+  - name: ImageMagick
+    config-opts:
+      - --disable-static
+      - --disable-docs
+      - --with-hdri
+      - --with-pic
+    sources:
+      - type: archive
+        url: https://github.com/ImageMagick/ImageMagick/archive/7.1.1-38.tar.gz
+        sha256: 5e449530ccec8b85ae2bfd1ad773184fb7a4737d40fd9439db8a5d4beee4403e
+        x-checker-data:
+          type: anitya
+          project-id: 1372
+          stable-only: true
+          url-template: https://github.com/ImageMagick/ImageMagick/archive/$version.tar.gz
+    cleanup:
+      - /bin
+      - /etc
+      - /lib/ImageMagick*
+      - /share/ImageMagick*
+      
   - name: rubberband
     buildsystem: meson
     cleanup:
@@ -571,19 +628,21 @@ modules:
           url: https://api.github.com/repos/libsixel/libsixel/tags
           url-query: .[0].tarball_url
           version-query: .[0].name
-
+  
+  # downgrading to R60 from 69 for vspipe command to work. 
   - name: vapoursynth
     config-opts:
-      - --disable-static
-      - --with-python_prefix=/app
+      - --with-python-prefix=${FLATPAK_DEST}
+   
     sources:
-      - type: git
-        url: https://github.com/vapoursynth/vapoursynth.git
-        tag: R69
-        commit: 2804ed7a4926863f4a12e879d95155c4b05ecdf3
+      - type: archive
+        url: https://github.com/vapoursynth/vapoursynth/archive/R60.tar.gz
+        sha256: d0ff9b7d88d4b944d35dd7743d72ffcea5faa687f6157b160f57be45f4403a30
         x-checker-data:
-          type: git
-          tag-pattern: ^R([\d.]+)$
+          type: anitya
+          project-id: 15982
+          stable-only: true
+          url-template: https://github.com/vapoursynth/vapoursynth/archive/$version.tar.gz
 
   - name: libplacebo
     buildsystem: meson
@@ -664,7 +723,8 @@ modules:
       - -Dsdl2=enabled
       #- -Dshaderc=enabled
       - -Dvulkan=enabled
-      - -Dvulkan-interop=enabled
+      #- -Dvulkan-interop=enabled
+      # disabled -Dvulkan-interop for v0.39.0
     cleanup:
       - /include
       - /lib/pkgconfig
@@ -673,10 +733,9 @@ modules:
       # save screenshots at xdg-pictures/mpv
       - echo "screenshot-directory=~/.var/app/io.mpv.Mpv/Pictures/mpv" > /app/etc/mpv/mpv.conf
     sources:
-      - type: git
-        url: https://github.com/mpv-player/mpv.git
-        tag: v0.38.0
-        commit: 02254b92dd237f03aa0a151c2a68778c4ea848f9
+      - type: archive
+        url: https://github.com/mpv-player/mpv/archive/refs/tags/v0.39.0.tar.gz
+        sha256: 2ca92437affb62c2b559b4419ea4785c70d023590500e8a52e95ea3ab4554683
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
