@@ -129,7 +129,7 @@ modules:
         mirror-urls:
           - https://luajit.org/git/luajit.git
         disable-shallow-clone: true
-        commit: f5fd22203eadf57ccbaa4a298010d23974b22fc0
+        commit: 2240d84464cc3dcb22fd976f1db162b36b5b52d5
         x-checker-data:
           type: json
           url: https://api.github.com/repos/LuaJIT/LuaJIT/commits
