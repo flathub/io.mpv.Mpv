@@ -308,11 +308,12 @@ modules:
         url: https://dev.gnupg.org/source/libgcrypt.git
         tag: libgcrypt-1.10.3
         commit: aa1610866f8e42bdc272584f0a717f32ee050a22
-        x-checker-data:
-          type: anitya
-          project-id: 1623
-          stable-only: true
-          tag-template: libgcrypt-$version
+        # disabled for libgcrypt-1.11 because of build fail
+        #x-checker-data:
+        #  type: anitya
+        #  project-id: 1623
+        #  stable-only: true
+        #  tag-template: libgcrypt-$version
 
           
   - name: libaacs
