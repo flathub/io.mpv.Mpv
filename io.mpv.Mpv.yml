@@ -306,15 +306,15 @@ modules:
     sources:
       - type: git
         url: https://dev.gnupg.org/source/libgcrypt.git
-        tag: libgcrypt-1.10.3
-        commit: aa1610866f8e42bdc272584f0a717f32ee050a22
+        tag: libgcrypt-1.11.0
+        commit: 9d94d7846cde272b8b1519ba96e53967bf0b90d2
         x-checker-data:
           type: anitya
           project-id: 1623
           stable-only: true
           tag-template: libgcrypt-$version
 
-          
+
   - name: libaacs
     config-opts:
       - --disable-static
