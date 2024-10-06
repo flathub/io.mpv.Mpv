@@ -315,7 +315,6 @@ modules:
         #  stable-only: true
         #  tag-template: libgcrypt-$version
 
-          
   - name: libaacs
     config-opts:
       - --disable-static
@@ -499,7 +498,7 @@ modules:
         url: https://github.com/jpsdr/x264
         mirror-urls:
           - https://code.videolan.org/videolan/x264.git
-        commit: c24e06c2e184345ceb33eb20a15d1024d9fd3497
+        commit: 3a8b5be2a256ffc6d8ec4fb35ecfb335d5a4a03b
         # Every commit to the master branch is considered a release
         # https://code.videolan.org/videolan/x264/-/issues/35
         x-checker-data:
