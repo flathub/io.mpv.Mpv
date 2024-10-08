@@ -150,8 +150,8 @@ modules:
       - install yt-dlp /app/bin
     sources:
       - type: archive
-        url: https://github.com/yt-dlp/yt-dlp/releases/download/2024.09.27/yt-dlp.tar.gz
-        sha256: ffce6ebd742373eff6dac89b23f706ec7513a0367160eb8b5a550cd706cd883f
+        url: https://github.com/yt-dlp/yt-dlp/releases/download/2024.10.07/yt-dlp.tar.gz
+        sha256: 8435749b6159104f06b31952d3edc2f90f2c72b0d2927fb899333621d58ca7a2
         x-checker-data:
           type: json
           url: https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest
@@ -416,8 +416,8 @@ modules:
       - --with-pic
     sources:
       - type: archive
-        url: https://github.com/ImageMagick/ImageMagick/archive/7.1.1-38.tar.gz
-        sha256: 5e449530ccec8b85ae2bfd1ad773184fb7a4737d40fd9439db8a5d4beee4403e
+        url: https://github.com/ImageMagick/ImageMagick/archive/7.1.1-39.tar.gz
+        sha256: b2eb652d9221bdeb65772503891d8bfcfc36b3b1a2c9bb35b9d247a08965fd5d
         x-checker-data:
           type: anitya
           project-id: 1372
@@ -499,7 +499,7 @@ modules:
         url: https://github.com/jpsdr/x264
         mirror-urls:
           - https://code.videolan.org/videolan/x264.git
-        commit: c24e06c2e184345ceb33eb20a15d1024d9fd3497
+        commit: 3a8b5be2a256ffc6d8ec4fb35ecfb335d5a4a03b
         # Every commit to the master branch is considered a release
         # https://code.videolan.org/videolan/x264/-/issues/35
         x-checker-data:
