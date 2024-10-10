@@ -497,8 +497,8 @@ modules:
     sources:
       - type: git
         url: https://code.videolan.org/videolan/x264.git
-        mirror-urls:
-          - https://github.com/jpsdr/x264
+        #mirror-urls:
+        #  - https://github.com/jpsdr/x264
         commit: 3a8b5be2a256ffc6d8ec4fb35ecfb335d5a4a03b
         # Every commit to the master branch is considered a release
         # https://code.videolan.org/videolan/x264/-/issues/35
