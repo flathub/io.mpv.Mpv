@@ -75,8 +75,8 @@ modules:
     sources:
       - type: archive
         archive-type: tar
-        url: https://download.samba.org/pub/samba/stable/samba-4.21.0.tar.gz
-        sha256: 09bb56db4ce003cafdbebe9bad368c4f4ff1945f732d18077d52f36ab20cef88
+        url: https://download.samba.org/pub/samba/stable/samba-4.21.1.tar.gz
+        sha256: bd02f55da538358c929505b21fdd8aeba53027eab14c849432a53ed0bae1c7c2
         x-checker-data:
           type: html
           url: https://download.samba.org/pub/samba/stable/?C=M;O=D
