@@ -533,8 +533,8 @@ modules:
       - -DBUILD_TESTS=OFF
     sources:
       - type: git
-        commit: 33974839677da7044ef5a70be7ad5550735aae6e
-        tag: v1.3.2
+        commit: 444d2c1d7ececf5cc2d96d3b17b209047b02318d
+        tag: v1.3.3
         url: https://github.com/hoene/libmysofa.git
         x-checker-data:
           type: git
