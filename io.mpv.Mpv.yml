@@ -396,8 +396,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/tesseract-ocr/tesseract.git
-        tag: 5.4.1
-        commit: b5f279ec7582dc57f6464557ed938558791f200d
+        tag: 5.5.0
+        commit: 64eab6c457b2337dd690746a5fde5c222b40d5f8
         x-checker-data:
           type: json
           url: https://api.github.com/repos/tesseract-ocr/tesseract/releases/latest
