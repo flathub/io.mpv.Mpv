@@ -769,6 +769,7 @@ modules:
           - mkdir -p /app/share/appdata
           - mv io.mpv.Mpv.appdata.xml /app/share/appdata/io.mpv.Mpv.appdata.xml
           - chmod 644 /app/share/appdata/io.mpv.Mpv.appdata.xml
+          - sed  '/^X-KDE-Protocols/s/,smb//; /^X-KDE-Protocols/s/smb,//; /^X-KDE-Protocols/s/smb//; /^X-KDE-Protocols=$/d' -i /app/share/applications/io.mpv.Mpv.desktop
 
 # Scripts for mpv
   - name: mpv-wrapper
