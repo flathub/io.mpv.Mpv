@@ -747,6 +747,7 @@ modules:
       - mv /app/bin/mpv /app/bin/mpv-bin
       # save screenshots at xdg-pictures/mpv
       - echo "screenshot-directory=~/.var/app/io.mpv.Mpv/Pictures/mpv" > /app/etc/mpv/mpv.conf
+      - sed  '/^X-KDE-Protocols/s/,smb//; /^X-KDE-Protocols/s/smb,//; /^X-KDE-Protocols/s/smb//; /^X-KDE-Protocols=$/d' -i /app/share/applications/io.mpv.Mpv.desktop
     sources:
       - type: git
         url: https://github.com/mpv-player/mpv.git
@@ -769,7 +770,7 @@ modules:
           - mkdir -p /app/share/appdata
           - mv io.mpv.Mpv.appdata.xml /app/share/appdata/io.mpv.Mpv.appdata.xml
           - chmod 644 /app/share/appdata/io.mpv.Mpv.appdata.xml
-          - sed  '/^X-KDE-Protocols/s/,smb//; /^X-KDE-Protocols/s/smb,//; /^X-KDE-Protocols/s/smb//; /^X-KDE-Protocols=$/d' -i /app/share/applications/mpv.desktop
+
 
 # Scripts for mpv
   - name: mpv-wrapper
