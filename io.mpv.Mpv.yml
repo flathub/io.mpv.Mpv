@@ -150,8 +150,8 @@ modules:
       - install yt-dlp /app/bin
     sources:
       - type: archive
-        url: https://github.com/yt-dlp/yt-dlp/releases/download/2024.11.04/yt-dlp.tar.gz
-        sha256: 0ae3767c48d90d7fd6c5cb5a3d9fcb954441d984abf20c077d5f5bc0789b9aa4
+        url: https://github.com/yt-dlp/yt-dlp/releases/download/2024.11.18/yt-dlp.tar.gz
+        sha256: d60cd68ddb12bfe3f443f83d5fe401088993e21c5362daeb4fb16ee39fc4b4dc
         x-checker-data:
           type: json
           url: https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest
@@ -415,8 +415,8 @@ modules:
       - --with-pic
     sources:
       - type: archive
-        url: https://github.com/ImageMagick/ImageMagick/archive/7.1.1-40.tar.gz
-        sha256: a6aba2cfd9c20c909614b332d8b91b389909e233041aa46d29db9e371c6f114a
+        url: https://github.com/ImageMagick/ImageMagick/archive/7.1.1-41.tar.gz
+        sha256: cabf2516dce66da56dd4e3071453b808eefaf4326a93292d2a222a4ea623d601
         x-checker-data:
           type: anitya
           project-id: 1372
@@ -747,7 +747,8 @@ modules:
       - mv /app/bin/mpv /app/bin/mpv-bin
       # save screenshots at xdg-pictures/mpv
       - echo "screenshot-directory=~/.var/app/io.mpv.Mpv/Pictures/mpv" > /app/etc/mpv/mpv.conf
-      - sed  '/^X-KDE-Protocols/s/,smb//; /^X-KDE-Protocols/s/smb,//; /^X-KDE-Protocols/s/smb//; /^X-KDE-Protocols=$/d' -i /app/share/applications/mpv.desktop
+      - sed  '/^X-KDE-Protocols/s/,smb//; /^X-KDE-Protocols/s/smb,//; /^X-KDE-Protocols/s/smb//;
+        /^X-KDE-Protocols=$/d' -i /app/share/applications/mpv.desktop
     sources:
       - type: git
         url: https://github.com/mpv-player/mpv.git
