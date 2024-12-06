@@ -75,8 +75,8 @@ modules:
     sources:
       - type: archive
         archive-type: tar
-        url: https://download.samba.org/pub/samba/stable/samba-4.21.1.tar.gz
-        sha256: bd02f55da538358c929505b21fdd8aeba53027eab14c849432a53ed0bae1c7c2
+        url: https://download.samba.org/pub/samba/stable/samba-4.21.2.tar.gz
+        sha256: bde66be3d2025cb949de38518ad2652f3795f824c7fa89d4e443ede1ae828ea6
         x-checker-data:
           type: html
           url: https://download.samba.org/pub/samba/stable/?C=M;O=D
@@ -129,7 +129,7 @@ modules:
         mirror-urls:
           - https://luajit.org/git/luajit.git
         disable-shallow-clone: true
-        commit: fe71d0fb54ceadfb5b5f3b6baf29e486d97f6059
+        commit: 19878ec05c239ccaf5f3d17af27670a963e25b8b
         x-checker-data:
           type: json
           url: https://api.github.com/repos/LuaJIT/LuaJIT/commits
@@ -150,8 +150,8 @@ modules:
       - install yt-dlp /app/bin
     sources:
       - type: archive
-        url: https://github.com/yt-dlp/yt-dlp/releases/download/2024.11.18/yt-dlp.tar.gz
-        sha256: d60cd68ddb12bfe3f443f83d5fe401088993e21c5362daeb4fb16ee39fc4b4dc
+        url: https://github.com/yt-dlp/yt-dlp/releases/download/2024.12.06/yt-dlp.tar.gz
+        sha256: ca50d78fee784e49b53cbfa0278f3f8ded3d17104fca50e7b45f74892479c0d6
         x-checker-data:
           type: json
           url: https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest
@@ -521,8 +521,8 @@ modules:
     sources:
       - type: git
         url: https://bitbucket.org/multicoreware/x265_git.git
-        tag: '4.0'
-        commit: 6318f223684118a2c71f67f3f4633a9e35046b00
+        tag: '4.1'
+        commit: 1d117bed4747758b51bd2c124d738527e30392cb
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
