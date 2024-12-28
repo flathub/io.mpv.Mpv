@@ -129,7 +129,7 @@ modules:
         mirror-urls:
           - https://luajit.org/git/luajit.git
         disable-shallow-clone: true
-        commit: 19878ec05c239ccaf5f3d17af27670a963e25b8b
+        commit: f73e649a954b599fc184726c376476e7a5c439ca
         x-checker-data:
           type: json
           url: https://api.github.com/repos/LuaJIT/LuaJIT/commits
@@ -150,8 +150,8 @@ modules:
       - install yt-dlp /app/bin
     sources:
       - type: archive
-        url: https://github.com/yt-dlp/yt-dlp/releases/download/2024.12.13/yt-dlp.tar.gz
-        sha256: ba55dd031ffa8452d0624a3c2ac993427f3aac2e5a5679f253bdd108d764e7c4
+        url: https://github.com/yt-dlp/yt-dlp/releases/download/2024.12.23/yt-dlp.tar.gz
+        sha256: 66a5b9e0988106a3131ce40f61f04af3eb49cde4d26dd292793ad18666cc5938
         x-checker-data:
           type: json
           url: https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest
@@ -415,8 +415,8 @@ modules:
       - --with-pic
     sources:
       - type: archive
-        url: https://github.com/ImageMagick/ImageMagick/archive/7.1.1-41.tar.gz
-        sha256: cabf2516dce66da56dd4e3071453b808eefaf4326a93292d2a222a4ea623d601
+        url: https://github.com/ImageMagick/ImageMagick/archive/7.1.1-43.tar.gz
+        sha256: ceb972266b23dc7c1cfce0da5a7f0c9acfb4dc81f40eb542a49476fedbc2618f
         x-checker-data:
           type: anitya
           project-id: 1372
@@ -498,7 +498,7 @@ modules:
         url: https://code.videolan.org/videolan/x264.git
         #mirror-urls:
         #  - https://github.com/jpsdr/x264
-        commit: da14df5535fd46776fb1c9da3130973295c87aca
+        commit: 023112c6f2f575c72e9f26274d183b70996fb542
         # Every commit to the master branch is considered a release
         # https://code.videolan.org/videolan/x264/-/issues/35
         x-checker-data:
@@ -521,8 +521,8 @@ modules:
     sources:
       - type: git
         url: https://bitbucket.org/multicoreware/x265_git.git
-        tag: '4.0'
-        commit: 6318f223684118a2c71f67f3f4633a9e35046b00
+        tag: '4.1'
+        commit: 1d117bed4747758b51bd2c124d738527e30392cb
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -935,8 +935,8 @@ modules:
       - pip3 install --prefix=/app charset_normalizer-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/bf/9b/08c0432272d77b04803958a4598a51e2a4b51c06640af8b8f0f908c18bf2/charset_normalizer-3.4.0-py3-none-any.whl
-        sha256: fe9f97feb71aa9896b81973a7bbada8c49501dc73e58a10fcef6663af95e5079
+        url: https://files.pythonhosted.org/packages/0e/f6/65ecc6878a89bb1c23a086ea335ad4bf21a588990c3f535a227b9eea9108/charset_normalizer-3.4.1-py3-none-any.whl
+        sha256: d98b1668f06378c6dbefec3b92299716b931cd4e6061f3c875a71ced1780ab85
         x-checker-data:
           type: pypi
           name: charset_normalizer
@@ -1090,8 +1090,8 @@ modules:
       - pip3 install --prefix=/app click-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/00/2e/d53fa4befbf2cfa713304affc7ca780ce4fc1fd8710527771b58311a3229/click-8.1.7-py3-none-any.whl
-        sha256: ae74fb96c20a0277a1d615f1e4d73c8414f5a98db8b799a7931d1582f3390c28
+        url: https://files.pythonhosted.org/packages/7e/d4/7ebdbd03970677812aac39c869717059dbb71a4cfc033ca6e5221787892c/click-8.1.8-py3-none-any.whl
+        sha256: 63c132bbbed01578a06712a2d1f497bb62d9c1c0d329b7903a866228027263b2
         x-checker-data:
           type: pypi
           name: click
