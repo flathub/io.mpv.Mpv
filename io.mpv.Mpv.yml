@@ -498,7 +498,7 @@ modules:
         url: https://code.videolan.org/videolan/x264.git
         #mirror-urls:
         #  - https://github.com/jpsdr/x264
-        commit: 450946f96bb20ca3f71d494c0800c3ad747de769
+        commit: 52f7694ddd35209cb95225e7acce91d8a30cb57d
         # Every commit to the master branch is considered a release
         # https://code.videolan.org/videolan/x264/-/issues/35
         x-checker-data:
@@ -521,8 +521,8 @@ modules:
     sources:
       - type: git
         url: https://bitbucket.org/multicoreware/x265_git.git
-        tag: '4.0'
-        commit: 6318f223684118a2c71f67f3f4633a9e35046b00
+        tag: '4.1'
+        commit: 1d117bed4747758b51bd2c124d738527e30392cb
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
