@@ -498,7 +498,7 @@ modules:
         url: https://code.videolan.org/videolan/x264.git
         #mirror-urls:
         #  - https://github.com/jpsdr/x264
-        commit: 450946f96bb20ca3f71d494c0800c3ad747de769
+        commit: 373697b467f7cd0af88f1e9e32d4f10540df4687
         # Every commit to the master branch is considered a release
         # https://code.videolan.org/videolan/x264/-/issues/35
         x-checker-data:
@@ -521,8 +521,8 @@ modules:
     sources:
       - type: git
         url: https://bitbucket.org/multicoreware/x265_git.git
-        tag: '4.0'
-        commit: 6318f223684118a2c71f67f3f4633a9e35046b00
+        tag: '4.1'
+        commit: 1d117bed4747758b51bd2c124d738527e30392cb
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -821,12 +821,12 @@ modules:
     buildsystem: autotools
     sources:
       - type: archive
-        url: https://ftp.gnu.org/gnu/bc/bc-1.07.1.tar.gz
+        url: https://ftp.gnu.org/gnu/bc/bc-1.08.0.tar.gz
         mirror-urls:
           - https://mirrors.kernel.org/gnu/bc/bc-1.07.1.tar.gz
           - https://mirrors.ocf.berkeley.edu/gnu/bc/bc-1.07.1.tar.gz
           - https://ftpmirror.gnu.org/gnu/bc/bc-1.07.1.tar.gz
-        sha256: 62adfca89b0a1c0164c2cdca59ca210c1d44c3ffc46daf9931cf4942664cb02a
+        sha256: 7db49996cbe16d7602936fef586e69e492c3df65765c0a891841025a1ad741ef
         x-checker-data:
           type: html
           url: https://ftp.gnu.org/gnu/bc/
