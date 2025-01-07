@@ -75,8 +75,8 @@ modules:
     sources:
       - type: archive
         archive-type: tar
-        url: https://download.samba.org/pub/samba/stable/samba-4.21.2.tar.gz
-        sha256: bde66be3d2025cb949de38518ad2652f3795f824c7fa89d4e443ede1ae828ea6
+        url: https://download.samba.org/pub/samba/stable/samba-4.21.3.tar.gz
+        sha256: ae2179a613e7a5d4088735ab100d4ca1cae0f92374d6307e22eaec13ad90125c
         x-checker-data:
           type: html
           url: https://download.samba.org/pub/samba/stable/?C=M;O=D
@@ -498,7 +498,7 @@ modules:
         url: https://code.videolan.org/videolan/x264.git
         #mirror-urls:
         #  - https://github.com/jpsdr/x264
-        commit: 450946f96bb20ca3f71d494c0800c3ad747de769
+        commit: 373697b467f7cd0af88f1e9e32d4f10540df4687
         # Every commit to the master branch is considered a release
         # https://code.videolan.org/videolan/x264/-/issues/35
         x-checker-data:
@@ -523,9 +523,10 @@ modules:
         url: https://bitbucket.org/multicoreware/x265_git.git
         tag: '4.0'
         commit: 6318f223684118a2c71f67f3f4633a9e35046b00
-        x-checker-data:
-          type: git
-          tag-pattern: ^([\d.]+)$
+        # build is failing with 4.1 will enable with 4.2
+        #x-checker-data:
+        #  type: git
+        #  tag-pattern: ^([\d.]+)$
 
   - name: libmysofa
     buildsystem: cmake
@@ -803,12 +804,12 @@ modules:
     buildsystem: autotools
     sources:
       - type: archive
-        url: https://ftp.gnu.org/gnu/ed/ed-1.20.2.tar.lz
+        url: https://ftp.gnu.org/gnu/ed/ed-1.21.tar.lz
         mirror-urls:
           - https://mirrors.kernel.org/gnu/ed/ed-1.20.1.tar.lz
           - https://mirrors.ocf.berkeley.edu/gnu/ed/ed-1.20.1.tar.lz
           - https://ftpmirror.gnu.org/gnu/ed/ed-1.20.1.tar.lz
-        sha256: 65fec7318f48c2ca17f334ac0f4703defe62037bb13cc23920de077b5fa24523
+        sha256: 60e24998727d453a5cf02c54664b97536de46a2b34cd1f4f67c1c1a61bbbad75
         x-checker-data:
           type: html
           url: https://ftp.gnu.org/gnu/ed/
@@ -821,12 +822,12 @@ modules:
     buildsystem: autotools
     sources:
       - type: archive
-        url: https://ftp.gnu.org/gnu/bc/bc-1.07.1.tar.gz
+        url: https://ftp.gnu.org/gnu/bc/bc-1.08.1.tar.gz
         mirror-urls:
           - https://mirrors.kernel.org/gnu/bc/bc-1.07.1.tar.gz
           - https://mirrors.ocf.berkeley.edu/gnu/bc/bc-1.07.1.tar.gz
           - https://ftpmirror.gnu.org/gnu/bc/bc-1.07.1.tar.gz
-        sha256: 62adfca89b0a1c0164c2cdca59ca210c1d44c3ffc46daf9931cf4942664cb02a
+        sha256: b71457ffeb210d7ea61825ff72b3e49dc8f2c1a04102bbe23591d783d1bfe996
         x-checker-data:
           type: html
           url: https://ftp.gnu.org/gnu/bc/
