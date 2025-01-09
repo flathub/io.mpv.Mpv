@@ -639,8 +639,8 @@ modules:
     sources:
       - type: archive
         archive-type: tar
-        url: https://api.github.com/repos/libsixel/libsixel/tarball/refs/tags/v1.10.3
-        sha256: 7be774befba882d53701e131b6657836118f6cdb15a7515f92345c7bb6e2bb5c
+        url: https://api.github.com/repos/libsixel/libsixel/tarball/refs/tags/v1.10.4
+        sha256: 6b0b190e42aaf397fdf23a802e05c44da8881f99d8db4495ceae94b438ae1e21
         x-checker-data:
           type: json
           url: https://api.github.com/repos/libsixel/libsixel/tags
