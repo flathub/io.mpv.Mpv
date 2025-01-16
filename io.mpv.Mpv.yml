@@ -132,10 +132,10 @@ modules:
         commit: a4f56a459a588ae768801074b46ba0adcfb49eb1
         x-checker-data:
           type: json
-          url: https://api.github.com/repos/LuaJIT/LuaJIT/commits
-          commit-query: first( .[].sha )
-          version-query: first( .[].sha )
-          timestamp-query: first( .[].commit.committer.date )
+          url: https://api.github.com/repos/LuaJIT/LuaJIT/branches/v2.1
+          commit-query: .commit.sha
+          version-query: .commit.sha
+          timestamp-query: .commit.commit.committer.date
       - type: shell
         commands:
           - sed -i 's|/usr/local|/app|' ./Makefile
