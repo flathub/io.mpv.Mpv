@@ -495,18 +495,16 @@ modules:
       - --enable-shared
     sources:
       - type: git
-        url: https://code.videolan.org/videolan/x264.git
-        #mirror-urls:
-        #  - https://github.com/jpsdr/x264
+        url: https://github.com/mirror/x264.git
         commit: 373697b467f7cd0af88f1e9e32d4f10540df4687
-        # Every commit to the master branch is considered a release
+        # Every commit to the stable branch is considered a release
         # https://code.videolan.org/videolan/x264/-/issues/35
         x-checker-data:
           type: json
-          url: https://code.videolan.org/api/v4/projects/536/repository/commits
-          commit-query: first( .[].id )
-          version-query: first( .[].id )
-          timestamp-query: first( .[].committed_date )
+          url: https://code.videolan.org/api/v4/projects/536/repository/branches/stable
+          commit-query: .commit.id
+          version-query: .commit.short_id
+          timestamp-query: .commit.created_at
 
   - name: x265
     buildsystem: cmake
