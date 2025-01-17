@@ -150,8 +150,8 @@ modules:
       - install yt-dlp /app/bin
     sources:
       - type: archive
-        url: https://github.com/yt-dlp/yt-dlp/releases/download/2025.01.12/yt-dlp.tar.gz
-        sha256: 6f7e9f10bd952d5eab9c96581066a439dc1196beb995344cbd81601013464b43
+        url: https://github.com/yt-dlp/yt-dlp/releases/download/2025.01.15/yt-dlp.tar.gz
+        sha256: e410c5fbbc84af848a02ac985bcfae6089586c62ffa95d1ed87dadd96babac8d
         x-checker-data:
           type: json
           url: https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest
@@ -496,7 +496,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/mirror/x264.git
-        commit: 373697b467f7cd0af88f1e9e32d4f10540df4687
+        commit: 31e19f92f00c7003fa115047ce50978bc98c3a0d
         # Every commit to the stable branch is considered a release
         # https://code.videolan.org/videolan/x264/-/issues/35
         x-checker-data:
