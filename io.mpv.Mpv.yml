@@ -132,10 +132,10 @@ modules:
         commit: a4f56a459a588ae768801074b46ba0adcfb49eb1
         x-checker-data:
           type: json
-          url: https://api.github.com/repos/LuaJIT/LuaJIT/commits
-          commit-query: first( .[].sha )
-          version-query: first( .[].sha )
-          timestamp-query: first( .[].commit.committer.date )
+          url: https://api.github.com/repos/LuaJIT/LuaJIT/branches/v2.1
+          commit-query: .commit.sha
+          version-query: .commit.sha
+          timestamp-query: .commit.commit.committer.date
       - type: shell
         commands:
           - sed -i 's|/usr/local|/app|' ./Makefile
@@ -150,8 +150,8 @@ modules:
       - install yt-dlp /app/bin
     sources:
       - type: archive
-        url: https://github.com/yt-dlp/yt-dlp/releases/download/2025.01.12/yt-dlp.tar.gz
-        sha256: 6f7e9f10bd952d5eab9c96581066a439dc1196beb995344cbd81601013464b43
+        url: https://github.com/yt-dlp/yt-dlp/releases/download/2025.01.15/yt-dlp.tar.gz
+        sha256: e410c5fbbc84af848a02ac985bcfae6089586c62ffa95d1ed87dadd96babac8d
         x-checker-data:
           type: json
           url: https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest
@@ -495,18 +495,16 @@ modules:
       - --enable-shared
     sources:
       - type: git
-        url: https://code.videolan.org/videolan/x264.git
-        #mirror-urls:
-        #  - https://github.com/jpsdr/x264
-        commit: 373697b467f7cd0af88f1e9e32d4f10540df4687
-        # Every commit to the master branch is considered a release
+        url: https://github.com/mirror/x264.git
+        commit: 31e19f92f00c7003fa115047ce50978bc98c3a0d
+        # Every commit to the stable branch is considered a release
         # https://code.videolan.org/videolan/x264/-/issues/35
         x-checker-data:
           type: json
-          url: https://code.videolan.org/api/v4/projects/536/repository/commits
-          commit-query: first( .[].id )
-          version-query: first( .[].id )
-          timestamp-query: first( .[].committed_date )
+          url: https://code.videolan.org/api/v4/projects/536/repository/branches/stable
+          commit-query: .commit.id
+          version-query: .commit.short_id
+          timestamp-query: .commit.created_at
 
   - name: x265
     buildsystem: cmake
