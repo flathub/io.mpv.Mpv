@@ -1076,8 +1076,8 @@ modules:
       - pip3 install --prefix=/app dogpile*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/c9/b6/eb8bb5bced9f0bf475b22a53e86e4ed80fa60949de1133e2e673e23282d7/dogpile.cache-1.3.3-py3-none-any.whl
-        sha256: 5e211c4902ebdf88c678d268e22454b41e68071632daa9402d8ee24e825ed8ca
+        url: https://files.pythonhosted.org/packages/3c/82/d118accb66f9048acbc4ff91592755c24d52f54cce40d6b0b2a0ce351cf5/dogpile.cache-1.3.4-py3-none-any.whl
+        sha256: a393412f93d24a8942fdf9248dc80678127d54c5e60a7be404027aa193cafe12
         x-checker-data:
           type: pypi
           name: dogpile.cache
