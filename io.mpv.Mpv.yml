@@ -461,8 +461,8 @@ modules:
         url: https://github.com/ccxvii/mujs.git
         mirror-urls:
           - http://git.ghostscript.com/mujs.git
-        tag: 1.3.5
-        commit: 0df0707f2f10187127e36acfbc3ba9b9ca5b5cf0
+        tag: 1.3.6
+        commit: cc569c5fa9a7a2498177693b5617605c2ff5b260
         x-checker-data:
           type: git
           url: https://api.github.com/repos/ccxvii/mujs/tags
