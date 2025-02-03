@@ -1115,8 +1115,8 @@ modules:
       - pip3 install --prefix=/app beautifulsoup4-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/6e/74/d53cf0c527b20fc87351e6fd9d51aac9b5d1e32ec5a3a32b84671806ab40/beautifulsoup4-4.13.0-py3-none-any.whl
-        sha256: 9c4c3dfa67aba55f6cd03769c441b21e6a369797fd6766e4b4c6b3399aae2735
+        url: https://files.pythonhosted.org/packages/18/75/899bf9b6270b2ce5e8f01b8da121b29e4b88256feb2cf6c6418d4cc42130/beautifulsoup4-4.13.1-py3-none-any.whl
+        sha256: 72465267014897bb10ca749bb632bde6c2d20f3254afd5458544bd74e6c2e6d8
         x-checker-data:
           type: pypi
           name: beautifulsoup4
