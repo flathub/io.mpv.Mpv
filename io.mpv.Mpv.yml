@@ -921,8 +921,8 @@ modules:
       - pip3 install --prefix=/app decorator-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/d5/50/83c593b07763e1161326b3b8c6686f0f4b0f24d5526546bee538c89837d6/decorator-5.1.1-py3-none-any.whl
-        sha256: b8c3f85900b9dc423225913c5aace94729fe1fa9763b38939a95226f02d37186
+        url: https://files.pythonhosted.org/packages/f6/0e/fc5d7660912606d43f32470cf952846a47512d3674fe9a3196f1a80a638b/decorator-5.2.0-py3-none-any.whl
+        sha256: f30a69c066f698c7c11fa1fa3425f684d3b4b01b494ee41e73c0a14f3de48427
         x-checker-data:
           type: pypi
           name: decorator
@@ -960,8 +960,8 @@ modules:
       - pip3 install --prefix=/app stevedore-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/8f/73/d0091d22a65b55e8fb6aca7b3b6713b5a261dd01cec4cfd28ed127ac0cfc/stevedore-5.4.0-py3-none-any.whl
-        sha256: b0be3c4748b3ea7b854b265dcb4caa891015e442416422be16f8b31756107857
+        url: https://files.pythonhosted.org/packages/f7/45/8c4ebc0c460e6ec38e62ab245ad3c7fc10b210116cea7c16d61602aa9558/stevedore-5.4.1-py3-none-any.whl
+        sha256: d10a31c7b86cba16c1f6e8d15416955fc797052351a56af15e608ad20811fcfe
         x-checker-data:
           type: pypi
           name: stevedore
