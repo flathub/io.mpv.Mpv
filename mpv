@@ -10,7 +10,6 @@ if [ ! -f "$MPV_CONF" ]; then
     touch "$MPV_CONF"
     # Add default settings
     echo "# MPV configuration file" > "$MPV_CONF"
-    echo "screenshot-directory=~/.var/app/io.mpv.Mpv/Pictures/mpv" >> "$MPV_CONF"
 fi
 
 # Create the Pictures symlink as before
