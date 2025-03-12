@@ -129,7 +129,7 @@ modules:
         mirror-urls:
           - https://luajit.org/git/luajit.git
         disable-shallow-clone: true
-        commit: 84cb21ffaf648b472ff3884556e2c413e8abe179
+        commit: 538a82133ad6fddfd0ca64de167c4aca3bc1a2da
         x-checker-data:
           type: json
           url: https://api.github.com/repos/LuaJIT/LuaJIT/branches/v2.1
@@ -415,8 +415,8 @@ modules:
       - --with-pic
     sources:
       - type: archive
-        url: https://github.com/ImageMagick/ImageMagick/archive/7.1.1-44.tar.gz
-        sha256: c7cae9f885a995750909ee2ad79ea1f66a6a353f0c6da7b688aa4850aa1c26df
+        url: https://github.com/ImageMagick/ImageMagick/archive/7.1.1-45.tar.gz
+        sha256: 3b807da19d56d0e34a56a82bcb6e2a4e9a77db722cfd4cec1dcffd42ab1926d6
         x-checker-data:
           type: anitya
           project-id: 1372
