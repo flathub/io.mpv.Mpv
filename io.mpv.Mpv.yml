@@ -415,8 +415,8 @@ modules:
       - --with-pic
     sources:
       - type: archive
-        url: https://github.com/ImageMagick/ImageMagick/archive/7.1.1-45.tar.gz
-        sha256: 3b807da19d56d0e34a56a82bcb6e2a4e9a77db722cfd4cec1dcffd42ab1926d6
+        url: https://github.com/ImageMagick/ImageMagick/archive/7.1.1-46.tar.gz
+        sha256: 58cd8f7f2c9aaf49dba5af6f740a7a295cecb76493c475402265b3e7c21e3cd0
         x-checker-data:
           type: anitya
           project-id: 1372
