@@ -751,8 +751,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/mpv-player/mpv.git
-        tag: v0.39.0
-        commit: a0fba7be57f3822d967b04f0f6b6d6341e7516e7
+        tag: v0.40.0
+        commit: e48ac7ce08462f5e33af6ef9deeac6fa87eef01e
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -802,12 +802,12 @@ modules:
     buildsystem: autotools
     sources:
       - type: archive
-        url: https://ftp.gnu.org/gnu/ed/ed-1.21.tar.lz
+        url: https://ftp.gnu.org/gnu/ed/ed-1.21.1.tar.lz
         mirror-urls:
           - https://mirrors.kernel.org/gnu/ed/ed-1.20.1.tar.lz
           - https://mirrors.ocf.berkeley.edu/gnu/ed/ed-1.20.1.tar.lz
           - https://ftpmirror.gnu.org/gnu/ed/ed-1.20.1.tar.lz
-        sha256: 60e24998727d453a5cf02c54664b97536de46a2b34cd1f4f67c1c1a61bbbad75
+        sha256: d6d0c7192b02b0519c902a93719053e865ade5a784a3b327d93d888457b23c4b
         x-checker-data:
           type: html
           url: https://ftp.gnu.org/gnu/ed/
