@@ -150,8 +150,8 @@ modules:
       - install yt-dlp /app/bin
     sources:
       - type: archive
-        url: https://github.com/yt-dlp/yt-dlp/releases/download/2025.03.21/yt-dlp.tar.gz
-        sha256: eb8a34ddf0e0e0ff928ef6d048ea559eb4483be12a481ec049f0daa62c6eddba
+        url: https://github.com/yt-dlp/yt-dlp/releases/download/2025.03.25/yt-dlp.tar.gz
+        sha256: 2e5729077a75f262130823feb19e299c35138383e75d5695b80ba0d9af879447
         x-checker-data:
           type: json
           url: https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest
@@ -802,12 +802,12 @@ modules:
     buildsystem: autotools
     sources:
       - type: archive
-        url: https://ftp.gnu.org/gnu/ed/ed-1.21.tar.lz
+        url: https://ftp.gnu.org/gnu/ed/ed-1.21.1.tar.lz
         mirror-urls:
           - https://mirrors.kernel.org/gnu/ed/ed-1.20.1.tar.lz
           - https://mirrors.ocf.berkeley.edu/gnu/ed/ed-1.20.1.tar.lz
           - https://ftpmirror.gnu.org/gnu/ed/ed-1.20.1.tar.lz
-        sha256: 60e24998727d453a5cf02c54664b97536de46a2b34cd1f4f67c1c1a61bbbad75
+        sha256: d6d0c7192b02b0519c902a93719053e865ade5a784a3b327d93d888457b23c4b
         x-checker-data:
           type: html
           url: https://ftp.gnu.org/gnu/ed/
