@@ -20,7 +20,7 @@ finish-args:
   - --filesystem=host:ro
   - --env=LC_NUMERIC=C
   - --env=XCURSOR_PATH=/run/host/user-share/icons:/run/host/share/icons
-  - --filesystem=xdg-run/pipewire-0
+  - --filesystem=xdg-run/pipewire-0:ro
 
 #  mpris support via dbus
   - --own-name=org.mpris.MediaPlayer2.mpv.*
