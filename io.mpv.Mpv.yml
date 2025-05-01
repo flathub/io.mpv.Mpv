@@ -150,8 +150,8 @@ modules:
       - install yt-dlp /app/bin
     sources:
       - type: archive
-        url: https://github.com/yt-dlp/yt-dlp/releases/download/2025.03.31/yt-dlp.tar.gz
-        sha256: 23ab23b7dffada34f98ecbffc3da763834ee3b0d969d5d10f8436ca6c32ca9eb
+        url: https://github.com/yt-dlp/yt-dlp/releases/download/2025.04.30/yt-dlp.tar.gz
+        sha256: feb3113fc38c1c0f987d2cfcb7366fed65fa508ff302e7bd8ac9be87c7774b31
         x-checker-data:
           type: json
           url: https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest
@@ -733,7 +733,7 @@ modules:
       - type: archive
         url: https://github.com/vcrhonek/hwdata/archive/refs/tags/v0.394.tar.gz
         sha256: b7c3fd7214a3b7c49d2661db127a712dc11cffd1799f793947aa1cb20aaf3298
-        
+
   - name: libdisplay-info
     buildsystem: meson
 
@@ -741,10 +741,10 @@ modules:
       - type: archive
         url: https://gitlab.freedesktop.org/emersion/libdisplay-info/-/archive/0.2.0/libdisplay-info-0.2.0.tar.gz
         sha256: f7331fcaf5527251b84c8fb84238d06cd2f458422ce950c80e86c72927aa8c2b
-        
+
   - name: mpv
     buildsystem: meson
-    
+
     config-opts:
       - -Dalsa=enabled
       - -Dbuild-date=false
