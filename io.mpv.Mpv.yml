@@ -126,8 +126,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/LuaJIT/LuaJIT.git
-        mirror-urls:
-          - https://luajit.org/git/luajit.git
+        #mirror-urls:
+        #  - https://luajit.org/git/luajit.git
         disable-shallow-clone: true
         commit: eec7a8016c3381b949b5d84583800d05897fa960
         x-checker-data:
@@ -436,8 +436,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/breakfastquay/rubberband.git
-        mirror-urls:
-          - https://hg.sr.ht/~breakfastquay/rubberband
+        #mirror-urls:
+        #  - https://hg.sr.ht/~breakfastquay/rubberband
         tag: v4.0.0
         commit: 1d95888bec3ae0a17c0c4af791810d5a63f6bc35
         x-checker-data:
@@ -459,8 +459,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/ccxvii/mujs.git
-        mirror-urls:
-          - http://git.ghostscript.com/mujs.git
+        #mirror-urls:
+        #  - http://git.ghostscript.com/mujs.git
         tag: 1.3.6
         commit: cc569c5fa9a7a2498177693b5617605c2ff5b260
         x-checker-data:
@@ -477,8 +477,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/FFmpeg/nv-codec-headers.git
-        mirror-urls:
-          - https://git.videolan.org/git/ffmpeg/nv-codec-headers.git
+        #mirror-urls:
+        #  - https://git.videolan.org/git/ffmpeg/nv-codec-headers.git
         tag: n13.0.19.0
         commit: e844e5b26f46bb77479f063029595293aa8f812d
         x-checker-data:
@@ -623,8 +623,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/FFmpeg/FFmpeg.git
-        mirror-urls:
-          - https://git.ffmpeg.org/ffmpeg.git
+        #mirror-urls:
+        #  - https://git.ffmpeg.org/ffmpeg.git
         commit: db69d06eeeab4f46da15030a80d539efb4503ca8
         tag: n7.1.1
         x-checker-data:
@@ -672,8 +672,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/haasn/libplacebo.git
-        mirror-urls:
-          - https://code.videolan.org/videolan/libplacebo.git
+        #mirror-urls:
+        #  - https://code.videolan.org/videolan/libplacebo.git
         tag: v7.351.0
         commit: 3188549fba13bbdf3a5a98de2a38c2e71f04e21e
         x-checker-data:
