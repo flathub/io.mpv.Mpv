@@ -674,11 +674,14 @@ modules:
         url: https://github.com/haasn/libplacebo.git
         #mirror-urls:
         #  - https://code.videolan.org/videolan/libplacebo.git
-        tag: v7.351.0
-        commit: 3188549fba13bbdf3a5a98de2a38c2e71f04e21e
-        x-checker-data:
-          type: git
-          tag-pattern: ^v([\d.]+)$
+        tag: v7.349.0
+        commit: 1fd3c7bde7b943fe8985c893310b5269a09b46c5
+        # Disabled libplacebo update above v7.349.0, though it compiles, but videos do not play/work with freedesktop sdk 24.08 due to vulkan 1.0; perhaps 25.08 may work.
+        #x-checker-data:
+        #  type: git
+        #  tag-pattern: ^v([\d.]+)$
+
+## The following not needed as of freedesktop 24.08
 #    modules:
 #      - name: shaderc
 #        buildsystem: cmake-ninja
