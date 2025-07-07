@@ -802,9 +802,6 @@ modules:
       - -Dxv=enabled
       - -Dzimg=enabled
       - -Dzlib=enabled
-    cleanup:
-      - /include
-      - /lib/pkgconfig
     post-install:
       - mv /app/bin/mpv /app/bin/mpv-bin
       # save screenshots at xdg-pictures/mpv
