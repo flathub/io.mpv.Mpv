@@ -75,8 +75,8 @@ modules:
     sources:
       - type: archive
         archive-type: tar
-        url: https://download.samba.org/pub/samba/stable/samba-4.22.2.tar.gz
-        sha256: d9ac8e224a200159e62c651cf42307dc162212ec25d04eb6800b9a7ccfbcc3c1
+        url: https://download.samba.org/pub/samba/stable/samba-4.22.3.tar.gz
+        sha256: 8fd7092629a3596d935cd7567d934979f94272918ec3affd0cc807934ecf22ba
         x-checker-data:
           type: html
           url: https://download.samba.org/pub/samba/stable/?C=M;O=D
@@ -129,7 +129,7 @@ modules:
         #mirror-urls:
         #  - https://luajit.org/git/luajit.git
         disable-shallow-clone: true
-        commit: f9140a622a0c44a99efb391cc1c2358bc8098ab7
+        commit: 871db2c84ecefd70a850e03a6c340214a81739f0
         x-checker-data:
           type: json
           url: https://api.github.com/repos/LuaJIT/LuaJIT/branches/v2.1
@@ -150,8 +150,8 @@ modules:
       - install yt-dlp /app/bin
     sources:
       - type: archive
-        url: https://github.com/yt-dlp/yt-dlp/releases/download/2025.06.09/yt-dlp.tar.gz
-        sha256: 46497ade23be173595d0bbdb41553873733696e0272fec5918cdcaebe17549aa
+        url: https://github.com/yt-dlp/yt-dlp/releases/download/2025.07.21/yt-dlp.tar.gz
+        sha256: 36cbd8a36c30c8a17c13faf452118c1ee8ba1aeb8516aa4ead6f17d8a6e4a10a
         x-checker-data:
           type: json
           url: https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest
@@ -415,8 +415,8 @@ modules:
       - --with-pic
     sources:
       - type: archive
-        url: https://github.com/ImageMagick/ImageMagick/archive/7.1.1-47.tar.gz
-        sha256: 818e21a248986f15a6ba0221ab3ccbaed3d3abee4a6feb4609c6f2432a30d7ed
+        url: https://github.com/ImageMagick/ImageMagick/archive/7.1.2-0.tar.gz
+        sha256: 03fe29e376b5938255b3fdb8d1f50515caa48055c0c2743faaeea52fc673a38b
         x-checker-data:
           type: anitya
           project-id: 1372
@@ -461,8 +461,8 @@ modules:
         url: https://github.com/ccxvii/mujs.git
         #mirror-urls:
         #  - http://git.ghostscript.com/mujs.git
-        tag: 1.3.6
-        commit: cc569c5fa9a7a2498177693b5617605c2ff5b260
+        tag: 1.3.7
+        commit: 05cd646bad083ed45e9e1c9846ea671d461ced30
         x-checker-data:
           type: git
           url: https://api.github.com/repos/ccxvii/mujs/tags
@@ -862,12 +862,12 @@ modules:
     buildsystem: autotools
     sources:
       - type: archive
-        url: https://ftp.gnu.org/gnu/ed/ed-1.21.1.tar.lz
+        url: https://ftp.gnu.org/gnu/ed/ed-1.22.1.tar.lz
         mirror-urls:
           - https://mirrors.kernel.org/gnu/ed/ed-1.20.1.tar.lz
           - https://mirrors.ocf.berkeley.edu/gnu/ed/ed-1.20.1.tar.lz
           - https://ftpmirror.gnu.org/gnu/ed/ed-1.20.1.tar.lz
-        sha256: d6d0c7192b02b0519c902a93719053e865ade5a784a3b327d93d888457b23c4b
+        sha256: 1af541116796d6b9e4b66ef9c45ddce0e15a19ed62bfca362ccd7d472cc1c8fb
         x-checker-data:
           type: html
           url: https://ftp.gnu.org/gnu/ed/
@@ -1007,8 +1007,8 @@ modules:
       - pip3 install --prefix=/app certifi-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/84/ae/320161bd181fc06471eed047ecce67b693fd7515b16d495d8932db763426/certifi-2025.6.15-py3-none-any.whl
-        sha256: 2e0c7ce7cb5d8f8634ca55d2ba7e6ec2689a2fd6537d8dec1296a477a4910057
+        url: https://files.pythonhosted.org/packages/e5/48/1549795ba7742c948d2ad169c1c8cdbae65bc450d6cd753d124b17c8cd32/certifi-2025.8.3-py3-none-any.whl
+        sha256: f6c12493cfb1b06ba2ff328595af9350c65d6644968e5d3a2ffd78699af217a5
         x-checker-data:
           type: pypi
           name: certifi
@@ -1123,8 +1123,8 @@ modules:
       - pip3 install --prefix=/app typing*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/69/e0/552843e0d356fbb5256d21449fa957fa4eff3bbc135a74a691ee70c7c5da/typing_extensions-4.14.0-py3-none-any.whl
-        sha256: a1514509136dd0b477638fc68d6a91497af5076466ad0fa6c338e44e359944af
+        url: https://files.pythonhosted.org/packages/b5/00/d631e67a838026495268c2f6884f3711a15a9a2a96cd244fdaea53b823fb/typing_extensions-4.14.1-py3-none-any.whl
+        sha256: d1e1e3b58374dc93031d6eda2420a48ea44a36c2b4766a4fdeb3710755731d76
         x-checker-data:
           type: pypi
           name: typing-extensions
