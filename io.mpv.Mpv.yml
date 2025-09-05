@@ -626,7 +626,7 @@ modules:
         url: https://github.com/FFmpeg/FFmpeg.git
         #mirror-urls:
         #  - https://git.ffmpeg.org/ffmpeg.git
-        commit: 7fd967c2c1694d30dc131a372269be12fdf46f93
+        commit: 140fd653aed8cad774f991ba083e2d01e86420c7
         tag: n8.0
         x-checker-data:
           type: git
