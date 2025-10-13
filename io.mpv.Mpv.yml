@@ -626,8 +626,8 @@ modules:
         url: https://github.com/FFmpeg/FFmpeg.git
         #mirror-urls:
         #  - https://git.ffmpeg.org/ffmpeg.git
-        commit: db69d06eeeab4f46da15030a80d539efb4503ca8
-        tag: n7.1.1
+        commit: 140fd653aed8cad774f991ba083e2d01e86420c7
+        tag: n8.0
         x-checker-data:
           type: git
           tag-pattern: ^n([\d.]{3,7})$
@@ -831,6 +831,11 @@ modules:
           - mkdir -p /app/share/appdata
           - mv io.mpv.Mpv.appdata.xml /app/share/appdata/io.mpv.Mpv.appdata.xml
           - chmod 644 /app/share/appdata/io.mpv.Mpv.appdata.xml
+
+      # required to build against ffmpeg 8.0
+      # https://github.com/mpv-player/mpv/commit/26b29fba02a2782f68e2906f837d21201fc6f1b9
+      - type: patch
+        path: demux_mkv-fix-compilation-after-deprecated-definitio.patch
 
 
 # Scripts for mpv
