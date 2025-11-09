@@ -141,23 +141,44 @@ modules:
         commands:
           - sed -i 's|/usr/local|/app|' ./Makefile
 
-  - name: yt-dlp-ejs
-    buildsystem: simple
-    build-commands:
-      - pip3 install --prefix=/app yt-dlp-ejs
-    sources:
-      - type: file
-        url: https://files.pythonhosted.org/packages/e7/fd/34fbdaf0d53386c47e219c532a479766cd9336fde34c00834c8e0123df7a/yt_dlp_ejs-0.3.1-py3-none-any.whl
-        sha256: a6e3548874db7c774388931752bb46c7f4642c044b2a189e56968f3d5ecab622  
   - name: deno
     buildsystem: simple
     build-commands:
-      - unzip deno-x86_64-unknown-linux-gnu.zip
-      - install deno /app/bin
+      - install -Dm755 deno /app/bin/deno
     sources:
-      - type: archive
-        url: https://github.com/denoland/deno/archive/refs/tags/v2.5.6.tar.gz  # Latest as of Nov 2025
-        sha256: cc12a16d167f754f6e473fa8dba6a7a536761463091c15c44b4a6d43ac80c5f5  # From release
+      # -------- x86_64 build --------
+      - type: file
+        only-arches:
+          - x86_64
+        url: https://github.com/denoland/deno/releases/download/v2.5.6/deno-x86_64-unknown-linux-gnu.zip
+        sha256: fd4f6abc1b6a134fa9a4dba56519f1631f44c88e04e4e3e9a8ff5975dfa66e1a
+        dest-filename: deno.zip
+
+      # -------- aarch64 build --------
+      - type: file
+        only-arches:
+          - aarch64
+        url: https://github.com/denoland/deno/releases/download/v2.5.6/deno-aarch64-unknown-linux-gnu.zip
+        sha256: f5e60ae3dfceb61e5e5a41f22129e40a8bc17f6393b59e75d7ca19ceef32d824
+        dest-filename: deno.zip
+
+      # -------- unpack the zip --------
+      - type: shell
+        commands:
+          - unzip deno.zip
+
+  - name: yt-dlp-ejs
+    buildsystem: simple
+    build-commands:
+      - pip3 install --prefix=/app yt_dlp_ejs*.whl
+    sources:
+      - type: file
+        url: https://github.com/yt-dlp/ejs/releases/download/0.3.1/yt_dlp_ejs-0.3.1-py3-none-any.whl
+        sha256: a6e3548874db7c774388931752bb46c7f4642c044b2a189e56968f3d5ecab622  
+        x-checker-data:
+          type: pypi
+          name: yt-dlp-ejs
+          packagetype: bdist_wheel    
         
   - name: yt-dlp
     no-autogen: true
