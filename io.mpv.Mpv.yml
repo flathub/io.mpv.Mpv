@@ -21,7 +21,8 @@ finish-args:
   - --env=LC_NUMERIC=C
   - --env=XCURSOR_PATH=/run/host/user-share/icons:/run/host/share/icons
   - --filesystem=xdg-run/pipewire-0:ro
-
+  - --env=YT_DLP_JS_RUNTIME=deno
+  
 #  mpris support via dbus
   - --own-name=org.mpris.MediaPlayer2.mpv.*
   - --talk-name=org.gnome.SessionManager
@@ -140,6 +141,24 @@ modules:
         commands:
           - sed -i 's|/usr/local|/app|' ./Makefile
 
+  - name: yt-dlp-ejs
+    buildsystem: simple
+    build-commands:
+      - pip3 install --prefix=/app yt-dlp-ejs
+    sources:
+      - type: file
+        url: https://files.pythonhosted.org/packages/e7/fd/34fbdaf0d53386c47e219c532a479766cd9336fde34c00834c8e0123df7a/yt_dlp_ejs-0.3.1-py3-none-any.whl
+        sha256: a6e3548874db7c774388931752bb46c7f4642c044b2a189e56968f3d5ecab622  
+  - name: deno
+    buildsystem: simple
+    build-commands:
+      - unzip deno-x86_64-unknown-linux-gnu.zip
+      - install deno /app/bin
+    sources:
+      - type: archive
+        url: https://github.com/denoland/deno/archive/refs/tags/v2.5.6.tar.gz  # Latest as of Nov 2025
+        sha256: cc12a16d167f754f6e473fa8dba6a7a536761463091c15c44b4a6d43ac80c5f5  # From release
+        
   - name: yt-dlp
     no-autogen: true
     no-make-install: true
@@ -347,8 +366,8 @@ modules:
         type: archive
         url: https://download.videolan.org/pub/videolan/libbluray/1.4.0/libbluray-1.4.0.tar.xz
         mirror-urls:
-          - https://videolan.mirror.ba/libbluray/1.3.4/libbluray-1.3.4.tar.bz2
-          - https://videolan.c3sl.ufpr.br/libbluray/1.3.4/libbluray-1.3.4.tar.bz2
+          - https://videolan.mirror.ba/libbluray/1.4.0/libbluray-1.4.0.tar.xz
+          - https://videolan.c3sl.ufpr.br/libbluray/1.4.0/libbluray-1.4.0.tar.xz
         x-checker-data:
           type: html
           url: https://www.videolan.org/developers/libbluray.html
