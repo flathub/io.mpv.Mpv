@@ -1,0 +1,26 @@
+From 6e163c978a7c13a6d3ff64a1e3dd4ba81d2d9e09 Mon Sep 17 00:00:00 2001
+From: Heiko Becker <mail@heiko-becker.de>
+Date: Thu, 20 Feb 2025 23:18:54 +0100
+Subject: [PATCH] CMake: Raise required version to 3.5
+
+CMake >= 4.0.0-rc1 removed compatibility with versions < 3.5 and errors
+out with such versions passed to cmake_minimum_required(). 3.5.0 has
+been released 9 years ago, so I'd assume it's available almost everywhere.
+---
+ CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 3a5735b..685f714 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -1,5 +1,5 @@
+ ######## Project settings
+-cmake_minimum_required(VERSION 3.1)
++cmake_minimum_required(VERSION 3.5)
+ include(CheckCCompilerFlag)
+ set (PACKAGE_NAME uchardet)
+ project (${PACKAGE_NAME} CXX C)
+-- 
+GitLab
+
