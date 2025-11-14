@@ -22,7 +22,7 @@ finish-args:
   - --env=XCURSOR_PATH=/run/host/user-share/icons:/run/host/share/icons
   - --filesystem=xdg-run/pipewire-0:ro
   - --env=YT_DLP_JS_RUNTIME=deno
-  
+
 #  mpris support via dbus
   - --own-name=org.mpris.MediaPlayer2.mpv.*
   - --talk-name=org.gnome.SessionManager
@@ -76,8 +76,8 @@ modules:
     sources:
       - type: archive
         archive-type: tar
-        url: https://download.samba.org/pub/samba/stable/samba-4.23.2.tar.gz
-        sha256: 2de330647e1486683597e261285d04a9b7514ab5c7da27711736e22c7f2b9c2e
+        url: https://download.samba.org/pub/samba/stable/samba-4.23.3.tar.gz
+        sha256: 06cdbb27a6956978b045455fe0696d998ffbac8d24ba24de87a4ef8200813320
         x-checker-data:
           type: html
           url: https://download.samba.org/pub/samba/stable/?C=M;O=D
@@ -130,7 +130,7 @@ modules:
         #mirror-urls:
         #  - https://luajit.org/git/luajit.git
         disable-shallow-clone: true
-        commit: 8518c0b40b1734901de888a0a363450c0709d3f8
+        commit: fdf2379ccba1eb68ff07f8bc48541568f5bbdfbf
         x-checker-data:
           type: json
           url: https://api.github.com/repos/LuaJIT/LuaJIT/branches/v2.1
@@ -173,13 +173,13 @@ modules:
       - pip3 install --prefix=/app yt_dlp_ejs*.whl
     sources:
       - type: file
-        url: https://github.com/yt-dlp/ejs/releases/download/0.3.1/yt_dlp_ejs-0.3.1-py3-none-any.whl
-        sha256: a6e3548874db7c774388931752bb46c7f4642c044b2a189e56968f3d5ecab622  
+        url: https://files.pythonhosted.org/packages/e7/fd/34fbdaf0d53386c47e219c532a479766cd9336fde34c00834c8e0123df7a/yt_dlp_ejs-0.3.1-py3-none-any.whl
+        sha256: a6e3548874db7c774388931752bb46c7f4642c044b2a189e56968f3d5ecab622
         x-checker-data:
           type: pypi
           name: yt-dlp-ejs
-          packagetype: bdist_wheel    
-        
+          packagetype: bdist_wheel
+
   - name: yt-dlp
     no-autogen: true
     no-make-install: true
