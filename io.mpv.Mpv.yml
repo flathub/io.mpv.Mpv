@@ -1,6 +1,6 @@
 id: io.mpv.Mpv
 runtime: org.freedesktop.Platform
-runtime-version: '24.08'
+runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
 command: mpv
 rename-desktop-file: mpv.desktop
@@ -203,6 +203,8 @@ modules:
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
       - -DBUILD_STATIC=0
+      # TODO can be removed when updating to uchardet > 0.0.8
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
     cleanup:
       - /bin
       - /include
@@ -553,6 +555,8 @@ modules:
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
       - -DBUILD_STATIC=0
+      # TODO can be removed when updating to x265 > 4.1
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
     cleanup:
       - /include
       - /lib/pkgconfig
@@ -566,6 +570,11 @@ modules:
         #x-checker-data:
         #  type: git
         #  tag-pattern: ^([\d.]+)$
+
+      # fix cmake build issue
+      # https://bitbucket.org/multicoreware/x265_git/commits/b354c009a60bcd6d7fc04014e200a1ee9c45c167
+      - type: patch
+        path: patches/x265-cmake_policy.patch
 
   - name: libmysofa
     buildsystem: cmake
@@ -722,6 +731,11 @@ modules:
         #  type: git
         #  tag-pattern: ^v([\d.]+)$
 
+      # fix python error: TypeError: expected an Element, not ElementTree
+      # https://code.videolan.org/videolan/libplacebo/-/commit/12509c0f1ee8c22ae163017f0a5e7b8a9d983a17
+      - type: patch
+        path: patches/libplacebo-vulkan-utils_gen-python.patch
+
 ## The following not needed as of freedesktop 24.08
 #    modules:
 #      - name: shaderc
@@ -875,7 +889,7 @@ modules:
       # required to build against ffmpeg 8.0
       # https://github.com/mpv-player/mpv/commit/26b29fba02a2782f68e2906f837d21201fc6f1b9
       - type: patch
-        path: demux_mkv-fix-compilation-after-deprecated-definitio.patch
+        path: patches/mpv-demux_mkv-fix-compilation-after-deprecated-definitio.patch
 
 
 # Scripts for mpv
@@ -943,8 +957,17 @@ modules:
   - name: python_dateutil
     buildsystem: simple
     build-commands:
-      - pip3 install --prefix=/app python_dateutil*.whl
+      - pip3 install --prefix=/app six*.whl python_dateutil*.whl
     sources:
+      # install six to fix https://github.com/dateutil/dateutil/issues/1430
+      - type: file
+        url: https://files.pythonhosted.org/packages/b7/ce/149a00dd41f10bc29e5921b496af8b574d8413afcd5e30dfa0ed46c2cc5e/six-1.17.0-py2.py3-none-any.whl
+        sha256: 4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274
+        x-checker-data:
+          type: pypi
+          name: six
+          packagetype: bdist_wheel
+
       - type: file
         url: https://files.pythonhosted.org/packages/ec/57/56b9bcc3c9c6a792fcbaf139543cee77261f3651ca9da0c93f5c1221264b/python_dateutil-2.9.0.post0-py2.py3-none-any.whl
         sha256: a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427
