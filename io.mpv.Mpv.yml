@@ -22,7 +22,7 @@ finish-args:
   - --env=XCURSOR_PATH=/run/host/user-share/icons:/run/host/share/icons
   - --filesystem=xdg-run/pipewire-0:ro
   - --env=YT_DLP_JS_RUNTIME=deno
-  
+
 #  mpris support via dbus
   - --own-name=org.mpris.MediaPlayer2.mpv.*
   - --talk-name=org.gnome.SessionManager
@@ -76,8 +76,8 @@ modules:
     sources:
       - type: archive
         archive-type: tar
-        url: https://download.samba.org/pub/samba/stable/samba-4.23.2.tar.gz
-        sha256: 2de330647e1486683597e261285d04a9b7514ab5c7da27711736e22c7f2b9c2e
+        url: https://download.samba.org/pub/samba/stable/samba-4.23.3.tar.gz
+        sha256: 06cdbb27a6956978b045455fe0696d998ffbac8d24ba24de87a4ef8200813320
         x-checker-data:
           type: html
           url: https://download.samba.org/pub/samba/stable/?C=M;O=D
@@ -130,7 +130,7 @@ modules:
         #mirror-urls:
         #  - https://luajit.org/git/luajit.git
         disable-shallow-clone: true
-        commit: 8518c0b40b1734901de888a0a363450c0709d3f8
+        commit: e17ee83326f73d2bbfce5750ae8dc592a3b63c27
         x-checker-data:
           type: json
           url: https://api.github.com/repos/LuaJIT/LuaJIT/branches/v2.1
@@ -173,13 +173,13 @@ modules:
       - pip3 install --prefix=/app yt_dlp_ejs*.whl
     sources:
       - type: file
-        url: https://github.com/yt-dlp/ejs/releases/download/0.3.1/yt_dlp_ejs-0.3.1-py3-none-any.whl
-        sha256: a6e3548874db7c774388931752bb46c7f4642c044b2a189e56968f3d5ecab622  
+        url: https://files.pythonhosted.org/packages/e7/fd/34fbdaf0d53386c47e219c532a479766cd9336fde34c00834c8e0123df7a/yt_dlp_ejs-0.3.1-py3-none-any.whl
+        sha256: a6e3548874db7c774388931752bb46c7f4642c044b2a189e56968f3d5ecab622
         x-checker-data:
           type: pypi
           name: yt-dlp-ejs
-          packagetype: bdist_wheel    
-        
+          packagetype: bdist_wheel
+
   - name: yt-dlp
     no-autogen: true
     no-make-install: true
@@ -666,8 +666,8 @@ modules:
         url: https://github.com/FFmpeg/FFmpeg.git
         #mirror-urls:
         #  - https://git.ffmpeg.org/ffmpeg.git
-        commit: 140fd653aed8cad774f991ba083e2d01e86420c7
-        tag: n8.0
+        commit: 894da5ca7d742e4429ffb2af534fcda0103ef593
+        tag: n8.0.1
         x-checker-data:
           type: git
           tag-pattern: ^n([\d.]{3,7})$
@@ -1053,8 +1053,8 @@ modules:
       - pip3 install --prefix=/app certifi-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/e4/37/af0d2ef3967ac0d6113837b44a4f0bfe1328c2b9763bd5b1744520e5cfed/certifi-2025.10.5-py3-none-any.whl
-        sha256: 0f212c2744a9bb6de0c56639a6f68afe01ecd92d91f14ae897c4fe7bbeeef0de
+        url: https://files.pythonhosted.org/packages/70/7d/9bc192684cea499815ff478dfcdc13835ddf401365057044fb721ec6bddb/certifi-2025.11.12-py3-none-any.whl
+        sha256: 97de8790030bbd5c2d96b7ec782fc2f7820ef8dba6db909ccf95449f2d062d4b
         x-checker-data:
           type: pypi
           name: certifi
@@ -1195,8 +1195,8 @@ modules:
       - pip3 install --prefix=/app click-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/db/d3/9dcc0f5797f070ec8edf30fbadfb200e71d9db6b84d211e3b2085a7589a0/click-8.3.0-py3-none-any.whl
-        sha256: 9b9f285302c6e3064f4330c05f05b81945b2a39544279343e6e7c5f27a9baddc
+        url: https://files.pythonhosted.org/packages/98/78/01c019cdb5d6498122777c1a43056ebb3ebfeef2076d9d026bfe15583b2b/click-8.3.1-py3-none-any.whl
+        sha256: 981153a64e25f12d547d3426c367a4857371575ee7ad18df2a6183ab0545b2a6
         x-checker-data:
           type: pypi
           name: click
