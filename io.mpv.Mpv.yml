@@ -303,8 +303,7 @@ modules:
           url-template: https://ftp.gnu.org/gnu/libcdio/libcdio-paranoia-$version.tar.bz2
 
   - name: libdvdread
-    config-opts:
-      - --disable-static
+    buildsystem: meson
     cleanup:
       - /include
       - /lib/pkgconfig
@@ -322,8 +321,7 @@ modules:
           url-template: https://download.videolan.org/pub/videolan/libdvdread/$version/libdvdread-$version.tar.xz
 
   - name: libdvdnav
-    config-opts:
-      - --disable-static
+    buildsystem: meson
     cleanup:
       - /include
       - /lib/pkgconfig
