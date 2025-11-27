@@ -130,7 +130,7 @@ modules:
         #mirror-urls:
         #  - https://luajit.org/git/luajit.git
         disable-shallow-clone: true
-        commit: e17ee83326f73d2bbfce5750ae8dc592a3b63c27
+        commit: b973c6243d4aab73e5c3df0d7264258b0672fa7e
         x-checker-data:
           type: json
           url: https://api.github.com/repos/LuaJIT/LuaJIT/branches/v2.1
@@ -658,8 +658,8 @@ modules:
         url: https://github.com/FFmpeg/FFmpeg.git
         #mirror-urls:
         #  - https://git.ffmpeg.org/ffmpeg.git
-        commit: 140fd653aed8cad774f991ba083e2d01e86420c7
-        tag: n8.0
+        commit: 894da5ca7d742e4429ffb2af534fcda0103ef593
+        tag: n8.0.1
         x-checker-data:
           type: git
           tag-pattern: ^n([\d.]{3,7})$
@@ -1072,8 +1072,8 @@ modules:
       - pip3 install --prefix=/app stevedore-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/80/c5/0c06759b95747882bb50abda18f5fb48c3e9b0fbfc6ebc0e23550b52415d/stevedore-5.5.0-py3-none-any.whl
-        sha256: 18363d4d268181e8e8452e71a38cd77630f345b2ef6b4a8d5614dac5ee0d18cf
+        url: https://files.pythonhosted.org/packages/f4/40/8561ce06dc46fd17242c7724ab25b257a2ac1b35f4ebf551b40ce6105cfa/stevedore-5.6.0-py3-none-any.whl
+        sha256: 4a36dccefd7aeea0c70135526cecb7766c4c84c473b1af68db23d541b6dc1820
         x-checker-data:
           type: pypi
           name: stevedore
