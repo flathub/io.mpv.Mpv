@@ -130,7 +130,7 @@ modules:
         #mirror-urls:
         #  - https://luajit.org/git/luajit.git
         disable-shallow-clone: true
-        commit: b973c6243d4aab73e5c3df0d7264258b0672fa7e
+        commit: 7152e15489d2077cd299ee23e3d51a4c599ab14f
         x-checker-data:
           type: json
           url: https://api.github.com/repos/LuaJIT/LuaJIT/branches/v2.1
@@ -173,8 +173,8 @@ modules:
       - pip3 install --prefix=/app yt_dlp_ejs*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/e7/fd/34fbdaf0d53386c47e219c532a479766cd9336fde34c00834c8e0123df7a/yt_dlp_ejs-0.3.1-py3-none-any.whl
-        sha256: a6e3548874db7c774388931752bb46c7f4642c044b2a189e56968f3d5ecab622
+        url: https://files.pythonhosted.org/packages/9d/0d/1f0d7a735ca60b87953271b15d00eff5eef05f6118390ddf6f81982526ed/yt_dlp_ejs-0.3.2-py3-none-any.whl
+        sha256: f2dc6b3d1b909af1f13e021621b0af048056fca5fb07c4db6aa9bbb37a4f66a9
         x-checker-data:
           type: pypi
           name: yt-dlp-ejs
@@ -190,8 +190,8 @@ modules:
       - install yt-dlp /app/bin
     sources:
       - type: archive
-        url: https://github.com/yt-dlp/yt-dlp/releases/download/2025.11.12/yt-dlp.tar.gz
-        sha256: 561ead2e2991f11789d3cd9f9b5a2eee2641a587e2cfc1ee9631c7c1d851c0ec
+        url: https://github.com/yt-dlp/yt-dlp/releases/download/2025.12.08/yt-dlp.tar.gz
+        sha256: 9814ae7dd4118a80a6104399d4984e355d2a71f78e6bbc48137a5b299eddcbaf
         x-checker-data:
           type: json
           url: https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest
@@ -455,8 +455,8 @@ modules:
       - --with-pic
     sources:
       - type: archive
-        url: https://github.com/ImageMagick/ImageMagick/archive/7.1.2-8.tar.gz
-        sha256: acf76a9dafbd18f4dd7b24c45ca10c77e31289fc28e4da0ce5cc3929fd0aef16
+        url: https://github.com/ImageMagick/ImageMagick/archive/7.1.2-10.tar.gz
+        sha256: 122c961331044844141aef59f050e2bb3a0c89833c613950770d3672c4f2e4e8
         x-checker-data:
           type: anitya
           project-id: 1372
@@ -903,12 +903,12 @@ modules:
     buildsystem: autotools
     sources:
       - type: archive
-        url: https://ftp.gnu.org/gnu/ed/ed-1.22.2.tar.lz
+        url: https://ftp.gnu.org/gnu/ed/ed-1.22.3.tar.lz
         mirror-urls:
           - https://mirrors.kernel.org/gnu/ed/ed-1.20.1.tar.lz
           - https://mirrors.ocf.berkeley.edu/gnu/ed/ed-1.20.1.tar.lz
           - https://ftpmirror.gnu.org/gnu/ed/ed-1.20.1.tar.lz
-        sha256: f58d15242056e15af76f13f34c60d890fa2a2d5cb0abef91c115e4d83794ffe3
+        sha256: 47a55ddfc52d4a1ff6f7559fbd00cf948a16b6cf151ec520392761aeae4e97be
         x-checker-data:
           type: html
           url: https://ftp.gnu.org/gnu/ed/
@@ -1225,8 +1225,8 @@ modules:
       - pip3 install --prefix=/app beautifulsoup4-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/94/fe/3aed5d0be4d404d12d36ab97e2f1791424d9ca39c2f754a6285d59a3b01d/beautifulsoup4-4.14.2-py3-none-any.whl
-        sha256: 5ef6fa3a8cbece8488d66985560f97ed091e22bbc4e9c2338508a9d5de6d4515
+        url: https://files.pythonhosted.org/packages/1a/39/47f9197bdd44df24d67ac8893641e16f386c984a0619ef2ee4c51fbbc019/beautifulsoup4-4.14.3-py3-none-any.whl
+        sha256: 0918bfe44902e6ad8d57732ba310582e98da931428d231a5ecb9e7c703a735bb
         x-checker-data:
           type: pypi
           name: beautifulsoup4
