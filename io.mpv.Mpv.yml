@@ -294,8 +294,8 @@ modules:
         sha256: 2e3e04a305c15c3963aa03ae1b9a83c1d239880003fcf3dde986d3943355d407
         x-checker-data:
           type: html
-          url: https://www.videolan.org/developers/libdvdnav.html
-          version-pattern: The latest version of <code>libdvdread</code> is <b>([\d\-\.]+)<
+          url: https://download.videolan.org/pub/videolan/libdvdread/last/
+          version-pattern: libdvdread-([\w.]+)\.tar\.
           url-template: https://download.videolan.org/pub/videolan/libdvdread/$version/libdvdread-$version.tar.xz
 
   - name: libdvdnav
@@ -312,8 +312,8 @@ modules:
         sha256: a2a18f5ad36d133c74bf9106b6445806fa253b09141a46392550394b647b221e
         x-checker-data:
           type: html
-          url: https://www.videolan.org/developers/libdvdnav.html
-          version-pattern: The latest version of <code>libdvdnav</code> is <b>([\d\-\.]+)</b>\.
+          url: https://download.videolan.org/pub/videolan/libdvdnav/last/
+          version-pattern: libdvdnav-([\w.]+)\.tar\.
           url-template: https://download.videolan.org/pub/videolan/libdvdnav/$version/libdvdnav-$version.tar.xz
 
   - name: libaacs
@@ -332,8 +332,8 @@ modules:
           - https://videolan.c3sl.ufpr.br/libaacs/0.11.1/libaacs-0.11.1.tar.bz2
         x-checker-data:
           type: html
-          url: https://www.videolan.org/developers/libaacs.html
-          version-pattern: Latest release is <b>libaacs (\d\.\d+\.?\d*)</b>
+          url: https://download.videolan.org/pub/videolan/libaacs/last/
+          version-pattern: libaacs-([\w.]+)\.tar\.
           url-template: https://download.videolan.org/pub/videolan/libaacs/$version/libaacs-$version.tar.bz2
 
       # fix broken detection of libgcrypt >= 1.11.0
@@ -362,8 +362,8 @@ modules:
           - https://videolan.c3sl.ufpr.br/libbluray/1.4.0/libbluray-1.4.0.tar.xz
         x-checker-data:
           type: html
-          url: https://www.videolan.org/developers/libbluray.html
-          version-pattern: Latest release is <b>libbluray (\d\.\d+\.?\d*)</b>\.
+          url: https://download.videolan.org/pub/videolan/libbluray/last/
+          version-pattern: libbluray-([\w.]+)\.tar\.
           url-template: https://download.videolan.org/pub/videolan/libbluray/$version/libbluray-$version.tar.xz
 
   - name: zimg
