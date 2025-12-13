@@ -509,54 +509,6 @@ modules:
         #  url: https://api.github.com/repos/ccxvii/mujs/tags
         #  tag-pattern: ^([\d.]+)$
 
-  - name: x264
-    cleanup:
-      - /include
-      - /lib/pkgconfig
-      - /share/man
-    config-opts:
-      - --disable-cli
-      - --enable-shared
-    sources:
-      - type: git
-        url: https://code.videolan.org/videolan/x264.git
-        commit: b35605ace3ddf7c1a5d67a2eb553f034aef41d55
-        # Every commit to the stable branch is considered a release
-        # https://code.videolan.org/videolan/x264/-/issues/35
-        x-checker-data:
-          type: json
-          url: https://code.videolan.org/api/v4/projects/536/repository/branches/stable
-          commit-query: .commit.id
-          version-query: .commit.short_id
-          timestamp-query: .commit.created_at
-
-  - name: x265
-    buildsystem: cmake
-    subdir: source
-    config-opts:
-      - -DCMAKE_BUILD_TYPE=Release
-      - -DBUILD_STATIC=0
-      # TODO can be removed when updating to x265 > 4.1
-      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
-    cleanup:
-      - /include
-      - /lib/pkgconfig
-      - /share/man
-    sources:
-      - type: git
-        url: https://bitbucket.org/multicoreware/x265_git.git
-        tag: '4.0'
-        commit: 6318f223684118a2c71f67f3f4633a9e35046b00
-        # build is failing with 4.1 will enable with 4.2
-        #x-checker-data:
-        #  type: git
-        #  tag-pattern: ^([\d.]+)$
-
-      # fix cmake build issue
-      # https://bitbucket.org/multicoreware/x265_git/commits/b354c009a60bcd6d7fc04014e200a1ee9c45c167
-      - type: patch
-        path: patches/x265-cmake_policy.patch
-
   - name: libmysofa
     buildsystem: cmake
     config-opts:
