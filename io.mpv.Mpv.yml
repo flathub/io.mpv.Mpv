@@ -647,10 +647,11 @@ modules:
         url: https://github.com/vapoursynth/vapoursynth/archive/72.tar.gz
         sha256: f8fcc5e2e9d2195454310e3356ea13e5334125891e452cc6543e985f28cacd22
         x-checker-data:
-          type: anitya
-          project-id: 15982
-          stable-only: true
-          url-template: https://github.com/vapoursynth/vapoursynth/archive/$version.tar.gz
+          type: json
+          url: https://api.github.com/repos/vapoursynth/vapoursynth/releases/latest
+          version-query: .name
+          timestamp-query: .published_at
+          url-query: .tarball_url
 
   - name: libplacebo
     buildsystem: meson
