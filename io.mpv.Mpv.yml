@@ -353,6 +353,16 @@ modules:
           version-pattern: Latest release is <b>libaacs (\d\.\d+\.?\d*)</b>
           url-template: https://download.videolan.org/pub/videolan/libaacs/$version/libaacs-$version.tar.bz2
 
+      # fix broken detection of libgcrypt >= 1.11.0
+      # see
+      #  https://gitlab.archlinux.org/archlinux/packaging/packages/libaacs/-/commit/d3f096b01f2b593ab0739f3a9eb64331b99553e7
+      #  https://salsa.debian.org/multimedia-team/libaacs/-/commit/87e3cd8aeaa165624d531b2789f9fd9e5d9c01f5
+      - type: shell
+        commands:
+          - rm --force --verbose m4/libgcrypt.m4
+          - autoreconf --force --install --verbose
+          - libtoolize
+
   - name: libbluray
     buildsystem: meson
     config-opts:
