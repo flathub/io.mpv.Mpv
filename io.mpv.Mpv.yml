@@ -668,10 +668,9 @@ modules:
         #  - https://code.videolan.org/videolan/libplacebo.git
         tag: v7.349.0
         commit: 1fd3c7bde7b943fe8985c893310b5269a09b46c5
-        # Disabled libplacebo update above v7.349.0, though it compiles, but videos do not play/work with freedesktop sdk 24.08 due to vulkan 1.0; perhaps 25.08 may work.
-        #x-checker-data:
-        #  type: git
-        #  tag-pattern: ^v([\d.]+)$
+        x-checker-data:
+          type: git
+          tag-pattern: ^v([\d.]+)$
 
       # fix python error: TypeError: expected an Element, not ElementTree
       # https://code.videolan.org/videolan/libplacebo/-/commit/12509c0f1ee8c22ae163017f0a5e7b8a9d983a17
