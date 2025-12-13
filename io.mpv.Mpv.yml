@@ -316,23 +316,6 @@ modules:
           version-pattern: The latest version of <code>libdvdnav</code> is <b>([\d\-\.]+)</b>\.
           url-template: https://download.videolan.org/pub/videolan/libdvdnav/$version/libdvdnav-$version.tar.xz
 
-  # libgcrypt-1.10.3 build fails with freedeskop 24.08
-  - name: libgcrypt
-    config-opts:
-      - --disable-static
-      - --disable-doc
-    sources:
-      - type: git
-        url: https://dev.gnupg.org/source/libgcrypt.git
-        tag: libgcrypt-1.10.3
-        commit: aa1610866f8e42bdc272584f0a717f32ee050a22
-        # disabled for libgcrypt-1.11 because of build fail
-        #x-checker-data:
-        #  type: anitya
-        #  project-id: 1623
-        #  stable-only: true
-        #  tag-template: libgcrypt-$version
-
   - name: libaacs
     config-opts:
       - --disable-static
