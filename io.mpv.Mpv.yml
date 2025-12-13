@@ -21,7 +21,6 @@ finish-args:
   - --env=LC_NUMERIC=C
   - --env=XCURSOR_PATH=/run/host/user-share/icons:/run/host/share/icons
   - --filesystem=xdg-run/pipewire-0:ro
-  - --env=YT_DLP_JS_RUNTIME=deno
 
 #  mpris support via dbus
   - --own-name=org.mpris.MediaPlayer2.mpv.*
