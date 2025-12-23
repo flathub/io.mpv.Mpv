@@ -869,8 +869,8 @@ modules:
 
       # required to build against ffmpeg 8.0
       # https://github.com/mpv-player/mpv/commit/26b29fba02a2782f68e2906f837d21201fc6f1b9
-      - type: patch
-        path: patches/mpv-demux_mkv-fix-compilation-after-deprecated-definitio.patch
+      #- type: patch
+      #  path: patches/mpv-demux_mkv-fix-compilation-after-deprecated-definitio.patch
 
 
 # Scripts for mpv
