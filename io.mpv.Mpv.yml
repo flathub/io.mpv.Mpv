@@ -818,10 +818,10 @@ modules:
       - -Dplain-gl=enabled
       - -Dpulse=enabled
       - -Drubberband=enabled
-      - -Dsdl2-audio=enabled
-      - -Dsdl2-gamepad=enabled
-      - -Dsdl2-video=enabled
-      - -Dsdl2=enabled
+      #- -Dsdl2-audio=enabled
+      #- -Dsdl2-gamepad=enabled
+      #- -Dsdl2-video=enabled
+      #- -Dsdl2=enabled
       - -Duchardet=enabled
       - -Dvaapi-drm=enabled
       - -Dvaapi-wayland=enabled
@@ -841,14 +841,15 @@ modules:
     post-install:
       - mv /app/bin/mpv /app/bin/mpv-bin
       # save screenshots at xdg-pictures/mpv
+      - mkdir -p /app/etc/mpv
       - echo "screenshot-directory=~/.var/app/io.mpv.Mpv/Pictures/mpv" > /app/etc/mpv/mpv.conf
       - sed  '/^X-KDE-Protocols/s/,smb//; /^X-KDE-Protocols/s/smb,//; /^X-KDE-Protocols/s/smb//;
         /^X-KDE-Protocols=$/d' -i /app/share/applications/mpv.desktop
     sources:
       - type: git
         url: https://github.com/mpv-player/mpv.git
-        tag: v0.40.0
-        commit: e48ac7ce08462f5e33af6ef9deeac6fa87eef01e
+        tag: v0.41.0
+        commit: 41f6a645068483470267271e1d09966ca3b9f413
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -869,8 +870,8 @@ modules:
 
       # required to build against ffmpeg 8.0
       # https://github.com/mpv-player/mpv/commit/26b29fba02a2782f68e2906f837d21201fc6f1b9
-      - type: patch
-        path: patches/mpv-demux_mkv-fix-compilation-after-deprecated-definitio.patch
+      #- type: patch
+      #  path: patches/mpv-demux_mkv-fix-compilation-after-deprecated-definitio.patch
 
 
 # Scripts for mpv
