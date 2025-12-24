@@ -818,10 +818,10 @@ modules:
       - -Dplain-gl=enabled
       - -Dpulse=enabled
       - -Drubberband=enabled
-      - -Dsdl2-audio=enabled
-      - -Dsdl2-gamepad=enabled
-      - -Dsdl2-video=enabled
-      - -Dsdl2=enabled
+      #- -Dsdl2-audio=enabled
+      #- -Dsdl2-gamepad=enabled
+      #- -Dsdl2-video=enabled
+      #- -Dsdl2=enabled
       - -Duchardet=enabled
       - -Dvaapi-drm=enabled
       - -Dvaapi-wayland=enabled
