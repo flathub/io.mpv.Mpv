@@ -21,7 +21,6 @@ finish-args:
   - --env=LC_NUMERIC=C
   - --env=XCURSOR_PATH=/run/host/user-share/icons:/run/host/share/icons
   - --filesystem=xdg-run/pipewire-0:ro
-  - --env=YT_DLP_JS_RUNTIME=deno
 
 #  mpris support via dbus
   - --own-name=org.mpris.MediaPlayer2.mpv.*
@@ -238,28 +237,6 @@ modules:
           type: git
           tag-pattern: ^(\d\.\d{1,3}\.\d{1,2})$
 
-#  - name: libv4l2
-#    buildsystem: meson
-#    cleanup:
-#      - /include
-#      - /lib/pkgconfig
-#      - /share/man
-#    config-opts:
-#      - -Ddoxygen-html=false
-#      - -Ddoxygen-doc=disabled
-#      - -Dbpf=disabled
-#      - -Dudevdir=/app/lib/udev
-#    sources:
-#      - type: git
-#        url: https://git.linuxtv.org/v4l-utils.git
-#        mirror-urls:
-#          - https://github.com/gjasny/v4l-utils.git
-#        tag: v4l-utils-1.28.1
-#        commit: fc15e229d9d337e46d730f00647821adbbd58548
-#        x-checker-data:
-#          type: git
-#          tag-pattern: ^v4l-utils-([\d.]+)$
-#
   - name: libcdio
     config-opts:
       - --disable-static
@@ -316,8 +293,8 @@ modules:
         sha256: 2e3e04a305c15c3963aa03ae1b9a83c1d239880003fcf3dde986d3943355d407
         x-checker-data:
           type: html
-          url: https://www.videolan.org/developers/libdvdnav.html
-          version-pattern: The latest version of <code>libdvdread</code> is <b>([\d\-\.]+)<
+          url: https://download.videolan.org/pub/videolan/libdvdread/last/
+          version-pattern: libdvdread-([\w.]+)\.tar\.
           url-template: https://download.videolan.org/pub/videolan/libdvdread/$version/libdvdread-$version.tar.xz
 
   - name: libdvdnav
@@ -334,26 +311,9 @@ modules:
         sha256: a2a18f5ad36d133c74bf9106b6445806fa253b09141a46392550394b647b221e
         x-checker-data:
           type: html
-          url: https://www.videolan.org/developers/libdvdnav.html
-          version-pattern: The latest version of <code>libdvdnav</code> is <b>([\d\-\.]+)</b>\.
+          url: https://download.videolan.org/pub/videolan/libdvdnav/last/
+          version-pattern: libdvdnav-([\w.]+)\.tar\.
           url-template: https://download.videolan.org/pub/videolan/libdvdnav/$version/libdvdnav-$version.tar.xz
-
-  # libgcrypt-1.10.3 build fails with freedeskop 24.08
-  - name: libgcrypt
-    config-opts:
-      - --disable-static
-      - --disable-doc
-    sources:
-      - type: git
-        url: https://dev.gnupg.org/source/libgcrypt.git
-        tag: libgcrypt-1.10.3
-        commit: aa1610866f8e42bdc272584f0a717f32ee050a22
-        # disabled for libgcrypt-1.11 because of build fail
-        #x-checker-data:
-        #  type: anitya
-        #  project-id: 1623
-        #  stable-only: true
-        #  tag-template: libgcrypt-$version
 
   - name: libaacs
     config-opts:
@@ -371,9 +331,19 @@ modules:
           - https://videolan.c3sl.ufpr.br/libaacs/0.11.1/libaacs-0.11.1.tar.bz2
         x-checker-data:
           type: html
-          url: https://www.videolan.org/developers/libaacs.html
-          version-pattern: Latest release is <b>libaacs (\d\.\d+\.?\d*)</b>
+          url: https://download.videolan.org/pub/videolan/libaacs/last/
+          version-pattern: libaacs-([\w.]+)\.tar\.
           url-template: https://download.videolan.org/pub/videolan/libaacs/$version/libaacs-$version.tar.bz2
+
+      # fix broken detection of libgcrypt >= 1.11.0
+      # see
+      #  https://gitlab.archlinux.org/archlinux/packaging/packages/libaacs/-/commit/d3f096b01f2b593ab0739f3a9eb64331b99553e7
+      #  https://salsa.debian.org/multimedia-team/libaacs/-/commit/87e3cd8aeaa165624d531b2789f9fd9e5d9c01f5
+      - type: shell
+        commands:
+          - rm --force --verbose m4/libgcrypt.m4
+          - autoreconf --force --install --verbose
+          - libtoolize
 
   - name: libbluray
     buildsystem: meson
@@ -391,8 +361,8 @@ modules:
           - https://videolan.c3sl.ufpr.br/libbluray/1.4.0/libbluray-1.4.0.tar.xz
         x-checker-data:
           type: html
-          url: https://www.videolan.org/developers/libbluray.html
-          version-pattern: Latest release is <b>libbluray (\d\.\d+\.?\d*)</b>\.
+          url: https://download.videolan.org/pub/videolan/libbluray/last/
+          version-pattern: libbluray-([\w.]+)\.tar\.
           url-template: https://download.videolan.org/pub/videolan/libbluray/$version/libbluray-$version.tar.xz
 
   - name: zimg
@@ -498,16 +468,27 @@ modules:
       - /lib/pkgconfig
     sources:
       - type: git
-        url: https://github.com/ccxvii/mujs.git
-        #mirror-urls:
-        #  - http://git.ghostscript.com/mujs.git
-        tag: 1.3.6
-        commit: cc569c5fa9a7a2498177693b5617605c2ff5b260
-        # failing build for 1.3.7
-        #x-checker-data:
-        #  type: git
-        #  url: https://api.github.com/repos/ccxvii/mujs/tags
-        #  tag-pattern: ^([\d.]+)$
+        url: https://codeberg.org/ccxvii/mujs.git
+        tag: 1.3.8
+        commit: 307f18c4216420f2f56e22d8e7040baa39a6304a
+        x-checker-data:
+          type: json
+          url: https://codeberg.org/api/v1/repos/ccxvii/mujs/tags
+          tag-query: .[0].name
+          version-query: $tag
+          timestamp-query: .[0].commit.created
+
+      # The unicode character database files are downloaded in the makefile rules `UnicodeData.txt` and `SpecialCasing.txt`.
+      # This does not work with flatpak because there is no network access during the build step.
+      #
+      # TODO: check for updated urls when updating mujs
+      - type: file
+        url: https://www.unicode.org/Public/16.0.0/ucd/UnicodeData.txt
+        sha256: ff58e5823bd095166564a006e47d111130813dcf8bf234ef79fa51a870edb48f
+
+      - type: file
+        url: https://www.unicode.org/Public/16.0.0/ucd/SpecialCasing.txt
+        sha256: 8d5de354eef79f2395a54c9c7dcebbaf3d30fc962d0f85611ea97aa973a0c451
 
   - name: x264
     cleanup:
@@ -593,28 +574,6 @@ modules:
           - sed -i -e 's/lzma/xz/g' configure.ac
           - autoreconf -vif
 
-#  - name: libjxl
-#    buildsystem: cmake
-#    config-opts:
-#      - -DCMAKE_BUILD_TYPE=Release
-#      - -DBUILD_TESTING=OFF
-#    sources:
-#      - type: git
-#        url: https://github.com/libjxl/libjxl.git
-#        tag: v0.11.0
-#        commit: 4df1e9eccdf86b8df4c0c7c08f529263906f9c4f
-#        disable-shallow-clone: true
-#        x-checker-data:
-#          type: git
-#          tag-pattern: ^v([\d.]+)$
-
-#  - name: vulkan-headers
-#    buildsystem: cmake-ninja
-#    sources:
-#      - type: archive
-#        url: https://github.com/KhronosGroup/Vulkan-Headers/archive/v1.3.286.tar.gz
-#        sha256: a82a6982efe5e603e23505ca19b469e8f3d876fc677c46b7bfb6177f517bf8fe
-
   - name: ffmpeg
     cleanup:
       - /include
@@ -687,10 +646,11 @@ modules:
         url: https://github.com/vapoursynth/vapoursynth/archive/72.tar.gz
         sha256: f8fcc5e2e9d2195454310e3356ea13e5334125891e452cc6543e985f28cacd22
         x-checker-data:
-          type: anitya
-          project-id: 15982
-          stable-only: true
-          url-template: https://github.com/vapoursynth/vapoursynth/archive/$version.tar.gz
+          type: json
+          url: https://api.github.com/repos/vapoursynth/vapoursynth/releases/latest
+          version-query: .name
+          timestamp-query: .published_at
+          url-query: .tarball_url
 
   - name: libplacebo
     buildsystem: meson
@@ -707,64 +667,14 @@ modules:
         #  - https://code.videolan.org/videolan/libplacebo.git
         tag: v7.349.0
         commit: 1fd3c7bde7b943fe8985c893310b5269a09b46c5
-        # Disabled libplacebo update above v7.349.0, though it compiles, but videos do not play/work with freedesktop sdk 24.08 due to vulkan 1.0; perhaps 25.08 may work.
-        #x-checker-data:
-        #  type: git
-        #  tag-pattern: ^v([\d.]+)$
+        x-checker-data:
+          type: git
+          tag-pattern: ^v([\d.]+)$
 
       # fix python error: TypeError: expected an Element, not ElementTree
       # https://code.videolan.org/videolan/libplacebo/-/commit/12509c0f1ee8c22ae163017f0a5e7b8a9d983a17
       - type: patch
         path: patches/libplacebo-vulkan-utils_gen-python.patch
-
-## The following not needed as of freedesktop 24.08
-#    modules:
-#      - name: shaderc
-#        buildsystem: cmake-ninja
-#        builddir: true
-#        config-opts:
-#          - -DSHADERC_SKIP_COPYRIGHT_CHECK=ON
-#          - -DSHADERC_SKIP_EXAMPLES=ON
-#          - -DSHADERC_SKIP_TESTS=ON
-#          - -DSPIRV_SKIP_EXECUTABLES=ON
-#          - -DENABLE_GLSLANG_BINARIES=OFF
-#        cleanup:
-#          - /bin
-#          - /include
-#          - /lib/cmake
-#          - /lib/pkgconfig
-#        sources:
-#          - type: git
-#            url: https://github.com/google/shaderc.git
-#            #tag: v2023.7
-#            commit: 40bced4e1e205ecf44630d2dfa357655b6dabd04
-#            #x-checker-data:
-#            #  type: git
-#            #  tag-pattern: ^v(\d{4}\.\d{1,2})$
-#          - type: git
-#            url: https://github.com/KhronosGroup/SPIRV-Tools.git
-#            tag: v2024.1
-#            commit: 04896c462d9f3f504c99a4698605b6524af813c1
-#            dest: third_party/spirv-tools
-#            #x-checker-data:
-#            #  type: git
-#            #  tag-pattern: ^v(\d{4}\.\d{1})$
-#          - type: git
-#            url: https://github.com/KhronosGroup/SPIRV-Headers.git
-#            #tag: sdk-1.3.250.1
-#            commit: 4f7b471f1a66b6d06462cd4ba57628cc0cd087d7
-#            dest: third_party/spirv-headers
-#             x-checker-data:
-#               type: git
-#               tag-pattern: ^sdk-([\d.]+)$
-#          - type: git
-#            url: https://github.com/KhronosGroup/glslang.git
-#            tag: 15.0.0
-#            commit: 46ef757e048e760b46601e6e77ae0cb72c97bd2f
-#            dest: third_party/glslang
-#            x-checker-data:
-#              type: git
-#              tag-pattern: ^(\d{1,2}\.\d{1,2}\.\d{1,4})$
 
   - name: hwdata
     buildsystem: autotools
