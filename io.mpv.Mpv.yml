@@ -853,6 +853,7 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
+          is-main-source: true
       - type: file
         path: io.mpv.Mpv.appdata.xml
       # Automatically update version and date in io.mpv.Mpv.appdata.xml
