@@ -30,7 +30,7 @@ output methods are supported.
   </ul>
  </description>
  <releases>
-  <release date="2025-03-25" version="v0.40.0">
+  <release date="2025-03-22" version="v0.41.0">
    <description>
     <p>
      Please See Official Changelog at github.com/mpv-player/mpv/releases
@@ -49,6 +49,7 @@ output methods are supported.
  </screenshots>
  <developer_name>The mpv player contributors</developer_name>
  <url type="homepage">https://mpv.io/</url>
+ <url type="vcs-browser">https://github.com/mpv-player/mpv</url>
  <url type="bugtracker">https://github.com/mpv-player/mpv/issues</url>
  <url type="faq">https://github.com/mpv-player/mpv/wiki/FAQ</url>
  <url type="help">https://mpv.io/manual/stable</url>
