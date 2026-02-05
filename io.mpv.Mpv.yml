@@ -172,8 +172,8 @@ modules:
       - pip3 install --prefix=/app yt_dlp_ejs*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/9d/0d/1f0d7a735ca60b87953271b15d00eff5eef05f6118390ddf6f81982526ed/yt_dlp_ejs-0.3.2-py3-none-any.whl
-        sha256: f2dc6b3d1b909af1f13e021621b0af048056fca5fb07c4db6aa9bbb37a4f66a9
+        url: https://files.pythonhosted.org/packages/a4/90/8911146822364666be47f184c4180cec20fcc537a268ef40d1ab077dd25b/yt_dlp_ejs-0.4.0-py3-none-any.whl
+        sha256: 19278cff397b243074df46342bb7616c404296aeaff01986b62b4e21823b0b9c
         x-checker-data:
           type: pypi
           name: yt-dlp-ejs
@@ -189,8 +189,8 @@ modules:
       - install yt-dlp /app/bin
     sources:
       - type: archive
-        url: https://github.com/yt-dlp/yt-dlp/releases/download/2025.12.08/yt-dlp.tar.gz
-        sha256: 9814ae7dd4118a80a6104399d4984e355d2a71f78e6bbc48137a5b299eddcbaf
+        url: https://github.com/yt-dlp/yt-dlp/releases/download/2026.02.04/yt-dlp.tar.gz
+        sha256: 617c5917666585f6ccb0a39c4a16b1e77fe1f9cedb8076c3a482e115a7ff1bd6
         x-checker-data:
           type: json
           url: https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest
@@ -544,8 +544,8 @@ modules:
       - -DBUILD_TESTS=OFF
     sources:
       - type: git
-        commit: 444d2c1d7ececf5cc2d96d3b17b209047b02318d
-        tag: v1.3.3
+        commit: 7a0c07111a3d7230ec534e08925c24a7525f33c0
+        tag: v1.3.4
         url: https://github.com/hoene/libmysofa.git
         x-checker-data:
           type: git
