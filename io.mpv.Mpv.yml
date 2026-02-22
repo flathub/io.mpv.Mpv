@@ -872,9 +872,6 @@ modules:
         url: https://files.pythonhosted.org/packages/33/cf/8435d5a7159e2a9c83a95896ed596f68cf798005fe107cc655b5c5c14704/urllib3-1.26.20-py2.py3-none-any.whl
         sha256: 0ed14ccfbf1c30a9072c7ca157e4319b70d65f623e91e7b32fadb2853431016e
         x-checker-data:
-          # Requests doesn't work with > 1.26.x for now
-          # https://github.com/flathub/io.mpv.Mpv/pull/190#issuecomment-1523855709
-          versions: {'>=': 1.21.1, <: '1.27'}
           type: pypi
           name: urllib3
           packagetype: bdist_wheel
