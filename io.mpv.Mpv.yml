@@ -674,11 +674,6 @@ modules:
           type: git
           tag-pattern: ^v([\d.]+)$
 
-      # fix python error: TypeError: expected an Element, not ElementTree
-      # https://code.videolan.org/videolan/libplacebo/-/commit/12509c0f1ee8c22ae163017f0a5e7b8a9d983a17
-      - type: patch
-        path: patches/libplacebo-vulkan-utils_gen-python.patch
-
   - name: hwdata
     buildsystem: autotools
     sources:
