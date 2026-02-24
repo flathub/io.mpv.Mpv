@@ -175,6 +175,7 @@ modules:
         url: https://files.pythonhosted.org/packages/9d/0d/1f0d7a735ca60b87953271b15d00eff5eef05f6118390ddf6f81982526ed/yt_dlp_ejs-0.3.2-py3-none-any.whl
         sha256: f2dc6b3d1b909af1f13e021621b0af048056fca5fb07c4db6aa9bbb37a4f66a9
         x-checker-data:
+          is-important: true
           type: pypi
           name: yt-dlp-ejs
           packagetype: bdist_wheel
@@ -192,6 +193,7 @@ modules:
         url: https://github.com/yt-dlp/yt-dlp/releases/download/2025.12.08/yt-dlp.tar.gz
         sha256: 9814ae7dd4118a80a6104399d4984e355d2a71f78e6bbc48137a5b299eddcbaf
         x-checker-data:
+          is-important: true
           type: json
           url: https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest
           version-query: .tag_name
@@ -528,10 +530,9 @@ modules:
         url: https://bitbucket.org/multicoreware/x265_git.git
         tag: '4.0'
         commit: 6318f223684118a2c71f67f3f4633a9e35046b00
-        # build is failing with 4.1 will enable with 4.2
-        #x-checker-data:
-        #  type: git
-        #  tag-pattern: ^([\d.]+)$
+        x-checker-data:
+          type: git
+          tag-pattern: ^([\d.]+)$
 
       # fix cmake build issue
       # https://bitbucket.org/multicoreware/x265_git/commits/b354c009a60bcd6d7fc04014e200a1ee9c45c167
@@ -779,12 +780,6 @@ modules:
           - mv io.mpv.Mpv.appdata.xml /app/share/appdata/io.mpv.Mpv.appdata.xml
           - chmod 644 /app/share/appdata/io.mpv.Mpv.appdata.xml
 
-      # required to build against ffmpeg 8.0
-      # https://github.com/mpv-player/mpv/commit/26b29fba02a2782f68e2906f837d21201fc6f1b9
-      #- type: patch
-      #  path: patches/mpv-demux_mkv-fix-compilation-after-deprecated-definitio.patch
-
-
 # Scripts for mpv
   - name: mpv-wrapper
     buildsystem: simple
@@ -878,9 +873,6 @@ modules:
         url: https://files.pythonhosted.org/packages/33/cf/8435d5a7159e2a9c83a95896ed596f68cf798005fe107cc655b5c5c14704/urllib3-1.26.20-py2.py3-none-any.whl
         sha256: 0ed14ccfbf1c30a9072c7ca157e4319b70d65f623e91e7b32fadb2853431016e
         x-checker-data:
-          # Requests doesn't work with > 1.26.x for now
-          # https://github.com/flathub/io.mpv.Mpv/pull/190#issuecomment-1523855709
-          versions: {'>=': 1.21.1, <: '1.27'}
           type: pypi
           name: urllib3
           packagetype: bdist_wheel
