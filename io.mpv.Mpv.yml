@@ -644,6 +644,8 @@ modules:
 
     sources:
       - type: archive
+        # without the dest-filename, flatpak-builder throws an "Unknown archive format" error
+        dest-filename: vapoursynth.tar.gz
         url: https://api.github.com/repos/vapoursynth/vapoursynth/tarball/R73
         sha256: 9c02a68b29eb446b2d0b1be3d831420fdc2bd703aacccc468faef9f94e3bf85f
         x-checker-data:
