@@ -75,8 +75,8 @@ modules:
     sources:
       - type: archive
         archive-type: tar
-        url: https://download.samba.org/pub/samba/stable/samba-4.23.4.tar.gz
-        sha256: af429d078a86f1ce16d0d1ecee35c42a3610790b47b84468f31284a8c4060140
+        url: https://download.samba.org/pub/samba/stable/samba-4.23.6.tar.gz
+        sha256: e3dabd8b5e42dc97669fa0faef032510a94e496b58f7067082e5036d88f0e702
         x-checker-data:
           type: html
           url: https://download.samba.org/pub/samba/stable/?C=M;O=D
@@ -88,8 +88,8 @@ modules:
     sources:
       - type: git
         url: https://gitlab.freedesktop.org/xorg/lib/libxmu.git
-        tag: libXmu-1.2.1
-        commit: 792f80402ee06ce69bca3a8f2a84295999c3a170
+        tag: libXmu-1.3.1
+        commit: cdf280f6611932f79ab872832974e8043b1cad6d
         x-checker-data:
           type: git
           tag-pattern: ^libXmu-([\d.]+)$
@@ -129,7 +129,7 @@ modules:
         #mirror-urls:
         #  - https://luajit.org/git/luajit.git
         disable-shallow-clone: true
-        commit: 7152e15489d2077cd299ee23e3d51a4c599ab14f
+        commit: a553b3de243b1ae07bdb21da4bdab77148793f76
         x-checker-data:
           type: json
           url: https://api.github.com/repos/LuaJIT/LuaJIT/branches/v2.1
@@ -172,8 +172,8 @@ modules:
       - pip3 install --prefix=/app yt_dlp_ejs*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/9d/0d/1f0d7a735ca60b87953271b15d00eff5eef05f6118390ddf6f81982526ed/yt_dlp_ejs-0.3.2-py3-none-any.whl
-        sha256: f2dc6b3d1b909af1f13e021621b0af048056fca5fb07c4db6aa9bbb37a4f66a9
+        url: https://files.pythonhosted.org/packages/7e/5b/1283356b70d4893a8a050cee15092e1b08ea15310b94365f88067146721b/yt_dlp_ejs-0.5.0-py3-none-any.whl
+        sha256: 674fc0efea741d3100cdf3f0f9e123150715ee41edf47ea7a62fbdeda204bdec
         x-checker-data:
           is-important: true
           type: pypi
@@ -190,8 +190,8 @@ modules:
       - install yt-dlp /app/bin
     sources:
       - type: archive
-        url: https://github.com/yt-dlp/yt-dlp/releases/download/2025.12.08/yt-dlp.tar.gz
-        sha256: 9814ae7dd4118a80a6104399d4984e355d2a71f78e6bbc48137a5b299eddcbaf
+        url: https://github.com/yt-dlp/yt-dlp/releases/download/2026.02.21/yt-dlp.tar.gz
+        sha256: 3655cb66b0edf6accb2361e886b1399c7dad3be5fa4434ac6d0fdbfc07718867
         x-checker-data:
           is-important: true
           type: json
@@ -355,9 +355,9 @@ modules:
       - /include
       - /lib/pkgconfig
     sources:
-      - sha256: 77937baf07eadda4b2b311cf3af4c50269d2ea3165041f5843d96476c4c92777
+      - sha256: 76b5dc40097f28dca4ebb009c98ed51321b2927453f75cc72cf74acd09b9f449
         type: archive
-        url: https://download.videolan.org/pub/videolan/libbluray/1.4.0/libbluray-1.4.0.tar.xz
+        url: https://download.videolan.org/pub/videolan/libbluray/1.4.1/libbluray-1.4.1.tar.xz
         mirror-urls:
           - https://videolan.mirror.ba/libbluray/1.4.0/libbluray-1.4.0.tar.xz
           - https://videolan.c3sl.ufpr.br/libbluray/1.4.0/libbluray-1.4.0.tar.xz
@@ -427,8 +427,8 @@ modules:
       - --with-pic
     sources:
       - type: archive
-        url: https://github.com/ImageMagick/ImageMagick/archive/7.1.2-12.tar.gz
-        sha256: 521fa7a8c0f664a3f5cf7437cbcc219f12bd6d5fe0c1fb014f212fa145076e60
+        url: https://github.com/ImageMagick/ImageMagick/archive/7.1.2-15.tar.gz
+        sha256: bf646e7fffdf50b7d886eec6bbe51c3ced1c4d68fbabfcc534e014575359fe7f
         x-checker-data:
           type: anitya
           project-id: 1372
@@ -528,8 +528,8 @@ modules:
     sources:
       - type: git
         url: https://bitbucket.org/multicoreware/x265_git.git
-        tag: '4.0'
-        commit: 6318f223684118a2c71f67f3f4633a9e35046b00
+        tag: '4.1'
+        commit: 1d117bed4747758b51bd2c124d738527e30392cb
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -545,8 +545,8 @@ modules:
       - -DBUILD_TESTS=OFF
     sources:
       - type: git
-        commit: 444d2c1d7ececf5cc2d96d3b17b209047b02318d
-        tag: v1.3.3
+        commit: 7a0c07111a3d7230ec534e08925c24a7525f33c0
+        tag: v1.3.4
         url: https://github.com/hoene/libmysofa.git
         x-checker-data:
           type: git
@@ -644,8 +644,8 @@ modules:
 
     sources:
       - type: archive
-        url: https://github.com/vapoursynth/vapoursynth/archive/72.tar.gz
-        sha256: f8fcc5e2e9d2195454310e3356ea13e5334125891e452cc6543e985f28cacd22
+        url: https://api.github.com/repos/vapoursynth/vapoursynth/tarball/R73
+        sha256: 9c02a68b29eb446b2d0b1be3d831420fdc2bd703aacccc468faef9f94e3bf85f
         x-checker-data:
           type: json
           url: https://api.github.com/repos/vapoursynth/vapoursynth/releases/latest
@@ -666,8 +666,8 @@ modules:
         url: https://github.com/haasn/libplacebo.git
         #mirror-urls:
         #  - https://code.videolan.org/videolan/libplacebo.git
-        tag: v7.349.0
-        commit: 1fd3c7bde7b943fe8985c893310b5269a09b46c5
+        tag: v7.360.0
+        commit: b2ea27dceb6418aabfe9121174c6dbb232942998
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -754,8 +754,7 @@ modules:
       # save screenshots at xdg-pictures/mpv
       - mkdir -p /app/etc/mpv
       - echo "screenshot-directory=~/.var/app/io.mpv.Mpv/Pictures/mpv" > /app/etc/mpv/mpv.conf
-      - sed  '/^X-KDE-Protocols/s/,smb//; /^X-KDE-Protocols/s/smb,//; /^X-KDE-Protocols/s/smb//;
-        /^X-KDE-Protocols=$/d' -i /app/share/applications/mpv.desktop
+      - sed  '/^X-KDE-Protocols/s/,smb//; /^X-KDE-Protocols/s/smb,//; /^X-KDE-Protocols/s/smb//; /^X-KDE-Protocols=$/d' -i /app/share/applications/mpv.desktop
     sources:
       - type: git
         url: https://github.com/mpv-player/mpv.git
@@ -771,10 +770,8 @@ modules:
       # Then install io.mpv.Mpv.appdata.xml
       - type: shell
         commands:
-          - if [ -f "MPV_VERSION" ]; then version=$(cat MPV_VERSION); else version=$(git
-            describe --tags --abbrev=0); fi
-          - sed -i "s/date=\"[0-9-]*\"/date=\"$(git log -n1 --pretty=format:%ad --date=short)\"/"
-            io.mpv.Mpv.appdata.xml
+          - if [ -f "MPV_VERSION" ]; then version=$(cat MPV_VERSION); else version=$(git describe --tags --abbrev=0); fi
+          - sed -i "s/date=\"[0-9-]*\"/date=\"$(git log -n1 --pretty=format:%ad --date=short)\"/" io.mpv.Mpv.appdata.xml
           - sed -i "s/version=\"[0-9.]*\"/version=\"$version\"/" io.mpv.Mpv.appdata.xml
           - mkdir -p /app/share/appdata
           - mv io.mpv.Mpv.appdata.xml /app/share/appdata/io.mpv.Mpv.appdata.xml
@@ -796,8 +793,8 @@ modules:
     sources:
       - type: archive
         archive-type: tar
-        url: https://api.github.com/repos/hoyon/mpv-mpris/tarball/1.1
-        sha256: 08d6b53a41224710ebed1c4d6daee815686e0f2f10e3f81778f4411562ed5958
+        url: https://api.github.com/repos/hoyon/mpv-mpris/tarball/1.2
+        sha256: 0d6ee6e310c8ed7d786fff98b64343a02a4bf76bec6786c72258360c94c4967c
         x-checker-data:
           type: json
           url: https://api.github.com/repos/hoyon/mpv-mpris/releases/latest
@@ -810,12 +807,12 @@ modules:
     buildsystem: autotools
     sources:
       - type: archive
-        url: https://ftp.gnu.org/gnu/ed/ed-1.22.4.tar.lz
+        url: https://ftp.gnu.org/gnu/ed/ed-1.22.5.tar.lz
         mirror-urls:
           - https://mirrors.kernel.org/gnu/ed/ed-1.20.1.tar.lz
           - https://mirrors.ocf.berkeley.edu/gnu/ed/ed-1.20.1.tar.lz
           - https://ftpmirror.gnu.org/gnu/ed/ed-1.20.1.tar.lz
-        sha256: 987a1ebbbad3fcf63a1ffa9e29b3fa7de065150d16319d0a49dd8b57f81d3e9c
+        sha256: 56e107ddc2f29dad6690376c15bf9751509e1ee3b8241710e44edbe5c3a158cc
         x-checker-data:
           type: html
           url: https://ftp.gnu.org/gnu/ed/
@@ -870,8 +867,8 @@ modules:
       - pip3 install --prefix=/app urllib3*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/33/cf/8435d5a7159e2a9c83a95896ed596f68cf798005fe107cc655b5c5c14704/urllib3-1.26.20-py2.py3-none-any.whl
-        sha256: 0ed14ccfbf1c30a9072c7ca157e4319b70d65f623e91e7b32fadb2853431016e
+        url: https://files.pythonhosted.org/packages/39/08/aaaad47bc4e9dc8c725e68f9d04865dbcb2052843ff09c97b08904852d84/urllib3-2.6.3-py3-none-any.whl
+        sha256: bf272323e553dfb2e87d9bfd225ca7b0f467b919d7bbd355436d3fd37cb0acd4
         x-checker-data:
           type: pypi
           name: urllib3
@@ -883,8 +880,8 @@ modules:
       - pip3 install --prefix=/app soupsieve*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/48/f3/b67d6ea49ca9154453b6d70b34ea22f3996b9fa55da105a79d8732227adc/soupsieve-2.8.1-py3-none-any.whl
-        sha256: a11fe2a6f3d76ab3cf2de04eb339c1be5b506a8a47f2ceb6d139803177f85434
+        url: https://files.pythonhosted.org/packages/46/2c/1462b1d0a634697ae9e55b3cecdcb64788e8b7d63f54d923fcd0bb140aed/soupsieve-2.8.3-py3-none-any.whl
+        sha256: ed64f2ba4eebeab06cc4962affce381647455978ffc1e36bb79a545b91f45a95
         x-checker-data:
           type: pypi
           name: soupsieve
@@ -961,8 +958,8 @@ modules:
       - pip3 install --prefix=/app certifi-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/70/7d/9bc192684cea499815ff478dfcdc13835ddf401365057044fb721ec6bddb/certifi-2025.11.12-py3-none-any.whl
-        sha256: 97de8790030bbd5c2d96b7ec782fc2f7820ef8dba6db909ccf95449f2d062d4b
+        url: https://files.pythonhosted.org/packages/9a/3c/c17fb3ca2d9c3acff52e30b309f538586f9f5b9c9cf454f3845fc9af4881/certifi-2026.2.25-py3-none-any.whl
+        sha256: 027692e4402ad994f1c42e52a4997a9763c646b73e4096e4d5d6db8af1d6f0fa
         x-checker-data:
           type: pypi
           name: certifi
@@ -974,8 +971,8 @@ modules:
       - pip3 install --prefix=/app stevedore-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/f4/40/8561ce06dc46fd17242c7724ab25b257a2ac1b35f4ebf551b40ce6105cfa/stevedore-5.6.0-py3-none-any.whl
-        sha256: 4a36dccefd7aeea0c70135526cecb7766c4c84c473b1af68db23d541b6dc1820
+        url: https://files.pythonhosted.org/packages/69/06/36d260a695f383345ab5bbc3fd447249594ae2fa8dfd19c533d5ae23f46b/stevedore-5.7.0-py3-none-any.whl
+        sha256: fd25efbb32f1abb4c9e502f385f0018632baac11f9ee5d1b70f88cc5e22ad4ed
         x-checker-data:
           type: pypi
           name: stevedore
@@ -1116,8 +1113,8 @@ modules:
       - pip3 install --prefix=/app chardet-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/38/6f/f5fbc992a329ee4e0f288c1fe0e2ad9485ed064cac731ed2fe47dcc38cbf/chardet-5.2.0-py3-none-any.whl
-        sha256: e1cf59446890a00105fe7b7912492ea04b6e6f06d4b742b2c788469e34c82970
+        url: https://files.pythonhosted.org/packages/66/42/5de54f632c2de53cd3415b3703383d5fff43a94cbc0567ef362515261a21/chardet-6.0.0.post1-py3-none-any.whl
+        sha256: c894a36800549adf7bb5f2af47033281b75fdfcd2aa0f0243be0ad22a52e2dcb
         x-checker-data:
           type: pypi
           name: chardet
