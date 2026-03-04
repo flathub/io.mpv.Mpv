@@ -129,7 +129,7 @@ modules:
         #mirror-urls:
         #  - https://luajit.org/git/luajit.git
         disable-shallow-clone: true
-        commit: a553b3de243b1ae07bdb21da4bdab77148793f76
+        commit: 659a61693aa3b87661864ad0f12eee14c865cd7f
         x-checker-data:
           type: json
           url: https://api.github.com/repos/LuaJIT/LuaJIT/branches/v2.1
@@ -190,8 +190,8 @@ modules:
       - install yt-dlp /app/bin
     sources:
       - type: archive
-        url: https://github.com/yt-dlp/yt-dlp/releases/download/2026.02.21/yt-dlp.tar.gz
-        sha256: 3655cb66b0edf6accb2361e886b1399c7dad3be5fa4434ac6d0fdbfc07718867
+        url: https://github.com/yt-dlp/yt-dlp/releases/download/2026.03.03/yt-dlp.tar.gz
+        sha256: 77974412fd5585a12dea2cb0334bfbc96d9d0a2d6c102cf8cc06b5159f2d9ad4
         x-checker-data:
           is-important: true
           type: json
@@ -1007,8 +1007,8 @@ modules:
       - pip3 install --prefix=/app pytz-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/81/c4/34e93fe5f5429d7570ec1fa436f1986fb1f00c3e0f43a589fe2bbcd22c3f/pytz-2025.2-py2.py3-none-any.whl
-        sha256: 5ddf76296dd8c44c26eb8f4b6f35488f3ccbf6fbbd7adee0b7262d43f0ec2f00
+        url: https://files.pythonhosted.org/packages/10/99/781fe0c827be2742bcc775efefccb3b048a3a9c6ce9aec0cbf4a101677e5/pytz-2026.1.post1-py2.py3-none-any.whl
+        sha256: f2fd16142fda348286a75e1a524be810bb05d444e5a081f37f7affc635035f7a
         x-checker-data:
           type: pypi
           name: pytz
@@ -1110,8 +1110,8 @@ modules:
       - pip3 install --prefix=/app chardet-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/66/42/5de54f632c2de53cd3415b3703383d5fff43a94cbc0567ef362515261a21/chardet-6.0.0.post1-py3-none-any.whl
-        sha256: c894a36800549adf7bb5f2af47033281b75fdfcd2aa0f0243be0ad22a52e2dcb
+        url: https://files.pythonhosted.org/packages/4b/89/8607111108b362ba444db6f054d1c1f2f28791428e7f177804c998efee2c/chardet-7.0.0-py3-none-any.whl
+        sha256: d5a8f8edda42b016352de4cdb36e1145e19a66ddd5ac42a1b2bbb6592f4d070c
         x-checker-data:
           type: pypi
           name: chardet
