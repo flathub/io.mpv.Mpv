@@ -129,7 +129,7 @@ modules:
         #mirror-urls:
         #  - https://luajit.org/git/luajit.git
         disable-shallow-clone: true
-        commit: a553b3de243b1ae07bdb21da4bdab77148793f76
+        commit: 659a61693aa3b87661864ad0f12eee14c865cd7f
         x-checker-data:
           type: json
           url: https://api.github.com/repos/LuaJIT/LuaJIT/branches/v2.1
@@ -172,8 +172,8 @@ modules:
       - pip3 install --prefix=/app yt_dlp_ejs*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/7e/5b/1283356b70d4893a8a050cee15092e1b08ea15310b94365f88067146721b/yt_dlp_ejs-0.5.0-py3-none-any.whl
-        sha256: 674fc0efea741d3100cdf3f0f9e123150715ee41edf47ea7a62fbdeda204bdec
+        url: https://files.pythonhosted.org/packages/59/f6/54fe93b9db02b7727043fb48816504f09066ca6d7f7d6145cd9d713a1047/yt_dlp_ejs-0.7.0-py3-none-any.whl
+        sha256: 967e9cbe114ddfd046ff4668af18b1827b4597e2e47a83deea668a355828c798
         x-checker-data:
           is-important: true
           type: pypi
@@ -190,8 +190,8 @@ modules:
       - install yt-dlp /app/bin
     sources:
       - type: archive
-        url: https://github.com/yt-dlp/yt-dlp/releases/download/2026.03.03/yt-dlp.tar.gz
-        sha256: 77974412fd5585a12dea2cb0334bfbc96d9d0a2d6c102cf8cc06b5159f2d9ad4
+        url: https://github.com/yt-dlp/yt-dlp/releases/download/2026.03.13/yt-dlp.tar.gz
+        sha256: d10140b4afbfba22b13031935e59679ea144191ba472337ca4dd87127003a0da
         x-checker-data:
           is-important: true
           type: json
@@ -427,8 +427,8 @@ modules:
       - --with-pic
     sources:
       - type: archive
-        url: https://github.com/ImageMagick/ImageMagick/archive/7.1.2-15.tar.gz
-        sha256: bf646e7fffdf50b7d886eec6bbe51c3ced1c4d68fbabfcc534e014575359fe7f
+        url: https://github.com/ImageMagick/ImageMagick/archive/7.1.2-16.tar.gz
+        sha256: aadfa67a104d14a35339de0f2cc286c973a0f43329770c69e9667a22208750fb
         x-checker-data:
           type: anitya
           project-id: 1372
@@ -668,8 +668,8 @@ modules:
         url: https://github.com/haasn/libplacebo.git
         #mirror-urls:
         #  - https://code.videolan.org/videolan/libplacebo.git
-        tag: v7.360.0
-        commit: b2ea27dceb6418aabfe9121174c6dbb232942998
+        tag: v7.360.1
+        commit: cee9b076f2c63104ccfd497fa79c39a867293ec4
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -942,8 +942,8 @@ modules:
       - pip3 install --prefix=/app charset_normalizer-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/0a/4c/925909008ed5a988ccbb72dcc897407e5d6d3bd72410d69e051fc0c14647/charset_normalizer-3.4.4-py3-none-any.whl
-        sha256: 7a32c560861a02ff789ad905a2fe94e3f840803362c84fecf1851cb4cf3dc37f
+        url: https://files.pythonhosted.org/packages/c5/60/3a621758945513adfd4db86827a5bafcc615f913dbd0b4c2ed64a65731be/charset_normalizer-3.4.5-py3-none-any.whl
+        sha256: 9db5e3fcdcee89a78c04dffb3fe33c79f77bd741a624946db2591c81b2fc85b0
         x-checker-data:
           type: pypi
           name: charset_normalizer
@@ -1110,8 +1110,8 @@ modules:
       - pip3 install --prefix=/app chardet-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/4b/89/8607111108b362ba444db6f054d1c1f2f28791428e7f177804c998efee2c/chardet-7.0.0-py3-none-any.whl
-        sha256: d5a8f8edda42b016352de4cdb36e1145e19a66ddd5ac42a1b2bbb6592f4d070c
+        url: https://files.pythonhosted.org/packages/87/13/6aa6c9118ce153a806bb0472e27e8f8c24e6925db8a5b9fe99e03e45af15/chardet-7.1.0-py3-none-any.whl
+        sha256: 7f677725333bf53f84b7f57458f44669a8a5eb2ac4092ac699cdfa9b1af08a5f
         x-checker-data:
           type: pypi
           name: chardet
