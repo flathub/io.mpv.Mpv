@@ -172,8 +172,8 @@ modules:
       - pip3 install --prefix=/app yt_dlp_ejs*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/59/f6/54fe93b9db02b7727043fb48816504f09066ca6d7f7d6145cd9d713a1047/yt_dlp_ejs-0.7.0-py3-none-any.whl
-        sha256: 967e9cbe114ddfd046ff4668af18b1827b4597e2e47a83deea668a355828c798
+        url: https://files.pythonhosted.org/packages/e3/bd/520769863744b669440a924271a6159ddd82ad5ae26b4ac4d4b69e9f8d44/yt_dlp_ejs-0.8.0-py3-none-any.whl
+        sha256: 79300e5fca7f937a1eeede11f0456862c1b41107ce1d726871e0207424f4bdb4
         x-checker-data:
           is-important: true
           type: pypi
@@ -190,8 +190,8 @@ modules:
       - install yt-dlp /app/bin
     sources:
       - type: archive
-        url: https://github.com/yt-dlp/yt-dlp/releases/download/2026.03.13/yt-dlp.tar.gz
-        sha256: d10140b4afbfba22b13031935e59679ea144191ba472337ca4dd87127003a0da
+        url: https://github.com/yt-dlp/yt-dlp/releases/download/2026.03.17/yt-dlp.tar.gz
+        sha256: c74f56fc88a7f9b7c995646f30538974a03dd7609f55257b20594fdeeb1e13df
         x-checker-data:
           is-important: true
           type: json
@@ -427,8 +427,8 @@ modules:
       - --with-pic
     sources:
       - type: archive
-        url: https://github.com/ImageMagick/ImageMagick/archive/7.1.2-16.tar.gz
-        sha256: aadfa67a104d14a35339de0f2cc286c973a0f43329770c69e9667a22208750fb
+        url: https://github.com/ImageMagick/ImageMagick/archive/7.1.2-17.tar.gz
+        sha256: 4ff65e73c3642481e9e3db0d80a646288a5be77e3372ba2ddc49d869657ca0c6
         x-checker-data:
           type: anitya
           project-id: 1372
@@ -616,8 +616,8 @@ modules:
         url: https://github.com/FFmpeg/FFmpeg.git
         #mirror-urls:
         #  - https://git.ffmpeg.org/ffmpeg.git
-        commit: 894da5ca7d742e4429ffb2af534fcda0103ef593
-        tag: n8.0.1
+        commit: 9047fa1b084f76b1b4d065af2d743df1b40dfb56
+        tag: n8.1
         x-checker-data:
           type: git
           tag-pattern: ^n([\d.]{3,7})$
@@ -942,8 +942,8 @@ modules:
       - pip3 install --prefix=/app charset_normalizer-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/c5/60/3a621758945513adfd4db86827a5bafcc615f913dbd0b4c2ed64a65731be/charset_normalizer-3.4.5-py3-none-any.whl
-        sha256: 9db5e3fcdcee89a78c04dffb3fe33c79f77bd741a624946db2591c81b2fc85b0
+        url: https://files.pythonhosted.org/packages/2a/68/687187c7e26cb24ccbd88e5069f5ef00eba804d36dde11d99aad0838ab45/charset_normalizer-3.4.6-py3-none-any.whl
+        sha256: 947cf925bc916d90adba35a64c82aace04fa39b46b52d4630ece166655905a69
         x-checker-data:
           type: pypi
           name: charset_normalizer
@@ -1110,8 +1110,8 @@ modules:
       - pip3 install --prefix=/app chardet-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/87/13/6aa6c9118ce153a806bb0472e27e8f8c24e6925db8a5b9fe99e03e45af15/chardet-7.1.0-py3-none-any.whl
-        sha256: 7f677725333bf53f84b7f57458f44669a8a5eb2ac4092ac699cdfa9b1af08a5f
+        url: https://files.pythonhosted.org/packages/c2/47/97786f40be59ff5ff10ec5ebcb1ef0ad28dd915717cb210cee89ae7a83a6/chardet-7.2.0-py3-none-any.whl
+        sha256: f8ea866b9fbd8df5f19032d765a4d81dcbf6194a3c7388b44d378d02c9784170
         x-checker-data:
           type: pypi
           name: chardet
