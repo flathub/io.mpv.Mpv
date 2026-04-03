@@ -567,53 +567,6 @@ modules:
 #        url: https://github.com/KhronosGroup/Vulkan-Headers/archive/v1.3.286.tar.gz
 #        sha256: a82a6982efe5e603e23505ca19b469e8f3d876fc677c46b7bfb6177f517bf8fe
 
-  - name: ffmpeg
-    cleanup:
-      - /include
-      - /lib/pkgconfig
-      - /share/ffmpeg/examples
-    config-opts:
-      - --disable-debug
-      - --disable-doc
-      - --disable-static
-      - --enable-encoder=png
-      - --enable-gnutls
-      - --enable-gpl
-      - --enable-shared
-      - --enable-version3
-      - --enable-libaom
-      - --enable-libass
-      - --enable-libbs2b
-      - --enable-libdav1d
-      - --enable-libfreetype
-      - --enable-libmp3lame
-      - --enable-libopus
-      - --enable-libjxl
-      - --enable-libmysofa
-      - --enable-libtheora
-      - --enable-libv4l2
-      - --enable-libvorbis
-      - --enable-libvpx
-      - --enable-libx264
-      - --enable-libx265
-      - --enable-libwebp
-      - --enable-libsmbclient
-      - --enable-libxml2
-      - --enable-vulkan
-      - --enable-libdrm
-      - --enable-vaapi
-
-    sources:
-      - type: git
-        url: https://github.com/FFmpeg/FFmpeg.git
-        #mirror-urls:
-        #  - https://git.ffmpeg.org/ffmpeg.git
-        commit: 894da5ca7d742e4429ffb2af534fcda0103ef593
-        tag: n8.0.1
-        x-checker-data:
-          type: git
-          tag-pattern: ^n([\d.]{3,7})$
-
   - name: libsixel
     buildsystem: meson
     cleanup:
