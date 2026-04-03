@@ -623,20 +623,21 @@ modules:
           tag-pattern: ^n([\d.]{3,7})$
 
   - name: libsixel
-    buildsystem: meson
+    buildsystem: autotools
     cleanup:
       - /include
       - /lib/pkgconfig
     sources:
       - type: archive
         archive-type: tar
-        url: https://api.github.com/repos/libsixel/libsixel/tarball/refs/tags/v1.10.5
-        sha256: 402da9e24caea62fe1e4c5d6f9c9211141f7a5d8016e717527ecde10c5522344
+        url: https://api.github.com/repos/saitoha/libsixel/tarball/v1.8.7
+        sha256: 9906a48c1c4a0fa3cff7842edc87bfc7f1a5811abb0ce59ad9d9f8c2446ffb73
         x-checker-data:
           type: json
-          url: https://api.github.com/repos/libsixel/libsixel/tags
-          url-query: .[0].tarball_url
-          version-query: .[0].name
+          url: https://api.github.com/repos/saitoha/libsixel/releases/latest
+          url-query: .tarball_url
+          version-query: .tag_name | sub("^v"; "")
+          timestamp-query: .published_at
 
   - name: vapoursynth
     config-opts:
