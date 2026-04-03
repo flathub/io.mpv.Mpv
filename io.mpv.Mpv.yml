@@ -152,6 +152,12 @@ modules:
         url: https://github.com/denoland/deno/releases/download/v2.5.6/deno-x86_64-unknown-linux-gnu.zip
         sha256: fd4f6abc1b6a134fa9a4dba56519f1631f44c88e04e4e3e9a8ff5975dfa66e1a
         dest-filename: deno.zip
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/denoland/deno/releases/latest
+          version-query: .name | sub("^v"; "")
+          timestamp-query: .published_at
+          url-query: .assets[] | select(.name == "deno-x86_64-unknown-linux-gnu.zip") | .browser_download_url
 
       # -------- aarch64 build --------
       - type: file
@@ -160,6 +166,12 @@ modules:
         url: https://github.com/denoland/deno/releases/download/v2.5.6/deno-aarch64-unknown-linux-gnu.zip
         sha256: f5e60ae3dfceb61e5e5a41f22129e40a8bc17f6393b59e75d7ca19ceef32d824
         dest-filename: deno.zip
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/denoland/deno/releases/latest
+          version-query: .name | sub("^v"; "")
+          timestamp-query: .published_at
+          url-query: .assets[] | select(.name == "deno-aarch64-unknown-linux-gnu.zip") | .browser_download_url
 
       # -------- unpack the zip --------
       - type: shell
