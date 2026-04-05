@@ -152,6 +152,12 @@ modules:
         url: https://github.com/denoland/deno/releases/download/v2.5.6/deno-x86_64-unknown-linux-gnu.zip
         sha256: fd4f6abc1b6a134fa9a4dba56519f1631f44c88e04e4e3e9a8ff5975dfa66e1a
         dest-filename: deno.zip
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/denoland/deno/releases/latest
+          version-query: .name | sub("^v"; "")
+          timestamp-query: .published_at
+          url-query: .assets[] | select(.name == "deno-x86_64-unknown-linux-gnu.zip") | .browser_download_url
 
       # -------- aarch64 build --------
       - type: file
@@ -160,6 +166,12 @@ modules:
         url: https://github.com/denoland/deno/releases/download/v2.5.6/deno-aarch64-unknown-linux-gnu.zip
         sha256: f5e60ae3dfceb61e5e5a41f22129e40a8bc17f6393b59e75d7ca19ceef32d824
         dest-filename: deno.zip
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/denoland/deno/releases/latest
+          version-query: .name | sub("^v"; "")
+          timestamp-query: .published_at
+          url-query: .assets[] | select(.name == "deno-aarch64-unknown-linux-gnu.zip") | .browser_download_url
 
       # -------- unpack the zip --------
       - type: shell
@@ -623,20 +635,21 @@ modules:
           tag-pattern: ^n([\d.]{3,7})$
 
   - name: libsixel
-    buildsystem: meson
+    buildsystem: autotools
     cleanup:
       - /include
       - /lib/pkgconfig
     sources:
       - type: archive
         archive-type: tar
-        url: https://api.github.com/repos/libsixel/libsixel/tarball/refs/tags/v1.10.5
-        sha256: 402da9e24caea62fe1e4c5d6f9c9211141f7a5d8016e717527ecde10c5522344
+        url: https://api.github.com/repos/saitoha/libsixel/tarball/v1.8.7
+        sha256: 9906a48c1c4a0fa3cff7842edc87bfc7f1a5811abb0ce59ad9d9f8c2446ffb73
         x-checker-data:
           type: json
-          url: https://api.github.com/repos/libsixel/libsixel/tags
-          url-query: .[0].tarball_url
-          version-query: .[0].name
+          url: https://api.github.com/repos/saitoha/libsixel/releases/latest
+          url-query: .tarball_url
+          version-query: .tag_name | sub("^v"; "")
+          timestamp-query: .published_at
 
   - name: vapoursynth
     config-opts:
