@@ -509,8 +509,6 @@ modules:
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
       - -DBUILD_STATIC=0
-      # TODO can be removed when updating to x265 > 4.1
-      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
     cleanup:
       - /include
       - /lib/pkgconfig
