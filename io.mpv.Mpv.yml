@@ -646,6 +646,7 @@ modules:
           version-query: .tag_name | sub("^v"; "")
           timestamp-query: .published_at
 
+  # TODO update to version >= R74
   - name: vapoursynth
     config-opts:
       - --with-python-prefix=${FLATPAK_DEST}
@@ -654,11 +655,12 @@ modules:
       - type: archive
         # without the dest-filename, flatpak-builder throws an "Unknown archive format" error
         dest-filename: vapoursynth.tar.gz
-        url: https://api.github.com/repos/vapoursynth/vapoursynth/tarball/R77
-        sha256: c46af671f8a5018d419ae2e6a4f0b8448dbf56b071579572fb862099c06a76a8
+        url: https://api.github.com/repos/vapoursynth/vapoursynth/tarball/R73
+        sha256: 9c02a68b29eb446b2d0b1be3d831420fdc2bd703aacccc468faef9f94e3bf85f
         x-checker-data:
           type: json
-          url: https://api.github.com/repos/vapoursynth/vapoursynth/releases/latest
+          # pin version to R73
+          url: https://api.github.com/repos/vapoursynth/vapoursynth/releases/264862300
           version-query: .name
           timestamp-query: .published_at
           url-query: .tarball_url
