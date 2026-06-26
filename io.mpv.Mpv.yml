@@ -116,29 +116,7 @@ modules:
           type: git
           tag-pattern: ^libXpresent-([\d.]+)$
 
-  - name: luajit
-    no-autogen: true
-    cleanup:
-      - /bin
-      - /include
-      - /lib/pkgconfig
-      - /share/man
-    sources:
-      - type: git
-        url: https://github.com/LuaJIT/LuaJIT.git
-        #mirror-urls:
-        #  - https://luajit.org/git/luajit.git
-        disable-shallow-clone: true
-        commit: 9d145d2ca3db58493859c495489a0f08f627834f
-        x-checker-data:
-          type: json
-          url: https://api.github.com/repos/LuaJIT/LuaJIT/branches/v2.1
-          commit-query: .commit.sha
-          version-query: .commit.sha
-          timestamp-query: .commit.commit.committer.date
-      - type: shell
-        commands:
-          - sed -i 's|/usr/local|/app|' ./Makefile
+  - shared-modules/luajit/luajit.json
 
   - name: deno
     buildsystem: simple
@@ -531,8 +509,6 @@ modules:
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
       - -DBUILD_STATIC=0
-      # TODO can be removed when updating to x265 > 4.1
-      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
     cleanup:
       - /include
       - /lib/pkgconfig
