@@ -75,8 +75,8 @@ modules:
     sources:
       - type: archive
         archive-type: tar
-        url: https://download.samba.org/pub/samba/stable/samba-4.24.4.tar.gz
-        sha256: df2c51ab4361ec626ab9988e5946efcca8465bc7afae834291d5558468265ff8
+        url: https://download.samba.org/pub/samba/stable/samba-4.24.6.tar.gz
+        sha256: 810cc955acb367e9bde556dccfb50db177a02b7c553aa1629a0b905fa7616267
         x-checker-data:
           type: html
           url: https://download.samba.org/pub/samba/stable/?C=M;O=D
@@ -127,8 +127,8 @@ modules:
       - type: file
         only-arches:
           - x86_64
-        url: https://github.com/denoland/deno/releases/download/v2.9.2/deno-x86_64-unknown-linux-gnu.zip
-        sha256: 934d1bd5cb09eaed7f2e4a4fc58208d04a3c5c0fcde9f319d93d735265c67a4a
+        url: https://github.com/denoland/deno/releases/download/v2.9.5/deno-x86_64-unknown-linux-gnu.zip
+        sha256: 8b010a3b1a4a0188a67cdb8a7a27348b2a501af78aec7fc74f2ace167368d530
         dest-filename: deno.zip
         x-checker-data:
           type: json
@@ -141,8 +141,8 @@ modules:
       - type: file
         only-arches:
           - aarch64
-        url: https://github.com/denoland/deno/releases/download/v2.9.2/deno-aarch64-unknown-linux-gnu.zip
-        sha256: 310b8f48e59964ff18890d35e64f64fb90e8b1cc5d9ebff8c818327d5afb16d2
+        url: https://github.com/denoland/deno/releases/download/v2.9.5/deno-aarch64-unknown-linux-gnu.zip
+        sha256: 6b7cae3a8fc4385a59dea3146fcb8bad7fea4230e0ad36a8c692afacbc254be0
         dest-filename: deno.zip
         x-checker-data:
           type: json
@@ -180,8 +180,8 @@ modules:
       - install yt-dlp /app/bin
     sources:
       - type: archive
-        url: https://github.com/yt-dlp/yt-dlp/releases/download/2026.07.04/yt-dlp.tar.gz
-        sha256: 31c32457d1a573a341bb0929386c624fe47339a5338829e6e9c9454bdfa7397a
+        url: https://github.com/yt-dlp/yt-dlp/releases/download/2026.08.19/yt-dlp.tar.gz
+        sha256: 072aad4f2a7604e92155f61a275a4752dc64046c8f6d90df3710525d94cd37c1
         x-checker-data:
           is-important: true
           type: json
@@ -278,11 +278,11 @@ modules:
       - /lib/pkgconfig
     sources:
       - type: archive
-        url: https://download.videolan.org/pub/videolan/libdvdread/7.0.1/libdvdread-7.0.1.tar.xz
+        url: https://download.videolan.org/pub/videolan/libdvdread/7.1.1/libdvdread-7.1.1.tar.xz
         mirror-urls:
           - https://videolan.mirror.ba/libdvdread/6.1.3/libdvdread-6.1.3.tar.bz2
           - https://videolan.c3sl.ufpr.br/libdvdread/6.1.3/libdvdread-6.1.3.tar.bz2
-        sha256: 2e3e04a305c15c3963aa03ae1b9a83c1d239880003fcf3dde986d3943355d407
+        sha256: a0d47876548bec806774bbf8dbf20bb19ba139464383156b32eb8e59915b90a9
         x-checker-data:
           type: html
           url: https://download.videolan.org/pub/videolan/libdvdread/last/
@@ -315,9 +315,9 @@ modules:
       - /include
       - /lib/pkgconfig
     sources:
-      - sha256: a88aa0ebe4c98a77f7aeffd92ab3ef64ac548c6b822e8248a8b926725bea0a39
+      - sha256: 1996673a9fc45ee4a364c66ffa84756629bf3923e52346c7358b71becb8e4419
         type: archive
-        url: https://download.videolan.org/pub/videolan/libaacs/0.11.1/libaacs-0.11.1.tar.bz2
+        url: https://download.videolan.org/pub/videolan/libaacs/0.12.0/libaacs-0.12.0.tar.bz2
         mirror-urls:
           - https://videolan.mirror.ba/libaacs/0.11.1/libaacs-0.11.1.tar.bz2
           - https://videolan.c3sl.ufpr.br/libaacs/0.11.1/libaacs-0.11.1.tar.bz2
@@ -345,9 +345,9 @@ modules:
       - /include
       - /lib/pkgconfig
     sources:
-      - sha256: 76b5dc40097f28dca4ebb009c98ed51321b2927453f75cc72cf74acd09b9f449
+      - sha256: f676408e91a5d321abf8b8d4dfdae36205c297dab5c54c3ec519639025f474a2
         type: archive
-        url: https://download.videolan.org/pub/videolan/libbluray/1.4.1/libbluray-1.4.1.tar.xz
+        url: https://download.videolan.org/pub/videolan/libbluray/1.5.0/libbluray-1.5.0.tar.xz
         mirror-urls:
           - https://videolan.mirror.ba/libbluray/1.4.0/libbluray-1.4.0.tar.xz
           - https://videolan.c3sl.ufpr.br/libbluray/1.4.0/libbluray-1.4.0.tar.xz
@@ -398,8 +398,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/tesseract-ocr/tesseract.git
-        tag: 5.5.2
-        commit: 6e1d56a847e697de07b38619356550e5cf4e8633
+        tag: 5.5.3
+        commit: db0ec62f81b0737fbbe184d8fea40af5738f8eef
         x-checker-data:
           type: json
           url: https://api.github.com/repos/tesseract-ocr/tesseract/releases/latest
@@ -417,8 +417,8 @@ modules:
       - --with-pic
     sources:
       - type: archive
-        url: https://github.com/ImageMagick/ImageMagick/archive/7.1.2-27.tar.gz
-        sha256: 485dad5226fda2417ea65f3eb6e3f63e7d5dfacacdf6f57f9c39b6ef1e3cb667
+        url: https://github.com/ImageMagick/ImageMagick/archive/7.1.2-29.tar.gz
+        sha256: b05924ad73c6932ba62c9b32f338f0619b90b767162c8b767f3566556187a284
         x-checker-data:
           type: anitya
           project-id: 1372
@@ -528,8 +528,8 @@ modules:
       - -DBUILD_TESTS=OFF
     sources:
       - type: git
-        commit: 7a0c07111a3d7230ec534e08925c24a7525f33c0
-        tag: v1.3.4
+        commit: 6cc5b15a73e9bd97810d03767082edda7f315881
+        tag: v1.3.5
         url: https://github.com/hoene/libmysofa.git
         x-checker-data:
           type: git
@@ -599,8 +599,8 @@ modules:
         url: https://github.com/FFmpeg/FFmpeg.git
         #mirror-urls:
         #  - https://git.ffmpeg.org/ffmpeg.git
-        commit: 38b88335f99e76ed89ff3c93f877fdefce736c13
-        tag: n8.1.2
+        commit: bf1b838f2ab88b4f8fd83443325c782ea0e0f7fa
+        tag: n9.0.1
         x-checker-data:
           type: git
           tag-pattern: ^n([\d.]{3,7})$
@@ -790,12 +790,12 @@ modules:
     buildsystem: autotools
     sources:
       - type: archive
-        url: https://ftp.gnu.org/gnu/ed/ed-1.22.5.tar.lz
+        url: https://ftp.gnu.org/gnu/ed/ed-1.22.6.tar.lz
         mirror-urls:
           - https://mirrors.kernel.org/gnu/ed/ed-1.20.1.tar.lz
           - https://mirrors.ocf.berkeley.edu/gnu/ed/ed-1.20.1.tar.lz
           - https://ftpmirror.gnu.org/gnu/ed/ed-1.20.1.tar.lz
-        sha256: 56e107ddc2f29dad6690376c15bf9751509e1ee3b8241710e44edbe5c3a158cc
+        sha256: 3f33b22135219c39c3c695f7b7171c2567d3e2a17c798c0a90607320cbb268f2
         x-checker-data:
           type: html
           url: https://ftp.gnu.org/gnu/ed/
@@ -863,8 +863,8 @@ modules:
       - pip3 install --prefix=/app soupsieve*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/5e/f5/0c41cb68dcae6b7de4fac4188a3a9589e21fb31df21ea3a2e888db95e6c9/soupsieve-2.8.4-py3-none-any.whl
-        sha256: e7e6b0769c8f51ed59acab6e994b00621096cfb1c640a7509295987388fbaf65
+        url: https://files.pythonhosted.org/packages/eb/dc/ad025c1ee131eba60c69f4dd5779b18fcf1e6b21a343e2162a84d5d133c7/soupsieve-2.9.2-py3-none-any.whl
+        sha256: 8089a26fd974ca7a1f30276d3d8492ab266ab15af581642dfe8aa162e0c1c823
         x-checker-data:
           type: pypi
           name: soupsieve
@@ -902,8 +902,8 @@ modules:
       - pip3 install --prefix=/app idna-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/1e/5e/d4e9f1a599fb8e573b7b87160658329fbf28d19eac2718f51fc3def3aa5a/idna-3.18-py3-none-any.whl
-        sha256: 7f952cbe720b688055e3f87de14f5c3e5fdaa8bc3928985c4077ca689de849a2
+        url: https://files.pythonhosted.org/packages/57/b0/0e52c878c53f245edd3a11020f20979b3f490f245af532c7cae3027754b5/idna-3.19-py3-none-any.whl
+        sha256: 815e7be7a7806d54abb586dc943addc79e8b2ee16915059658cbeff4b1b43bf4
         x-checker-data:
           type: pypi
           name: idna
@@ -928,8 +928,8 @@ modules:
       - pip3 install --prefix=/app charset_normalizer-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/98/2b/f97f1c193fb855c345d678f5077d6926034db0722df74c8f057020e05a25/charset_normalizer-3.4.9-py3-none-any.whl
-        sha256: 68e5f26a1ad57ded6d1cfb85331d1c1a195314756471d97758c48498bb4dcdf5
+        url: https://files.pythonhosted.org/packages/cc/61/d01fc49b8dea277640b55a9e15960dbca9fdc8c9fde18e572d39c59f4019/charset_normalizer-3.5.1-py3-none-any.whl
+        sha256: 6df0ec430f9a831772c23ca5a224cba36517a58a84bb32c32bb59a9fa67c47f6
         x-checker-data:
           type: pypi
           name: charset_normalizer
@@ -941,8 +941,8 @@ modules:
       - pip3 install --prefix=/app certifi-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/ef/2f/c5464532e965badff2f4c4c1a3a83f5697f0d7c407ed0cda44aaa99bb451/certifi-2026.6.17-py3-none-any.whl
-        sha256: 2227dcbaafe0d2f59279d1762ddddc37783ed4354594f194ffc31d20f41fc3db
+        url: https://files.pythonhosted.org/packages/0b/a7/71ac2cff56fec219ed242bb11b8efb69fcc4bec75db06fb7bfe35de520e6/certifi-2026.7.22-py3-none-any.whl
+        sha256: 62f22742b58a1a33014a2b6b706588a8d7e2a88ae7bd1a6ebe8c992928483775
         x-checker-data:
           type: pypi
           name: certifi
@@ -954,8 +954,8 @@ modules:
       - pip3 install --prefix=/app stevedore-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/62/8d/008761f6e1000600e5303db30d05724bdcf3d2d186cbb59fac79b52e39ed/stevedore-5.9.0-py3-none-any.whl
-        sha256: e520945d4c257700eddc1eb1d79df04b2ea578eef185e0e3fa5b442fc848d3f7
+        url: https://files.pythonhosted.org/packages/c5/97/bba6e7ec2f5498b9dcb7b1b6400086b80ae5a8ebaff4b25e8c8add75f439/stevedore-5.9.1-py3-none-any.whl
+        sha256: 5c8ff3a9f336cc1a06ac0f597bc79d11a2f950bfd32e290ca56b5a301fafafbf
         x-checker-data:
           type: pypi
           name: stevedore
@@ -980,8 +980,8 @@ modules:
       - pip3 install --prefix=/app rarfile-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/78/2d/4a161de993dab0baac89b8c5b9765f420e8cc5239c5c82e0f51cb41e5a74/rarfile-4.3-py3-none-any.whl
-        sha256: f9dd2f8bd811b2e30fb074aa176f972f51633aa41cf909db3f2921ed040e1128
+        url: https://files.pythonhosted.org/packages/f5/36/ffd87452bf72310dfd1185ade33e5b8be374ab370d19573a8197ca25c95b/rarfile-4.5-py3-none-any.whl
+        sha256: c74341f4b9a3a3ebb35ef396d59daf059eb028f34995a7162950a41d97b84de9
         x-checker-data:
           type: pypi
           name: rarfile
@@ -993,8 +993,8 @@ modules:
       - pip3 install --prefix=/app pytz-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/ec/dd/96da98f892250475bdf2328112d7468abdd4acc7b902b6af23f4ed958ea0/pytz-2026.2-py2.py3-none-any.whl
-        sha256: 04156e608bee23d3792fd45c94ae47fae1036688e75032eea2e3bf0323d1f126
+        url: https://files.pythonhosted.org/packages/0f/7b/39c34ca613b0b198cb866466651b26b045e2009864c5183c979a3b83f383/pytz-2026.3.post1-py2.py3-none-any.whl
+        sha256: dd95840dd199baea12d9cc096a1d452caa6596a1c1e4b5f3dbd1541855d5e815
         x-checker-data:
           type: pypi
           name: pytz
@@ -1031,8 +1031,8 @@ modules:
       - pip3 install --prefix=/app guessit-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/b4/fe/779514ebf68af3fb6006c26028c6b523acd6dd12e6c4684d87032800ad0f/guessit-4.1.0-py3-none-any.whl
-        sha256: 0a493167b4af4f6a472b43569150b7100ba01e028a519154e05737cc517c4dfe
+        url: https://files.pythonhosted.org/packages/4c/87/90c2040ffc623ab90993eee9e03ade9ce8168de4d04948b77004d17032c1/guessit-4.4.0-py3-none-any.whl
+        sha256: 565bf82dd6dc8801f357b2eec6a1dd447007f398dbebd06b7b440e303e2df3bc
         x-checker-data:
           type: pypi
           name: guessit
@@ -1096,8 +1096,8 @@ modules:
       - pip3 install --prefix=/app chardet-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/8c/6c/0a40afdb50a0fe041ab95553b835a8160b6cf0e81edf2ae2fe9f5224cbf9/chardet-7.4.3-py3-none-any.whl
-        sha256: 1173b74051570cf08099d7429d92e4882d375ad4217f92a6e5240ccfb26f231e
+        url: https://files.pythonhosted.org/packages/cf/6e/5a0b348fa4cd7847567a28c6e697ccf58391960bfd13a6e7473ee23ca2f2/chardet-7.6.0-py3-none-any.whl
+        sha256: 4076d795897ce45239825956a1334e134322ecc4bfe84dbb12acd5390de0fbc1
         x-checker-data:
           type: pypi
           name: chardet
