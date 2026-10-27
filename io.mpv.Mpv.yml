@@ -834,20 +834,29 @@ modules:
           version-pattern: bc-(\d\.\d+\.?\d*).tar.gz
           url-template: https://ftp.gnu.org/gnu/bc/bc-$version.tar.gz
 
-### Python modules for mpv scripts
+  ### Python modules for mpv scripts
 
-  - name: python_dateutil
+  - name: python-dateutil
     buildsystem: simple
     build-commands:
-      - pip3 install --prefix=/app six*.whl python_dateutil*.whl
+      - pip3 install --prefix=/app six*.whl tzdata*.whl python_dateutil*.whl
     sources:
       # install six to fix https://github.com/dateutil/dateutil/issues/1430
+      # TODO: is dropped in a future release of dateutil: https://github.com/dateutil/dateutil/commit/1614e8fe665466d94c325ded5e0359472aac1116
       - type: file
         url: https://files.pythonhosted.org/packages/b7/ce/149a00dd41f10bc29e5921b496af8b574d8413afcd5e30dfa0ed46c2cc5e/six-1.17.0-py2.py3-none-any.whl
         sha256: 4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274
         x-checker-data:
           type: pypi
           name: six
+          packagetype: bdist_wheel
+
+      - type: file
+        url: https://files.pythonhosted.org/packages/94/21/1e5995a1c920cce14e4bffae20c665ec10e7ed03ab25e006cd741092b718/tzdata-2026.5-py2.py3-none-any.whl
+        sha256: b683bd1b6659ddcd810ff02ad09ba821d4bf1065072805063eb35c49617905ac
+        x-checker-data:
+          type: pypi
+          name: tzdata
           packagetype: bdist_wheel
 
       - type: file
