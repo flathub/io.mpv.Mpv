@@ -75,8 +75,8 @@ modules:
     sources:
       - type: archive
         archive-type: tar
-        url: https://download.samba.org/pub/samba/stable/samba-4.24.6.tar.gz
-        sha256: 810cc955acb367e9bde556dccfb50db177a02b7c553aa1629a0b905fa7616267
+        url: https://download.samba.org/pub/samba/stable/samba-4.25.1.tar.gz
+        sha256: 7f367545bca69aa96897628f82f0f04d4b66b3bcb36cb978b9bb952c4b4c428d
         x-checker-data:
           type: html
           url: https://download.samba.org/pub/samba/stable/?C=M;O=D
@@ -127,8 +127,8 @@ modules:
       - type: file
         only-arches:
           - x86_64
-        url: https://github.com/denoland/deno/releases/download/v2.9.5/deno-x86_64-unknown-linux-gnu.zip
-        sha256: 8b010a3b1a4a0188a67cdb8a7a27348b2a501af78aec7fc74f2ace167368d530
+        url: https://github.com/denoland/deno/releases/download/v2.9.8/deno-x86_64-unknown-linux-gnu.zip
+        sha256: e890975bc2549807bbcc0b584ffafda72cc7c93349dd99c80483dd784f6c4609
         dest-filename: deno.zip
         x-checker-data:
           type: json
@@ -141,8 +141,8 @@ modules:
       - type: file
         only-arches:
           - aarch64
-        url: https://github.com/denoland/deno/releases/download/v2.9.5/deno-aarch64-unknown-linux-gnu.zip
-        sha256: 6b7cae3a8fc4385a59dea3146fcb8bad7fea4230e0ad36a8c692afacbc254be0
+        url: https://github.com/denoland/deno/releases/download/v2.9.8/deno-aarch64-unknown-linux-gnu.zip
+        sha256: d49596c20b9788cf8f5d8ddf644103d4bde56ed239753f0bdb92ba9361d51905
         dest-filename: deno.zip
         x-checker-data:
           type: json
@@ -180,8 +180,8 @@ modules:
       - install yt-dlp /app/bin
     sources:
       - type: archive
-        url: https://github.com/yt-dlp/yt-dlp/releases/download/2026.08.19/yt-dlp.tar.gz
-        sha256: 072aad4f2a7604e92155f61a275a4752dc64046c8f6d90df3710525d94cd37c1
+        url: https://github.com/yt-dlp/yt-dlp/releases/download/2026.10.21/yt-dlp.tar.gz
+        sha256: 5f1e419f76e49c996061511ef9eacce50d4aa4959c34480539562e9e1295708d
         x-checker-data:
           is-important: true
           type: json
@@ -431,8 +431,8 @@ modules:
       - --with-pic
     sources:
       - type: archive
-        url: https://github.com/ImageMagick/ImageMagick/archive/7.1.2-30.tar.gz
-        sha256: 3034a64f22398e15ee3dd1e6b1aa83d838cfc47df1bb246ae0eca9590e6ace72
+        url: https://github.com/ImageMagick/ImageMagick/archive/7.1.2-34.tar.gz
+        sha256: f5163a573a1c1bff16358d0a592b2fb168ad0fd3b9dc5ff57dc7820eebc5cf79
         x-checker-data:
           type: anitya
           project-id: 1372
@@ -475,26 +475,14 @@ modules:
     sources:
       - type: git
         url: https://codeberg.org/ccxvii/mujs.git
-        tag: 1.3.8
-        commit: 307f18c4216420f2f56e22d8e7040baa39a6304a
+        tag: 1.3.11
+        commit: 01a75ff4324ae8a54cae91a26edd38029424edaa
         x-checker-data:
           type: json
           url: https://codeberg.org/api/v1/repos/ccxvii/mujs/tags
           tag-query: .[0].name
           version-query: $tag
           timestamp-query: .[0].commit.created
-
-      # The unicode character database files are downloaded in the makefile rules `UnicodeData.txt` and `SpecialCasing.txt`.
-      # This does not work with flatpak because there is no network access during the build step.
-      #
-      # TODO: check for updated urls when updating mujs
-      - type: file
-        url: https://www.unicode.org/Public/16.0.0/ucd/UnicodeData.txt
-        sha256: ff58e5823bd095166564a006e47d111130813dcf8bf234ef79fa51a870edb48f
-
-      - type: file
-        url: https://www.unicode.org/Public/16.0.0/ucd/SpecialCasing.txt
-        sha256: 8d5de354eef79f2395a54c9c7dcebbaf3d30fc962d0f85611ea97aa973a0c451
 
   - name: x264
     cleanup:
@@ -613,8 +601,8 @@ modules:
         url: https://github.com/FFmpeg/FFmpeg.git
         #mirror-urls:
         #  - https://git.ffmpeg.org/ffmpeg.git
-        commit: bf1b838f2ab88b4f8fd83443325c782ea0e0f7fa
-        tag: n9.0.1
+        commit: 946fcce07b6dcd0331c8cc609192aeff5e1924f8
+        tag: n9.0.2
         x-checker-data:
           type: git
           tag-pattern: ^n([\d.]{3,7})$
@@ -668,8 +656,8 @@ modules:
         url: https://github.com/haasn/libplacebo.git
         #mirror-urls:
         #  - https://code.videolan.org/videolan/libplacebo.git
-        tag: v7.360.1
-        commit: cee9b076f2c63104ccfd497fa79c39a867293ec4
+        tag: v7.387.0
+        commit: 275f7dea27924cdd34ab2e6c20e448b6bc4fab65
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -790,8 +778,8 @@ modules:
     sources:
       - type: archive
         archive-type: tar
-        url: https://api.github.com/repos/hoyon/mpv-mpris/tarball/1.2
-        sha256: 0d6ee6e310c8ed7d786fff98b64343a02a4bf76bec6786c72258360c94c4967c
+        url: https://api.github.com/repos/hoyon/mpv-mpris/tarball/1.3
+        sha256: 5872dde225725b9811be41e89746a10f4f7e612dd2969dd637d93972b2904e19
         x-checker-data:
           type: json
           url: https://api.github.com/repos/hoyon/mpv-mpris/releases/latest
@@ -834,14 +822,15 @@ modules:
           version-pattern: bc-(\d\.\d+\.?\d*).tar.gz
           url-template: https://ftp.gnu.org/gnu/bc/bc-$version.tar.gz
 
-### Python modules for mpv scripts
+  ### Python modules for mpv scripts
 
-  - name: python_dateutil
+  - name: python-dateutil
     buildsystem: simple
     build-commands:
-      - pip3 install --prefix=/app six*.whl python_dateutil*.whl
+      - pip3 install --prefix=/app six*.whl tzdata*.whl python_dateutil*.whl
     sources:
       # install six to fix https://github.com/dateutil/dateutil/issues/1430
+      # TODO: is dropped in a future release of dateutil: https://github.com/dateutil/dateutil/commit/1614e8fe665466d94c325ded5e0359472aac1116
       - type: file
         url: https://files.pythonhosted.org/packages/b7/ce/149a00dd41f10bc29e5921b496af8b574d8413afcd5e30dfa0ed46c2cc5e/six-1.17.0-py2.py3-none-any.whl
         sha256: 4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274
@@ -851,8 +840,16 @@ modules:
           packagetype: bdist_wheel
 
       - type: file
-        url: https://files.pythonhosted.org/packages/ec/57/56b9bcc3c9c6a792fcbaf139543cee77261f3651ca9da0c93f5c1221264b/python_dateutil-2.9.0.post0-py2.py3-none-any.whl
-        sha256: a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427
+        url: https://files.pythonhosted.org/packages/94/21/1e5995a1c920cce14e4bffae20c665ec10e7ed03ab25e006cd741092b718/tzdata-2026.5-py2.py3-none-any.whl
+        sha256: b683bd1b6659ddcd810ff02ad09ba821d4bf1065072805063eb35c49617905ac
+        x-checker-data:
+          type: pypi
+          name: tzdata
+          packagetype: bdist_wheel
+
+      - type: file
+        url: https://files.pythonhosted.org/packages/5a/17/cebee01d1c0c1441174cf0456ddc91b280d79acb65340c05e41d77866ee8/python_dateutil-3.0.0-py2.py3-none-any.whl
+        sha256: 3c79630202e4152c6add678446984236efe4f57e84d8e892aab0637bab82e9fd
         x-checker-data:
           type: pypi
           name: python_dateutil
@@ -864,8 +861,8 @@ modules:
       - pip3 install --prefix=/app urllib3*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/7f/3e/5db95bcf282c52709639744ca2a8b149baccf648e39c8cc87553df9eae0c/urllib3-2.7.0-py3-none-any.whl
-        sha256: 9fb4c81ebbb1ce9531cce37674bbc6f1360472bc18ca9a553ede278ef7276897
+        url: https://files.pythonhosted.org/packages/92/9d/c4e665119135114480843e7ab388fa94d8480650450e6f8e26b70d323a4c/urllib3-2.8.0-py3-none-any.whl
+        sha256: 0cf3cae568d36aa9576b28dfb35f11328f1cb974ca7647d9475ebb86c75ac6e3
         x-checker-data:
           type: pypi
           name: urllib3
@@ -877,8 +874,8 @@ modules:
       - pip3 install --prefix=/app soupsieve*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/eb/dc/ad025c1ee131eba60c69f4dd5779b18fcf1e6b21a343e2162a84d5d133c7/soupsieve-2.9.2-py3-none-any.whl
-        sha256: 8089a26fd974ca7a1f30276d3d8492ab266ab15af581642dfe8aa162e0c1c823
+        url: https://files.pythonhosted.org/packages/07/66/473f7ca0be0b06e38ee8c85ee2db184e3981bd769fac2e7c19c8a8865211/soupsieve-3.0.4-py3-none-any.whl
+        sha256: 8412826614f9c632227067d0985aeb9f584bd15efc852955430e097a9fe7afbf
         x-checker-data:
           type: pypi
           name: soupsieve
@@ -903,8 +900,8 @@ modules:
       - pip3 install --prefix=/app pbr-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/2c/21/501d4cb2aec6c0606f71d26427392585ee450ea787bbf7c24b4167cd5429/pbr-7.1.2-py2.py3-none-any.whl
-        sha256: 1391cb77637059096099b5012220d686deee13c1ef90247eef10de0c6b5be1f7
+        url: https://files.pythonhosted.org/packages/bb/a2/79a926b7ab54b247c3419bfa00cfbeb78ad495d21c6d787c978c6261623d/pbr-7.1.3-py2.py3-none-any.whl
+        sha256: 6583e878a1d97cb135fdc509811f31b9235905cde8d4dacd3dbadf9efc45d745
         x-checker-data:
           type: pypi
           name: pbr
@@ -916,8 +913,8 @@ modules:
       - pip3 install --prefix=/app idna-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/57/b0/0e52c878c53f245edd3a11020f20979b3f490f245af532c7cae3027754b5/idna-3.19-py3-none-any.whl
-        sha256: 815e7be7a7806d54abb586dc943addc79e8b2ee16915059658cbeff4b1b43bf4
+        url: https://files.pythonhosted.org/packages/58/a2/bb081bab032533a855d44de1d56f8e8426114ff1ba5d1f07a438a0a654f8/idna-3.20-py3-none-any.whl
+        sha256: ab7ae7122974553370f0bdb919e1a960b2cd1bc1ef0276416d896db81c14582c
         x-checker-data:
           type: pypi
           name: idna
@@ -942,8 +939,8 @@ modules:
       - pip3 install --prefix=/app charset_normalizer-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/cc/61/d01fc49b8dea277640b55a9e15960dbca9fdc8c9fde18e572d39c59f4019/charset_normalizer-3.5.1-py3-none-any.whl
-        sha256: 6df0ec430f9a831772c23ca5a224cba36517a58a84bb32c32bb59a9fa67c47f6
+        url: https://files.pythonhosted.org/packages/fc/ad/d07d7862a62ffa6d79d68074d14823243dd235a77c45262acbf6adeb28bf/charset_normalizer-3.5.2-py3-none-any.whl
+        sha256: b6b751274acb69d77b3323d6b7dbaa3c7fdfc1eb829b7eb61d262f32e1af9685
         x-checker-data:
           type: pypi
           name: charset_normalizer
@@ -955,8 +952,8 @@ modules:
       - pip3 install --prefix=/app certifi-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/0b/a7/71ac2cff56fec219ed242bb11b8efb69fcc4bec75db06fb7bfe35de520e6/certifi-2026.7.22-py3-none-any.whl
-        sha256: 62f22742b58a1a33014a2b6b706588a8d7e2a88ae7bd1a6ebe8c992928483775
+        url: https://files.pythonhosted.org/packages/32/d1/a3652fe2c19134d0d15922177821d863cbd7e842d53a21bbe7e8e3a1b5ac/certifi-2026.10.23-py3-none-any.whl
+        sha256: e9b54de76e530bb6cf0ccd036787103acb58fd42ba930ea8bf948ddbaa2f61d1
         x-checker-data:
           type: pypi
           name: certifi
@@ -1007,8 +1004,8 @@ modules:
       - pip3 install --prefix=/app pytz-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/0f/7b/39c34ca613b0b198cb866466651b26b045e2009864c5183c979a3b83f383/pytz-2026.3.post1-py2.py3-none-any.whl
-        sha256: dd95840dd199baea12d9cc096a1d452caa6596a1c1e4b5f3dbd1541855d5e815
+        url: https://files.pythonhosted.org/packages/4f/ef/c66110d46fb800dda0bf33164182dfadabe26a90e4476844d502a23dca8e/pytz-2026.5-py2.py3-none-any.whl
+        sha256: e658af3757f9e26a9d25dd2aff38335acd92bc9104f890a894b2c1ba28311b03
         x-checker-data:
           type: pypi
           name: pytz
@@ -1097,8 +1094,8 @@ modules:
       - pip3 install --prefix=/app click-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/fb/e2/79c688af8b210d232694e31e59da9f6ec747bae31c3f5946e4e9b98860d5/click-8.4.2-py3-none-any.whl
-        sha256: e6f9f66136c816745b9d65817da91d61d957fb16e02e4dcd0552553c5a197b76
+        url: https://files.pythonhosted.org/packages/58/50/6c0d534c5f134586a8e1ba4e330569e32f057e33372ae556463212fb4cd3/click-8.5.0-py3-none-any.whl
+        sha256: 255bc9599cf7748b4b1a446ccc735421bd08a2ae529a8b88597d3de5664ee360
         x-checker-data:
           type: pypi
           name: click
@@ -1110,8 +1107,8 @@ modules:
       - pip3 install --prefix=/app chardet-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/cf/6e/5a0b348fa4cd7847567a28c6e697ccf58391960bfd13a6e7473ee23ca2f2/chardet-7.6.0-py3-none-any.whl
-        sha256: 4076d795897ce45239825956a1334e134322ecc4bfe84dbb12acd5390de0fbc1
+        url: https://files.pythonhosted.org/packages/cc/75/88a3eb36264375ff951bd2f9397c409727ab6aa6a18e1bd933851571d421/chardet-7.7.0-py3-none-any.whl
+        sha256: 11cf9b719ea3675a2a7d8a3071bbe4d7ea24b26bfe39a51588d515ddd05cacad
         x-checker-data:
           type: pypi
           name: chardet
