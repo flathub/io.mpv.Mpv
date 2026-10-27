@@ -484,18 +484,6 @@ modules:
           version-query: $tag
           timestamp-query: .[0].commit.created
 
-      # The unicode character database files are downloaded in the makefile rules `UnicodeData.txt` and `SpecialCasing.txt`.
-      # This does not work with flatpak because there is no network access during the build step.
-      #
-      # TODO: check for updated urls when updating mujs
-      - type: file
-        url: https://www.unicode.org/Public/16.0.0/ucd/UnicodeData.txt
-        sha256: ff58e5823bd095166564a006e47d111130813dcf8bf234ef79fa51a870edb48f
-
-      - type: file
-        url: https://www.unicode.org/Public/16.0.0/ucd/SpecialCasing.txt
-        sha256: 8d5de354eef79f2395a54c9c7dcebbaf3d30fc962d0f85611ea97aa973a0c451
-
   - name: x264
     cleanup:
       - /include
