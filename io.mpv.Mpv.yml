@@ -8,16 +8,13 @@ rename-icon: mpv
 
 finish-args:
   - --share=ipc
-  - --socket=x11
+  - --socket=fallback-x11
   - --socket=wayland
   - --device=all
   - --share=network
   - --socket=pulseaudio
-  - --filesystem=/tmp:rw
   - --filesystem=xdg-pictures:rw
   - --filesystem=xdg-videos:rw
-  - --filesystem=home/.var/app/io.mpv.Mpv/config/mpv/scripts:create
-  - --filesystem=host:ro
   - --env=LC_NUMERIC=C
   - --env=XCURSOR_PATH=/run/host/user-share/icons:/run/host/share/icons
   - --filesystem=xdg-run/pipewire-0:ro
