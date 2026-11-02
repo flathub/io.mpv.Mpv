@@ -378,19 +378,20 @@ modules:
     config-opts:
       - --disable-static
     modules:
-      - name: Leptonica
+      - name: leptonica
         config-opts:
           - --disable-static
           - --with-pic
         sources:
           - type: archive
-            url: http://www.leptonica.org/source/leptonica-1.87.0.tar.gz
+            url: https://github.com/DanBloomberg/leptonica/releases/download/1.87.0/leptonica-1.87.0.tar.gz
             sha256: c73363397f96eb1295602bf44d708a994ad42046c791bf03ea0505d829bdb6a7
             x-checker-data:
-              type: anitya
-              project-id: 1549
-              stable-only: true
-              url-template: http://www.leptonica.org/source/leptonica-$version.tar.gz
+              type: json
+              url: https://api.github.com/repos/danbloomberg/leptonica/releases/latest
+              version-query: .tag_name
+              url-query: .assets[] | select(.name | test("^leptonica-\\Q\($version)\\E\\.tar\\.gz$")) | .browser_download_url
+              timestamp-query: .published_at
         cleanup:
           - /bin
     sources:
