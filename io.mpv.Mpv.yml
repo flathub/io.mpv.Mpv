@@ -628,14 +628,15 @@ modules:
       - /lib/pkgconfig
     sources:
       - type: git
-        url: https://github.com/haasn/libplacebo.git
-        #mirror-urls:
-        #  - https://code.videolan.org/videolan/libplacebo.git
+        url: https://code.videolan.org/videolan/libplacebo.git
         tag: v7.387.0
         commit: 275f7dea27924cdd34ab2e6c20e448b6bc4fab65
         x-checker-data:
-          type: git
-          tag-pattern: ^v([\d.]+)$
+          type: json
+          url: https://code.videolan.org/api/v4/projects/videolan%2Flibplacebo/repository/tags
+          tag-query: .[0].name
+          version-query: $tag | sub("^v";"")
+          timestamp-query: .[0].commit.created_at
 
   - name: hwdata
     buildsystem: autotools
