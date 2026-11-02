@@ -238,17 +238,14 @@ modules:
       - /lib/pkgconfig
     sources:
       - type: archive
-        url: https://ftp.gnu.org/gnu/libcdio/libcdio-2.1.0.tar.bz2
-        mirror-urls:
-          - https://mirrors.kernel.org/gnu/libcdio/libcdio-2.1.0.tar.bz2
-          - https://mirrors.ocf.berkeley.edu/gnu/libcdio/libcdio-2.1.0.tar.bz2
-          - https://ftpmirror.gnu.org/gnu/libcdio/libcdio-2.1.0.tar.bz2
-        sha256: 8550e9589dbd594bfac93b81ecf129b1dc9d0d51e90f9696f1b2f9b2af32712b
+        url: https://github.com/libcdio/libcdio-C/releases/download/2.4.0/libcdio-2.4.0.tar.bz2
+        sha256: 8e6a305f81e45a78b41ce696d34497cc208d97075469d7304c11a6d44bf006ac
         x-checker-data:
-          type: html
-          url: https://ftp.gnu.org/gnu/libcdio/
-          version-pattern: libcdio-(\d\.\d+\.?\d*).tar.bz2
-          url-template: https://ftp.gnu.org/gnu/libcdio/libcdio-$version.tar.bz2
+          type: json
+          url: https://api.github.com/repos/libcdio/libcdio-C/releases/latest
+          version-query: .tag_name
+          url-query: .assets[] | select(.name | test("^libcdio-\\Q\($version)\\E\\.tar\\.bz2$")) | .browser_download_url
+          timestamp-query: .published_at
 
   - name: libcdio-paranoia
     config-opts:
@@ -259,17 +256,14 @@ modules:
       - /lib/pkgconfig
     sources:
       - type: archive
-        url: https://ftp.gnu.org/gnu/libcdio/libcdio-paranoia-10.2+2.0.2.tar.bz2
-        mirror-urls:
-          - https://mirrors.kernel.org/gnu/libcdio/libcdio-paranoia-10.2+2.0.1.tar.bz2
-          - https://mirrors.ocf.berkeley.edu/gnu/libcdio/libcdio-paranoia-10.2+2.0.1.tar.bz2
-          - https://ftpmirror.gnu.org/gnu/libcdio/libcdio-paranoia-10.2+2.0.1.tar.bz2
+        url: https://github.com/libcdio/libcdio-paranoia/releases/download/release-10.2%2B2.0.2/libcdio-paranoia-10.2%2B2.0.2.tar.bz2
         sha256: 186892539dedd661276014d71318c8c8f97ecb1250a86625256abd4defbf0d0c
         x-checker-data:
-          type: html
-          url: https://ftp.gnu.org/gnu/libcdio/
-          version-pattern: libcdio-paranoia-([\d\.\+-]+).tar.bz2
-          url-template: https://ftp.gnu.org/gnu/libcdio/libcdio-paranoia-$version.tar.bz2
+          type: json
+          url: https://api.github.com/repos/libcdio/libcdio-paranoia/releases/latest
+          version-query: .tag_name | sub("^release-";"")
+          url-query: .assets[] | select(.name | test("^libcdio-paranoia-\\Q\($version)\\E\\.tar\\.bz2$")) | .browser_download_url
+          timestamp-query: .published_at
 
   - name: libdvdread
     buildsystem: meson
@@ -341,16 +335,6 @@ modules:
           version-pattern: libaacs-([\w.]+)\.tar\.
           url-template: https://download.videolan.org/pub/videolan/libaacs/$version/libaacs-$version.tar.bz2
 
-      # fix broken detection of libgcrypt >= 1.11.0
-      # see
-      #  https://gitlab.archlinux.org/archlinux/packaging/packages/libaacs/-/commit/d3f096b01f2b593ab0739f3a9eb64331b99553e7
-      #  https://salsa.debian.org/multimedia-team/libaacs/-/commit/87e3cd8aeaa165624d531b2789f9fd9e5d9c01f5
-      - type: shell
-        commands:
-          - rm --force --verbose m4/libgcrypt.m4
-          - autoreconf --force --install --verbose
-          - libtoolize
-
   - name: libbluray
     buildsystem: meson
     config-opts:
@@ -394,19 +378,20 @@ modules:
     config-opts:
       - --disable-static
     modules:
-      - name: Leptonica
+      - name: leptonica
         config-opts:
           - --disable-static
           - --with-pic
         sources:
           - type: archive
-            url: http://www.leptonica.org/source/leptonica-1.87.0.tar.gz
+            url: https://github.com/DanBloomberg/leptonica/releases/download/1.87.0/leptonica-1.87.0.tar.gz
             sha256: c73363397f96eb1295602bf44d708a994ad42046c791bf03ea0505d829bdb6a7
             x-checker-data:
-              type: anitya
-              project-id: 1549
-              stable-only: true
-              url-template: http://www.leptonica.org/source/leptonica-$version.tar.gz
+              type: json
+              url: https://api.github.com/repos/danbloomberg/leptonica/releases/latest
+              version-query: .tag_name
+              url-query: .assets[] | select(.name | test("^leptonica-\\Q\($version)\\E\\.tar\\.gz$")) | .browser_download_url
+              timestamp-query: .published_at
         cleanup:
           - /bin
     sources:
@@ -524,19 +509,6 @@ modules:
           type: git
           tag-pattern: ^([\d.]+)$
 
-  - name: libmysofa
-    buildsystem: cmake
-    config-opts:
-      - -DBUILD_TESTS=OFF
-    sources:
-      - type: git
-        commit: 6cc5b15a73e9bd97810d03767082edda7f315881
-        tag: v1.3.5
-        url: https://github.com/hoene/libmysofa.git
-        x-checker-data:
-          type: git
-          tag-pattern: ^v([\d.]+)$
-
   - name: libbs2b
     buildsystem: autotools
     config-opts:
@@ -598,9 +570,7 @@ modules:
 
     sources:
       - type: git
-        url: https://github.com/FFmpeg/FFmpeg.git
-        #mirror-urls:
-        #  - https://git.ffmpeg.org/ffmpeg.git
+        url: https://git.ffmpeg.org/ffmpeg.git
         commit: 946fcce07b6dcd0331c8cc609192aeff5e1924f8
         tag: n9.0.2
         x-checker-data:
@@ -653,14 +623,15 @@ modules:
       - /lib/pkgconfig
     sources:
       - type: git
-        url: https://github.com/haasn/libplacebo.git
-        #mirror-urls:
-        #  - https://code.videolan.org/videolan/libplacebo.git
+        url: https://code.videolan.org/videolan/libplacebo.git
         tag: v7.387.0
         commit: 275f7dea27924cdd34ab2e6c20e448b6bc4fab65
         x-checker-data:
-          type: git
-          tag-pattern: ^v([\d.]+)$
+          type: json
+          url: https://code.videolan.org/api/v4/projects/videolan%2Flibplacebo/repository/tags
+          tag-query: .[0].name
+          version-query: $tag | sub("^v";"")
+          timestamp-query: .[0].commit.created_at
 
   - name: hwdata
     buildsystem: autotools
