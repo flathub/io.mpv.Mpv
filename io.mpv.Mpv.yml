@@ -514,19 +514,6 @@ modules:
           type: git
           tag-pattern: ^([\d.]+)$
 
-  - name: libmysofa
-    buildsystem: cmake
-    config-opts:
-      - -DBUILD_TESTS=OFF
-    sources:
-      - type: git
-        commit: 6cc5b15a73e9bd97810d03767082edda7f315881
-        tag: v1.3.5
-        url: https://github.com/hoene/libmysofa.git
-        x-checker-data:
-          type: git
-          tag-pattern: ^v([\d.]+)$
-
   - name: libbs2b
     buildsystem: autotools
     config-opts:
