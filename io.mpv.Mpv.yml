@@ -4,6 +4,7 @@ runtime-version: '26.08'
 sdk: org.freedesktop.Sdk
 command: mpv
 rename-desktop-file: mpv.desktop
+rename-appdata-file: mpv.metainfo.xml
 rename-icon: mpv
 
 finish-args:
@@ -723,13 +724,12 @@ modules:
           tag-query: .tag_name
           version-query: $tag | sub("^v"; "")
           timestamp-query: .published_at
+
+      # replace upstream metainfo file with custom one
       - type: file
-        path: io.mpv.Mpv.appdata.xml
-      - type: shell
-        commands:
-          - mkdir -p /app/share/appdata
-          - mv io.mpv.Mpv.appdata.xml /app/share/appdata/io.mpv.Mpv.appdata.xml
-          - chmod 644 /app/share/appdata/io.mpv.Mpv.appdata.xml
+        path: io.mpv.Mpv.metainfo.xml
+        dest: etc/
+        dest-filename: mpv.metainfo.xml
 
 # Scripts for mpv
   - name: mpv-wrapper
