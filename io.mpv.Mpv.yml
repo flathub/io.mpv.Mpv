@@ -4,6 +4,7 @@ runtime-version: '26.08'
 sdk: org.freedesktop.Sdk
 command: mpv
 rename-desktop-file: mpv.desktop
+rename-appdata-file: mpv.metainfo.xml
 rename-icon: mpv
 
 finish-args:
@@ -717,21 +718,18 @@ modules:
         tag: v0.41.0
         commit: 41f6a645068483470267271e1d09966ca3b9f413
         x-checker-data:
-          type: git
-          tag-pattern: ^v([\d.]+)$
           is-main-source: true
+          type: json
+          url: https://api.github.com/repos/mpv-player/mpv/releases/latest
+          tag-query: .tag_name
+          version-query: $tag | sub("^v"; "")
+          timestamp-query: .published_at
+
+      # replace upstream metainfo file with custom one
       - type: file
-        path: io.mpv.Mpv.appdata.xml
-      # Automatically update version and date in io.mpv.Mpv.appdata.xml
-      # Then install io.mpv.Mpv.appdata.xml
-      - type: shell
-        commands:
-          - if [ -f "MPV_VERSION" ]; then version=$(cat MPV_VERSION); else version=$(git describe --tags --abbrev=0); fi
-          - sed -i "s/date=\"[0-9-]*\"/date=\"$(git log -n1 --pretty=format:%ad --date=short)\"/" io.mpv.Mpv.appdata.xml
-          - sed -i "s/version=\"[0-9.]*\"/version=\"$version\"/" io.mpv.Mpv.appdata.xml
-          - mkdir -p /app/share/appdata
-          - mv io.mpv.Mpv.appdata.xml /app/share/appdata/io.mpv.Mpv.appdata.xml
-          - chmod 644 /app/share/appdata/io.mpv.Mpv.appdata.xml
+        path: io.mpv.Mpv.metainfo.xml
+        dest: etc/
+        dest-filename: mpv.metainfo.xml
 
 # Scripts for mpv
   - name: mpv-wrapper
