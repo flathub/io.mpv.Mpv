@@ -398,8 +398,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/tesseract-ocr/tesseract.git
-        tag: 5.5.3
-        commit: db0ec62f81b0737fbbe184d8fea40af5738f8eef
+        tag: 5.5.4
+        commit: 7e548e6eff172f38f97664afe7f7ce40db36c8d6
         x-checker-data:
           type: json
           url: https://api.github.com/repos/tesseract-ocr/tesseract/releases/latest
@@ -417,8 +417,8 @@ modules:
       - --with-pic
     sources:
       - type: archive
-        url: https://github.com/ImageMagick/ImageMagick/archive/7.1.2-34.tar.gz
-        sha256: f5163a573a1c1bff16358d0a592b2fb168ad0fd3b9dc5ff57dc7820eebc5cf79
+        url: https://github.com/ImageMagick/ImageMagick/archive/7.1.2-35.tar.gz
+        sha256: 40b6fefa88fe16ca5a4b3d3db5133eaebfb0157f21f98530bde8aec5dd5b0776
         x-checker-data:
           type: anitya
           project-id: 1372
@@ -715,8 +715,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/mpv-player/mpv.git
-        tag: v0.41.0
-        commit: 41f6a645068483470267271e1d09966ca3b9f413
+        tag: v0.42.0
+        commit: b0841e8c4d156b8403dc1876c4cbd9011eb583f3
         x-checker-data:
           is-main-source: true
           type: json
@@ -809,16 +809,16 @@ modules:
           packagetype: bdist_wheel
 
       - type: file
-        url: https://files.pythonhosted.org/packages/94/21/1e5995a1c920cce14e4bffae20c665ec10e7ed03ab25e006cd741092b718/tzdata-2026.5-py2.py3-none-any.whl
-        sha256: b683bd1b6659ddcd810ff02ad09ba821d4bf1065072805063eb35c49617905ac
+        url: https://files.pythonhosted.org/packages/0a/66/9a06c2227fedfd4919f0eaaa8b94377d9730882a7e4f95823c9a331ab5e1/tzdata-2026.6-py2.py3-none-any.whl
+        sha256: 0a10eec6e13ef16b627fabed9a5f2ba61a62b1c67f327305f4e7e412a70b4aec
         x-checker-data:
           type: pypi
           name: tzdata
           packagetype: bdist_wheel
 
       - type: file
-        url: https://files.pythonhosted.org/packages/5a/17/cebee01d1c0c1441174cf0456ddc91b280d79acb65340c05e41d77866ee8/python_dateutil-3.0.0-py2.py3-none-any.whl
-        sha256: 3c79630202e4152c6add678446984236efe4f57e84d8e892aab0637bab82e9fd
+        url: https://files.pythonhosted.org/packages/2f/a9/52b89563d154433d79b51ed1eb4842bf7334cb2696891a7fe135618853d7/python_dateutil-4.0.0-py3-none-any.whl
+        sha256: a5e246f79eb80475e691bf93862cead98decd8a498cf53ba0516fcdc0f50dc1c
         x-checker-data:
           type: pypi
           name: python_dateutil
@@ -843,8 +843,8 @@ modules:
       - pip3 install --prefix=/app soupsieve*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/07/66/473f7ca0be0b06e38ee8c85ee2db184e3981bd769fac2e7c19c8a8865211/soupsieve-3.0.4-py3-none-any.whl
-        sha256: 8412826614f9c632227067d0985aeb9f584bd15efc852955430e097a9fe7afbf
+        url: https://files.pythonhosted.org/packages/2c/5c/4f68370847b561a389dd9a2d7eb3d19fd8cbb8acbae543a0c6b8d0d9700b/soupsieve-4.0.1-py3-none-any.whl
+        sha256: 2e68cf7dd5a0f29d81f9d485275ccf294e6475f615e211895d91cb81f8614f04
         x-checker-data:
           type: pypi
           name: soupsieve
@@ -973,8 +973,8 @@ modules:
       - pip3 install --prefix=/app pytz-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/4f/ef/c66110d46fb800dda0bf33164182dfadabe26a90e4476844d502a23dca8e/pytz-2026.5-py2.py3-none-any.whl
-        sha256: e658af3757f9e26a9d25dd2aff38335acd92bc9104f890a894b2c1ba28311b03
+        url: https://files.pythonhosted.org/packages/b6/25/564f3fc5b70c1398d706c51f2b1470d0ea0b1b2f96fee67877b6f5bdf3b6/pytz-2026.6-py2.py3-none-any.whl
+        sha256: 7fed3fee8fd6bd4a2b7b75a8d56021d0624127bf69bd5691f115db929ac570b3
         x-checker-data:
           type: pypi
           name: pytz
@@ -1063,8 +1063,8 @@ modules:
       - pip3 install --prefix=/app click-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/58/50/6c0d534c5f134586a8e1ba4e330569e32f057e33372ae556463212fb4cd3/click-8.5.0-py3-none-any.whl
-        sha256: 255bc9599cf7748b4b1a446ccc735421bd08a2ae529a8b88597d3de5664ee360
+        url: https://files.pythonhosted.org/packages/31/7d/164b7ffc8624fe9efb4221bf9af485d5c1e41b9ae118045d2b6dc5457d8b/click-8.5.1-py3-none-any.whl
+        sha256: 8bb5376d2006950386f8c6427613334a2acadc5f559cb80e638d00b4df957e37
         x-checker-data:
           type: pypi
           name: click
