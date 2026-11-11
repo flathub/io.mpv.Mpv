@@ -796,16 +796,8 @@ modules:
   - name: python-dateutil
     buildsystem: simple
     build-commands:
-      - pip3 install --prefix=/app tzdata*.whl python_dateutil*.whl
+      - pip3 install --prefix=/app python_dateutil-*.whl
     sources:
-      - type: file
-        url: https://files.pythonhosted.org/packages/0a/66/9a06c2227fedfd4919f0eaaa8b94377d9730882a7e4f95823c9a331ab5e1/tzdata-2026.6-py2.py3-none-any.whl
-        sha256: 0a10eec6e13ef16b627fabed9a5f2ba61a62b1c67f327305f4e7e412a70b4aec
-        x-checker-data:
-          type: pypi
-          name: tzdata
-          packagetype: bdist_wheel
-
       - type: file
         url: https://files.pythonhosted.org/packages/2f/a9/52b89563d154433d79b51ed1eb4842bf7334cb2696891a7fe135618853d7/python_dateutil-4.0.0-py3-none-any.whl
         sha256: a5e246f79eb80475e691bf93862cead98decd8a498cf53ba0516fcdc0f50dc1c
@@ -813,6 +805,20 @@ modules:
           type: pypi
           name: python_dateutil
           packagetype: bdist_wheel
+
+    modules:
+      - name: tzdata
+        buildsystem: simple
+        build-commands:
+          - pip3 install --prefix=/app tzdata-*.whl
+        sources:
+          - type: file
+            url: https://files.pythonhosted.org/packages/0a/66/9a06c2227fedfd4919f0eaaa8b94377d9730882a7e4f95823c9a331ab5e1/tzdata-2026.6-py2.py3-none-any.whl
+            sha256: 0a10eec6e13ef16b627fabed9a5f2ba61a62b1c67f327305f4e7e412a70b4aec
+            x-checker-data:
+              type: pypi
+              name: tzdata
+              packagetype: bdist_wheel
 
   - name: urllib3
     buildsystem: simple
