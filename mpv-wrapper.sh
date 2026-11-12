@@ -1,17 +1,5 @@
 #!/usr/bin/bash
 
-# Ensure the config directory exists
-CONFIG_DIR="$HOME/.var/app/io.mpv.Mpv/config/mpv"
-
-# Create mpv.conf if it doesn't exist
-MPV_CONF="$CONFIG_DIR/mpv.conf"
-if [ ! -f "$MPV_CONF" ]; then
-    mkdir -p "$CONFIG_DIR"
-    touch "$MPV_CONF"
-    # Add default settings
-    echo "# MPV configuration file" > "$MPV_CONF"
-fi
-
 # Create the Pictures symlink as before
 ln -snf "$(xdg-user-dir PICTURES)" "$HOME/.var/app/io.mpv.Mpv/Pictures"
 
