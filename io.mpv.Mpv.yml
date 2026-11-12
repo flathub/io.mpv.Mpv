@@ -2,7 +2,7 @@ id: io.mpv.Mpv
 runtime: org.freedesktop.Platform
 runtime-version: '26.08'
 sdk: org.freedesktop.Sdk
-command: mpv
+command: mpv-wrapper
 rename-desktop-file: mpv.desktop
 rename-appdata-file: mpv.metainfo.xml
 rename-icon: mpv
@@ -689,7 +689,6 @@ modules:
       - -Dzimg=enabled
       - -Dzlib=enabled
     post-install:
-      - mv /app/bin/mpv /app/bin/mpv-bin
       # save screenshots at xdg-pictures/mpv
       - mkdir -p /app/etc/mpv
       - echo "screenshot-directory=~/.var/app/io.mpv.Mpv/Pictures/mpv" > /app/etc/mpv/mpv.conf
@@ -717,10 +716,10 @@ modules:
   - name: mpv-wrapper
     buildsystem: simple
     build-commands:
-      - install -D mpv /app/bin/mpv
+      - install -Dm755 mpv-wrapper.sh /app/bin/mpv-wrapper
     sources:
       - type: file
-        path: mpv
+        path: mpv-wrapper.sh
 
   - name: mpv-mpris
     no-autogen: true
