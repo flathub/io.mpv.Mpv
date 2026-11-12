@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/bash
 
 # Ensure the config directory exists
 CONFIG_DIR="$HOME/.var/app/io.mpv.Mpv/config/mpv"
