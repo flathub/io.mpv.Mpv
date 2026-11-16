@@ -32,27 +32,6 @@ cleanup:
   - '*.a'
 
 modules:
-  - name: lmdb
-    sources:
-      - sha256: f3927859882eb608868c8c31586bb7eb84562a40a6bf5cc3e13b6b564641ea28
-        type: archive
-        url: https://github.com/LMDB/lmdb/archive/LMDB_0.9.22.tar.gz
-    make-install-args:
-      - prefix=/app
-    no-autogen: true
-    subdir: libraries/liblmdb
-
-  - name: parse-yapp
-    buildsystem: simple
-    build-commands:
-      - perl Makefile.PL INSTALL_BASE=/app
-      - make
-      - make install
-    sources:
-      - type: archive
-        url: https://cpan.metacpan.org/authors/id/W/WB/WBRASWELL/Parse-Yapp-1.21.tar.gz
-        sha256: 3810e998308fba2e0f4f26043035032b027ce51ce5c8a52a8b8e340ca65f13e5
-
   - name: smbclient
     config-opts:
       - --without-json
@@ -83,17 +62,27 @@ modules:
           url: https://download.samba.org/pub/samba/stable/?C=M;O=D
           version-pattern: samba-(\d+\.\d+\.\d+).tar.gz
           url-template: https://download.samba.org/pub/samba/stable/samba-$version.tar.gz
+    modules:
+      - name: lmdb
+        sources:
+          - sha256: f3927859882eb608868c8c31586bb7eb84562a40a6bf5cc3e13b6b564641ea28
+            type: archive
+            url: https://github.com/LMDB/lmdb/archive/LMDB_0.9.22.tar.gz
+        make-install-args:
+          - prefix=/app
+        no-autogen: true
+        subdir: libraries/liblmdb
 
-  - name: libXmu
-    buildsystem: autotools
-    sources:
-      - type: git
-        url: https://gitlab.freedesktop.org/xorg/lib/libxmu.git
-        tag: libXmu-1.3.1
-        commit: cdf280f6611932f79ab872832974e8043b1cad6d
-        x-checker-data:
-          type: git
-          tag-pattern: ^libXmu-([\d.]+)$
+      - name: parse-yapp
+        buildsystem: simple
+        build-commands:
+          - perl Makefile.PL INSTALL_BASE=/app
+          - make
+          - make install
+        sources:
+          - type: archive
+            url: https://cpan.metacpan.org/authors/id/W/WB/WBRASWELL/Parse-Yapp-1.21.tar.gz
+            sha256: 3810e998308fba2e0f4f26043035032b027ce51ce5c8a52a8b8e340ca65f13e5
 
   - name: xclip
     buildsystem: autotools
@@ -105,6 +94,17 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^(\d+\.\d+)$
+    modules:
+      - name: libXmu
+        buildsystem: autotools
+        sources:
+          - type: git
+            url: https://gitlab.freedesktop.org/xorg/lib/libxmu.git
+            tag: libXmu-1.3.1
+            commit: cdf280f6611932f79ab872832974e8043b1cad6d
+            x-checker-data:
+              type: git
+              tag-pattern: ^libXmu-([\d.]+)$
 
   - name: libXpresent
     buildsystem: autotools
@@ -118,58 +118,6 @@ modules:
           tag-pattern: ^libXpresent-([\d.]+)$
 
   - shared-modules/luajit/luajit.json
-
-  - name: deno
-    buildsystem: simple
-    build-commands:
-      - install -Dm755 deno /app/bin/deno
-    sources:
-      # -------- x86_64 build --------
-      - type: file
-        only-arches:
-          - x86_64
-        url: https://github.com/denoland/deno/releases/download/v2.9.8/deno-x86_64-unknown-linux-gnu.zip
-        sha256: e890975bc2549807bbcc0b584ffafda72cc7c93349dd99c80483dd784f6c4609
-        dest-filename: deno.zip
-        x-checker-data:
-          type: json
-          url: https://api.github.com/repos/denoland/deno/releases/latest
-          version-query: .name | sub("^v"; "")
-          timestamp-query: .published_at
-          url-query: .assets[] | select(.name == "deno-x86_64-unknown-linux-gnu.zip") | .browser_download_url
-
-      # -------- aarch64 build --------
-      - type: file
-        only-arches:
-          - aarch64
-        url: https://github.com/denoland/deno/releases/download/v2.9.8/deno-aarch64-unknown-linux-gnu.zip
-        sha256: d49596c20b9788cf8f5d8ddf644103d4bde56ed239753f0bdb92ba9361d51905
-        dest-filename: deno.zip
-        x-checker-data:
-          type: json
-          url: https://api.github.com/repos/denoland/deno/releases/latest
-          version-query: .name | sub("^v"; "")
-          timestamp-query: .published_at
-          url-query: .assets[] | select(.name == "deno-aarch64-unknown-linux-gnu.zip") | .browser_download_url
-
-      # -------- unpack the zip --------
-      - type: shell
-        commands:
-          - unzip deno.zip
-
-  - name: yt-dlp-ejs
-    buildsystem: simple
-    build-commands:
-      - pip3 install --prefix=/app yt_dlp_ejs*.whl
-    sources:
-      - type: file
-        url: https://files.pythonhosted.org/packages/e3/bd/520769863744b669440a924271a6159ddd82ad5ae26b4ac4d4b69e9f8d44/yt_dlp_ejs-0.8.0-py3-none-any.whl
-        sha256: 79300e5fca7f937a1eeede11f0456862c1b41107ce1d726871e0207424f4bdb4
-        x-checker-data:
-          is-important: true
-          type: pypi
-          name: yt-dlp-ejs
-          packagetype: bdist_wheel
 
   - name: yt-dlp
     no-autogen: true
@@ -189,6 +137,58 @@ modules:
           url: https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest
           version-query: .tag_name
           url-query: .assets[] | select(.name=="yt-dlp.tar.gz") | .browser_download_url
+    modules:
+      - name: yt-dlp-ejs
+        buildsystem: simple
+        build-commands:
+          - pip3 install --prefix=/app yt_dlp_ejs*.whl
+        sources:
+          - type: file
+            url: https://files.pythonhosted.org/packages/e3/bd/520769863744b669440a924271a6159ddd82ad5ae26b4ac4d4b69e9f8d44/yt_dlp_ejs-0.8.0-py3-none-any.whl
+            sha256: 79300e5fca7f937a1eeede11f0456862c1b41107ce1d726871e0207424f4bdb4
+            x-checker-data:
+              is-important: true
+              type: pypi
+              name: yt-dlp-ejs
+              packagetype: bdist_wheel
+        modules:
+          - name: deno
+            buildsystem: simple
+            build-commands:
+              - install -Dm755 deno /app/bin/deno
+            sources:
+              # -------- x86_64 build --------
+              - type: file
+                only-arches:
+                  - x86_64
+                url: https://github.com/denoland/deno/releases/download/v2.9.8/deno-x86_64-unknown-linux-gnu.zip
+                sha256: e890975bc2549807bbcc0b584ffafda72cc7c93349dd99c80483dd784f6c4609
+                dest-filename: deno.zip
+                x-checker-data:
+                  type: json
+                  url: https://api.github.com/repos/denoland/deno/releases/latest
+                  version-query: .name | sub("^v"; "")
+                  timestamp-query: .published_at
+                  url-query: .assets[] | select(.name == "deno-x86_64-unknown-linux-gnu.zip") | .browser_download_url
+
+              # -------- aarch64 build --------
+              - type: file
+                only-arches:
+                  - aarch64
+                url: https://github.com/denoland/deno/releases/download/v2.9.8/deno-aarch64-unknown-linux-gnu.zip
+                sha256: d49596c20b9788cf8f5d8ddf644103d4bde56ed239753f0bdb92ba9361d51905
+                dest-filename: deno.zip
+                x-checker-data:
+                  type: json
+                  url: https://api.github.com/repos/denoland/deno/releases/latest
+                  version-query: .name | sub("^v"; "")
+                  timestamp-query: .published_at
+                  url-query: .assets[] | select(.name == "deno-aarch64-unknown-linux-gnu.zip") | .browser_download_url
+
+              # -------- unpack the zip --------
+              - type: shell
+                commands:
+                  - unzip deno.zip
 
   - name: uchardet
     buildsystem: cmake-ninja
@@ -280,6 +280,20 @@ modules:
           url: https://download.videolan.org/pub/videolan/libdvdread/last/
           version-pattern: libdvdread-([\w.]+)\.tar\.
           url-template: https://download.videolan.org/pub/videolan/libdvdread/$version/libdvdread-$version.tar.xz
+    modules:
+      - name: libdvdcss
+        buildsystem: meson
+        cleanup:
+          - /include
+          - /lib/pkgconfig
+        sources:
+          - type: archive
+            url: https://download.videolan.org/pub/libdvdcss/1.6.0/libdvdcss-1.6.0.tar.xz
+            sha256: 7ea556c846b7bfc32d47b41cae56d1863a6b6d5f706bb162778d6f298490977c
+            x-checker-data:
+              type: anitya
+              project-id: 5568
+              url-template: https://download.videolan.org/pub/libdvdcss/$version/libdvdcss-$version.tar.xz
 
   - name: libdvdnav
     buildsystem: meson
@@ -295,20 +309,6 @@ modules:
           url: https://download.videolan.org/pub/videolan/libdvdnav/last/
           version-pattern: libdvdnav-([\w.]+)\.tar\.
           url-template: https://download.videolan.org/pub/videolan/libdvdnav/$version/libdvdnav-$version.tar.xz
-
-  - name: libdvdcss
-    buildsystem: meson
-    cleanup:
-      - /include
-      - /lib/pkgconfig
-    sources:
-      - type: archive
-        url: https://download.videolan.org/pub/libdvdcss/1.6.0/libdvdcss-1.6.0.tar.xz
-        sha256: 7ea556c846b7bfc32d47b41cae56d1863a6b6d5f706bb162778d6f298490977c
-        x-checker-data:
-          type: anitya
-          project-id: 5568
-          url-template: https://download.videolan.org/pub/libdvdcss/$version/libdvdcss-$version.tar.xz
 
   - name: libaacs
     config-opts:
@@ -620,20 +620,19 @@ modules:
           version-query: $tag | sub("^v";"")
           timestamp-query: .[0].commit.created_at
 
-  - name: hwdata
-    buildsystem: autotools
-    sources:
-      - type: archive
-        url: https://github.com/vcrhonek/hwdata/archive/refs/tags/v0.394.tar.gz
-        sha256: b7c3fd7214a3b7c49d2661db127a712dc11cffd1799f793947aa1cb20aaf3298
-
   - name: libdisplay-info
     buildsystem: meson
-
     sources:
       - type: archive
         url: https://gitlab.freedesktop.org/emersion/libdisplay-info/-/archive/0.2.0/libdisplay-info-0.2.0.tar.gz
         sha256: f7331fcaf5527251b84c8fb84238d06cd2f458422ce950c80e86c72927aa8c2b
+    modules:
+      - name: hwdata
+        buildsystem: autotools
+        sources:
+          - type: archive
+            url: https://github.com/vcrhonek/hwdata/archive/refs/tags/v0.394.tar.gz
+            sha256: b7c3fd7214a3b7c49d2661db127a712dc11cffd1799f793947aa1cb20aaf3298
 
   - name: mpv
     buildsystem: meson
@@ -741,20 +740,6 @@ modules:
           version-query: .name
           url-query: .tarball_url
 
-  - name: ed
-    build-options:
-      no-debuginfo: true
-    buildsystem: autotools
-    sources:
-      - type: archive
-        url: https://ftp.gnu.org/gnu/ed/ed-1.22.6.tar.lz
-        sha256: 3f33b22135219c39c3c695f7b7171c2567d3e2a17c798c0a90607320cbb268f2
-        x-checker-data:
-          type: html
-          url: https://ftp.gnu.org/gnu/ed/
-          version-pattern: ed-(\d\.\d+\.?\d*).tar.lz
-          url-template: https://ftp.gnu.org/gnu/ed/ed-$version.tar.lz
-
   - name: bc
     build-options:
       no-debuginfo: true
@@ -768,6 +753,20 @@ modules:
           url: https://ftp.gnu.org/gnu/bc/
           version-pattern: bc-(\d\.\d+\.?\d*).tar.gz
           url-template: https://ftp.gnu.org/gnu/bc/bc-$version.tar.gz
+    modules:
+      - name: ed
+        build-options:
+          no-debuginfo: true
+        buildsystem: autotools
+        sources:
+          - type: archive
+            url: https://ftp.gnu.org/gnu/ed/ed-1.22.6.tar.lz
+            sha256: 3f33b22135219c39c3c695f7b7171c2567d3e2a17c798c0a90607320cbb268f2
+            x-checker-data:
+              type: html
+              url: https://ftp.gnu.org/gnu/ed/
+              version-pattern: ed-(\d\.\d+\.?\d*).tar.lz
+              url-template: https://ftp.gnu.org/gnu/ed/ed-$version.tar.lz
 
   ### Python modules for mpv scripts
 
