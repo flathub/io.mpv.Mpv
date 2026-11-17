@@ -97,77 +97,6 @@ modules:
 
   - shared-modules/luajit/luajit.json
 
-  - name: yt-dlp
-    no-autogen: true
-    no-make-install: true
-    make-args:
-      - yt-dlp
-      - PYTHON=/usr/bin/python3
-    post-install:
-      - install yt-dlp /app/bin
-    sources:
-      - type: archive
-        url: https://github.com/yt-dlp/yt-dlp/releases/download/2026.10.26/yt-dlp.tar.gz
-        sha256: 21f942d258d25cc4e60b4982a25c423460f0bebb835f38e6dfd1fcb140087f95
-        x-checker-data:
-          is-important: true
-          type: json
-          url: https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest
-          version-query: .tag_name
-          url-query: .assets[] | select(.name=="yt-dlp.tar.gz") | .browser_download_url
-    modules:
-      - name: yt-dlp-ejs
-        buildsystem: simple
-        build-commands:
-          - pip3 install --prefix=/app yt_dlp_ejs*.whl
-        sources:
-          - type: file
-            url: https://files.pythonhosted.org/packages/e3/bd/520769863744b669440a924271a6159ddd82ad5ae26b4ac4d4b69e9f8d44/yt_dlp_ejs-0.8.0-py3-none-any.whl
-            sha256: 79300e5fca7f937a1eeede11f0456862c1b41107ce1d726871e0207424f4bdb4
-            x-checker-data:
-              is-important: true
-              type: pypi
-              name: yt-dlp-ejs
-              packagetype: bdist_wheel
-        modules:
-          - name: deno
-            buildsystem: simple
-            build-commands:
-              - install -Dm755 deno /app/bin/deno
-            sources:
-              # -------- x86_64 build --------
-              - type: file
-                only-arches:
-                  - x86_64
-                url: https://github.com/denoland/deno/releases/download/v2.9.8/deno-x86_64-unknown-linux-gnu.zip
-                sha256: e890975bc2549807bbcc0b584ffafda72cc7c93349dd99c80483dd784f6c4609
-                dest-filename: deno.zip
-                x-checker-data:
-                  type: json
-                  url: https://api.github.com/repos/denoland/deno/releases/latest
-                  version-query: .name | sub("^v"; "")
-                  timestamp-query: .published_at
-                  url-query: .assets[] | select(.name == "deno-x86_64-unknown-linux-gnu.zip") | .browser_download_url
-
-              # -------- aarch64 build --------
-              - type: file
-                only-arches:
-                  - aarch64
-                url: https://github.com/denoland/deno/releases/download/v2.9.8/deno-aarch64-unknown-linux-gnu.zip
-                sha256: d49596c20b9788cf8f5d8ddf644103d4bde56ed239753f0bdb92ba9361d51905
-                dest-filename: deno.zip
-                x-checker-data:
-                  type: json
-                  url: https://api.github.com/repos/denoland/deno/releases/latest
-                  version-query: .name | sub("^v"; "")
-                  timestamp-query: .published_at
-                  url-query: .assets[] | select(.name == "deno-aarch64-unknown-linux-gnu.zip") | .browser_download_url
-
-              # -------- unpack the zip --------
-              - type: shell
-                commands:
-                  - unzip deno.zip
-
   - name: uchardet
     buildsystem: cmake-ninja
     config-opts:
@@ -708,3 +637,5 @@ modules:
   - modules/python-modules.yaml
 
   - modules/utilities.yaml
+
+  - modules/yt-dlp.yaml
