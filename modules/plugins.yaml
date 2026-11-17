@@ -1,0 +1,31 @@
+name: plugins
+modules:
+  - name: mpv-mpris
+    no-autogen: true
+    make-install-args:
+      - SCRIPTS_DIR=/app/etc/mpv/scripts
+    sources:
+      - type: archive
+        archive-type: tar
+        url: https://api.github.com/repos/hoyon/mpv-mpris/tarball/1.3
+        sha256: 5872dde225725b9811be41e89746a10f4f7e612dd2969dd637d93972b2904e19
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/hoyon/mpv-mpris/releases/latest
+          version-query: .name
+          url-query: .tarball_url
+
+  # This mpv plugin prevents screen blanking in GNOME (wayland) while playing media.
+  - name: mpv_inhibit_gnome
+    buildsystem: simple
+    build-commands:
+      - make
+      - install -D lib/mpv_inhibit_gnome.so /app/etc/mpv/scripts
+    sources:
+      - type: git
+        url: https://github.com/Guldoman/mpv_inhibit_gnome.git
+        tag: v0.1.3
+        commit: 9069be0f15fa2c222d78a183d4aa1477d8a8f2cd
+        x-checker-data:
+          type: git
+          tag-pattern: ^v([\d.]+)$
