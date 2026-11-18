@@ -258,23 +258,6 @@ modules:
           version-pattern: libdvdnav-([\w.]+)\.tar\.
           url-template: https://download.videolan.org/pub/videolan/libdvdnav/$version/libdvdnav-$version.tar.xz
 
-  - name: libaacs
-    config-opts:
-      - --disable-static
-      - --disable-bdjava-jar
-    cleanup:
-      - /include
-      - /lib/pkgconfig
-    sources:
-      - sha256: 1996673a9fc45ee4a364c66ffa84756629bf3923e52346c7358b71becb8e4419
-        type: archive
-        url: https://download.videolan.org/pub/videolan/libaacs/0.12.0/libaacs-0.12.0.tar.bz2
-        x-checker-data:
-          type: html
-          url: https://download.videolan.org/pub/videolan/libaacs/last/
-          version-pattern: libaacs-([\w.]+)\.tar\.
-          url-template: https://download.videolan.org/pub/videolan/libaacs/$version/libaacs-$version.tar.bz2
-
   - name: libbluray
     buildsystem: meson
     config-opts:
@@ -291,6 +274,23 @@ modules:
           url: https://download.videolan.org/pub/videolan/libbluray/last/
           version-pattern: libbluray-([\w.]+)\.tar\.
           url-template: https://download.videolan.org/pub/videolan/libbluray/$version/libbluray-$version.tar.xz
+    modules:
+      - name: libaacs
+        config-opts:
+          - --disable-static
+          - --disable-bdjava-jar
+        cleanup:
+          - /include
+          - /lib/pkgconfig
+        sources:
+          - sha256: 1996673a9fc45ee4a364c66ffa84756629bf3923e52346c7358b71becb8e4419
+            type: archive
+            url: https://download.videolan.org/pub/videolan/libaacs/0.12.0/libaacs-0.12.0.tar.bz2
+            x-checker-data:
+              type: html
+              url: https://download.videolan.org/pub/videolan/libaacs/last/
+              version-pattern: libaacs-([\w.]+)\.tar\.
+              url-template: https://download.videolan.org/pub/videolan/libaacs/$version/libaacs-$version.tar.bz2
 
   - name: zimg
     config-opts:
