@@ -37,8 +37,8 @@ config-opts:
 sources:
   - type: git
     url: https://git.ffmpeg.org/ffmpeg.git
-    commit: 946fcce07b6dcd0331c8cc609192aeff5e1924f8
-    tag: n9.0.2
+    commit: 74e4393595cf2b5857f0da925c4e0dd74ea306e5
+    tag: n9.1
     x-checker-data:
       type: git
       tag-pattern: ^n([\d.]{3,7})$
